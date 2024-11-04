@@ -27,9 +27,13 @@ public static class HostingExtension
 
         AppDomain.CurrentDomain.SetData("DataDirectory", dbPath);
 
+        var cstr = $"Data Source={dbPath}\\FDMdb.db";
         services.AddDbContext<FdmDbContext>(options =>
-            options.UseSqlite($"{dbPath}\\FDMdb.db"));
+            options.UseSqlite(cstr));
 
+        var serviceProvider = services.BuildServiceProvider();
+        var dbContext = serviceProvider.GetRequiredService<FdmDbContext>();
+        dbContext.Database.mig();
         return services;
     }
 }

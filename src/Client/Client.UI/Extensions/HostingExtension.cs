@@ -1,6 +1,6 @@
 ﻿
 
-using Client.Domain.Extensions;
+using Client.Infra.DbContexts;
 
 namespace Client.UI.Extensions;
 
@@ -11,6 +11,7 @@ public static class HostingExtension
         services.AddInfrastructureToDC();
         services.AddDomainToDC();
         services.AddMemoryCache();
+
         return services;
     }
 }

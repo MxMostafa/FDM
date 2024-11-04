@@ -1,12 +1,4 @@
-﻿
-
-
-
-using System;
-using System.Reflection;
-
-namespace Client.Infra.DbContexts;
-
+﻿namespace Client.Infra.DbContexts;
 public class FdmDbContext : DbContext
 {
     public DbSet<CategoryGroup> CategoryGroups { get; set; }

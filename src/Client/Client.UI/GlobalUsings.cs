@@ -11,3 +11,5 @@ global using System.Windows.Forms;
 global using DevExpress.XtraEditors;
 global using Microsoft.Extensions.DependencyInjection;
 global using Client.Infra.Extensions;
+global using Client.Domain.Extensions;
+global using Client.UI.Extensions;
