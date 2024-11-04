@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraBars;
+﻿using Client.UI.Forms.DialogForms;
+using DevExpress.XtraBars;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,11 @@ namespace Client.UI
         public MainApp()
         {
             InitializeComponent();
+        }
+
+        private void SettingButton_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new AppSettingDialogForm().ShowDialog();
         }
     }
 }

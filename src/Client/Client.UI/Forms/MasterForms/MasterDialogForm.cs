@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Client.UI.Forms.MasterForms
 {
-    public partial class MasterDialogForm : Form
+    public partial class MasterDialogForm : XtraForm
     {
         public MasterDialogForm()
         {

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Client.UI.Forms.MasterForms
 {
-    public partial class MasterSizableDialogform : Form
+    public partial class MasterSizableDialogform : MasterDialogForm
     {
         public MasterSizableDialogform()
         {

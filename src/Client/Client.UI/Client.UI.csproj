@@ -12,7 +12,12 @@
 
   <ItemGroup>
     <Folder Include="Forms\DockForms\" />
-    <Folder Include="Forms\DialogForms\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client.Domain\Client.Domain.csproj" />
+    <ProjectReference Include="..\Client.Infra\Client.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>

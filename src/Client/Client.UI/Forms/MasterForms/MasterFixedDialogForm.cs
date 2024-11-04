@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Client.UI.Forms.MasterForms
 {
-    public partial class MasterFixedDialogForm : Form
+    public partial class MasterFixedDialogForm : MasterDialogForm
     {
         public MasterFixedDialogForm()
         {

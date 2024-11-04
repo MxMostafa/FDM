@@ -1,5 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Client.UI.Forms.MasterForms
+namespace Client.UI.UserControls.Common
 {
-    public partial class MasterForm : XtraForm
+    public partial class MxActionGroup : UserControl
     {
-        public MasterForm()
+        public MxActionGroup()
         {
             InitializeComponent();
         }

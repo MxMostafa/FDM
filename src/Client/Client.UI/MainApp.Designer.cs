@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainApp));
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(MainApp));
             ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
@@ -58,25 +58,28 @@
             accordionControlElement11 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement12 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             gridControl1 = new DevExpress.XtraGrid.GridControl();
-            gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)accordionControl2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)gridControl1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
+            tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
+            itemsView1 = new DevExpress.XtraGrid.Views.Items.ItemsView();
+            SettingButton = new DevExpress.XtraBars.BarButtonItem();
+            ((ISupportInitialize)ribbon).BeginInit();
+            ((ISupportInitialize)accordionControl2).BeginInit();
+            ((ISupportInitialize)gridControl1).BeginInit();
+            ((ISupportInitialize)tileView1).BeginInit();
+            ((ISupportInitialize)itemsView1).BeginInit();
             SuspendLayout();
             // 
             // ribbon
             // 
             ribbon.CaptionBarItemLinks.Add(skinRibbonGalleryBarItem1);
-            ribbon.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(30, 39, 30, 39);
+            ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(30, 39, 30, 39);
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinRibbonGalleryBarItem1, ribbon.ExpandCollapseItem, barButtonItem1, barButtonItem2, barLinkContainerItem1 });
-            ribbon.Location = new System.Drawing.Point(0, 0);
-            ribbon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            ribbon.MaxItemId = 5;
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinRibbonGalleryBarItem1, ribbon.ExpandCollapseItem, barButtonItem1, barButtonItem2, barLinkContainerItem1, SettingButton });
+            ribbon.Location = new Point(0, 0);
+            ribbon.Margin = new Padding(3, 4, 3, 4);
+            ribbon.MaxItemId = 6;
             ribbon.Name = "ribbon";
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
-            ribbon.Size = new System.Drawing.Size(1087, 158);
+            ribbon.Size = new Size(1085, 158);
             ribbon.StatusBar = ribbonStatusBar;
             // 
             // skinRibbonGalleryBarItem1
@@ -127,8 +130,8 @@
             // 
             // ribbonPageGroup2
             // 
+            ribbonPageGroup2.ItemLinks.Add(SettingButton);
             ribbonPageGroup2.Name = "ribbonPageGroup2";
-            ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
             // ribbonPage3
             // 
@@ -143,21 +146,21 @@
             // 
             // ribbonStatusBar
             // 
-            ribbonStatusBar.Location = new System.Drawing.Point(0, 594);
-            ribbonStatusBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            ribbonStatusBar.Location = new Point(0, 594);
+            ribbonStatusBar.Margin = new Padding(3, 4, 3, 4);
             ribbonStatusBar.Name = "ribbonStatusBar";
             ribbonStatusBar.Ribbon = ribbon;
-            ribbonStatusBar.Size = new System.Drawing.Size(1087, 24);
+            ribbonStatusBar.Size = new Size(1085, 24);
             // 
             // accordionControl2
             // 
-            accordionControl2.Dock = System.Windows.Forms.DockStyle.Left;
+            accordionControl2.Dock = DockStyle.Left;
             accordionControl2.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement2, accordionControlSeparator2, accordionControlElement3, accordionControlElement10 });
-            accordionControl2.Location = new System.Drawing.Point(0, 158);
-            accordionControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            accordionControl2.Location = new Point(0, 158);
+            accordionControl2.Margin = new Padding(3, 5, 3, 5);
             accordionControl2.Name = "accordionControl2";
             accordionControl2.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl2.Size = new System.Drawing.Size(260, 436);
+            accordionControl2.Size = new Size(260, 436);
             accordionControl2.TabIndex = 5;
             accordionControl2.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -249,43 +252,57 @@
             // 
             // gridControl1
             // 
-            gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            gridControl1.Location = new System.Drawing.Point(260, 158);
-            gridControl1.MainView = gridView1;
+            gridControl1.Dock = DockStyle.Fill;
+            gridControl1.EmbeddedNavigator.Margin = new Padding(3, 2, 3, 2);
+            gridControl1.Location = new Point(260, 158);
+            gridControl1.MainView = tileView1;
             gridControl1.MenuManager = ribbon;
             gridControl1.Name = "gridControl1";
-            gridControl1.Size = new System.Drawing.Size(827, 436);
+            gridControl1.Size = new Size(825, 436);
             gridControl1.TabIndex = 8;
-            gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
+            gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { tileView1, itemsView1 });
             // 
-            // gridView1
+            // tileView1
             // 
-            gridView1.GridControl = gridControl1;
-            gridView1.Name = "gridView1";
+            tileView1.GridControl = gridControl1;
+            tileView1.Name = "tileView1";
+            // 
+            // itemsView1
+            // 
+            itemsView1.GridControl = gridControl1;
+            itemsView1.Name = "itemsView1";
+            // 
+            // SettingButton
+            // 
+            SettingButton.Caption = "تنظیمات";
+            SettingButton.Id = 5;
+            SettingButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem3.ImageOptions.SvgImage");
+            SettingButton.Name = "SettingButton";
+            SettingButton.ItemClick += SettingButton_ItemClick;
             // 
             // MainApp
             // 
             Appearance.Options.UseFont = true;
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1087, 618);
+            AutoScaleDimensions = new SizeF(6F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1085, 618);
             Controls.Add(gridControl1);
             Controls.Add(accordionControl2);
             Controls.Add(ribbonStatusBar);
             Controls.Add(ribbon);
-            Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 178);
-            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainApp";
             Ribbon = ribbon;
-            RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
             StatusBar = ribbonStatusBar;
             Text = "دانلود منیجر فارسی FDM";
-            ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();
-            ((System.ComponentModel.ISupportInitialize)accordionControl2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)gridControl1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
+            ((ISupportInitialize)ribbon).EndInit();
+            ((ISupportInitialize)accordionControl2).EndInit();
+            ((ISupportInitialize)gridControl1).EndInit();
+            ((ISupportInitialize)tileView1).EndInit();
+            ((ISupportInitialize)itemsView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -318,9 +335,11 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarLinkContainerItem barLinkContainerItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraGrid.Views.Tile.TileView tileView1;
+        private DevExpress.XtraGrid.Views.Items.ItemsView itemsView1;
+        private DevExpress.XtraBars.BarButtonItem SettingButton;
     }
 }
