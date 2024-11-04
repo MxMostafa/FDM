@@ -1,10 +1,16 @@
-﻿using Client.UI.Forms.DialogForms;
+﻿using Client.Infra.DbContexts;
+using Client.UI.Extensions;
+using Client.UI.Forms.DialogForms;
 using DevExpress.XtraBars;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,5 +29,7 @@ namespace Client.UI
         {
             new AppSettingDialogForm().ShowDialog();
         }
+
+        
     }
 }

@@ -9,3 +9,5 @@ global using System.Text;
 global using System.Threading.Tasks;
 global using System.Windows.Forms;
 global using DevExpress.XtraEditors;
+global using Microsoft.Extensions.DependencyInjection;
+global using Client.Infra.Extensions;
