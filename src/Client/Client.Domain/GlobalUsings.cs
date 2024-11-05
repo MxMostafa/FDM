@@ -10,3 +10,5 @@ global using Client.Domain.Dtos.Response;
 global using Client.Domain.Entites;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
+global using Client.Domain.Interfaces.Dto;
+global using Client.Domain.Interfaces.Services;

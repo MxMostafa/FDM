@@ -9,7 +9,7 @@ public static class HostingExtension
     {
 
         var types = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.Namespace == "FDM.Client.Infra.Repositories" && t.Name.EndsWith("Repository"))
+            .Where(t => t.Namespace == "Client.Infra.Repositories" && t.Name.EndsWith("Repository"))
             .ToList();
 
 
@@ -29,11 +29,8 @@ public static class HostingExtension
 
         var cstr = $"Data Source={dbPath}\\FDMdb.db";
         services.AddDbContext<FdmDbContext>(options =>
-            options.UseSqlite(cstr));
+            options.UseSqlite(cstr),ServiceLifetime.Transient);
 
-        var serviceProvider = services.BuildServiceProvider();
-        var dbContext = serviceProvider.GetRequiredService<FdmDbContext>();
-        dbContext.Database.mig();
         return services;
     }
 }

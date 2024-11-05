@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Dtos\Request\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Interfaces\Entity\" />
   </ItemGroup>
 
   <ItemGroup>

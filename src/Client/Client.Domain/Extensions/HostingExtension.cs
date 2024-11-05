@@ -11,7 +11,7 @@ public static class HostingExtension
     public static IServiceCollection AddDomainToDC(this IServiceCollection services)
     {
         var types = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.Namespace == "FDM.Client.Domain.Services" && t.Name.EndsWith("Service"))
+            .Where(t => t.Namespace == "Client.Domain.Services" && t.Name.EndsWith("Service"))
             .ToList();
 
 

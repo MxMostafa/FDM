@@ -9,4 +9,6 @@ global using Microsoft.EntityFrameworkCore;
 global using Client.Infra.DbContexts;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
-global using Microsoft.Extensions.DependencyInjection;
+global using Client.Infra.Repositories.Base;
+global using Microsoft.EntityFrameworkCore.Design;
+

@@ -28,10 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "MasterDialogForm";
+            SuspendLayout();
+            // 
+            // MasterDialogForm
+            // 
+            Appearance.Options.UseFont = true;
+            AutoScaleDimensions = new SizeF(6F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 588);
+            Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "MasterDialogForm";
+            Text = "MasterDialogForm";
+            ResumeLayout(false);
         }
 
         #endregion

@@ -24,12 +24,15 @@ namespace Client.UI
 
         public MainApp( )
         {
+            InitializeComponent();
         }
 
         private void SettingButton_ItemClick(object sender, ItemClickEventArgs e)
         {
             new AppSettingDialogForm().ShowDialog();
         }
+
+
 
         
     }

@@ -38,9 +38,10 @@
             mxButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             mxButton1.DialogResult = DialogResult.Cancel;
             mxButton1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxButton1.ImageOptions.SvgImage");
-            mxButton1.Location = new Point(3, 8);
+            mxButton1.ImageOptions.SvgImageSize = new Size(15, 15);
+            mxButton1.Location = new Point(3, 4);
             mxButton1.Name = "mxButton1";
-            mxButton1.Size = new Size(75, 23);
+            mxButton1.Size = new Size(90, 30);
             mxButton1.TabIndex = 0;
             mxButton1.Text = "لغو";
             // 
@@ -48,20 +49,22 @@
             // 
             mxButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             mxButton2.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxButton2.ImageOptions.SvgImage");
-            mxButton2.Location = new Point(84, 8);
+            mxButton2.ImageOptions.SvgImageSize = new Size(15, 15);
+            mxButton2.Location = new Point(99, 4);
             mxButton2.Name = "mxButton2";
-            mxButton2.Size = new Size(75, 23);
+            mxButton2.Size = new Size(90, 30);
             mxButton2.TabIndex = 1;
             mxButton2.Text = "ذخیره";
             // 
             // MxActionGroup
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(mxButton2);
             Controls.Add(mxButton1);
+            Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             Name = "MxActionGroup";
-            Size = new Size(571, 39);
+            Size = new Size(489, 39);
             ResumeLayout(false);
         }
 
