@@ -30,6 +30,7 @@
         {
             components = new Container();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
+            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -57,6 +58,8 @@
             DownloadQueueElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             skinBarSubItem1 = new DevExpress.XtraBars.SkinBarSubItem();
+            barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
             bar1 = new DevExpress.XtraBars.Bar();
             bar2 = new DevExpress.XtraBars.Bar();
@@ -69,21 +72,21 @@
             // fluentDesignFormContainer1
             // 
             fluentDesignFormContainer1.Dock = DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new Point(260, 31);
+            fluentDesignFormContainer1.Location = new Point(260, 33);
             fluentDesignFormContainer1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(725, 712);
+            fluentDesignFormContainer1.Size = new Size(725, 710);
             fluentDesignFormContainer1.TabIndex = 0;
             // 
             // accordionControl1
             // 
             accordionControl1.Dock = DockStyle.Left;
             accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement1, accordionControlElement2, accordionControlElement9, accordionControlElement10, DownloadQueueElement });
-            accordionControl1.Location = new Point(0, 31);
+            accordionControl1.Location = new Point(0, 33);
             accordionControl1.Margin = new Padding(3, 4, 3, 4);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(260, 712);
+            accordionControl1.Size = new Size(260, 710);
             accordionControl1.TabIndex = 1;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -220,6 +223,14 @@
             // 
             // DownloadQueueElement
             // 
+            accordionContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            accordionContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            accordionContextButton1.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
+            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
+            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
+            accordionContextButton1.Name = "AddNewDownloadQueueContextButton";
+            accordionContextButton1.ToolTip = "افزودن صف جدید";
+            DownloadQueueElement.ContextButtons.Add(accordionContextButton1);
             DownloadQueueElement.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DownloadQueueElement.ImageOptions.SvgImage");
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
@@ -227,12 +238,12 @@
             // fluentDesignFormControl1
             // 
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1 });
+            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1 });
             fluentDesignFormControl1.Location = new Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new Size(985, 31);
+            fluentDesignFormControl1.Size = new Size(985, 33);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             fluentDesignFormControl1.TitleItemLinks.Add(skinBarSubItem1);
@@ -245,13 +256,26 @@
             skinBarSubItem1.Name = "skinBarSubItem1";
             skinBarSubItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // barSubItem1
+            // 
+            barSubItem1.Caption = "barSubItem1";
+            barSubItem1.Id = 1;
+            barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem1) });
+            barSubItem1.Name = "barSubItem1";
+            // 
+            // barButtonItem1
+            // 
+            barButtonItem1.Caption = "barButtonItem1";
+            barButtonItem1.Id = 2;
+            barButtonItem1.Name = "barButtonItem1";
+            // 
             // fluentFormDefaultManager1
             // 
             fluentFormDefaultManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] { bar1, bar2, bar3 });
             fluentFormDefaultManager1.Form = this;
-            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1 });
+            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1 });
             fluentFormDefaultManager1.MainMenu = bar1;
-            fluentFormDefaultManager1.MaxItemId = 1;
+            fluentFormDefaultManager1.MaxItemId = 3;
             fluentFormDefaultManager1.StatusBar = bar2;
             // 
             // bar1
@@ -293,11 +317,14 @@
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            LookAndFeel.SkinName = "WXI";
+            LookAndFeel.UseDefaultLookAndFeel = false;
             Margin = new Padding(3, 4, 3, 4);
             Name = "Main";
             NavigationControl = accordionControl1;
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "دانلود منیجر فارسی FDM";
             Load += Main_Load;
             ((ISupportInitialize)accordionControl1).EndInit();
@@ -338,5 +365,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement18;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement19;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement20;
+        private DevExpress.XtraBars.BarSubItem barSubItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

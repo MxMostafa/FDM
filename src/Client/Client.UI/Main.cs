@@ -1,6 +1,7 @@
 ﻿
 
 using Client.Domain.Interfaces.Services;
+using Client.UI.Forms.DialogForms;
 
 namespace Client.UI;
 
@@ -11,6 +12,22 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     {
         InitializeComponent();
         _downloadQueueService = downloadQueueService;
+        DownloadQueueElement.ContextButtons.First().Click += Main_Click;
+    }
+
+    private async void Main_Click(object sender, DevExpress.Utils.ContextItemClickEventArgs e)
+    {
+        var frm = new AddNewDownloadQueueDialogForm();
+        if (frm.ShowDialog() != DialogResult.OK) return;
+        var result = await _downloadQueueService.AddDownloadQueueAsync(frm.DowanloadQueueTitle);
+        if (result.IsSucceed)
+        {
+            await LoadAllQueuesIntoSideMenuAsync();
+        }
+        else
+        {
+            MessageBox.Show(result.ErrorMessage);
+        }
     }
 
     private async Task LoadAllQueuesIntoSideMenuAsync()

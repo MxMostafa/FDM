@@ -30,7 +30,7 @@
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(MxActionGroup));
             mxButton1 = new MxButton();
-            mxButton2 = new MxButton();
+            saveButton = new MxButton();
             SuspendLayout();
             // 
             // mxButton1
@@ -45,22 +45,22 @@
             mxButton1.TabIndex = 0;
             mxButton1.Text = "لغو";
             // 
-            // mxButton2
+            // saveButton
             // 
-            mxButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            mxButton2.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxButton2.ImageOptions.SvgImage");
-            mxButton2.ImageOptions.SvgImageSize = new Size(15, 15);
-            mxButton2.Location = new Point(99, 4);
-            mxButton2.Name = "mxButton2";
-            mxButton2.Size = new Size(90, 30);
-            mxButton2.TabIndex = 1;
-            mxButton2.Text = "ذخیره";
+            saveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            saveButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxButton2.ImageOptions.SvgImage");
+            saveButton.ImageOptions.SvgImageSize = new Size(15, 15);
+            saveButton.Location = new Point(99, 4);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(90, 30);
+            saveButton.TabIndex = 1;
+            saveButton.Text = "ذخیره";
             // 
             // MxActionGroup
             // 
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(mxButton2);
+            Controls.Add(saveButton);
             Controls.Add(mxButton1);
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             Name = "MxActionGroup";
@@ -71,6 +71,6 @@
         #endregion
 
         private MxButton mxButton1;
-        private MxButton mxButton2;
+        private MxButton saveButton;
     }
 }

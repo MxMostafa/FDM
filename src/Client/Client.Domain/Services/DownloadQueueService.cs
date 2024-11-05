@@ -1,7 +1,7 @@
 ﻿
 
 
-using Client.Domain.Interfaces.Repositories;
+
 
 namespace Client.Domain.Services;
 
@@ -22,5 +22,19 @@ public class DownloadQueueService : IDownloadQueueService
         {
             Title = r.Title
         }).ToList();
+    }
+
+    public async Task<ResultPattern<bool>> AddDownloadQueueAsync(string title)
+    {
+        var downloadQueue = await _downloadQueueRepo.GetByTitleAsync(title);
+
+        if (downloadQueue != null)
+        {
+            return new ResultPattern<bool>(Errors.DuplicatedDownloadQueue);
+        }
+
+        var result = await _downloadQueueRepo.AddAsync(title);
+
+        return true;
     }
 }
