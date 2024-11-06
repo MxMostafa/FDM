@@ -30,17 +30,6 @@
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(AppSettingDialogForm));
             xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            prokciTb = new DevExpress.XtraTab.XtraTabPage();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
-            panelControl7 = new PanelControl();
-            mxCheckBox21 = new UserControls.Common.MxCheckBox();
-            mxButton15 = new UserControls.Common.MxButton();
-            mxLabel31 = new UserControls.Common.MxLabel();
-            mxLabel29 = new UserControls.Common.MxLabel();
-            separatorControl11 = new SeparatorControl();
-            pictureEdit6 = new PictureEdit();
-            mxLabel30 = new UserControls.Common.MxLabel();
             passSiteTb = new DevExpress.XtraTab.XtraTabPage();
             mxButton14 = new UserControls.Common.MxButton();
             mxButton13 = new UserControls.Common.MxButton();
@@ -147,30 +136,45 @@
             separatorControl5 = new SeparatorControl();
             pictureEdit4 = new PictureEdit();
             mxLabel20 = new UserControls.Common.MxLabel();
+            panelControl7 = new PanelControl();
+            mxLabel30 = new UserControls.Common.MxLabel();
+            pictureEdit6 = new PictureEdit();
+            separatorControl11 = new SeparatorControl();
+            mxLabel29 = new UserControls.Common.MxLabel();
+            mxLabel31 = new UserControls.Common.MxLabel();
+            mxButton15 = new UserControls.Common.MxButton();
+            mxCheckBox21 = new UserControls.Common.MxCheckBox();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
             radioButton3 = new RadioButton();
-            mxLabel32 = new UserControls.Common.MxLabel();
-            mxTextBox3 = new UserControls.Common.MxTextBox();
             separatorControl12 = new SeparatorControl();
             separatorControl13 = new SeparatorControl();
             radioButton4 = new RadioButton();
             separatorControl14 = new SeparatorControl();
             panelControl8 = new PanelControl();
             panelControl9 = new PanelControl();
-            mxActionGroup_Help6 = new UserControls.Common.MxActionGroup_Help();
-            separatorControl15 = new SeparatorControl();
-            mxCheckBox22 = new UserControls.Common.MxCheckBox();
             mxTextBox4 = new UserControls.Common.MxTextBox();
             mxTextBox5 = new UserControls.Common.MxTextBox();
             mxTextBox6 = new UserControls.Common.MxTextBox();
             mxTextBox7 = new UserControls.Common.MxTextBox();
+            mxLabel32 = new UserControls.Common.MxLabel();
+            mxTextBox3 = new UserControls.Common.MxTextBox();
+            mxActionGroup_Help6 = new UserControls.Common.MxActionGroup_Help();
+            separatorControl15 = new SeparatorControl();
+            mxCheckBox22 = new UserControls.Common.MxCheckBox();
+            prokciTb = new DevExpress.XtraTab.XtraTabPage();
+            mxLabel33 = new UserControls.Common.MxLabel();
+            mxLabel34 = new UserControls.Common.MxLabel();
+            mxLabel35 = new UserControls.Common.MxLabel();
+            mxLabel36 = new UserControls.Common.MxLabel();
+            mxLabel37 = new UserControls.Common.MxLabel();
+            mxCheckBox23 = new UserControls.Common.MxCheckBox();
+            mxCheckBox24 = new UserControls.Common.MxCheckBox();
+            mxCheckBox25 = new UserControls.Common.MxCheckBox();
+            mxButton16 = new UserControls.Common.MxButton();
+            groupControl4 = new GroupControl();
             ((ISupportInitialize)xtraTabControl1).BeginInit();
             xtraTabControl1.SuspendLayout();
-            prokciTb.SuspendLayout();
-            ((ISupportInitialize)panelControl7).BeginInit();
-            panelControl7.SuspendLayout();
-            ((ISupportInitialize)mxCheckBox21.Properties).BeginInit();
-            ((ISupportInitialize)separatorControl11).BeginInit();
-            ((ISupportInitialize)pictureEdit6.Properties).BeginInit();
             passSiteTb.SuspendLayout();
             ((ISupportInitialize)gridControl1).BeginInit();
             ((ISupportInitialize)gridView1).BeginInit();
@@ -235,7 +239,11 @@
             panelControl5.SuspendLayout();
             ((ISupportInitialize)separatorControl5).BeginInit();
             ((ISupportInitialize)pictureEdit4.Properties).BeginInit();
-            ((ISupportInitialize)mxTextBox3.Properties).BeginInit();
+            ((ISupportInitialize)panelControl7).BeginInit();
+            panelControl7.SuspendLayout();
+            ((ISupportInitialize)pictureEdit6.Properties).BeginInit();
+            ((ISupportInitialize)separatorControl11).BeginInit();
+            ((ISupportInitialize)mxCheckBox21.Properties).BeginInit();
             ((ISupportInitialize)separatorControl12).BeginInit();
             ((ISupportInitialize)separatorControl13).BeginInit();
             ((ISupportInitialize)separatorControl14).BeginInit();
@@ -243,12 +251,18 @@
             panelControl8.SuspendLayout();
             ((ISupportInitialize)panelControl9).BeginInit();
             panelControl9.SuspendLayout();
-            ((ISupportInitialize)separatorControl15).BeginInit();
-            ((ISupportInitialize)mxCheckBox22.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox4.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox5.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox6.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox7.Properties).BeginInit();
+            ((ISupportInitialize)mxTextBox3.Properties).BeginInit();
+            ((ISupportInitialize)separatorControl15).BeginInit();
+            ((ISupportInitialize)mxCheckBox22.Properties).BeginInit();
+            prokciTb.SuspendLayout();
+            ((ISupportInitialize)mxCheckBox23.Properties).BeginInit();
+            ((ISupportInitialize)mxCheckBox24.Properties).BeginInit();
+            ((ISupportInitialize)mxCheckBox25.Properties).BeginInit();
+            ((ISupportInitialize)groupControl4).BeginInit();
             SuspendLayout();
             // 
             // xtraTabControl1
@@ -261,132 +275,6 @@
             xtraTabControl1.Size = new Size(544, 618);
             xtraTabControl1.TabIndex = 0;
             xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { prokciTb, passSiteTb, publicTb, fileTypeTb, saveInTb, downloadsTb });
-            // 
-            // prokciTb
-            // 
-            prokciTb.Controls.Add(mxCheckBox22);
-            prokciTb.Controls.Add(separatorControl15);
-            prokciTb.Controls.Add(mxActionGroup_Help6);
-            prokciTb.Controls.Add(panelControl9);
-            prokciTb.Controls.Add(panelControl8);
-            prokciTb.Controls.Add(separatorControl14);
-            prokciTb.Controls.Add(radioButton4);
-            prokciTb.Controls.Add(separatorControl13);
-            prokciTb.Controls.Add(separatorControl12);
-            prokciTb.Controls.Add(radioButton3);
-            prokciTb.Controls.Add(radioButton2);
-            prokciTb.Controls.Add(radioButton1);
-            prokciTb.Controls.Add(panelControl7);
-            prokciTb.Margin = new Padding(3, 4, 3, 4);
-            prokciTb.Name = "prokciTb";
-            prokciTb.Size = new Size(542, 587);
-            prokciTb.Text = "پروکسی/Socks";
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(377, 136);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(143, 17);
-            radioButton2.TabIndex = 10;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "استفاده از تنظیمات ویندوز";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(381, 100);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(139, 17);
-            radioButton1.TabIndex = 9;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "عدم استفاده از پروکسی";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // panelControl7
-            // 
-            panelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            panelControl7.Controls.Add(mxCheckBox21);
-            panelControl7.Controls.Add(mxButton15);
-            panelControl7.Controls.Add(mxLabel31);
-            panelControl7.Controls.Add(mxLabel29);
-            panelControl7.Controls.Add(separatorControl11);
-            panelControl7.Controls.Add(pictureEdit6);
-            panelControl7.Controls.Add(mxLabel30);
-            panelControl7.Location = new Point(11, 3);
-            panelControl7.Name = "panelControl7";
-            panelControl7.Size = new Size(520, 91);
-            panelControl7.TabIndex = 8;
-            // 
-            // mxCheckBox21
-            // 
-            mxCheckBox21.Location = new Point(80, 43);
-            mxCheckBox21.Name = "mxCheckBox21";
-            mxCheckBox21.Properties.Caption = "اگر در دانلود فایلها از مرورگر خطایی رخ دهد از پروکسی/Socks مرورگر استفاده کن";
-            mxCheckBox21.Size = new Size(420, 22);
-            mxCheckBox21.TabIndex = 26;
-            // 
-            // mxButton15
-            // 
-            mxButton15.Appearance.BackColor = Color.Gainsboro;
-            mxButton15.Appearance.Options.UseBackColor = true;
-            mxButton15.Location = new Point(230, 4);
-            mxButton15.Name = "mxButton15";
-            mxButton15.Size = new Size(117, 23);
-            mxButton15.TabIndex = 19;
-            mxButton15.Text = "Get System";
-            // 
-            // mxLabel31
-            // 
-            mxLabel31.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxLabel31.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 178);
-            mxLabel31.Appearance.Options.UseFont = true;
-            mxLabel31.Location = new Point(374, 9);
-            mxLabel31.Name = "mxLabel31";
-            mxLabel31.Size = new Size(126, 17);
-            mxLabel31.TabIndex = 8;
-            mxLabel31.Text = "تنظیمات Socks/پروکسی";
-            // 
-            // mxLabel29
-            // 
-            mxLabel29.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxLabel29.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 178);
-            mxLabel29.Appearance.Options.UseFont = true;
-            mxLabel29.Location = new Point(724, 13);
-            mxLabel29.Name = "mxLabel29";
-            mxLabel29.Size = new Size(95, 17);
-            mxLabel29.TabIndex = 6;
-            mxLabel29.Text = "فایلهای دانلود شده";
-            // 
-            // separatorControl11
-            // 
-            separatorControl11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            separatorControl11.Location = new Point(13, 61);
-            separatorControl11.Name = "separatorControl11";
-            separatorControl11.Size = new Size(496, 20);
-            separatorControl11.TabIndex = 3;
-            // 
-            // pictureEdit6
-            // 
-            pictureEdit6.EditValue = resources.GetObject("pictureEdit6.EditValue");
-            pictureEdit6.Location = new Point(13, 9);
-            pictureEdit6.Name = "pictureEdit6";
-            pictureEdit6.Properties.ErrorImageOptions.Image = (Image)resources.GetObject("pictureEdit6.Properties.ErrorImageOptions.Image");
-            pictureEdit6.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            pictureEdit6.Size = new Size(42, 38);
-            pictureEdit6.TabIndex = 5;
-            // 
-            // mxLabel30
-            // 
-            mxLabel30.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxLabel30.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            mxLabel30.Appearance.Options.UseFont = true;
-            mxLabel30.Location = new Point(994, 13);
-            mxLabel30.Name = "mxLabel30";
-            mxLabel30.Size = new Size(142, 17);
-            mxLabel30.TabIndex = 4;
-            mxLabel30.Text = "ارتباط برنامه با جستجو گر اینترنت";
             // 
             // passSiteTb
             // 
@@ -1470,6 +1358,112 @@
             mxLabel20.TabIndex = 4;
             mxLabel20.Text = "ارتباط برنامه با جستجو گر اینترنت";
             // 
+            // panelControl7
+            // 
+            panelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            panelControl7.Controls.Add(mxCheckBox21);
+            panelControl7.Controls.Add(mxButton15);
+            panelControl7.Controls.Add(mxLabel31);
+            panelControl7.Controls.Add(mxLabel29);
+            panelControl7.Controls.Add(separatorControl11);
+            panelControl7.Controls.Add(pictureEdit6);
+            panelControl7.Controls.Add(mxLabel30);
+            panelControl7.Location = new Point(11, 3);
+            panelControl7.Name = "panelControl7";
+            panelControl7.Size = new Size(520, 91);
+            panelControl7.TabIndex = 8;
+            // 
+            // mxLabel30
+            // 
+            mxLabel30.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            mxLabel30.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel30.Appearance.Options.UseFont = true;
+            mxLabel30.Location = new Point(994, 13);
+            mxLabel30.Name = "mxLabel30";
+            mxLabel30.Size = new Size(142, 17);
+            mxLabel30.TabIndex = 4;
+            mxLabel30.Text = "ارتباط برنامه با جستجو گر اینترنت";
+            // 
+            // pictureEdit6
+            // 
+            pictureEdit6.EditValue = resources.GetObject("pictureEdit6.EditValue");
+            pictureEdit6.Location = new Point(13, 9);
+            pictureEdit6.Name = "pictureEdit6";
+            pictureEdit6.Properties.ErrorImageOptions.Image = (Image)resources.GetObject("pictureEdit6.Properties.ErrorImageOptions.Image");
+            pictureEdit6.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            pictureEdit6.Size = new Size(42, 38);
+            pictureEdit6.TabIndex = 5;
+            // 
+            // separatorControl11
+            // 
+            separatorControl11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            separatorControl11.Location = new Point(13, 61);
+            separatorControl11.Name = "separatorControl11";
+            separatorControl11.Size = new Size(496, 20);
+            separatorControl11.TabIndex = 3;
+            // 
+            // mxLabel29
+            // 
+            mxLabel29.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            mxLabel29.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 178);
+            mxLabel29.Appearance.Options.UseFont = true;
+            mxLabel29.Location = new Point(724, 13);
+            mxLabel29.Name = "mxLabel29";
+            mxLabel29.Size = new Size(95, 17);
+            mxLabel29.TabIndex = 6;
+            mxLabel29.Text = "فایلهای دانلود شده";
+            // 
+            // mxLabel31
+            // 
+            mxLabel31.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            mxLabel31.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 178);
+            mxLabel31.Appearance.Options.UseFont = true;
+            mxLabel31.Location = new Point(374, 9);
+            mxLabel31.Name = "mxLabel31";
+            mxLabel31.Size = new Size(126, 17);
+            mxLabel31.TabIndex = 8;
+            mxLabel31.Text = "تنظیمات Socks/پروکسی";
+            // 
+            // mxButton15
+            // 
+            mxButton15.Appearance.BackColor = Color.Gainsboro;
+            mxButton15.Appearance.Options.UseBackColor = true;
+            mxButton15.Location = new Point(230, 4);
+            mxButton15.Name = "mxButton15";
+            mxButton15.Size = new Size(117, 23);
+            mxButton15.TabIndex = 19;
+            mxButton15.Text = "Get System";
+            // 
+            // mxCheckBox21
+            // 
+            mxCheckBox21.Location = new Point(80, 43);
+            mxCheckBox21.Name = "mxCheckBox21";
+            mxCheckBox21.Properties.Caption = "اگر در دانلود فایلها از مرورگر خطایی رخ دهد از پروکسی/Socks مرورگر استفاده کن";
+            mxCheckBox21.Size = new Size(420, 22);
+            mxCheckBox21.TabIndex = 26;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(381, 100);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(139, 17);
+            radioButton1.TabIndex = 9;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "عدم استفاده از پروکسی";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(377, 136);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(143, 17);
+            radioButton2.TabIndex = 10;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "استفاده از تنظیمات ویندوز";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
             // radioButton3
             // 
             radioButton3.AutoSize = true;
@@ -1480,23 +1474,6 @@
             radioButton3.TabStop = true;
             radioButton3.Text = "استفاده از اسکریپت تنظیمات خودکار";
             radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // mxLabel32
-            // 
-            mxLabel32.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            mxLabel32.Appearance.Options.UseFont = true;
-            mxLabel32.Location = new Point(459, 20);
-            mxLabel32.Name = "mxLabel32";
-            mxLabel32.Size = new Size(26, 17);
-            mxLabel32.TabIndex = 12;
-            mxLabel32.Text = "آدرس";
-            // 
-            // mxTextBox3
-            // 
-            mxTextBox3.Location = new Point(3, 13);
-            mxTextBox3.Name = "mxTextBox3";
-            mxTextBox3.Size = new Size(453, 28);
-            mxTextBox3.TabIndex = 13;
             // 
             // separatorControl12
             // 
@@ -1517,7 +1494,7 @@
             // radioButton4
             // 
             radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(376, 263);
+            radioButton4.Location = new Point(377, 261);
             radioButton4.Name = "radioButton4";
             radioButton4.Size = new Size(144, 17);
             radioButton4.TabIndex = 29;
@@ -1546,67 +1523,207 @@
             // panelControl9
             // 
             panelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            panelControl9.Controls.Add(groupControl4);
+            panelControl9.Controls.Add(mxButton16);
+            panelControl9.Controls.Add(mxCheckBox25);
+            panelControl9.Controls.Add(mxCheckBox24);
+            panelControl9.Controls.Add(mxCheckBox23);
+            panelControl9.Controls.Add(mxLabel37);
+            panelControl9.Controls.Add(mxLabel36);
+            panelControl9.Controls.Add(mxLabel35);
+            panelControl9.Controls.Add(mxLabel34);
+            panelControl9.Controls.Add(mxLabel33);
             panelControl9.Controls.Add(mxTextBox7);
             panelControl9.Controls.Add(mxTextBox6);
             panelControl9.Controls.Add(mxTextBox5);
             panelControl9.Controls.Add(mxTextBox4);
             panelControl9.Location = new Point(27, 286);
             panelControl9.Name = "panelControl9";
-            panelControl9.Size = new Size(496, 150);
+            panelControl9.Size = new Size(496, 205);
             panelControl9.TabIndex = 32;
-            // 
-            // mxActionGroup_Help6
-            // 
-            mxActionGroup_Help6.BackColor = SystemColors.ControlLight;
-            mxActionGroup_Help6.Dock = DockStyle.Bottom;
-            mxActionGroup_Help6.Location = new Point(0, 541);
-            mxActionGroup_Help6.Name = "mxActionGroup_Help6";
-            mxActionGroup_Help6.Size = new Size(542, 46);
-            mxActionGroup_Help6.TabIndex = 33;
-            // 
-            // separatorControl15
-            // 
-            separatorControl15.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            separatorControl15.Location = new Point(11, 473);
-            separatorControl15.Name = "separatorControl15";
-            separatorControl15.Size = new Size(520, 21);
-            separatorControl15.TabIndex = 34;
-            // 
-            // mxCheckBox22
-            // 
-            mxCheckBox22.Location = new Point(100, 486);
-            mxCheckBox22.Name = "mxCheckBox22";
-            mxCheckBox22.Properties.Caption = "استفاده از FTP در حالت PASV";
-            mxCheckBox22.Size = new Size(420, 22);
-            mxCheckBox22.TabIndex = 35;
             // 
             // mxTextBox4
             // 
-            mxTextBox4.Location = new Point(212, 61);
+            mxTextBox4.Location = new Point(212, 25);
             mxTextBox4.Name = "mxTextBox4";
             mxTextBox4.Size = new Size(68, 28);
             mxTextBox4.TabIndex = 14;
             // 
             // mxTextBox5
             // 
-            mxTextBox5.Location = new Point(24, 61);
+            mxTextBox5.Location = new Point(24, 25);
             mxTextBox5.Name = "mxTextBox5";
             mxTextBox5.Size = new Size(182, 28);
             mxTextBox5.TabIndex = 15;
             // 
             // mxTextBox6
             // 
-            mxTextBox6.Location = new Point(289, 61);
+            mxTextBox6.Location = new Point(289, 25);
             mxTextBox6.Name = "mxTextBox6";
             mxTextBox6.Size = new Size(90, 28);
             mxTextBox6.TabIndex = 16;
             // 
             // mxTextBox7
             // 
-            mxTextBox7.Location = new Point(385, 61);
+            mxTextBox7.Location = new Point(385, 25);
             mxTextBox7.Name = "mxTextBox7";
             mxTextBox7.Size = new Size(91, 28);
             mxTextBox7.TabIndex = 17;
+            // 
+            // mxLabel32
+            // 
+            mxLabel32.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel32.Appearance.Options.UseFont = true;
+            mxLabel32.Location = new Point(459, 20);
+            mxLabel32.Name = "mxLabel32";
+            mxLabel32.Size = new Size(26, 17);
+            mxLabel32.TabIndex = 12;
+            mxLabel32.Text = "آدرس";
+            // 
+            // mxTextBox3
+            // 
+            mxTextBox3.Location = new Point(3, 13);
+            mxTextBox3.Name = "mxTextBox3";
+            mxTextBox3.Size = new Size(453, 28);
+            mxTextBox3.TabIndex = 13;
+            // 
+            // mxActionGroup_Help6
+            // 
+            mxActionGroup_Help6.BackColor = SystemColors.ControlLight;
+            mxActionGroup_Help6.Dock = DockStyle.Bottom;
+            mxActionGroup_Help6.Location = new Point(0, 538);
+            mxActionGroup_Help6.Name = "mxActionGroup_Help6";
+            mxActionGroup_Help6.Size = new Size(542, 49);
+            mxActionGroup_Help6.TabIndex = 33;
+            // 
+            // separatorControl15
+            // 
+            separatorControl15.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            separatorControl15.Location = new Point(11, 497);
+            separatorControl15.Name = "separatorControl15";
+            separatorControl15.Size = new Size(520, 21);
+            separatorControl15.TabIndex = 34;
+            // 
+            // mxCheckBox22
+            // 
+            mxCheckBox22.Location = new Point(100, 510);
+            mxCheckBox22.Name = "mxCheckBox22";
+            mxCheckBox22.Properties.Caption = "استفاده از FTP در حالت PASV";
+            mxCheckBox22.Size = new Size(420, 22);
+            mxCheckBox22.TabIndex = 35;
+            // 
+            // prokciTb
+            // 
+            prokciTb.Controls.Add(mxCheckBox22);
+            prokciTb.Controls.Add(separatorControl15);
+            prokciTb.Controls.Add(mxActionGroup_Help6);
+            prokciTb.Controls.Add(panelControl9);
+            prokciTb.Controls.Add(panelControl8);
+            prokciTb.Controls.Add(separatorControl14);
+            prokciTb.Controls.Add(radioButton4);
+            prokciTb.Controls.Add(separatorControl13);
+            prokciTb.Controls.Add(separatorControl12);
+            prokciTb.Controls.Add(radioButton3);
+            prokciTb.Controls.Add(radioButton2);
+            prokciTb.Controls.Add(radioButton1);
+            prokciTb.Controls.Add(panelControl7);
+            prokciTb.Margin = new Padding(3, 4, 3, 4);
+            prokciTb.Name = "prokciTb";
+            prokciTb.Size = new Size(542, 587);
+            prokciTb.Text = "پروکسی/Socks";
+            // 
+            // mxLabel33
+            // 
+            mxLabel33.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel33.Appearance.Options.UseFont = true;
+            mxLabel33.Location = new Point(26, 7);
+            mxLabel33.Name = "mxLabel33";
+            mxLabel33.Size = new Size(34, 17);
+            mxLabel33.TabIndex = 18;
+            mxLabel33.Text = "پروکسی";
+            // 
+            // mxLabel34
+            // 
+            mxLabel34.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel34.Appearance.Options.UseFont = true;
+            mxLabel34.Location = new Point(217, 7);
+            mxLabel34.Name = "mxLabel34";
+            mxLabel34.Size = new Size(23, 17);
+            mxLabel34.TabIndex = 19;
+            mxLabel34.Text = "پورت";
+            // 
+            // mxLabel35
+            // 
+            mxLabel35.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel35.Appearance.Options.UseFont = true;
+            mxLabel35.Location = new Point(293, 7);
+            mxLabel35.Name = "mxLabel35";
+            mxLabel35.Size = new Size(43, 17);
+            mxLabel35.TabIndex = 20;
+            mxLabel35.Text = "نام کاربری";
+            // 
+            // mxLabel36
+            // 
+            mxLabel36.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel36.Appearance.Options.UseFont = true;
+            mxLabel36.Location = new Point(390, 7);
+            mxLabel36.Name = "mxLabel36";
+            mxLabel36.Size = new Size(27, 17);
+            mxLabel36.TabIndex = 21;
+            mxLabel36.Text = "پسورد";
+            // 
+            // mxLabel37
+            // 
+            mxLabel37.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel37.Appearance.Options.UseFont = true;
+            mxLabel37.Location = new Point(279, 60);
+            mxLabel37.Name = "mxLabel37";
+            mxLabel37.Size = new Size(206, 17);
+            mxLabel37.TabIndex = 22;
+            mxLabel37.Text = "از این پروکسی برای پروتکل های زیر استفاده کن:";
+            // 
+            // mxCheckBox23
+            // 
+            mxCheckBox23.Location = new Point(410, 81);
+            mxCheckBox23.Name = "mxCheckBox23";
+            mxCheckBox23.Properties.Caption = "http";
+            mxCheckBox23.Size = new Size(66, 22);
+            mxCheckBox23.TabIndex = 27;
+            // 
+            // mxCheckBox24
+            // 
+            mxCheckBox24.Location = new Point(344, 81);
+            mxCheckBox24.Name = "mxCheckBox24";
+            mxCheckBox24.Properties.Caption = "https";
+            mxCheckBox24.Size = new Size(66, 22);
+            mxCheckBox24.TabIndex = 28;
+            // 
+            // mxCheckBox25
+            // 
+            mxCheckBox25.Location = new Point(272, 81);
+            mxCheckBox25.Name = "mxCheckBox25";
+            mxCheckBox25.Properties.Caption = "ftp";
+            mxCheckBox25.Size = new Size(66, 22);
+            mxCheckBox25.TabIndex = 29;
+            // 
+            // mxButton16
+            // 
+            mxButton16.Appearance.BackColor = Color.Gainsboro;
+            mxButton16.Appearance.Options.UseBackColor = true;
+            mxButton16.Location = new Point(358, 109);
+            mxButton16.Name = "mxButton16";
+            mxButton16.Size = new Size(117, 23);
+            mxButton16.TabIndex = 30;
+            mxButton16.Text = "... Socks / بیشتر....";
+            // 
+            // groupControl4
+            // 
+            groupControl4.GroupStyle = DevExpress.Utils.GroupStyle.Light;
+            groupControl4.Location = new Point(26, 138);
+            groupControl4.Name = "groupControl4";
+            groupControl4.Size = new Size(450, 52);
+            groupControl4.TabIndex = 31;
+            groupControl4.Text = "groupControl4";
             // 
             // AppSettingDialogForm
             // 
@@ -1622,14 +1739,6 @@
             Text = "تنظیمات";
             ((ISupportInitialize)xtraTabControl1).EndInit();
             xtraTabControl1.ResumeLayout(false);
-            prokciTb.ResumeLayout(false);
-            prokciTb.PerformLayout();
-            ((ISupportInitialize)panelControl7).EndInit();
-            panelControl7.ResumeLayout(false);
-            panelControl7.PerformLayout();
-            ((ISupportInitialize)mxCheckBox21.Properties).EndInit();
-            ((ISupportInitialize)separatorControl11).EndInit();
-            ((ISupportInitialize)pictureEdit6.Properties).EndInit();
             passSiteTb.ResumeLayout(false);
             ((ISupportInitialize)gridControl1).EndInit();
             ((ISupportInitialize)gridView1).EndInit();
@@ -1704,7 +1813,12 @@
             panelControl5.PerformLayout();
             ((ISupportInitialize)separatorControl5).EndInit();
             ((ISupportInitialize)pictureEdit4.Properties).EndInit();
-            ((ISupportInitialize)mxTextBox3.Properties).EndInit();
+            ((ISupportInitialize)panelControl7).EndInit();
+            panelControl7.ResumeLayout(false);
+            panelControl7.PerformLayout();
+            ((ISupportInitialize)pictureEdit6.Properties).EndInit();
+            ((ISupportInitialize)separatorControl11).EndInit();
+            ((ISupportInitialize)mxCheckBox21.Properties).EndInit();
             ((ISupportInitialize)separatorControl12).EndInit();
             ((ISupportInitialize)separatorControl13).EndInit();
             ((ISupportInitialize)separatorControl14).EndInit();
@@ -1713,19 +1827,26 @@
             panelControl8.PerformLayout();
             ((ISupportInitialize)panelControl9).EndInit();
             panelControl9.ResumeLayout(false);
-            ((ISupportInitialize)separatorControl15).EndInit();
-            ((ISupportInitialize)mxCheckBox22.Properties).EndInit();
+            panelControl9.PerformLayout();
             ((ISupportInitialize)mxTextBox4.Properties).EndInit();
             ((ISupportInitialize)mxTextBox5.Properties).EndInit();
             ((ISupportInitialize)mxTextBox6.Properties).EndInit();
             ((ISupportInitialize)mxTextBox7.Properties).EndInit();
+            ((ISupportInitialize)mxTextBox3.Properties).EndInit();
+            ((ISupportInitialize)separatorControl15).EndInit();
+            ((ISupportInitialize)mxCheckBox22.Properties).EndInit();
+            prokciTb.ResumeLayout(false);
+            prokciTb.PerformLayout();
+            ((ISupportInitialize)mxCheckBox23.Properties).EndInit();
+            ((ISupportInitialize)mxCheckBox24.Properties).EndInit();
+            ((ISupportInitialize)mxCheckBox25.Properties).EndInit();
+            ((ISupportInitialize)groupControl4).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage prokciTb;
         private DevExpress.XtraTab.XtraTabPage passSiteTb;
         private DevExpress.XtraTab.XtraTabPage publicTb;
         private DevExpress.XtraTab.XtraTabPage fileTypeTb;
@@ -1832,6 +1953,30 @@
         private UserControls.Common.MxButton mxButton13;
         private UserControls.Common.MxButton mxButton12;
         private UserControls.Common.MxActionGroup_Help mxActionGroup_Help5;
+        private DevExpress.XtraTab.XtraTabPage prokciTb;
+        private UserControls.Common.MxCheckBox mxCheckBox22;
+        private SeparatorControl separatorControl15;
+        private UserControls.Common.MxActionGroup_Help mxActionGroup_Help6;
+        private PanelControl panelControl9;
+        private UserControls.Common.MxLabel mxLabel37;
+        private UserControls.Common.MxLabel mxLabel36;
+        private UserControls.Common.MxLabel mxLabel35;
+        private UserControls.Common.MxLabel mxLabel34;
+        private UserControls.Common.MxLabel mxLabel33;
+        private UserControls.Common.MxTextBox mxTextBox7;
+        private UserControls.Common.MxTextBox mxTextBox6;
+        private UserControls.Common.MxTextBox mxTextBox5;
+        private UserControls.Common.MxTextBox mxTextBox4;
+        private PanelControl panelControl8;
+        private UserControls.Common.MxTextBox mxTextBox3;
+        private UserControls.Common.MxLabel mxLabel32;
+        private SeparatorControl separatorControl14;
+        private RadioButton radioButton4;
+        private SeparatorControl separatorControl13;
+        private SeparatorControl separatorControl12;
+        private RadioButton radioButton3;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
         private PanelControl panelControl7;
         private UserControls.Common.MxCheckBox mxCheckBox21;
         private UserControls.Common.MxButton mxButton15;
@@ -1840,23 +1985,10 @@
         private SeparatorControl separatorControl11;
         private PictureEdit pictureEdit6;
         private UserControls.Common.MxLabel mxLabel30;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
-        private SeparatorControl separatorControl13;
-        private SeparatorControl separatorControl12;
-        private UserControls.Common.MxTextBox mxTextBox3;
-        private UserControls.Common.MxLabel mxLabel32;
-        private RadioButton radioButton3;
-        private SeparatorControl separatorControl14;
-        private RadioButton radioButton4;
-        private PanelControl panelControl9;
-        private PanelControl panelControl8;
-        private UserControls.Common.MxActionGroup_Help mxActionGroup_Help6;
-        private UserControls.Common.MxCheckBox mxCheckBox22;
-        private SeparatorControl separatorControl15;
-        private UserControls.Common.MxTextBox mxTextBox7;
-        private UserControls.Common.MxTextBox mxTextBox6;
-        private UserControls.Common.MxTextBox mxTextBox5;
-        private UserControls.Common.MxTextBox mxTextBox4;
+        private GroupControl groupControl4;
+        private UserControls.Common.MxButton mxButton16;
+        private UserControls.Common.MxCheckBox mxCheckBox25;
+        private UserControls.Common.MxCheckBox mxCheckBox24;
+        private UserControls.Common.MxCheckBox mxCheckBox23;
     }
 }
