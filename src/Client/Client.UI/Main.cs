@@ -56,4 +56,9 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     {
         await LoadAllQueuesIntoSideMenuAsync();
     }
+
+    private void accordionControlElement3_Click(object sender, EventArgs e)
+    {
+        
+    }
 }
