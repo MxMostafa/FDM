@@ -114,6 +114,7 @@
             accordionControlElement3.Name = "accordionControlElement3";
             accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement3.Text = "فایل های فشرده";
+            accordionControlElement3.Click += accordionControlElement3_Click_1;
             // 
             // accordionControlElement4
             // 
