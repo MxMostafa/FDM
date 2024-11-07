@@ -56,15 +56,6 @@
             accordionControlElement19 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement20 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             DownloadQueueElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            settingButton = new DevExpress.XtraBars.BarButtonItem();
-            ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             skinBarSubItem1 = new DevExpress.XtraBars.SkinBarSubItem();
             barSubItem1 = new DevExpress.XtraBars.BarSubItem();
@@ -75,7 +66,6 @@
             bar3 = new DevExpress.XtraBars.Bar();
             fluentDesignFormContainer1.SuspendLayout();
             ((ISupportInitialize)accordionControl1).BeginInit();
-            ((ISupportInitialize)ribbonControl1).BeginInit();
             ((ISupportInitialize)fluentDesignFormControl1).BeginInit();
             ((ISupportInitialize)fluentFormDefaultManager1).BeginInit();
             SuspendLayout();
@@ -83,7 +73,6 @@
             // fluentDesignFormContainer1
             // 
             fluentDesignFormContainer1.Controls.Add(accordionControl1);
-            fluentDesignFormContainer1.Controls.Add(ribbonControl1);
             fluentDesignFormContainer1.Dock = DockStyle.Fill;
             fluentDesignFormContainer1.Location = new Point(0, 33);
             fluentDesignFormContainer1.Margin = new Padding(3, 4, 3, 4);
@@ -95,11 +84,11 @@
             // 
             accordionControl1.Dock = DockStyle.Right;
             accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement1, accordionControlElement2, accordionControlElement9, accordionControlElement10, DownloadQueueElement });
-            accordionControl1.Location = new Point(725, 120);
+            accordionControl1.Location = new Point(725, 0);
             accordionControl1.Margin = new Padding(3, 4, 3, 4);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(260, 590);
+            accordionControl1.Size = new Size(260, 710);
             accordionControl1.TabIndex = 2;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -249,69 +238,6 @@
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
             // 
-            // ribbonControl1
-            // 
-            ribbonControl1.AllowMinimizeRibbon = false;
-            ribbonControl1.CommandLayout = DevExpress.XtraBars.Ribbon.CommandLayout.Simplified;
-            ribbonControl1.ExpandCollapseItem.Id = 0;
-            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonControl1.ExpandCollapseItem, barButtonItem2, settingButton });
-            ribbonControl1.Location = new Point(0, 0);
-            ribbonControl1.MaxItemId = 3;
-            ribbonControl1.Name = "ribbonControl1";
-            ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
-            ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
-            ribbonControl1.Size = new Size(985, 120);
-            ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Above;
-            // 
-            // barButtonItem2
-            // 
-            barButtonItem2.Id = 1;
-            barButtonItem2.ImageOptions.Image = Properties.Resources.properties_16x16;
-            barButtonItem2.ImageOptions.LargeImage = Properties.Resources.properties_32x32;
-            barButtonItem2.Name = "barButtonItem2";
-            // 
-            // settingButton
-            // 
-            settingButton.Caption = "تنظیمات";
-            settingButton.Id = 2;
-            settingButton.ImageOptions.Image = Properties.Resources.technology_16x16;
-            settingButton.ImageOptions.LargeImage = Properties.Resources.technology_32x32;
-            settingButton.Name = "settingButton";
-            settingButton.ItemClick += settingButton_ItemClick;
-            // 
-            // ribbonPage1
-            // 
-            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1 });
-            ribbonPage1.Name = "ribbonPage1";
-            ribbonPage1.Text = "دانلود";
-            // 
-            // ribbonPageGroup1
-            // 
-            ribbonPageGroup1.Name = "ribbonPageGroup1";
-            ribbonPageGroup1.Text = "ribbonPageGroup1";
-            // 
-            // ribbonPage2
-            // 
-            ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup2 });
-            ribbonPage2.Name = "ribbonPage2";
-            ribbonPage2.Text = "تنظیمات";
-            // 
-            // ribbonPageGroup2
-            // 
-            ribbonPageGroup2.ItemLinks.Add(settingButton);
-            ribbonPageGroup2.Name = "ribbonPageGroup2";
-            // 
-            // ribbonPage3
-            // 
-            ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup3 });
-            ribbonPage3.Name = "ribbonPage3";
-            ribbonPage3.Text = "راهنما";
-            // 
-            // ribbonPageGroup3
-            // 
-            ribbonPageGroup3.Name = "ribbonPageGroup3";
-            ribbonPageGroup3.Text = "ribbonPageGroup3";
-            // 
             // fluentDesignFormControl1
             // 
             fluentDesignFormControl1.FluentDesignForm = this;
@@ -403,9 +329,7 @@
             Text = "دانلود منیجر فارسی FDM";
             Load += Main_Load;
             fluentDesignFormContainer1.ResumeLayout(false);
-            fluentDesignFormContainer1.PerformLayout();
             ((ISupportInitialize)accordionControl1).EndInit();
-            ((ISupportInitialize)ribbonControl1).EndInit();
             ((ISupportInitialize)fluentDesignFormControl1).EndInit();
             ((ISupportInitialize)fluentFormDefaultManager1).EndInit();
             ResumeLayout(false);
@@ -445,14 +369,5 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement19;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement20;
         private DevExpress.XtraBars.Navigation.AccordionControlElement DownloadQueueElement;
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem settingButton;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
     }
 }
