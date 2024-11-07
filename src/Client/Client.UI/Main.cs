@@ -61,7 +61,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
 
 
-   
+
 
     private void settingButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
@@ -75,5 +75,10 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
             throw;
         }
+    }
+
+    private void SettingMenuButton_Click(object sender, EventArgs e)
+    {
+        new AppSettingDialogForm().ShowDialog();
     }
 }

@@ -64,6 +64,8 @@
             bar1 = new DevExpress.XtraBars.Bar();
             bar2 = new DevExpress.XtraBars.Bar();
             bar3 = new DevExpress.XtraBars.Bar();
+            accordionControlSeparator4 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
+            SettingMenuButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             fluentDesignFormContainer1.SuspendLayout();
             ((ISupportInitialize)accordionControl1).BeginInit();
             ((ISupportInitialize)fluentDesignFormControl1).BeginInit();
@@ -83,7 +85,7 @@
             // accordionControl1
             // 
             accordionControl1.Dock = DockStyle.Right;
-            accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement1, accordionControlElement2, accordionControlElement9, accordionControlElement10, DownloadQueueElement });
+            accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement1, accordionControlElement2, accordionControlElement9, accordionControlElement10, DownloadQueueElement, accordionControlSeparator4, SettingMenuButton });
             accordionControl1.Location = new Point(725, 0);
             accordionControl1.Margin = new Padding(3, 4, 3, 4);
             accordionControl1.Name = "accordionControl1";
@@ -233,7 +235,6 @@
             accordionContextButton1.Name = "AddNewDownloadQueueContextButton";
             accordionContextButton1.ToolTip = "افزودن صف جدید";
             DownloadQueueElement.ContextButtons.Add(accordionContextButton1);
-            DownloadQueueElement.Expanded = true;
             DownloadQueueElement.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DownloadQueueElement.ImageOptions.SvgImage");
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
@@ -308,6 +309,18 @@
             bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             bar3.Text = "Custom 4";
             // 
+            // accordionControlSeparator4
+            // 
+            accordionControlSeparator4.Name = "accordionControlSeparator4";
+            // 
+            // SettingMenuButton
+            // 
+            SettingMenuButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement8.ImageOptions.SvgImage");
+            SettingMenuButton.Name = "SettingMenuButton";
+            SettingMenuButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            SettingMenuButton.Text = "تنظیمات";
+            SettingMenuButton.Click += SettingMenuButton_Click;
+            // 
             // Main
             // 
             Appearance.Options.UseFont = true;
@@ -369,5 +382,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement19;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement20;
         private DevExpress.XtraBars.Navigation.AccordionControlElement DownloadQueueElement;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator4;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement SettingMenuButton;
     }
 }
