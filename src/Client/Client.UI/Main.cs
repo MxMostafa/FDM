@@ -57,11 +57,23 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         await LoadAllQueuesIntoSideMenuAsync();
     }
 
-    
 
-    private void accordionControlElement3_Click_1(object sender, EventArgs e)
+
+
+
+   
+
+    private void settingButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        AppSettingDialogForm fr = new AppSettingDialogForm();
-        fr.ShowDialog();
+        try
+        {
+            AppSettingDialogForm fr = new AppSettingDialogForm();
+            fr.ShowDialog();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 }

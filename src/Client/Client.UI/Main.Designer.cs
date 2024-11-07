@@ -56,6 +56,15 @@
             accordionControlElement19 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement20 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             DownloadQueueElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            settingButton = new DevExpress.XtraBars.BarButtonItem();
+            ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             skinBarSubItem1 = new DevExpress.XtraBars.SkinBarSubItem();
             barSubItem1 = new DevExpress.XtraBars.BarSubItem();
@@ -64,30 +73,34 @@
             bar1 = new DevExpress.XtraBars.Bar();
             bar2 = new DevExpress.XtraBars.Bar();
             bar3 = new DevExpress.XtraBars.Bar();
+            fluentDesignFormContainer1.SuspendLayout();
             ((ISupportInitialize)accordionControl1).BeginInit();
+            ((ISupportInitialize)ribbonControl1).BeginInit();
             ((ISupportInitialize)fluentDesignFormControl1).BeginInit();
             ((ISupportInitialize)fluentFormDefaultManager1).BeginInit();
             SuspendLayout();
             // 
             // fluentDesignFormContainer1
             // 
+            fluentDesignFormContainer1.Controls.Add(accordionControl1);
+            fluentDesignFormContainer1.Controls.Add(ribbonControl1);
             fluentDesignFormContainer1.Dock = DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new Point(260, 33);
+            fluentDesignFormContainer1.Location = new Point(0, 33);
             fluentDesignFormContainer1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(725, 710);
+            fluentDesignFormContainer1.Size = new Size(985, 710);
             fluentDesignFormContainer1.TabIndex = 0;
             // 
             // accordionControl1
             // 
-            accordionControl1.Dock = DockStyle.Left;
+            accordionControl1.Dock = DockStyle.Right;
             accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement1, accordionControlElement2, accordionControlElement9, accordionControlElement10, DownloadQueueElement });
-            accordionControl1.Location = new Point(0, 33);
+            accordionControl1.Location = new Point(725, 120);
             accordionControl1.Margin = new Padding(3, 4, 3, 4);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(260, 710);
-            accordionControl1.TabIndex = 1;
+            accordionControl1.Size = new Size(260, 590);
+            accordionControl1.TabIndex = 2;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
             // accordionControlElement1
@@ -114,7 +127,6 @@
             accordionControlElement3.Name = "accordionControlElement3";
             accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement3.Text = "فایل های فشرده";
-            accordionControlElement3.Click += accordionControlElement3_Click_1;
             // 
             // accordionControlElement4
             // 
@@ -232,9 +244,73 @@
             accordionContextButton1.Name = "AddNewDownloadQueueContextButton";
             accordionContextButton1.ToolTip = "افزودن صف جدید";
             DownloadQueueElement.ContextButtons.Add(accordionContextButton1);
+            DownloadQueueElement.Expanded = true;
             DownloadQueueElement.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DownloadQueueElement.ImageOptions.SvgImage");
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
+            // 
+            // ribbonControl1
+            // 
+            ribbonControl1.AllowMinimizeRibbon = false;
+            ribbonControl1.CommandLayout = DevExpress.XtraBars.Ribbon.CommandLayout.Simplified;
+            ribbonControl1.ExpandCollapseItem.Id = 0;
+            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonControl1.ExpandCollapseItem, barButtonItem2, settingButton });
+            ribbonControl1.Location = new Point(0, 0);
+            ribbonControl1.MaxItemId = 3;
+            ribbonControl1.Name = "ribbonControl1";
+            ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
+            ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
+            ribbonControl1.Size = new Size(985, 120);
+            ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Above;
+            // 
+            // barButtonItem2
+            // 
+            barButtonItem2.Id = 1;
+            barButtonItem2.ImageOptions.Image = Properties.Resources.properties_16x16;
+            barButtonItem2.ImageOptions.LargeImage = Properties.Resources.properties_32x32;
+            barButtonItem2.Name = "barButtonItem2";
+            // 
+            // settingButton
+            // 
+            settingButton.Caption = "تنظیمات";
+            settingButton.Id = 2;
+            settingButton.ImageOptions.Image = Properties.Resources.technology_16x16;
+            settingButton.ImageOptions.LargeImage = Properties.Resources.technology_32x32;
+            settingButton.Name = "settingButton";
+            settingButton.ItemClick += settingButton_ItemClick;
+            // 
+            // ribbonPage1
+            // 
+            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1 });
+            ribbonPage1.Name = "ribbonPage1";
+            ribbonPage1.Text = "دانلود";
+            // 
+            // ribbonPageGroup1
+            // 
+            ribbonPageGroup1.Name = "ribbonPageGroup1";
+            ribbonPageGroup1.Text = "ribbonPageGroup1";
+            // 
+            // ribbonPage2
+            // 
+            ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup2 });
+            ribbonPage2.Name = "ribbonPage2";
+            ribbonPage2.Text = "تنظیمات";
+            // 
+            // ribbonPageGroup2
+            // 
+            ribbonPageGroup2.ItemLinks.Add(settingButton);
+            ribbonPageGroup2.Name = "ribbonPageGroup2";
+            // 
+            // ribbonPage3
+            // 
+            ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup3 });
+            ribbonPage3.Name = "ribbonPage3";
+            ribbonPage3.Text = "راهنما";
+            // 
+            // ribbonPageGroup3
+            // 
+            ribbonPageGroup3.Name = "ribbonPageGroup3";
+            ribbonPageGroup3.Text = "ribbonPageGroup3";
             // 
             // fluentDesignFormControl1
             // 
@@ -314,7 +390,6 @@
             ClientSize = new Size(985, 743);
             ControlContainer = fluentDesignFormContainer1;
             Controls.Add(fluentDesignFormContainer1);
-            Controls.Add(accordionControl1);
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
@@ -322,13 +397,15 @@
             LookAndFeel.UseDefaultLookAndFeel = false;
             Margin = new Padding(3, 4, 3, 4);
             Name = "Main";
-            NavigationControl = accordionControl1;
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "دانلود منیجر فارسی FDM";
             Load += Main_Load;
+            fluentDesignFormContainer1.ResumeLayout(false);
+            fluentDesignFormContainer1.PerformLayout();
             ((ISupportInitialize)accordionControl1).EndInit();
+            ((ISupportInitialize)ribbonControl1).EndInit();
             ((ISupportInitialize)fluentDesignFormControl1).EndInit();
             ((ISupportInitialize)fluentFormDefaultManager1).EndInit();
             ResumeLayout(false);
@@ -336,11 +413,16 @@
 
         #endregion
         private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer fluentDesignFormContainer1;
-        private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
         private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl fluentDesignFormControl1;
         private DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager fluentFormDefaultManager1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
         private DevExpress.XtraBars.SkinBarSubItem skinBarSubItem1;
+        private DevExpress.XtraBars.Bar bar1;
+        private DevExpress.XtraBars.Bar bar2;
+        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.BarSubItem barSubItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator2;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
@@ -348,10 +430,6 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement6;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement7;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement DownloadQueueElement;
-        private DevExpress.XtraBars.Bar bar1;
-        private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement9;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement11;
@@ -366,7 +444,15 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement18;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement19;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement20;
-        private DevExpress.XtraBars.BarSubItem barSubItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement DownloadQueueElement;
+        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem settingButton;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
     }
 }
