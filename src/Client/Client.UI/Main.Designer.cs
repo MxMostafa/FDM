@@ -83,6 +83,7 @@
             barButtonItem25 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
             barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             barDockControl5 = new DevExpress.XtraBars.BarDockControl();
@@ -184,6 +185,7 @@
             // 
             gridView1.GridControl = gridControl1;
             gridView1.Name = "gridView1";
+            gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // fluentFormDefaultManager1
             // 
@@ -312,6 +314,7 @@
             barManager1.Form = this;
             barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem9, barSubItem3, barButtonItem10, barButtonItem11, barButtonItem12, barSubItem4, barButtonItem13, barButtonItem14, barButtonItem15, barButtonItem16, barButtonItem17, barSubItem5, barButtonItem18, barButtonItem19, barButtonItem20 });
             barManager1.MaxItemId = 15;
+            barManager1.PopupMenuAlignment = DevExpress.XtraBars.PopupMenuAlignment.Right;
             // 
             // bar4
             // 
@@ -480,8 +483,8 @@
             barManager2.DockControls.Add(barDockControl4);
             barManager2.DockControls.Add(barDockControl5);
             barManager2.Form = navigationPage1;
-            barManager2.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem21, barButtonItem23, barButtonItem24, barButtonItem25, barButtonItem26, barButtonItem27, barButtonItem28 });
-            barManager2.MaxItemId = 22;
+            barManager2.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem21, barButtonItem23, barButtonItem24, barButtonItem25, barButtonItem26, barButtonItem27, barButtonItem28, barButtonItem29 });
+            barManager2.MaxItemId = 23;
             // 
             // bar7
             // 
@@ -546,6 +549,12 @@
             barButtonItem28.ImageOptions.SvgImageSize = new Size(25, 25);
             barButtonItem28.Name = "barButtonItem28";
             barButtonItem28.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem29
+            // 
+            barButtonItem29.Caption = "barButtonItem29";
+            barButtonItem29.Id = 22;
+            barButtonItem29.Name = "barButtonItem29";
             // 
             // barDockControl2
             // 
@@ -946,5 +955,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem27;
         private DevExpress.XtraBars.Bar bar8;
         private DevExpress.XtraBars.BarButtonItem barButtonItem28;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem29;
     }
 }
