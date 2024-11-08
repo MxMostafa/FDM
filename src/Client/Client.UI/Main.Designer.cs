@@ -34,6 +34,8 @@
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
+            navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
+            navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             gridControl1 = new DevExpress.XtraGrid.GridControl();
             gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
@@ -49,7 +51,6 @@
             barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
-            fluentDesignFormControl2 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -80,24 +81,20 @@
             barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
-            navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
-            navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             fluentDesignFormContainer1.SuspendLayout();
-            ((ISupportInitialize)gridControl1).BeginInit();
-            ((ISupportInitialize)gridView1).BeginInit();
-            ((ISupportInitialize)fluentFormDefaultManager1).BeginInit();
-            ((ISupportInitialize)fluentDesignFormControl2).BeginInit();
-            ((ISupportInitialize)accordionControl1).BeginInit();
-            ((ISupportInitialize)fluentDesignFormControl1).BeginInit();
             ((ISupportInitialize)navigationFrame1).BeginInit();
             navigationFrame1.SuspendLayout();
             navigationPage1.SuspendLayout();
+            ((ISupportInitialize)gridControl1).BeginInit();
+            ((ISupportInitialize)gridView1).BeginInit();
+            ((ISupportInitialize)fluentFormDefaultManager1).BeginInit();
+            ((ISupportInitialize)accordionControl1).BeginInit();
+            ((ISupportInitialize)fluentDesignFormControl1).BeginInit();
             SuspendLayout();
             // 
             // fluentDesignFormContainer1
             // 
             fluentDesignFormContainer1.Controls.Add(navigationFrame1);
-            fluentDesignFormContainer1.Controls.Add(fluentDesignFormControl2);
             fluentDesignFormContainer1.Controls.Add(accordionControl1);
             fluentDesignFormContainer1.Dock = DockStyle.Fill;
             fluentDesignFormContainer1.Location = new Point(0, 33);
@@ -105,6 +102,25 @@
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
             fluentDesignFormContainer1.Size = new Size(985, 710);
             fluentDesignFormContainer1.TabIndex = 0;
+            // 
+            // navigationFrame1
+            // 
+            navigationFrame1.Controls.Add(navigationPage1);
+            navigationFrame1.Dock = DockStyle.Fill;
+            navigationFrame1.Location = new Point(0, 0);
+            navigationFrame1.Name = "navigationFrame1";
+            navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationPage1 });
+            navigationFrame1.SelectedPage = navigationPage1;
+            navigationFrame1.Size = new Size(725, 710);
+            navigationFrame1.TabIndex = 5;
+            navigationFrame1.Text = "navigationFrame1";
+            // 
+            // navigationPage1
+            // 
+            navigationPage1.Caption = "navigationPage1";
+            navigationPage1.Controls.Add(gridControl1);
+            navigationPage1.Name = "navigationPage1";
+            navigationPage1.Size = new Size(725, 710);
             // 
             // gridControl1
             // 
@@ -114,7 +130,7 @@
             gridControl1.MainView = gridView1;
             gridControl1.MenuManager = fluentFormDefaultManager1;
             gridControl1.Name = "gridControl1";
-            gridControl1.Size = new Size(725, 671);
+            gridControl1.Size = new Size(725, 710);
             gridControl1.TabIndex = 4;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
@@ -227,21 +243,6 @@
             barButtonItem8.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem8.ImageOptions.SvgImage");
             barButtonItem8.ImageOptions.SvgImageSize = new Size(25, 25);
             barButtonItem8.Name = "barButtonItem8";
-            // 
-            // fluentDesignFormControl2
-            // 
-            fluentDesignFormControl2.FluentDesignForm = this;
-            fluentDesignFormControl2.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8 });
-            fluentDesignFormControl2.Location = new Point(0, 0);
-            fluentDesignFormControl2.Manager = fluentFormDefaultManager1;
-            fluentDesignFormControl2.Margin = new Padding(3, 4, 3, 4);
-            fluentDesignFormControl2.Name = "fluentDesignFormControl2";
-            fluentDesignFormControl2.Size = new Size(725, 39);
-            fluentDesignFormControl2.TabIndex = 3;
-            fluentDesignFormControl2.TabStop = false;
-            fluentDesignFormControl2.TitleItemLinks.Add(barButtonItem7);
-            fluentDesignFormControl2.TitleItemLinks.Add(barButtonItem3);
-            fluentDesignFormControl2.TitleItemLinks.Add(barButtonItem8);
             // 
             // accordionControl1
             // 
@@ -458,24 +459,6 @@
             barButtonItem6.ImageOptions.SvgImageSize = new Size(30, 30);
             barButtonItem6.Name = "barButtonItem6";
             // 
-            // navigationFrame1
-            // 
-            navigationFrame1.Controls.Add(navigationPage1);
-            navigationFrame1.Dock = DockStyle.Fill;
-            navigationFrame1.Location = new Point(0, 39);
-            navigationFrame1.Name = "navigationFrame1";
-            navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationPage1 });
-            navigationFrame1.SelectedPage = navigationPage1;
-            navigationFrame1.Size = new Size(725, 671);
-            navigationFrame1.TabIndex = 5;
-            navigationFrame1.Text = "navigationFrame1";
-            // 
-            // navigationPage1
-            // 
-            navigationPage1.Controls.Add(gridControl1);
-            navigationPage1.Name = "navigationPage1";
-            navigationPage1.Size = new Size(725, 671);
-            // 
             // Main
             // 
             Appearance.Options.UseFont = true;
@@ -497,15 +480,14 @@
             Text = "دانلود منیجر فارسی FDM";
             Load += Main_Load;
             fluentDesignFormContainer1.ResumeLayout(false);
-            ((ISupportInitialize)gridControl1).EndInit();
-            ((ISupportInitialize)gridView1).EndInit();
-            ((ISupportInitialize)fluentFormDefaultManager1).EndInit();
-            ((ISupportInitialize)fluentDesignFormControl2).EndInit();
-            ((ISupportInitialize)accordionControl1).EndInit();
-            ((ISupportInitialize)fluentDesignFormControl1).EndInit();
             ((ISupportInitialize)navigationFrame1).EndInit();
             navigationFrame1.ResumeLayout(false);
             navigationPage1.ResumeLayout(false);
+            ((ISupportInitialize)gridControl1).EndInit();
+            ((ISupportInitialize)gridView1).EndInit();
+            ((ISupportInitialize)fluentFormDefaultManager1).EndInit();
+            ((ISupportInitialize)accordionControl1).EndInit();
+            ((ISupportInitialize)fluentDesignFormControl1).EndInit();
             ResumeLayout(false);
         }
 
@@ -545,7 +527,6 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement SettingMenuButton;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator4;
-        private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl fluentDesignFormControl2;
         private DevExpress.XtraBars.SkinBarSubItem skinBarSubItem2;
         private DevExpress.XtraBars.BarSubItem barSubItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
