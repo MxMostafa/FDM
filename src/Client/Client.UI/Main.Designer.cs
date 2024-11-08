@@ -76,9 +76,17 @@
             barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
             barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             barManager2 = new DevExpress.XtraBars.BarManager(components);
+            bar7 = new DevExpress.XtraBars.Bar();
+            barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem23 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem24 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem25 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
             barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             barDockControl5 = new DevExpress.XtraBars.BarDockControl();
+            barButtonItem26 = new DevExpress.XtraBars.BarButtonItem();
             accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -110,9 +118,8 @@
             barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             bar5 = new DevExpress.XtraBars.Bar();
-            bar7 = new DevExpress.XtraBars.Bar();
-            barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem22 = new DevExpress.XtraBars.BarButtonItem();
+            bar8 = new DevExpress.XtraBars.Bar();
             fluentDesignFormContainer1.SuspendLayout();
             ((ISupportInitialize)navigationFrame1).BeginInit();
             navigationFrame1.SuspendLayout();
@@ -317,7 +324,7 @@
             // 
             // barSubItem3
             // 
-            barSubItem3.Caption = "شروع";
+            barSubItem3.Caption = "آدرس";
             barSubItem3.Id = 1;
             barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem10), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem11), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem15) });
             barSubItem3.Name = "barSubItem3";
@@ -473,8 +480,72 @@
             barManager2.DockControls.Add(barDockControl4);
             barManager2.DockControls.Add(barDockControl5);
             barManager2.Form = navigationPage1;
-            barManager2.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem21 });
-            barManager2.MaxItemId = 16;
+            barManager2.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem21, barButtonItem23, barButtonItem24, barButtonItem25, barButtonItem26, barButtonItem27, barButtonItem28 });
+            barManager2.MaxItemId = 22;
+            // 
+            // bar7
+            // 
+            bar7.BarName = "Custom 1";
+            bar7.DockCol = 0;
+            bar7.DockRow = 0;
+            bar7.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            bar7.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem21, true), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem23), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem24), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem25), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem27), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem28) });
+            bar7.Text = "Custom 1";
+            // 
+            // barButtonItem21
+            // 
+            barButtonItem21.Caption = "آدرس";
+            barButtonItem21.ContentHorizontalAlignment = DevExpress.XtraBars.BarItemContentAlignment.Center;
+            barButtonItem21.Id = 15;
+            barButtonItem21.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem21.ImageOptions.SvgImage");
+            barButtonItem21.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem21.Name = "barButtonItem21";
+            barButtonItem21.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem23
+            // 
+            barButtonItem23.Caption = "ادامه";
+            barButtonItem23.Id = 16;
+            barButtonItem23.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem23.ImageOptions.SvgImage");
+            barButtonItem23.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem23.Name = "barButtonItem23";
+            barButtonItem23.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem24
+            // 
+            barButtonItem24.Caption = "توقف";
+            barButtonItem24.Id = 17;
+            barButtonItem24.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem24.ImageOptions.SvgImage");
+            barButtonItem24.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem24.Name = "barButtonItem24";
+            barButtonItem24.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem25
+            // 
+            barButtonItem25.Caption = "توقف همه";
+            barButtonItem25.Id = 18;
+            barButtonItem25.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem25.ImageOptions.SvgImage");
+            barButtonItem25.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem25.Name = "barButtonItem25";
+            barButtonItem25.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem27
+            // 
+            barButtonItem27.Caption = "تنظیمات";
+            barButtonItem27.Id = 20;
+            barButtonItem27.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem27.ImageOptions.SvgImage");
+            barButtonItem27.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem27.Name = "barButtonItem27";
+            barButtonItem27.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem28
+            // 
+            barButtonItem28.Caption = "زمان بندی";
+            barButtonItem28.Id = 21;
+            barButtonItem28.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem28.ImageOptions.SvgImage");
+            barButtonItem28.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem28.Name = "barButtonItem28";
+            barButtonItem28.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barDockControl2
             // 
@@ -499,6 +570,12 @@
             barDockControl5.Location = new Point(863, 48);
             barDockControl5.Manager = barManager2;
             barDockControl5.Size = new Size(0, 555);
+            // 
+            // barButtonItem26
+            // 
+            barButtonItem26.Caption = "حذف تکمیل شده ها";
+            barButtonItem26.Id = 19;
+            barButtonItem26.Name = "barButtonItem26";
             // 
             // accordionControl1
             // 
@@ -723,25 +800,6 @@
             bar5.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             bar5.Text = "Tools";
             // 
-            // bar7
-            // 
-            bar7.BarName = "Custom 1";
-            bar7.DockCol = 0;
-            bar7.DockRow = 0;
-            bar7.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            bar7.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem21, true) });
-            bar7.Text = "Custom 1";
-            // 
-            // barButtonItem21
-            // 
-            barButtonItem21.Caption = "آدرس";
-            barButtonItem21.ContentHorizontalAlignment = DevExpress.XtraBars.BarItemContentAlignment.Center;
-            barButtonItem21.Id = 15;
-            barButtonItem21.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem21.ImageOptions.SvgImage");
-            barButtonItem21.ImageOptions.SvgImageSize = new Size(25, 25);
-            barButtonItem21.Name = "barButtonItem21";
-            barButtonItem21.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
             // barButtonItem22
             // 
             barButtonItem22.Caption = "آدرس";
@@ -751,6 +809,14 @@
             barButtonItem22.ImageOptions.SvgImageSize = new Size(25, 25);
             barButtonItem22.Name = "barButtonItem22";
             barButtonItem22.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // bar8
+            // 
+            bar8.BarName = "Custom 3";
+            bar8.DockCol = 0;
+            bar8.DockRow = 1;
+            bar8.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            bar8.Text = "Custom 3";
             // 
             // Main
             // 
@@ -873,5 +939,12 @@
         private DevExpress.XtraBars.Bar bar7;
         private DevExpress.XtraBars.BarButtonItem barButtonItem21;
         private DevExpress.XtraBars.BarButtonItem barButtonItem22;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem23;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem24;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem25;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem26;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem27;
+        private DevExpress.XtraBars.Bar bar8;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem28;
     }
 }
