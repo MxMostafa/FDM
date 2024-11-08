@@ -51,6 +51,34 @@
             barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            barDockControl1 = new DevExpress.XtraBars.BarDockControl();
+            barManager1 = new DevExpress.XtraBars.BarManager(components);
+            bar4 = new DevExpress.XtraBars.Bar();
+            barSubItem3 = new DevExpress.XtraBars.BarSubItem();
+            barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
+            barSubItem4 = new DevExpress.XtraBars.BarSubItem();
+            barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
+            barSubItem5 = new DevExpress.XtraBars.BarSubItem();
+            barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
+            bar6 = new DevExpress.XtraBars.Bar();
+            barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
+            barDockControl4 = new DevExpress.XtraBars.BarDockControl();
+            barManager2 = new DevExpress.XtraBars.BarManager(components);
+            barDockControl2 = new DevExpress.XtraBars.BarDockControl();
+            barDockControl3 = new DevExpress.XtraBars.BarDockControl();
+            barDockControl5 = new DevExpress.XtraBars.BarDockControl();
             accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -81,6 +109,10 @@
             barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            bar5 = new DevExpress.XtraBars.Bar();
+            bar7 = new DevExpress.XtraBars.Bar();
+            barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem22 = new DevExpress.XtraBars.BarButtonItem();
             fluentDesignFormContainer1.SuspendLayout();
             ((ISupportInitialize)navigationFrame1).BeginInit();
             navigationFrame1.SuspendLayout();
@@ -88,6 +120,8 @@
             ((ISupportInitialize)gridControl1).BeginInit();
             ((ISupportInitialize)gridView1).BeginInit();
             ((ISupportInitialize)fluentFormDefaultManager1).BeginInit();
+            ((ISupportInitialize)barManager1).BeginInit();
+            ((ISupportInitialize)barManager2).BeginInit();
             ((ISupportInitialize)accordionControl1).BeginInit();
             ((ISupportInitialize)fluentDesignFormControl1).BeginInit();
             SuspendLayout();
@@ -97,10 +131,10 @@
             fluentDesignFormContainer1.Controls.Add(navigationFrame1);
             fluentDesignFormContainer1.Controls.Add(accordionControl1);
             fluentDesignFormContainer1.Dock = DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new Point(0, 33);
+            fluentDesignFormContainer1.Location = new Point(0, 68);
             fluentDesignFormContainer1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(985, 710);
+            fluentDesignFormContainer1.Size = new Size(1123, 603);
             fluentDesignFormContainer1.TabIndex = 0;
             // 
             // navigationFrame1
@@ -111,7 +145,7 @@
             navigationFrame1.Name = "navigationFrame1";
             navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationPage1 });
             navigationFrame1.SelectedPage = navigationPage1;
-            navigationFrame1.Size = new Size(725, 710);
+            navigationFrame1.Size = new Size(863, 603);
             navigationFrame1.TabIndex = 5;
             navigationFrame1.Text = "navigationFrame1";
             // 
@@ -119,18 +153,23 @@
             // 
             navigationPage1.Caption = "navigationPage1";
             navigationPage1.Controls.Add(gridControl1);
+            navigationPage1.Controls.Add(barDockControl1);
+            navigationPage1.Controls.Add(barDockControl4);
+            navigationPage1.Controls.Add(barDockControl5);
+            navigationPage1.Controls.Add(barDockControl3);
+            navigationPage1.Controls.Add(barDockControl2);
             navigationPage1.Name = "navigationPage1";
-            navigationPage1.Size = new Size(725, 710);
+            navigationPage1.Size = new Size(863, 603);
             // 
             // gridControl1
             // 
             gridControl1.Dock = DockStyle.Fill;
             gridControl1.EmbeddedNavigator.Margin = new Padding(3, 2, 3, 2);
-            gridControl1.Location = new Point(0, 0);
+            gridControl1.Location = new Point(0, 48);
             gridControl1.MainView = gridView1;
             gridControl1.MenuManager = fluentFormDefaultManager1;
             gridControl1.Name = "gridControl1";
-            gridControl1.Size = new Size(725, 710);
+            gridControl1.Size = new Size(863, 555);
             gridControl1.TabIndex = 4;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
@@ -244,16 +283,233 @@
             barButtonItem8.ImageOptions.SvgImageSize = new Size(25, 25);
             barButtonItem8.Name = "barButtonItem8";
             // 
+            // barDockControl1
+            // 
+            barDockControl1.CausesValidation = false;
+            barDockControl1.Dock = DockStyle.Top;
+            barDockControl1.Location = new Point(0, 48);
+            barDockControl1.Manager = barManager1;
+            barDockControl1.Size = new Size(863, 0);
+            // 
+            // barManager1
+            // 
+            barManager1.AllowMdiChildButtons = false;
+            barManager1.AllowMoveBarOnToolbar = false;
+            barManager1.AllowQuickCustomization = false;
+            barManager1.AllowShowToolbarsPopup = false;
+            barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] { bar4, bar6 });
+            barManager1.DockControls.Add(barDockControlTop);
+            barManager1.DockControls.Add(barDockControlBottom);
+            barManager1.DockControls.Add(barDockControlLeft);
+            barManager1.DockControls.Add(barDockControlRight);
+            barManager1.Form = this;
+            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem9, barSubItem3, barButtonItem10, barButtonItem11, barButtonItem12, barSubItem4, barButtonItem13, barButtonItem14, barButtonItem15, barButtonItem16, barButtonItem17, barSubItem5, barButtonItem18, barButtonItem19, barButtonItem20 });
+            barManager1.MaxItemId = 15;
+            // 
+            // bar4
+            // 
+            bar4.BarName = "Tools";
+            bar4.DockCol = 0;
+            bar4.DockRow = 0;
+            bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            bar4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barSubItem3), new DevExpress.XtraBars.LinkPersistInfo(barSubItem4), new DevExpress.XtraBars.LinkPersistInfo(barSubItem5) });
+            bar4.Text = "Tools";
+            // 
+            // barSubItem3
+            // 
+            barSubItem3.Caption = "شروع";
+            barSubItem3.Id = 1;
+            barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem10), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem11), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem15) });
+            barSubItem3.Name = "barSubItem3";
+            // 
+            // barButtonItem10
+            // 
+            barButtonItem10.Caption = "افزودن آدرس جدید دانلود";
+            barButtonItem10.Id = 2;
+            barButtonItem10.Name = "barButtonItem10";
+            // 
+            // barButtonItem11
+            // 
+            barButtonItem11.Caption = "افزودن آدرس های جدید دانلود به صورت گروهی";
+            barButtonItem11.Id = 3;
+            barButtonItem11.Name = "barButtonItem11";
+            // 
+            // barButtonItem15
+            // 
+            barButtonItem15.Caption = "افزودن از حافظه";
+            barButtonItem15.Id = 8;
+            barButtonItem15.Name = "barButtonItem15";
+            // 
+            // barSubItem4
+            // 
+            barSubItem4.Caption = "دانلود";
+            barSubItem4.Id = 5;
+            barSubItem4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem13), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem14), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem16) });
+            barSubItem4.Name = "barSubItem4";
+            // 
+            // barButtonItem13
+            // 
+            barButtonItem13.Caption = "شروع همه دانلود ها";
+            barButtonItem13.Id = 6;
+            barButtonItem13.Name = "barButtonItem13";
+            // 
+            // barButtonItem14
+            // 
+            barButtonItem14.Caption = "توقف همه دانلود ها";
+            barButtonItem14.Id = 7;
+            barButtonItem14.Name = "barButtonItem14";
+            // 
+            // barButtonItem16
+            // 
+            barButtonItem16.Caption = "تنظیمات";
+            barButtonItem16.Id = 9;
+            barButtonItem16.Name = "barButtonItem16";
+            // 
+            // barSubItem5
+            // 
+            barSubItem5.Caption = "راهنما";
+            barSubItem5.Id = 11;
+            barSubItem5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem18), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem19), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem20) });
+            barSubItem5.Name = "barSubItem5";
+            // 
+            // barButtonItem18
+            // 
+            barButtonItem18.Caption = "درباره برنامه";
+            barButtonItem18.Id = 12;
+            barButtonItem18.Name = "barButtonItem18";
+            // 
+            // barButtonItem19
+            // 
+            barButtonItem19.Caption = "آدرس وبسایت";
+            barButtonItem19.Id = 13;
+            barButtonItem19.Name = "barButtonItem19";
+            // 
+            // barButtonItem20
+            // 
+            barButtonItem20.Caption = "حمایت از برنامه";
+            barButtonItem20.Id = 14;
+            barButtonItem20.Name = "barButtonItem20";
+            // 
+            // bar6
+            // 
+            bar6.BarName = "Status bar";
+            bar6.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            bar6.DockCol = 0;
+            bar6.DockRow = 0;
+            bar6.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            bar6.OptionsBar.AllowQuickCustomization = false;
+            bar6.OptionsBar.DrawDragBorder = false;
+            bar6.OptionsBar.UseWholeRow = true;
+            bar6.Text = "Status bar";
+            bar6.Visible = false;
+            // 
+            // barDockControlTop
+            // 
+            barDockControlTop.CausesValidation = false;
+            barDockControlTop.Dock = DockStyle.Top;
+            barDockControlTop.Location = new Point(0, 33);
+            barDockControlTop.Manager = barManager1;
+            barDockControlTop.Size = new Size(1123, 35);
+            // 
+            // barDockControlBottom
+            // 
+            barDockControlBottom.CausesValidation = false;
+            barDockControlBottom.Dock = DockStyle.Bottom;
+            barDockControlBottom.Location = new Point(0, 671);
+            barDockControlBottom.Manager = barManager1;
+            barDockControlBottom.Size = new Size(1123, 29);
+            // 
+            // barDockControlLeft
+            // 
+            barDockControlLeft.CausesValidation = false;
+            barDockControlLeft.Dock = DockStyle.Left;
+            barDockControlLeft.Location = new Point(0, 68);
+            barDockControlLeft.Manager = barManager1;
+            barDockControlLeft.Size = new Size(0, 603);
+            // 
+            // barDockControlRight
+            // 
+            barDockControlRight.CausesValidation = false;
+            barDockControlRight.Dock = DockStyle.Right;
+            barDockControlRight.Location = new Point(1123, 68);
+            barDockControlRight.Manager = barManager1;
+            barDockControlRight.Size = new Size(0, 603);
+            // 
+            // barButtonItem9
+            // 
+            barButtonItem9.Caption = "barButtonItem9";
+            barButtonItem9.Id = 0;
+            barButtonItem9.Name = "barButtonItem9";
+            // 
+            // barButtonItem12
+            // 
+            barButtonItem12.Caption = "barButtonItem12";
+            barButtonItem12.Id = 4;
+            barButtonItem12.Name = "barButtonItem12";
+            // 
+            // barButtonItem17
+            // 
+            barButtonItem17.Caption = "راهنما";
+            barButtonItem17.Id = 10;
+            barButtonItem17.Name = "barButtonItem17";
+            // 
+            // barDockControl4
+            // 
+            barDockControl4.CausesValidation = false;
+            barDockControl4.Dock = DockStyle.Left;
+            barDockControl4.Location = new Point(0, 48);
+            barDockControl4.Manager = barManager2;
+            barDockControl4.Size = new Size(0, 555);
+            // 
+            // barManager2
+            // 
+            barManager2.AllowMdiChildButtons = false;
+            barManager2.AllowMoveBarOnToolbar = false;
+            barManager2.AllowQuickCustomization = false;
+            barManager2.AllowShowToolbarsPopup = false;
+            barManager2.Bars.AddRange(new DevExpress.XtraBars.Bar[] { bar7 });
+            barManager2.DockControls.Add(barDockControl2);
+            barManager2.DockControls.Add(barDockControl3);
+            barManager2.DockControls.Add(barDockControl4);
+            barManager2.DockControls.Add(barDockControl5);
+            barManager2.Form = navigationPage1;
+            barManager2.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem21 });
+            barManager2.MaxItemId = 16;
+            // 
+            // barDockControl2
+            // 
+            barDockControl2.CausesValidation = false;
+            barDockControl2.Dock = DockStyle.Top;
+            barDockControl2.Location = new Point(0, 0);
+            barDockControl2.Manager = barManager2;
+            barDockControl2.Size = new Size(863, 48);
+            // 
+            // barDockControl3
+            // 
+            barDockControl3.CausesValidation = false;
+            barDockControl3.Dock = DockStyle.Bottom;
+            barDockControl3.Location = new Point(0, 603);
+            barDockControl3.Manager = barManager2;
+            barDockControl3.Size = new Size(863, 0);
+            // 
+            // barDockControl5
+            // 
+            barDockControl5.CausesValidation = false;
+            barDockControl5.Dock = DockStyle.Right;
+            barDockControl5.Location = new Point(863, 48);
+            barDockControl5.Manager = barManager2;
+            barDockControl5.Size = new Size(0, 555);
+            // 
             // accordionControl1
             // 
             accordionControl1.Dock = DockStyle.Right;
             accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement2, SettingMenuButton });
-            accordionControl1.Location = new Point(725, 0);
+            accordionControl1.Location = new Point(863, 0);
             accordionControl1.Margin = new Padding(3, 4, 3, 4);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(260, 710);
+            accordionControl1.Size = new Size(260, 603);
             accordionControl1.TabIndex = 2;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -428,7 +684,7 @@
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new Size(985, 33);
+            fluentDesignFormControl1.Size = new Size(1123, 33);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             // 
@@ -459,14 +715,55 @@
             barButtonItem6.ImageOptions.SvgImageSize = new Size(30, 30);
             barButtonItem6.Name = "barButtonItem6";
             // 
+            // bar5
+            // 
+            bar5.BarName = "Tools";
+            bar5.DockCol = 0;
+            bar5.DockRow = 0;
+            bar5.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            bar5.Text = "Tools";
+            // 
+            // bar7
+            // 
+            bar7.BarName = "Custom 1";
+            bar7.DockCol = 0;
+            bar7.DockRow = 0;
+            bar7.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            bar7.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem21, true) });
+            bar7.Text = "Custom 1";
+            // 
+            // barButtonItem21
+            // 
+            barButtonItem21.Caption = "آدرس";
+            barButtonItem21.ContentHorizontalAlignment = DevExpress.XtraBars.BarItemContentAlignment.Center;
+            barButtonItem21.Id = 15;
+            barButtonItem21.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem21.ImageOptions.SvgImage");
+            barButtonItem21.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem21.Name = "barButtonItem21";
+            barButtonItem21.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem22
+            // 
+            barButtonItem22.Caption = "آدرس";
+            barButtonItem22.ContentHorizontalAlignment = DevExpress.XtraBars.BarItemContentAlignment.Center;
+            barButtonItem22.Id = 15;
+            barButtonItem22.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem22.ImageOptions.SvgImage");
+            barButtonItem22.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem22.Name = "barButtonItem22";
+            barButtonItem22.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // Main
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(985, 743);
+            ClientSize = new Size(1123, 700);
             ControlContainer = fluentDesignFormContainer1;
             Controls.Add(fluentDesignFormContainer1);
+            Controls.Add(barDockControlLeft);
+            Controls.Add(barDockControlRight);
+            Controls.Add(barDockControlBottom);
+            Controls.Add(barDockControlTop);
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
@@ -483,12 +780,16 @@
             ((ISupportInitialize)navigationFrame1).EndInit();
             navigationFrame1.ResumeLayout(false);
             navigationPage1.ResumeLayout(false);
+            navigationPage1.PerformLayout();
             ((ISupportInitialize)gridControl1).EndInit();
             ((ISupportInitialize)gridView1).EndInit();
             ((ISupportInitialize)fluentFormDefaultManager1).EndInit();
+            ((ISupportInitialize)barManager1).EndInit();
+            ((ISupportInitialize)barManager2).EndInit();
             ((ISupportInitialize)accordionControl1).EndInit();
             ((ISupportInitialize)fluentDesignFormControl1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -540,5 +841,37 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrame1;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage1;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.Bar bar4;
+        private DevExpress.XtraBars.Bar bar6;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarDockControl barDockControl1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private DevExpress.XtraBars.BarSubItem barSubItem3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem15;
+        private DevExpress.XtraBars.BarSubItem barSubItem4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem13;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem14;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem16;
+        private DevExpress.XtraBars.BarSubItem barSubItem5;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem18;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem19;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem20;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem12;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem17;
+        private DevExpress.XtraBars.BarDockControl barDockControl2;
+        private DevExpress.XtraBars.BarManager barManager2;
+        private DevExpress.XtraBars.Bar bar5;
+        private DevExpress.XtraBars.BarDockControl barDockControl3;
+        private DevExpress.XtraBars.BarDockControl barDockControl4;
+        private DevExpress.XtraBars.BarDockControl barDockControl5;
+        private DevExpress.XtraBars.Bar bar7;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem21;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem22;
     }
 }
