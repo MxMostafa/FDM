@@ -37,7 +37,19 @@
             navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             gridControl1 = new DevExpress.XtraGrid.GridControl();
+            downloadViewModelBindingSource = new BindingSource(components);
             gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            colFileName = new DevExpress.XtraGrid.Columns.GridColumn();
+            colFileIcon = new DevExpress.XtraGrid.Columns.GridColumn();
+            colDownloadQueue = new DevExpress.XtraGrid.Columns.GridColumn();
+            colSize = new DevExpress.XtraGrid.Columns.GridColumn();
+            colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            colPercent = new DevExpress.XtraGrid.Columns.GridColumn();
+            colSpeed = new DevExpress.XtraGrid.Columns.GridColumn();
+            colRemain = new DevExpress.XtraGrid.Columns.GridColumn();
+            colLatestDownloadDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
             bar1 = new DevExpress.XtraBars.Bar();
             bar2 = new DevExpress.XtraBars.Bar();
@@ -83,11 +95,11 @@
             barButtonItem25 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
-            barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
             barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             barDockControl5 = new DevExpress.XtraBars.BarDockControl();
             barButtonItem26 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
             accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -126,6 +138,7 @@
             navigationFrame1.SuspendLayout();
             navigationPage1.SuspendLayout();
             ((ISupportInitialize)gridControl1).BeginInit();
+            ((ISupportInitialize)downloadViewModelBindingSource).BeginInit();
             ((ISupportInitialize)gridView1).BeginInit();
             ((ISupportInitialize)fluentFormDefaultManager1).BeginInit();
             ((ISupportInitialize)barManager1).BeginInit();
@@ -171,6 +184,7 @@
             // 
             // gridControl1
             // 
+            gridControl1.DataSource = downloadViewModelBindingSource;
             gridControl1.Dock = DockStyle.Fill;
             gridControl1.EmbeddedNavigator.Margin = new Padding(3, 2, 3, 2);
             gridControl1.Location = new Point(0, 48);
@@ -181,11 +195,93 @@
             gridControl1.TabIndex = 4;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
+            // downloadViewModelBindingSource
+            // 
+            downloadViewModelBindingSource.DataSource = typeof(ViewModel.Download.DownloadViewModel);
+            // 
             // gridView1
             // 
+            gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colFileName, colFileIcon, colDownloadQueue, colSize, colStatus, colPercent, colSpeed, colRemain, colLatestDownloadDateTime, colDescription });
             gridView1.GridControl = gridControl1;
             gridView1.Name = "gridView1";
             gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // colId
+            // 
+            colId.FieldName = "Id";
+            colId.Name = "colId";
+            colId.Visible = true;
+            colId.VisibleIndex = 0;
+            // 
+            // colFileName
+            // 
+            colFileName.FieldName = "FileName";
+            colFileName.Name = "colFileName";
+            colFileName.Visible = true;
+            colFileName.VisibleIndex = 1;
+            // 
+            // colFileIcon
+            // 
+            colFileIcon.FieldName = "FileIcon";
+            colFileIcon.Name = "colFileIcon";
+            colFileIcon.Visible = true;
+            colFileIcon.VisibleIndex = 2;
+            // 
+            // colDownloadQueue
+            // 
+            colDownloadQueue.FieldName = "DownloadQueue";
+            colDownloadQueue.Name = "colDownloadQueue";
+            colDownloadQueue.Visible = true;
+            colDownloadQueue.VisibleIndex = 3;
+            // 
+            // colSize
+            // 
+            colSize.FieldName = "Size";
+            colSize.Name = "colSize";
+            colSize.Visible = true;
+            colSize.VisibleIndex = 4;
+            // 
+            // colStatus
+            // 
+            colStatus.FieldName = "Status";
+            colStatus.Name = "colStatus";
+            colStatus.Visible = true;
+            colStatus.VisibleIndex = 5;
+            // 
+            // colPercent
+            // 
+            colPercent.FieldName = "Percent";
+            colPercent.Name = "colPercent";
+            colPercent.Visible = true;
+            colPercent.VisibleIndex = 6;
+            // 
+            // colSpeed
+            // 
+            colSpeed.FieldName = "Speed";
+            colSpeed.Name = "colSpeed";
+            colSpeed.Visible = true;
+            colSpeed.VisibleIndex = 7;
+            // 
+            // colRemain
+            // 
+            colRemain.FieldName = "Remain";
+            colRemain.Name = "colRemain";
+            colRemain.Visible = true;
+            colRemain.VisibleIndex = 8;
+            // 
+            // colLatestDownloadDateTime
+            // 
+            colLatestDownloadDateTime.FieldName = "LatestDownloadDateTime";
+            colLatestDownloadDateTime.Name = "colLatestDownloadDateTime";
+            colLatestDownloadDateTime.Visible = true;
+            colLatestDownloadDateTime.VisibleIndex = 9;
+            // 
+            // colDescription
+            // 
+            colDescription.FieldName = "Description";
+            colDescription.Name = "colDescription";
+            colDescription.Visible = true;
+            colDescription.VisibleIndex = 10;
             // 
             // fluentFormDefaultManager1
             // 
@@ -550,12 +646,6 @@
             barButtonItem28.Name = "barButtonItem28";
             barButtonItem28.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // barButtonItem29
-            // 
-            barButtonItem29.Caption = "barButtonItem29";
-            barButtonItem29.Id = 22;
-            barButtonItem29.Name = "barButtonItem29";
-            // 
             // barDockControl2
             // 
             barDockControl2.CausesValidation = false;
@@ -586,6 +676,12 @@
             barButtonItem26.Id = 19;
             barButtonItem26.Name = "barButtonItem26";
             // 
+            // barButtonItem29
+            // 
+            barButtonItem29.Caption = "barButtonItem29";
+            barButtonItem29.Id = 22;
+            barButtonItem29.Name = "barButtonItem29";
+            // 
             // accordionControl1
             // 
             accordionControl1.Dock = DockStyle.Right;
@@ -611,6 +707,7 @@
             // accordionControlElement1
             // 
             accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlSeparator2, accordionControlElement3, accordionControlElement4, accordionControlElement6, accordionControlElement7, accordionControlElement5 });
+            accordionControlElement1.Expanded = true;
             accordionControlElement1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement1.ImageOptions.SvgImage");
             accordionControlElement1.Name = "accordionControlElement1";
             accordionControlElement1.Text = "همه دانلود ها";
@@ -621,30 +718,40 @@
             // 
             // accordionControlElement3
             // 
+            accordionControlElement3.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement3.ImageOptions.SvgImage");
+            accordionControlElement3.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement3.Name = "accordionControlElement3";
             accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement3.Text = "فایل های فشرده";
             // 
             // accordionControlElement4
             // 
+            accordionControlElement4.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement4.ImageOptions.SvgImage");
+            accordionControlElement4.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement4.Name = "accordionControlElement4";
             accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement4.Text = "اسناد";
             // 
             // accordionControlElement6
             // 
+            accordionControlElement6.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement6.ImageOptions.SvgImage");
+            accordionControlElement6.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement6.Name = "accordionControlElement6";
             accordionControlElement6.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement6.Text = "برنامه ها";
             // 
             // accordionControlElement7
             // 
+            accordionControlElement7.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement7.ImageOptions.SvgImage");
+            accordionControlElement7.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement7.Name = "accordionControlElement7";
             accordionControlElement7.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement7.Text = "تصویری";
             // 
             // accordionControlElement5
             // 
+            accordionControlElement5.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement5.ImageOptions.SvgImage");
+            accordionControlElement5.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement5.Name = "accordionControlElement5";
             accordionControlElement5.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement5.Text = "موسیقی";
@@ -652,6 +759,7 @@
             // accordionControlElement9
             // 
             accordionControlElement9.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlSeparator1, accordionControlElement11, accordionControlElement12, accordionControlElement13, accordionControlElement14, accordionControlElement15 });
+            accordionControlElement9.Expanded = true;
             accordionControlElement9.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement9.ImageOptions.SvgImage");
             accordionControlElement9.Name = "accordionControlElement9";
             accordionControlElement9.Text = "ناتمام";
@@ -857,6 +965,7 @@
             navigationPage1.ResumeLayout(false);
             navigationPage1.PerformLayout();
             ((ISupportInitialize)gridControl1).EndInit();
+            ((ISupportInitialize)downloadViewModelBindingSource).EndInit();
             ((ISupportInitialize)gridView1).EndInit();
             ((ISupportInitialize)fluentFormDefaultManager1).EndInit();
             ((ISupportInitialize)barManager1).EndInit();
@@ -956,5 +1065,17 @@
         private DevExpress.XtraBars.Bar bar8;
         private DevExpress.XtraBars.BarButtonItem barButtonItem28;
         private DevExpress.XtraBars.BarButtonItem barButtonItem29;
+        private BindingSource downloadViewModelBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colFileName;
+        private DevExpress.XtraGrid.Columns.GridColumn colFileIcon;
+        private DevExpress.XtraGrid.Columns.GridColumn colDownloadQueue;
+        private DevExpress.XtraGrid.Columns.GridColumn colSize;
+        private DevExpress.XtraGrid.Columns.GridColumn colStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn colPercent;
+        private DevExpress.XtraGrid.Columns.GridColumn colSpeed;
+        private DevExpress.XtraGrid.Columns.GridColumn colRemain;
+        private DevExpress.XtraGrid.Columns.GridColumn colLatestDownloadDateTime;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescription;
     }
 }
