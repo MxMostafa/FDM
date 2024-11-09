@@ -19,7 +19,10 @@ internal static class Program
         // Setup the service collection
         var services = new ServiceCollection();
         services.Configuration();
+        services.AddMappings();
         services.RegisterForms();
+       
+        
 
         // تنظیمات برنامه و اجرای فرم اصلی
         var serviceProvider = services.BuildServiceProvider();

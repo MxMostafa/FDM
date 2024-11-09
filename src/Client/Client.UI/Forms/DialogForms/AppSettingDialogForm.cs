@@ -18,7 +18,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         try
         {
 
-            var appSettings = await _appSettingService.GetAllAppSettingAsync();
+            var appSettings = await _appSettingService.GetGeneralAppSettingAsync();
             LogInformation("all setting loaded");
 
             siteInfoViewModelBindingSource.DataSource = new List<SiteInfoViewModel>()

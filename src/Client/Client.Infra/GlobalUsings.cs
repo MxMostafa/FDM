@@ -12,4 +12,5 @@ global using System.Reflection;
 global using Client.Infra.Repositories.Base;
 global using Microsoft.EntityFrameworkCore.Design;
 global using Client.Domain.Enums;
+global using Microsoft.Extensions.Caching.Memory;
 

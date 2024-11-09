@@ -1,10 +1,6 @@
 ﻿
 
-using Client.Infra.DbContexts;
-using Client.UI.Forms.DialogForms;
-using DevExpress.Xpo.Logger.Transport;
-using Microsoft.EntityFrameworkCore;
-using Serilog;
+
 
 namespace Client.UI.Extensions;
 
@@ -27,6 +23,12 @@ public static class HostingExtension
         services.AddLogging(loggingBuilder =>
                              loggingBuilder.AddSerilog(dispose: true));
 
+        return services;
+    }
+
+    public static IServiceCollection AddMappings(this IServiceCollection services)
+    {
+        services.AddSingleton<IMapper, Mapper>();
         return services;
     }
 

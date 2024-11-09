@@ -7,7 +7,7 @@ namespace Client.UI.Extensions;
 public static class CommonExtension
 {
 
-    public static void Handle(this Exception ex, ILogger logger)
+    public static void Handle(this Exception ex, Microsoft.Extensions.Logging.ILogger logger)
     {
         if (ex == null || logger == null) return;
 

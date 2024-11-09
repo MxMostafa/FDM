@@ -1,5 +1,7 @@
 ﻿
 
+
+
 namespace Client.UI.Forms.MasterForms;
 
 public partial class MasterDockForm : Form

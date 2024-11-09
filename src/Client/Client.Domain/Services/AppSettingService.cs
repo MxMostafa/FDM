@@ -1,7 +1,17 @@
 ﻿
+using MapsterMapper;
+
 namespace Client.Domain.Services;
 public class AppSettingService : IAppSettingService
 {
+    private readonly IAppSettingRepository _appSettingRepository;
+    private readonly IMapper _mapper;
+    public AppSettingService(IAppSettingRepository appSettingRepository, IMapper mapper)
+    {
+        _appSettingRepository = appSettingRepository;
+        _mapper = mapper;
+    }
+
     public Task<ResultPattern<bool>> AddAppSettingAsync(string key, string value)
     {
         throw new NotImplementedException();
@@ -12,9 +22,12 @@ public class AppSettingService : IAppSettingService
         throw new NotImplementedException();
     }
 
-    public Task<ResultPattern<List<AppSettingResDto>>> GetAllAppSettingAsync()
+    public async Task<ResultPattern<List<AppSettingResDto>>> GetGeneralAppSettingAsync()
     {
-        throw new NotImplementedException();
+        var appSettings = await _appSettingRepository.GetAppSettingByTypeAsync(AppSettingType.General);
+        var result = _mapper.Map<List<AppSettingResDto>>(appSettings);
+
+        return result;
     }
 
     public Task<ResultPattern<AppSettingResDto?>> GetAppSettingByKeyAsync(string key)
