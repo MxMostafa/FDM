@@ -32,7 +32,6 @@
             barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             mxLabel1 = new UserControls.Common.MxLabel();
             mxComboBoxEdit1 = new UserControls.Common.MxComboBoxEdit();
-            mxButton16 = new UserControls.Common.MxButton();
             groupControl1 = new GroupControl();
             panelControl1 = new PanelControl();
             mxTextBox1 = new UserControls.Common.MxTextBox();
@@ -41,6 +40,7 @@
             mxTextBox2 = new UserControls.Common.MxTextBox();
             UseAuthorizationCheckBox = new UserControls.Common.MxCheckBox();
             mxButton1 = new UserControls.Common.MxButton();
+            mxButton16 = new UserControls.Common.MxButton();
             ((ISupportInitialize)mxComboBoxEdit1.Properties).BeginInit();
             ((ISupportInitialize)groupControl1).BeginInit();
             groupControl1.SuspendLayout();
@@ -71,7 +71,7 @@
             // 
             mxLabel1.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel1.Appearance.Options.UseFont = true;
-            mxLabel1.Location = new Point(533, 12);
+            mxLabel1.Location = new Point(16, 7);
             mxLabel1.Name = "mxLabel1";
             mxLabel1.Size = new Size(26, 17);
             mxLabel1.TabIndex = 2;
@@ -79,23 +79,13 @@
             // 
             // mxComboBoxEdit1
             // 
-            mxComboBoxEdit1.Location = new Point(95, 6);
+            mxComboBoxEdit1.Location = new Point(48, 1);
             mxComboBoxEdit1.Name = "mxComboBoxEdit1";
             mxComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             mxComboBoxEdit1.Properties.Items.AddRange(new object[] { "https://download.visualstudio.microsoft.com/download/pr/6224f00f-08da-4e7f-85b1-00d42c2bb3d3/b775de636b91e023574a0bbc291f705a/dotnet-sdk-8.0.403-win-x64.exe", "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.403-windows-x64-installer", "https://dl2.soft98.ir/soft/n/NET.Desktop.Runtime.8.0.10.x64.rar?1730113279" });
-            mxComboBoxEdit1.RightToLeft = RightToLeft.No;
+            mxComboBoxEdit1.RightToLeft = RightToLeft.Yes;
             mxComboBoxEdit1.Size = new Size(432, 28);
             mxComboBoxEdit1.TabIndex = 5;
-            // 
-            // mxButton16
-            // 
-            mxButton16.Appearance.BackColor = Color.Gainsboro;
-            mxButton16.Appearance.Options.UseBackColor = true;
-            mxButton16.Location = new Point(11, 8);
-            mxButton16.Name = "mxButton16";
-            mxButton16.Size = new Size(76, 23);
-            mxButton16.TabIndex = 31;
-            mxButton16.Text = "تایید";
             // 
             // groupControl1
             // 
@@ -103,7 +93,7 @@
             groupControl1.Controls.Add(panelControl1);
             groupControl1.Controls.Add(UseAuthorizationCheckBox);
             groupControl1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            groupControl1.Location = new Point(95, 38);
+            groupControl1.Location = new Point(16, 32);
             groupControl1.Name = "groupControl1";
             groupControl1.RightToLeft = RightToLeft.No;
             groupControl1.Size = new Size(464, 66);
@@ -170,11 +160,21 @@
             // 
             mxButton1.Appearance.BackColor = Color.Gainsboro;
             mxButton1.Appearance.Options.UseBackColor = true;
-            mxButton1.Location = new Point(11, 40);
+            mxButton1.Location = new Point(488, 38);
             mxButton1.Name = "mxButton1";
             mxButton1.Size = new Size(76, 23);
-            mxButton1.TabIndex = 33;
+            mxButton1.TabIndex = 37;
             mxButton1.Text = "انصراف";
+            // 
+            // mxButton16
+            // 
+            mxButton16.Appearance.BackColor = Color.Gainsboro;
+            mxButton16.Appearance.Options.UseBackColor = true;
+            mxButton16.Location = new Point(488, 6);
+            mxButton16.Name = "mxButton16";
+            mxButton16.Size = new Size(76, 23);
+            mxButton16.TabIndex = 36;
+            mxButton16.Text = "تایید";
             // 
             // AddDownloadNewAddressDialogForm
             // 
@@ -184,8 +184,8 @@
             ClientSize = new Size(582, 111);
             Controls.Add(mxButton1);
             Controls.Add(mxButton16);
-            Controls.Add(groupControl1);
             Controls.Add(mxComboBoxEdit1);
+            Controls.Add(groupControl1);
             Controls.Add(mxLabel1);
             Controls.Add(barDockControlTop);
             Controls.Add(barDockControl1);
@@ -212,14 +212,14 @@
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private UserControls.Common.MxLabel mxLabel1;
         private UserControls.Common.MxComboBoxEdit mxComboBoxEdit1;
-        private UserControls.Common.MxButton mxButton16;
         private GroupControl groupControl1;
-        private UserControls.Common.MxButton mxButton1;
         private UserControls.Common.MxLabel mxLabel2;
         private UserControls.Common.MxTextBox mxTextBox2;
         private UserControls.Common.MxTextBox mxTextBox1;
         private UserControls.Common.MxLabel mxLabel3;
         private UserControls.Common.MxCheckBox UseAuthorizationCheckBox;
         private PanelControl panelControl1;
+        private UserControls.Common.MxButton mxButton1;
+        private UserControls.Common.MxButton mxButton16;
     }
 }

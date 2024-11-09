@@ -1057,7 +1057,7 @@
             mxCheckBox1.EditValue = true;
             mxCheckBox1.Location = new Point(281, 79);
             mxCheckBox1.Name = "mxCheckBox1";
-            mxCheckBox1.Properties.Caption = "IDM را همراه با بالا آمدن ویندوز شروع کن";
+            mxCheckBox1.Properties.Caption = "FDM را همراه با بالا آمدن ویندوز شروع کن";
             mxCheckBox1.Size = new Size(236, 22);
             mxCheckBox1.TabIndex = 7;
             // 
@@ -1071,7 +1071,6 @@
             panelControl1.Name = "panelControl1";
             panelControl1.Size = new Size(520, 58);
             panelControl1.TabIndex = 6;
-           
             // 
             // separatorControl1
             // 
@@ -1576,7 +1575,6 @@
             mxLabel25.Size = new Size(150, 17);
             mxLabel25.TabIndex = 39;
             mxLabel25.Text = "برای دانلود های دستی User Agent:";
-            
             // 
             // separatorControl8
             // 

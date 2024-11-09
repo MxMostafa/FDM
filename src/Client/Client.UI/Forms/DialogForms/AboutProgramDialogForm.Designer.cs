@@ -126,13 +126,13 @@
             groupControl1.Name = "groupControl1";
             groupControl1.Size = new Size(436, 74);
             groupControl1.TabIndex = 10;
-            groupControl1.Text = "نام صاحب جواز این محصول:";
+            groupControl1.Text = ": نام صاحب جواز این محصول";
             // 
             // mxLabel4
             // 
             mxLabel4.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel4.Appearance.Options.UseFont = true;
-            mxLabel4.Location = new Point(17, 49);
+            mxLabel4.Location = new Point(179, 49);
             mxLabel4.Name = "mxLabel4";
             mxLabel4.Size = new Size(236, 17);
             mxLabel4.TabIndex = 10;
@@ -142,7 +142,7 @@
             // 
             mxLabel3.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel3.Appearance.Options.UseFont = true;
-            mxLabel3.Location = new Point(17, 26);
+            mxLabel3.Location = new Point(333, 26);
             mxLabel3.Name = "mxLabel3";
             mxLabel3.Size = new Size(82, 17);
             mxLabel3.TabIndex = 9;
