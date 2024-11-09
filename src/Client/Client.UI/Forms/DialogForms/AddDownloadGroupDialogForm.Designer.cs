@@ -39,6 +39,9 @@
             mxLabel6 = new UserControls.Common.MxLabel();
             mxLabel7 = new UserControls.Common.MxLabel();
             panelControl1 = new PanelControl();
+            spinEdit3 = new SpinEdit();
+            spinEdit2 = new SpinEdit();
+            spinEdit1 = new SpinEdit();
             mxLabel4 = new UserControls.Common.MxLabel();
             mxLabel3 = new UserControls.Common.MxLabel();
             mxLabel2 = new UserControls.Common.MxLabel();
@@ -58,9 +61,6 @@
             mxTextBox5 = new UserControls.Common.MxTextBox();
             mxTextBox6 = new UserControls.Common.MxTextBox();
             mxTextBox7 = new UserControls.Common.MxTextBox();
-            spinEdit1 = new SpinEdit();
-            spinEdit2 = new SpinEdit();
-            spinEdit3 = new SpinEdit();
             ((ISupportInitialize)mxComboBoxEdit1.Properties).BeginInit();
             ((ISupportInitialize)groupControl1).BeginInit();
             groupControl1.SuspendLayout();
@@ -70,6 +70,9 @@
             ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
             ((ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
+            ((ISupportInitialize)spinEdit3.Properties).BeginInit();
+            ((ISupportInitialize)spinEdit2.Properties).BeginInit();
+            ((ISupportInitialize)spinEdit1.Properties).BeginInit();
             ((ISupportInitialize)radioGroup1.Properties).BeginInit();
             ((ISupportInitialize)groupControl2).BeginInit();
             groupControl2.SuspendLayout();
@@ -81,9 +84,6 @@
             ((ISupportInitialize)mxTextBox5.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox6.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox7.Properties).BeginInit();
-            ((ISupportInitialize)spinEdit1.Properties).BeginInit();
-            ((ISupportInitialize)spinEdit2.Properties).BeginInit();
-            ((ISupportInitialize)spinEdit3.Properties).BeginInit();
             SuspendLayout();
             // 
             // mxLabel17
@@ -192,6 +192,33 @@
             panelControl1.Size = new Size(476, 42);
             panelControl1.TabIndex = 33;
             panelControl1.Visible = false;
+            // 
+            // spinEdit3
+            // 
+            spinEdit3.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
+            spinEdit3.Location = new Point(406, 7);
+            spinEdit3.Name = "spinEdit3";
+            spinEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            spinEdit3.Size = new Size(58, 28);
+            spinEdit3.TabIndex = 36;
+            // 
+            // spinEdit2
+            // 
+            spinEdit2.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
+            spinEdit2.Location = new Point(209, 7);
+            spinEdit2.Name = "spinEdit2";
+            spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            spinEdit2.Size = new Size(58, 28);
+            spinEdit2.TabIndex = 35;
+            // 
+            // spinEdit1
+            // 
+            spinEdit1.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
+            spinEdit1.Location = new Point(34, 7);
+            spinEdit1.Name = "spinEdit1";
+            spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            spinEdit1.Size = new Size(58, 28);
+            spinEdit1.TabIndex = 34;
             // 
             // mxLabel4
             // 
@@ -323,27 +350,27 @@
             // 
             mxLabel9.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel9.Appearance.Options.UseFont = true;
-            mxLabel9.Location = new Point(453, 285);
+            mxLabel9.Location = new Point(17, 285);
             mxLabel9.Name = "mxLabel9";
-            mxLabel9.Size = new Size(51, 17);
+            mxLabel9.Size = new Size(48, 17);
             mxLabel9.TabIndex = 35;
-            mxLabel9.Text = ": اولین فایل";
+            mxLabel9.Text = "اولین فایل:";
             // 
             // mxLabel10
             // 
             mxLabel10.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel10.Appearance.Options.UseFont = true;
-            mxLabel10.Location = new Point(447, 313);
+            mxLabel10.Location = new Point(12, 316);
             mxLabel10.Name = "mxLabel10";
-            mxLabel10.Size = new Size(55, 17);
+            mxLabel10.Size = new Size(52, 17);
             mxLabel10.TabIndex = 36;
-            mxLabel10.Text = ": دومین فایل";
+            mxLabel10.Text = "دومین فایل:";
             // 
             // mxLabel11
             // 
             mxLabel11.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 178);
             mxLabel11.Appearance.Options.UseFont = true;
-            mxLabel11.Location = new Point(467, 338);
+            mxLabel11.Location = new Point(29, 337);
             mxLabel11.Name = "mxLabel11";
             mxLabel11.Size = new Size(12, 17);
             mxLabel11.TabIndex = 37;
@@ -353,16 +380,16 @@
             // 
             mxLabel12.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel12.Appearance.Options.UseFont = true;
-            mxLabel12.Location = new Point(447, 367);
+            mxLabel12.Location = new Point(10, 371);
             mxLabel12.Name = "mxLabel12";
-            mxLabel12.Size = new Size(55, 17);
+            mxLabel12.Size = new Size(52, 17);
             mxLabel12.TabIndex = 38;
-            mxLabel12.Text = ": آخرین فایل";
+            mxLabel12.Text = "آخرین فایل:";
             // 
             // mxTextBox5
             // 
             mxTextBox5.Enabled = false;
-            mxTextBox5.Location = new Point(12, 278);
+            mxTextBox5.Location = new Point(75, 278);
             mxTextBox5.Name = "mxTextBox5";
             mxTextBox5.Size = new Size(423, 28);
             mxTextBox5.TabIndex = 39;
@@ -370,7 +397,7 @@
             // mxTextBox6
             // 
             mxTextBox6.Enabled = false;
-            mxTextBox6.Location = new Point(12, 309);
+            mxTextBox6.Location = new Point(75, 309);
             mxTextBox6.Name = "mxTextBox6";
             mxTextBox6.Size = new Size(423, 28);
             mxTextBox6.TabIndex = 40;
@@ -378,37 +405,10 @@
             // mxTextBox7
             // 
             mxTextBox7.Enabled = false;
-            mxTextBox7.Location = new Point(12, 360);
+            mxTextBox7.Location = new Point(75, 360);
             mxTextBox7.Name = "mxTextBox7";
             mxTextBox7.Size = new Size(423, 28);
             mxTextBox7.TabIndex = 41;
-            // 
-            // spinEdit1
-            // 
-            spinEdit1.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
-            spinEdit1.Location = new Point(34, 7);
-            spinEdit1.Name = "spinEdit1";
-            spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            spinEdit1.Size = new Size(58, 28);
-            spinEdit1.TabIndex = 34;
-            // 
-            // spinEdit2
-            // 
-            spinEdit2.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
-            spinEdit2.Location = new Point(209, 7);
-            spinEdit2.Name = "spinEdit2";
-            spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            spinEdit2.Size = new Size(58, 28);
-            spinEdit2.TabIndex = 35;
-            // 
-            // spinEdit3
-            // 
-            spinEdit3.EditValue = new decimal(new int[] { 0, 0, 0, 0 });
-            spinEdit3.Location = new Point(406, 7);
-            spinEdit3.Name = "spinEdit3";
-            spinEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            spinEdit3.Size = new Size(58, 28);
-            spinEdit3.TabIndex = 36;
             // 
             // AddDownloadGroupDialogForm
             // 
@@ -445,6 +445,9 @@
             ((ISupportInitialize)panelControl1).EndInit();
             panelControl1.ResumeLayout(false);
             panelControl1.PerformLayout();
+            ((ISupportInitialize)spinEdit3.Properties).EndInit();
+            ((ISupportInitialize)spinEdit2.Properties).EndInit();
+            ((ISupportInitialize)spinEdit1.Properties).EndInit();
             ((ISupportInitialize)radioGroup1.Properties).EndInit();
             ((ISupportInitialize)groupControl2).EndInit();
             groupControl2.ResumeLayout(false);
@@ -457,9 +460,6 @@
             ((ISupportInitialize)mxTextBox5.Properties).EndInit();
             ((ISupportInitialize)mxTextBox6.Properties).EndInit();
             ((ISupportInitialize)mxTextBox7.Properties).EndInit();
-            ((ISupportInitialize)spinEdit1.Properties).EndInit();
-            ((ISupportInitialize)spinEdit2.Properties).EndInit();
-            ((ISupportInitialize)spinEdit3.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
