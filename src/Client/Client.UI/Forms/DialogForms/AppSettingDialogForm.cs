@@ -25,26 +25,15 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
 
     private void radioButton3_CheckedChanged(object sender, EventArgs e)
     {
-        if (radioButton3.Checked)
-            panelControl8.Enabled = true;
-        else
-            panelControl8.Enabled = false;
+        //if (radioButton3.Checked)
+        //    panelControl8.Enabled = true;
+        //else
+        //    panelControl8.Enabled = false;
     }
 
     private void radioButton4_CheckedChanged(object sender, EventArgs e)
     {
-        if (radioButton4.Checked)
-        {
-            panelControl9.Enabled = true;
-            groupControl4.Visible = true;
 
-        }
-
-        else
-        {
-            panelControl9.Enabled = false;
-            groupControl4.Visible = false;
-        }
 
     }
 
@@ -62,5 +51,44 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         {
             e.DisplayText = new string('*', e.Value?.ToString().Length ?? 0);
         }
+    }
+
+    private void radioGroup2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var selectedIndex = radioGroup2.SelectedIndex;
+        var selectedItem = radioGroup2.Properties.Items[selectedIndex].Description;
+
+        if (selectedIndex == 0)
+        {
+            panelControl10.Enabled = true;
+
+        }
+        else
+            panelControl10.Enabled = false;
+
+
+
+
+
+    }
+
+    private void radioGroup4_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        var selectedIndex = radioGroup4.SelectedIndex;
+        var selectedItem = radioGroup4.Properties.Items[selectedIndex].Description;
+
+        if (selectedIndex == 0)
+        {
+            panelControl9.Enabled = true;
+            groupControl4.Visible = true;
+
+        }
+        else
+        {
+            panelControl9.Enabled = false;
+            groupControl4.Visible = false;
+        }
+
     }
 }
