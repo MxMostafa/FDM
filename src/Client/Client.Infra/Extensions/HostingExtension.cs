@@ -22,7 +22,7 @@ public static class HostingExtension
             services.AddScoped(interfaceType, type);
         }
 
-        var dbPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\PDM";
+        var dbPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\FDM";
 
         if (!Directory.Exists(dbPath))
             Directory.CreateDirectory(dbPath);
