@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
+namespace Client.UI.Forms.MasterForms;
 
-namespace Client.UI.Forms.MasterForms
+public partial class MasterSizableDialogform : MasterDialogForm
 {
-    public partial class MasterSizableDialogform : MasterDialogForm
+    public MasterSizableDialogform(ILogger logger) : base(logger)
     {
-        public MasterSizableDialogform()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -12,7 +12,7 @@ namespace Client.UI.Forms.DialogForms
 {
     public partial class AddDownloadGroupDialogForm : MasterFixedDialogForm
     {
-        public AddDownloadGroupDialogForm()
+        public AddDownloadGroupDialogForm(ILogger<AddDownloadGroupDialogForm> logger) : base(logger)
         {
             InitializeComponent();
         }
