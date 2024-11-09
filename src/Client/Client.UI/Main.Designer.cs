@@ -30,9 +30,9 @@
         {
             components = new Container();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
-            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton2 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -133,6 +133,7 @@
             bar5 = new DevExpress.XtraBars.Bar();
             barButtonItem22 = new DevExpress.XtraBars.BarButtonItem();
             bar8 = new DevExpress.XtraBars.Bar();
+            barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             fluentDesignFormContainer1.SuspendLayout();
             ((ISupportInitialize)navigationFrame1).BeginInit();
             navigationFrame1.SuspendLayout();
@@ -408,8 +409,8 @@
             barManager1.DockControls.Add(barDockControlLeft);
             barManager1.DockControls.Add(barDockControlRight);
             barManager1.Form = this;
-            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem9, barSubItem3, dbarButtonItem10, downloadGroupBarButton, barButtonItem12, barSubItem4, barButtonItem13, barButtonItem14, barButtonItem15, settingBarButtonItem, barButtonItem17, barSubItem5, aboutProgramButton, barButtonItem19, barButtonItem20 });
-            barManager1.MaxItemId = 15;
+            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem9, barSubItem3, dbarButtonItem10, downloadGroupBarButton, barButtonItem12, barSubItem4, barButtonItem13, barButtonItem14, barButtonItem15, settingBarButtonItem, barButtonItem17, barSubItem5, aboutProgramButton, barButtonItem19, barButtonItem20, barButtonItem10 });
+            barManager1.MaxItemId = 16;
             barManager1.PopupMenuAlignment = DevExpress.XtraBars.PopupMenuAlignment.Right;
             // 
             // bar4
@@ -418,7 +419,7 @@
             bar4.DockCol = 0;
             bar4.DockRow = 0;
             bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            bar4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barSubItem3), new DevExpress.XtraBars.LinkPersistInfo(barSubItem4), new DevExpress.XtraBars.LinkPersistInfo(barSubItem5) });
+            bar4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barSubItem3), new DevExpress.XtraBars.LinkPersistInfo(barSubItem4), new DevExpress.XtraBars.LinkPersistInfo(barSubItem5), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem10) });
             bar4.Text = "Tools";
             // 
             // barSubItem3
@@ -823,7 +824,7 @@
             // 
             // accordionControlElement16
             // 
-            accordionControlElement16.ImageOptions.SvgImage = Properties.Resources.Dictionary1;
+            accordionControlElement16.ImageOptions.SvgImage = Properties.Resources.Dictionary;
             accordionControlElement16.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement16.Name = "accordionControlElement16";
             accordionControlElement16.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
@@ -863,14 +864,14 @@
             // 
             // DownloadQueueElement
             // 
-            accordionContextButton2.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            accordionContextButton2.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            accordionContextButton2.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
-            accordionContextButton2.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
-            accordionContextButton2.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
-            accordionContextButton2.Name = "AddNewDownloadQueueContextButton";
-            accordionContextButton2.ToolTip = "افزودن صف جدید";
-            DownloadQueueElement.ContextButtons.Add(accordionContextButton2);
+            accordionContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            accordionContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            accordionContextButton1.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
+            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
+            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
+            accordionContextButton1.Name = "AddNewDownloadQueueContextButton";
+            accordionContextButton1.ToolTip = "افزودن صف جدید";
+            DownloadQueueElement.ContextButtons.Add(accordionContextButton1);
             DownloadQueueElement.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DownloadQueueElement.ImageOptions.SvgImage");
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
@@ -885,9 +886,9 @@
             SettingMenuButton.ImageOptions.SvgImageSize = new Size(35, 32);
             SettingMenuButton.Name = "SettingMenuButton";
             SettingMenuButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem2.Text = "تنیمات اصلی";
-            superToolTip2.Items.Add(toolTipTitleItem2);
-            SettingMenuButton.SuperTip = superToolTip2;
+            toolTipTitleItem1.Text = "تنیمات اصلی";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            SettingMenuButton.SuperTip = superToolTip1;
             SettingMenuButton.Text = "تنظیمات";
             SettingMenuButton.Click += SettingMenuButton_Click;
             // 
@@ -955,6 +956,13 @@
             bar8.DockRow = 1;
             bar8.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             bar8.Text = "Custom 3";
+            // 
+            // barButtonItem10
+            // 
+            barButtonItem10.Caption = "نمایش فرم تست (موقت)";
+            barButtonItem10.Id = 15;
+            barButtonItem10.Name = "barButtonItem10";
+            barButtonItem10.ItemClick += barButtonItem10_ItemClick;
             // 
             // Main
             // 
@@ -1098,5 +1106,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colRemain;
         private DevExpress.XtraGrid.Columns.GridColumn colLatestDownloadDateTime;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
     }
 }

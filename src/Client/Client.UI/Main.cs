@@ -101,6 +101,11 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private void aboutProgramButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
         new AboutProgramDialogForm().ShowDialog();
-        
+
+    }
+
+    private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        new TestComponentForm().ShowDialog();
     }
 }

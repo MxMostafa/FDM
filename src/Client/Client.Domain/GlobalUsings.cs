@@ -14,3 +14,4 @@ global using Client.Domain.Interfaces.Dto;
 global using Client.Domain.Interfaces.Services;
 global using Client.Domain.Interfaces.Repositories;
 global using Client.Domain.Resources;
+global using Client.Domain.Dtos.Response.AppSetting;
