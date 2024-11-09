@@ -52,7 +52,6 @@
             separatorControl13 = new SeparatorControl();
             separatorControl12 = new SeparatorControl();
             publicTb = new DevExpress.XtraTab.XtraTabPage();
-            mxActionGroup1 = new UserControls.Common.MxActionGroup();
             groupControl1 = new GroupControl();
             panelControl2 = new PanelControl();
             mxCheckBox8 = new UserControls.Common.MxCheckBox();
@@ -64,8 +63,8 @@
             mxCheckBox9 = new UserControls.Common.MxCheckBox();
             mxButton1 = new UserControls.Common.MxButton();
             mxCheckBox4 = new UserControls.Common.MxCheckBox();
-            mxCheckBox3 = new UserControls.Common.MxCheckBox();
-            mxCheckBox1 = new UserControls.Common.MxCheckBox();
+            AutoDownloadClipboardLinksCheckbox = new UserControls.Common.MxCheckBox();
+            RunAppWhenWindowsStartCheckBox = new UserControls.Common.MxCheckBox();
             panelControl1 = new PanelControl();
             separatorControl1 = new SeparatorControl();
             pictureEdit1 = new PictureEdit();
@@ -125,6 +124,7 @@
             colAddress = new DevExpress.XtraGrid.Columns.GridColumn();
             colUser = new DevExpress.XtraGrid.Columns.GridColumn();
             colpass = new DevExpress.XtraGrid.Columns.GridColumn();
+            mxActionGroup1 = new UserControls.Common.MxActionGroup();
             ((ISupportInitialize)xtraTabControl1).BeginInit();
             xtraTabControl1.SuspendLayout();
             prokciTb.SuspendLayout();
@@ -156,8 +156,8 @@
             ((ISupportInitialize)mxCheckBox7.Properties).BeginInit();
             ((ISupportInitialize)mxCheckBox9.Properties).BeginInit();
             ((ISupportInitialize)mxCheckBox4.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox3.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox1.Properties).BeginInit();
+            ((ISupportInitialize)AutoDownloadClipboardLinksCheckbox.Properties).BeginInit();
+            ((ISupportInitialize)RunAppWhenWindowsStartCheckBox.Properties).BeginInit();
             ((ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((ISupportInitialize)separatorControl1).BeginInit();
@@ -419,21 +419,12 @@
             // 
             publicTb.Controls.Add(groupControl1);
             publicTb.Controls.Add(mxCheckBox4);
-            publicTb.Controls.Add(mxCheckBox3);
-            publicTb.Controls.Add(mxCheckBox1);
+            publicTb.Controls.Add(AutoDownloadClipboardLinksCheckbox);
+            publicTb.Controls.Add(RunAppWhenWindowsStartCheckBox);
             publicTb.Controls.Add(panelControl1);
             publicTb.Name = "publicTb";
             publicTb.Size = new Size(542, 548);
             publicTb.Text = "عمومی";
-            // 
-            // mxActionGroup1
-            // 
-            mxActionGroup1.Dock = DockStyle.Bottom;
-            mxActionGroup1.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            mxActionGroup1.Location = new Point(0, 579);
-            mxActionGroup1.Name = "mxActionGroup1";
-            mxActionGroup1.Size = new Size(544, 39);
-            mxActionGroup1.TabIndex = 12;
             // 
             // groupControl1
             // 
@@ -542,22 +533,22 @@
             mxCheckBox4.Size = new Size(376, 22);
             mxCheckBox4.TabIndex = 10;
             // 
-            // mxCheckBox3
+            // AutoDownloadClipboardLinksCheckbox
             // 
-            mxCheckBox3.Location = new Point(141, 107);
-            mxCheckBox3.Name = "mxCheckBox3";
-            mxCheckBox3.Properties.Caption = "لینکهای موجود در حافظه(کلیپ برد ویندوز) را به صورت اتوماتیک دانلود کن";
-            mxCheckBox3.Size = new Size(376, 22);
-            mxCheckBox3.TabIndex = 9;
+            AutoDownloadClipboardLinksCheckbox.Location = new Point(141, 107);
+            AutoDownloadClipboardLinksCheckbox.Name = "AutoDownloadClipboardLinksCheckbox";
+            AutoDownloadClipboardLinksCheckbox.Properties.Caption = "لینکهای موجود در حافظه(کلیپ برد ویندوز) را به صورت اتوماتیک دانلود کن";
+            AutoDownloadClipboardLinksCheckbox.Size = new Size(376, 22);
+            AutoDownloadClipboardLinksCheckbox.TabIndex = 9;
             // 
-            // mxCheckBox1
+            // RunAppWhenWindowsStartCheckBox
             // 
-            mxCheckBox1.EditValue = true;
-            mxCheckBox1.Location = new Point(281, 79);
-            mxCheckBox1.Name = "mxCheckBox1";
-            mxCheckBox1.Properties.Caption = "FDM را همراه با بالا آمدن ویندوز شروع کن";
-            mxCheckBox1.Size = new Size(236, 22);
-            mxCheckBox1.TabIndex = 7;
+            RunAppWhenWindowsStartCheckBox.EditValue = true;
+            RunAppWhenWindowsStartCheckBox.Location = new Point(281, 79);
+            RunAppWhenWindowsStartCheckBox.Name = "RunAppWhenWindowsStartCheckBox";
+            RunAppWhenWindowsStartCheckBox.Properties.Caption = "FDM را همراه با بالا آمدن ویندوز شروع کن";
+            RunAppWhenWindowsStartCheckBox.Size = new Size(236, 22);
+            RunAppWhenWindowsStartCheckBox.TabIndex = 7;
             // 
             // panelControl1
             // 
@@ -1114,7 +1105,7 @@
             // 
             // siteInfoViewModelBindingSource
             // 
-            siteInfoViewModelBindingSource.DataSource = typeof(ViewModel.SiteInfoViewModel);
+            siteInfoViewModelBindingSource.DataSource = typeof(SiteInfoViewModel);
             // 
             // gridView1
             // 
@@ -1148,6 +1139,16 @@
             colpass.Name = "colpass";
             colpass.Visible = true;
             colpass.VisibleIndex = 2;
+            // 
+            // mxActionGroup1
+            // 
+            mxActionGroup1.Dock = DockStyle.Bottom;
+            mxActionGroup1.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxActionGroup1.Location = new Point(0, 579);
+            mxActionGroup1.Name = "mxActionGroup1";
+            mxActionGroup1.Size = new Size(544, 39);
+            mxActionGroup1.TabIndex = 12;
+            mxActionGroup1.SaveButtonClick += mxActionGroup1_SaveButtonClick;
             // 
             // AppSettingDialogForm
             // 
@@ -1196,8 +1197,8 @@
             ((ISupportInitialize)mxCheckBox7.Properties).EndInit();
             ((ISupportInitialize)mxCheckBox9.Properties).EndInit();
             ((ISupportInitialize)mxCheckBox4.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox3.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox1.Properties).EndInit();
+            ((ISupportInitialize)AutoDownloadClipboardLinksCheckbox.Properties).EndInit();
+            ((ISupportInitialize)RunAppWhenWindowsStartCheckBox.Properties).EndInit();
             ((ISupportInitialize)panelControl1).EndInit();
             panelControl1.ResumeLayout(false);
             panelControl1.PerformLayout();
@@ -1257,9 +1258,9 @@
         private PictureEdit pictureEdit1;
         private SeparatorControl separatorControl1;
         private PanelControl panelControl1;
-        private UserControls.Common.MxCheckBox mxCheckBox1;
+        private UserControls.Common.MxCheckBox RunAppWhenWindowsStartCheckBox;
         private UserControls.Common.MxCheckBox mxCheckBox4;
-        private UserControls.Common.MxCheckBox mxCheckBox3;
+        private UserControls.Common.MxCheckBox AutoDownloadClipboardLinksCheckbox;
         private GroupControl groupControl1;
         private UserControls.Common.MxCheckBox mxCheckBox10;
         private UserControls.Common.MxCheckBox mxCheckBox9;

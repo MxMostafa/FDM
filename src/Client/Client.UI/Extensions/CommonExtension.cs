@@ -2,6 +2,8 @@
 
 
 
+using Client.Domain.Dtos;
+
 namespace Client.UI.Extensions;
 
 public static class CommonExtension
@@ -15,6 +17,13 @@ public static class CommonExtension
         logger.LogError(ex, "An exception occurred: {Message}", ex.InnerException?.Message??ex.Message);
 
         ErrorHelper.ShowErrorAsMessageBox(ex);
+
+    }
+
+    public static void Handle<T>(this ResultPattern<T> result) 
+    {
+
+        ErrorHelper.ShowErrorAsMessageBox(result.ErrorMessage);
 
     }
 }

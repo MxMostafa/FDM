@@ -18,6 +18,35 @@ public class AppSettingRepository : BaseRepository, IAppSettingRepository
         return appSettings.Where(ap => ap.AppSettingType == appSettingType).ToList();
     }
 
+    public async Task<AppSetting> AddAppSettingAsync(AppSetting appSetting)
+    {
+        await _context.AppSettings.AddAsync(appSetting);
+        await _context.SaveChangesAsync();
+        await GetAppSettingsAsync(true);
+
+        return appSetting;
+    }
+
+    public async Task<AppSetting> UpdateAppSettingAsync(AppSetting appSetting)
+    {
+        _context.AppSettings.Update(appSetting);
+        await _context.SaveChangesAsync();
+        await GetAppSettingsAsync(true);
+
+        return appSetting;
+    }
+
+    public async Task<List<AppSetting>> AddAppSettingAsync(List<AppSetting> appSettings)
+    {
+        await _context.AppSettings.AddRangeAsync(appSettings);
+        await _context.SaveChangesAsync();
+        await GetAppSettingsAsync(true);
+
+        return appSettings;
+    }
+
+
+
 
     private async Task<List<AppSetting>> GetAppSettingsAsync(bool resetCache = false)
     {
@@ -39,4 +68,8 @@ public class AppSettingRepository : BaseRepository, IAppSettingRepository
         return appSettings!;
     }
 
+    public async Task<AppSetting?> GetAppSettingByTypeAndKeyAsync(AppSettingType appSettingType, string key)
+    {
+        return await _context.AppSettings.FirstOrDefaultAsync(ap => ap.AppSettingType == appSettingType && ap.Key == key);
+    }
 }

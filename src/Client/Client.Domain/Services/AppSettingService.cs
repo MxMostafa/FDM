@@ -1,5 +1,6 @@
 ﻿
 using MapsterMapper;
+using System.Collections.Generic;
 
 namespace Client.Domain.Services;
 public class AppSettingService : IAppSettingService
@@ -12,14 +13,45 @@ public class AppSettingService : IAppSettingService
         _mapper = mapper;
     }
 
-    public Task<ResultPattern<bool>> AddAppSettingAsync(string key, string value)
+    public async Task<ResultPattern<bool>> AddGeneralAppSettingAsync(string key, string value)
     {
-        throw new NotImplementedException();
+        var appSetting = await _appSettingRepository.GetAppSettingByTypeAndKeyAsync(AppSettingType.General, key);
+
+        if (appSetting != null)
+        {
+            appSetting.Value = value;
+            await _appSettingRepository.UpdateAppSettingAsync(appSetting);
+            return true;
+        }
+
+        await _appSettingRepository.AddAppSettingAsync(new AppSetting()
+        {
+            Id = 0,
+            Key = key,
+            AppSettingType = AppSettingType.General,
+            Value = value
+        });
+
+        return true;
     }
 
-    public Task<ResultPattern<bool>> AddAppSettingAsync(Dictionary<string, string> keyValuePairs)
+    public async Task<ResultPattern<bool>> AddGeneralAppSettingsAsync(Dictionary<string, string> keyValuePairs)
     {
-        throw new NotImplementedException();
+        var addList = new List<AppSetting>();
+
+        foreach (var item in keyValuePairs)
+        {
+            addList.Add(new AppSetting()
+            {
+                Id = 0,
+                Key = item.Key,
+                AppSettingType = AppSettingType.General,
+                Value = item.Value
+            });
+        }
+
+        await _appSettingRepository.AddAppSettingAsync(addList);
+        return true;
     }
 
     public async Task<ResultPattern<List<AppSettingResDto>>> GetGeneralAppSettingAsync()

@@ -1,4 +1,7 @@
 ﻿
+using Client.Domain.Dtos.Response.AppSetting;
+using Client.UI.Constants;
+
 namespace Client.UI.Forms.DialogForms;
 public partial class AppSettingDialogForm : MasterFixedDialogForm
 {
@@ -8,7 +11,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
     private readonly IAppSettingService _appSettingService;
 
     private readonly ILogger _logger;
-    public AppSettingDialogForm(IAppSettingService appSettingService, ILogger<AppSettingDialogForm> logger) 
+    public AppSettingDialogForm(IAppSettingService appSettingService, ILogger<AppSettingDialogForm> logger)
     {
         InitializeComponent();
         xtraTabControl1.SelectedTabPageIndex = 0;
@@ -17,15 +20,22 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
     }
 
 
-
-
     private async void AppSettingDialogForm_Load(object sender, EventArgs e)
     {
         try
         {
 
-            var appSettings = await _appSettingService.GetGeneralAppSettingAsync();
+            var appSettingsRequest = await _appSettingService.GetGeneralAppSettingAsync();
+            if (appSettingsRequest.IsSucceed == false)
+            {
+                appSettingsRequest.Handle();
+                return;
+            }
+
+            ApplySettings(appSettingsRequest.Data);
             _logger.LogDebug("all setting loaded");
+
+
 
             siteInfoViewModelBindingSource.DataSource = new List<SiteInfoViewModel>()
                     {
@@ -50,5 +60,52 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
     private void ManulaProxySettingRadioButton_CheckedChanged(object sender, EventArgs e)
     {
         ProxySettingPanel.Enabled = ManulaProxySettingRadioButton.Checked;
+    }
+
+    private async void mxActionGroup1_SaveButtonClick(object sender, EventArgs e)
+    {
+        try
+        {
+            if (!CommonHelper.GetConfirm(AppMessages.WarningConfirmMessage)) return;
+
+            var data = new Dictionary<string, string>();
+            data.Add(RunAppWhenWindowsStartCheckBox.Name, RunAppWhenWindowsStartCheckBox.Checked.ToString());
+            data.Add(AutoDownloadClipboardLinksCheckbox.Name, AutoDownloadClipboardLinksCheckbox.Checked.ToString());
+
+
+            await _appSettingService.AddGeneralAppSettingsAsync(data);
+
+            Close();
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+    }
+
+    private void ApplySettings(List<AppSettingResDto> settings)
+    {
+        try
+        {
+            foreach (var setting in settings)
+            {
+                switch (setting.Key)
+                {
+                    case "RunAppWhenWindowsStartCheckBox":
+                        RunAppWhenWindowsStartCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case "AutoDownloadClipboardLinksCheckbox":
+                        AutoDownloadClipboardLinksCheckbox.Checked = bool.Parse(setting.Value);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.Handle(_logger);
+        }
     }
 }

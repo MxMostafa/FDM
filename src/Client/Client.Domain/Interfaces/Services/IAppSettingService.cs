@@ -8,6 +8,6 @@ public interface IAppSettingService
 {
     Task<ResultPattern<List<AppSettingResDto>>> GetGeneralAppSettingAsync();
     Task<ResultPattern<AppSettingResDto?>> GetAppSettingByKeyAsync(string key);
-    Task<ResultPattern<bool>> AddAppSettingAsync(string key, string value);
-    Task<ResultPattern<bool>> AddAppSettingAsync(Dictionary<string, string> keyValuePairs);
+    Task<ResultPattern<bool>> AddGeneralAppSettingAsync(string key, string value);
+    Task<ResultPattern<bool>> AddGeneralAppSettingsAsync(Dictionary<string, string> keyValuePairs);
 }
