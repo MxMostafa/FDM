@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,16 @@ namespace Client.UI.Forms.MasterForms
 {
     public partial class MasterForm : XtraForm
     {
-        public MasterForm()
+        private readonly IServiceProvider _serviceProvider;
+        public MasterForm(IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _serviceProvider = serviceProvider;
+        }
+
+        private TForm GetForm<TForm>() where TForm : Form
+        {
+            return _serviceProvider.GetRequiredService<TForm>();
         }
     }
 }

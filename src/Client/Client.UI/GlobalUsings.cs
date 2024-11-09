@@ -16,3 +16,4 @@ global using Client.UI.Extensions;
 global using Client.UI.ViewModel;
 global using Client.Domain.Interfaces.Services;
 global using Microsoft.Extensions.Logging;
+global using Client.UI.Helpers;

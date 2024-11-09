@@ -10,7 +10,7 @@ namespace Client.UI.Extensions;
 
 public static class HostingExtension
 {
-    public static IServiceCollection Configuration(this IServiceCollection services )
+    public static IServiceCollection Configuration(this IServiceCollection services)
     {
 
 
@@ -20,6 +20,7 @@ public static class HostingExtension
 
         // پیکربندی و ایجاد Logger با استفاده از Serilog
         Log.Logger = new LoggerConfiguration()
+             .MinimumLevel.Debug()
             .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
             .CreateLogger();
 
@@ -33,6 +34,13 @@ public static class HostingExtension
     {
         services.AddSingleton<Main>();
         services.AddTransient<AppSettingDialogForm>();
+
+        services.AddTransient<AddDownloadNewAddressDialogForm>();
+        services.AddTransient<AddDownloadGroupDialogForm>();
+        services.AddTransient<AboutProgramDialogForm>();
+        services.AddTransient<TestComponentForm>();
+
+
         return services;
     }
 }

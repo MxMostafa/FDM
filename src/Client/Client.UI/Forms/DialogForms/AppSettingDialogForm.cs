@@ -15,11 +15,19 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
 
     private void AppSettingDialogForm_Load(object sender, EventArgs e)
     {
-        LogInformation("all setting loaded");
-        siteInfoViewModelBindingSource.DataSource = new List<SiteInfoViewModel>()
+        try
         {
+            LogInformation("all setting loaded");
+            siteInfoViewModelBindingSource.DataSource = new List<SiteInfoViewModel>()
+                    {
             new SiteInfoViewModel() {Address="http:\\test.com",User="سبس",pass="1234" }
-        };
+                     };
+        }
+        catch (Exception ex)
+        {
+            ex.Handle(_logger);
+        }
+
     }
 
     private void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)

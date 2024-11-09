@@ -21,11 +21,24 @@ internal static class Program
         services.Configuration();
         services.RegisterForms();
 
-
+        // تنظیمات برنامه و اجرای فرم اصلی
         var serviceProvider = services.BuildServiceProvider();
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
+
         var mainForm = serviceProvider.GetRequiredService<Main>();
         Application.Run(mainForm);
+    }
+
+    private static void HandleException(Exception ex)
+    {
+        if (ex != null)
+        {
+            // لاگ استثنا با استفاده از Serilog
+            Log.Error(ex, "An unhandled exception occurred");
+
+            // نمایش پیام به کاربر
+            MessageBox.Show("An unexpected error occurred. Please check the log file for details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

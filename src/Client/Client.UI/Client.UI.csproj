@@ -28,7 +28,6 @@
   <ItemGroup>
     <Folder Include="Applications\ViewModels\" />
     <Folder Include="Forms\DockForms\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
 
   <ItemGroup>

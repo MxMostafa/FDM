@@ -1,6 +1,7 @@
 ﻿
 
 using Client.Domain.Interfaces.Services;
+using Client.UI.Extensions;
 using Client.UI.Forms.DialogForms;
 
 namespace Client.UI;
@@ -9,17 +10,22 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 {
     private readonly IDownloadQueueService _downloadQueueService;
     private readonly IServiceProvider _serviceProvider;
-    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider)
+    private readonly ILogger<Main> _logger;
+    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger)
     {
         InitializeComponent();
         _downloadQueueService = downloadQueueService;
         DownloadQueueElement.ContextButtons.First().Click += Main_Click;
         _serviceProvider = serviceProvider;
+        _logger = logger;
+
+        Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
+        AppDomain.CurrentDomain.UnhandledException += (sender, e) => (e.ExceptionObject as Exception).Handle(_logger);
     }
 
     private async void Main_Click(object sender, DevExpress.Utils.ContextItemClickEventArgs e)
     {
-        var frm = new AddNewDownloadQueueDialogForm();
+        var frm = GetForm<AddNewDownloadQueueDialogForm>();
         if (frm.ShowDialog() != DialogResult.OK) return;
         var result = await _downloadQueueService.AddDownloadQueueAsync(frm.DowanloadQueueTitle);
         if (result.IsSucceed)
@@ -67,14 +73,12 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void settingButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        
+
     }
 
     private void SettingMenuButton_Click(object sender, EventArgs e)
     {
         var appSettingDialogForm = _serviceProvider.GetRequiredService<AppSettingDialogForm>();
-
-        // Open the form
         appSettingDialogForm.ShowDialog();
     }
 
@@ -84,23 +88,37 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void dbarButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        new AddDownloadNewAddressDialogForm().ShowDialog();
+        GetForm<AddDownloadNewAddressDialogForm>().ShowDialog();
     }
 
     private void downloadGroupBarButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        new AddDownloadGroupDialogForm().ShowDialog();
+        GetForm<AddDownloadGroupDialogForm>().ShowDialog();
 
     }
 
     private void aboutProgramButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        new AboutProgramDialogForm().ShowDialog();
+        GetForm<AboutProgramDialogForm>().ShowDialog();
 
     }
 
     private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        new TestComponentForm().ShowDialog();
+        GetForm<TestComponentForm>()?.ShowDialog();
+    }
+
+    private TForm GetForm<TForm>() where TForm : Form
+    {
+        try
+        {
+            return _serviceProvider.GetRequiredService<TForm>();
+        }
+        catch (Exception ex)
+        {
+            ex.Handle(_logger);
+            return null;
+        }
+
     }
 }
