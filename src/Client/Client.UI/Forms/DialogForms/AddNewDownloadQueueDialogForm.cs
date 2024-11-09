@@ -6,7 +6,7 @@ namespace Client.UI.Forms.DialogForms;
 public partial class AddNewDownloadQueueDialogForm : MasterFixedDialogForm
 {
     public string DowanloadQueueTitle { get; set; }
-    public AddNewDownloadQueueDialogForm(ILogger<AddNewDownloadQueueDialogForm> logger) : base(logger)
+    public AddNewDownloadQueueDialogForm()
     {
         InitializeComponent();
     }

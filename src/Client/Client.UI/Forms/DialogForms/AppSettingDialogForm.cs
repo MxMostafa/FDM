@@ -2,12 +2,18 @@
 namespace Client.UI.Forms.DialogForms;
 public partial class AppSettingDialogForm : MasterFixedDialogForm
 {
+
+
+
     private readonly IAppSettingService _appSettingService;
-    public AppSettingDialogForm(IAppSettingService appSettingService, ILogger<AppSettingDialogForm> logger) : base(logger)
+
+    private readonly ILogger _logger;
+    public AppSettingDialogForm(IAppSettingService appSettingService, ILogger<AppSettingDialogForm> logger) 
     {
         InitializeComponent();
         xtraTabControl1.SelectedTabPageIndex = 0;
         _appSettingService = appSettingService;
+        _logger = logger;
     }
 
 
@@ -19,7 +25,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         {
 
             var appSettings = await _appSettingService.GetGeneralAppSettingAsync();
-            LogInformation("all setting loaded");
+            _logger.LogDebug("all setting loaded");
 
             siteInfoViewModelBindingSource.DataSource = new List<SiteInfoViewModel>()
                     {

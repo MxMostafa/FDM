@@ -3,7 +3,7 @@ namespace Client.UI.Forms.DialogForms;
 
 public partial class AboutProgramDialogForm : MasterFixedDialogForm
 {
-    public AboutProgramDialogForm(ILogger<AboutProgramDialogForm> logger) : base(logger)
+    public AboutProgramDialogForm() 
     {
         InitializeComponent();
     }

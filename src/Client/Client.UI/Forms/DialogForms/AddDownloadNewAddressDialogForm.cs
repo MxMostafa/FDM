@@ -12,7 +12,7 @@ namespace Client.UI.Forms.DialogForms
 {
     public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
     {
-        public AddDownloadNewAddressDialogForm(ILogger<AddDownloadNewAddressDialogForm> logger) : base(logger)
+        public AddDownloadNewAddressDialogForm() 
         {
             InitializeComponent();
         }
