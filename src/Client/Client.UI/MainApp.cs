@@ -29,7 +29,7 @@ namespace Client.UI
 
         private void SettingButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            new AppSettingDialogForm().ShowDialog();
+      
         }
 
 

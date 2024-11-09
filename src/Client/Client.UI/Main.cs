@@ -8,11 +8,13 @@ namespace Client.UI;
 public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
 {
     private readonly IDownloadQueueService _downloadQueueService;
-    public Main(IDownloadQueueService downloadQueueService)
+    private readonly IServiceProvider _serviceProvider;
+    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider)
     {
         InitializeComponent();
         _downloadQueueService = downloadQueueService;
         DownloadQueueElement.ContextButtons.First().Click += Main_Click;
+        _serviceProvider = serviceProvider;
     }
 
     private async void Main_Click(object sender, DevExpress.Utils.ContextItemClickEventArgs e)
@@ -65,26 +67,19 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void settingButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        try
-        {
-            AppSettingDialogForm fr = new AppSettingDialogForm();
-            fr.ShowDialog();
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
+        
     }
 
     private void SettingMenuButton_Click(object sender, EventArgs e)
     {
+        var appSettingDialogForm = _serviceProvider.GetRequiredService<AppSettingDialogForm>();
 
+        // Open the form
+        appSettingDialogForm.ShowDialog();
     }
 
     private void settingBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        new AppSettingDialogForm().ShowDialog();
     }
 
     private void dbarButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

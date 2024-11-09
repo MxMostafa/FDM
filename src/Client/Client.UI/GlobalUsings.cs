@@ -13,3 +13,6 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Client.Infra.Extensions;
 global using Client.Domain.Extensions;
 global using Client.UI.Extensions;
+global using Client.UI.ViewModel;
+global using Client.Domain.Interfaces.Services;
+global using Microsoft.Extensions.Logging;

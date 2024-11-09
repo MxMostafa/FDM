@@ -8,6 +8,8 @@ public static class HostingExtension
     public static IServiceCollection AddInfrastructureToDC(this IServiceCollection services)
     {
 
+       
+
         var types = Assembly.GetExecutingAssembly().GetTypes()
             .Where(t => t.Namespace == "Client.Infra.Repositories" && t.Name.EndsWith("Repository"))
             .ToList();
@@ -30,6 +32,16 @@ public static class HostingExtension
         var cstr = $"Data Source={dbPath}\\FDMdb.db";
         services.AddDbContext<FdmDbContext>(options =>
             options.UseSqlite(cstr),ServiceLifetime.Transient);
+
+        var serviceProvider = services.BuildServiceProvider();
+
+        // Ensure the database is created and migrations are applied
+        using (var scope = serviceProvider.CreateScope())
+        {
+
+            var context = scope.ServiceProvider.GetRequiredService<FdmDbContext>();
+            context.Database.Migrate(); // Applies any pending migrations
+        }
 
         return services;
     }
