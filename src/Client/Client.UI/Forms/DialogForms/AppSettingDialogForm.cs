@@ -13,29 +13,8 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         richTextBox2.Text = "*.update.microsoft.com download.windowsupdate.com *.download.windowsupdate.com siteseal.thawte.com ecom.cimetz.com *.voice2page.com";
     }
 
-    private void panelControl1_Paint(object sender, PaintEventArgs e)
-    {
+   
 
-    }
-
-    private void mxLabel25_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void radioButton3_CheckedChanged(object sender, EventArgs e)
-    {
-        //if (radioButton3.Checked)
-        //    panelControl8.Enabled = true;
-        //else
-        //    panelControl8.Enabled = false;
-    }
-
-    private void radioButton4_CheckedChanged(object sender, EventArgs e)
-    {
-
-
-    }
 
     private void AppSettingDialogForm_Load(object sender, EventArgs e)
     {
