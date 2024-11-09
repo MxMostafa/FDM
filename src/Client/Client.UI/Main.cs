@@ -79,6 +79,28 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void SettingMenuButton_Click(object sender, EventArgs e)
     {
+
+    }
+
+    private void settingBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
         new AppSettingDialogForm().ShowDialog();
+    }
+
+    private void dbarButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        new AddDownloadNewAddressDialogForm().ShowDialog();
+    }
+
+    private void downloadGroupBarButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        new AddDownloadGroupDialogForm().ShowDialog();
+
+    }
+
+    private void aboutProgramButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        new AboutProgramDialogForm().ShowDialog();
+        
     }
 }

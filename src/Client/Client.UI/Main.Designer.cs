@@ -30,9 +30,9 @@
         {
             components = new Container();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
-            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton2 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -67,15 +67,15 @@
             barManager1 = new DevExpress.XtraBars.BarManager(components);
             bar4 = new DevExpress.XtraBars.Bar();
             barSubItem3 = new DevExpress.XtraBars.BarSubItem();
-            barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
-            barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            dbarButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
+            downloadGroupBarButton = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
             barSubItem4 = new DevExpress.XtraBars.BarSubItem();
             barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
-            barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
+            settingBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             barSubItem5 = new DevExpress.XtraBars.BarSubItem();
-            barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
+            aboutProgramButton = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
             bar6 = new DevExpress.XtraBars.Bar();
@@ -408,7 +408,7 @@
             barManager1.DockControls.Add(barDockControlLeft);
             barManager1.DockControls.Add(barDockControlRight);
             barManager1.Form = this;
-            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem9, barSubItem3, barButtonItem10, barButtonItem11, barButtonItem12, barSubItem4, barButtonItem13, barButtonItem14, barButtonItem15, barButtonItem16, barButtonItem17, barSubItem5, barButtonItem18, barButtonItem19, barButtonItem20 });
+            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItem9, barSubItem3, dbarButtonItem10, downloadGroupBarButton, barButtonItem12, barSubItem4, barButtonItem13, barButtonItem14, barButtonItem15, settingBarButtonItem, barButtonItem17, barSubItem5, aboutProgramButton, barButtonItem19, barButtonItem20 });
             barManager1.MaxItemId = 15;
             barManager1.PopupMenuAlignment = DevExpress.XtraBars.PopupMenuAlignment.Right;
             // 
@@ -425,20 +425,22 @@
             // 
             barSubItem3.Caption = "آدرس";
             barSubItem3.Id = 1;
-            barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem10), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem11), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem15) });
+            barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(dbarButtonItem10), new DevExpress.XtraBars.LinkPersistInfo(downloadGroupBarButton), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem15) });
             barSubItem3.Name = "barSubItem3";
             // 
-            // barButtonItem10
+            // dbarButtonItem10
             // 
-            barButtonItem10.Caption = "افزودن آدرس جدید دانلود";
-            barButtonItem10.Id = 2;
-            barButtonItem10.Name = "barButtonItem10";
+            dbarButtonItem10.Caption = "افزودن آدرس جدید دانلود";
+            dbarButtonItem10.Id = 2;
+            dbarButtonItem10.Name = "dbarButtonItem10";
+            dbarButtonItem10.ItemClick += dbarButtonItem10_ItemClick;
             // 
-            // barButtonItem11
+            // downloadGroupBarButton
             // 
-            barButtonItem11.Caption = "افزودن آدرس های جدید دانلود به صورت گروهی";
-            barButtonItem11.Id = 3;
-            barButtonItem11.Name = "barButtonItem11";
+            downloadGroupBarButton.Caption = "افزودن آدرس های جدید دانلود به صورت گروهی";
+            downloadGroupBarButton.Id = 3;
+            downloadGroupBarButton.Name = "downloadGroupBarButton";
+            downloadGroupBarButton.ItemClick += downloadGroupBarButton_ItemClick;
             // 
             // barButtonItem15
             // 
@@ -450,7 +452,7 @@
             // 
             barSubItem4.Caption = "دانلود";
             barSubItem4.Id = 5;
-            barSubItem4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem13), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem14), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem16) });
+            barSubItem4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem13), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem14), new DevExpress.XtraBars.LinkPersistInfo(settingBarButtonItem) });
             barSubItem4.Name = "barSubItem4";
             // 
             // barButtonItem13
@@ -465,24 +467,26 @@
             barButtonItem14.Id = 7;
             barButtonItem14.Name = "barButtonItem14";
             // 
-            // barButtonItem16
+            // settingBarButtonItem
             // 
-            barButtonItem16.Caption = "تنظیمات";
-            barButtonItem16.Id = 9;
-            barButtonItem16.Name = "barButtonItem16";
+            settingBarButtonItem.Caption = "تنظیمات";
+            settingBarButtonItem.Id = 9;
+            settingBarButtonItem.Name = "settingBarButtonItem";
+            settingBarButtonItem.ItemClick += settingBarButtonItem_ItemClick;
             // 
             // barSubItem5
             // 
             barSubItem5.Caption = "راهنما";
             barSubItem5.Id = 11;
-            barSubItem5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem18), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem19), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem20) });
+            barSubItem5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(aboutProgramButton), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem19), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem20) });
             barSubItem5.Name = "barSubItem5";
             // 
-            // barButtonItem18
+            // aboutProgramButton
             // 
-            barButtonItem18.Caption = "درباره برنامه";
-            barButtonItem18.Id = 12;
-            barButtonItem18.Name = "barButtonItem18";
+            aboutProgramButton.Caption = "درباره برنامه";
+            aboutProgramButton.Id = 12;
+            aboutProgramButton.Name = "aboutProgramButton";
+            aboutProgramButton.ItemClick += aboutProgramButton_ItemClick;
             // 
             // barButtonItem19
             // 
@@ -707,7 +711,6 @@
             // accordionControlElement1
             // 
             accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlSeparator2, accordionControlElement3, accordionControlElement4, accordionControlElement6, accordionControlElement7, accordionControlElement5 });
-            accordionControlElement1.Expanded = true;
             accordionControlElement1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement1.ImageOptions.SvgImage");
             accordionControlElement1.Name = "accordionControlElement1";
             accordionControlElement1.Text = "همه دانلود ها";
@@ -759,7 +762,6 @@
             // accordionControlElement9
             // 
             accordionControlElement9.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlSeparator1, accordionControlElement11, accordionControlElement12, accordionControlElement13, accordionControlElement14, accordionControlElement15 });
-            accordionControlElement9.Expanded = true;
             accordionControlElement9.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("accordionControlElement9.ImageOptions.SvgImage");
             accordionControlElement9.Name = "accordionControlElement9";
             accordionControlElement9.Text = "ناتمام";
@@ -770,30 +772,40 @@
             // 
             // accordionControlElement11
             // 
+            accordionControlElement11.ImageOptions.SvgImage = Properties.Resources.Dictionary;
+            accordionControlElement11.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement11.Name = "accordionControlElement11";
             accordionControlElement11.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement11.Text = "فایل های فشرده";
             // 
             // accordionControlElement12
             // 
+            accordionControlElement12.ImageOptions.SvgImage = Properties.Resources.ReportDocument;
+            accordionControlElement12.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement12.Name = "accordionControlElement12";
             accordionControlElement12.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement12.Text = "اسناد";
             // 
             // accordionControlElement13
             // 
+            accordionControlElement13.ImageOptions.SvgImage = Properties.Resources.MusicSharingOff;
+            accordionControlElement13.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement13.Name = "accordionControlElement13";
             accordionControlElement13.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement13.Text = "موسیقی";
             // 
             // accordionControlElement14
             // 
+            accordionControlElement14.ImageOptions.SvgImage = Properties.Resources.OEM;
+            accordionControlElement14.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement14.Name = "accordionControlElement14";
             accordionControlElement14.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement14.Text = "برنامه ها";
             // 
             // accordionControlElement15
             // 
+            accordionControlElement15.ImageOptions.SvgImage = Properties.Resources.VideoChat;
+            accordionControlElement15.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement15.Name = "accordionControlElement15";
             accordionControlElement15.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement15.Text = "تصویری";
@@ -811,45 +823,54 @@
             // 
             // accordionControlElement16
             // 
+            accordionControlElement16.ImageOptions.SvgImage = Properties.Resources.Dictionary1;
+            accordionControlElement16.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement16.Name = "accordionControlElement16";
             accordionControlElement16.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement16.Text = "فایل های فشرده";
             // 
             // accordionControlElement17
             // 
+            accordionControlElement17.ImageOptions.SvgImage = Properties.Resources.ReportDocument1;
+            accordionControlElement17.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement17.Name = "accordionControlElement17";
             accordionControlElement17.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement17.Text = "اسناد";
             // 
             // accordionControlElement18
             // 
+            accordionControlElement18.ImageOptions.SvgImage = Properties.Resources.MusicSharingOff1;
+            accordionControlElement18.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement18.Name = "accordionControlElement18";
             accordionControlElement18.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement18.Text = "موسیقی";
             // 
             // accordionControlElement19
             // 
+            accordionControlElement19.ImageOptions.SvgImage = Properties.Resources.OEM1;
+            accordionControlElement19.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement19.Name = "accordionControlElement19";
             accordionControlElement19.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement19.Text = "برنامه ها";
             // 
             // accordionControlElement20
             // 
+            accordionControlElement20.ImageOptions.SvgImage = Properties.Resources.VideoChat1;
+            accordionControlElement20.ImageOptions.SvgImageSize = new Size(16, 16);
             accordionControlElement20.Name = "accordionControlElement20";
             accordionControlElement20.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement20.Text = "تصویری";
             // 
             // DownloadQueueElement
             // 
-            accordionContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            accordionContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            accordionContextButton1.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
-            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
-            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
-            accordionContextButton1.Name = "AddNewDownloadQueueContextButton";
-            accordionContextButton1.ToolTip = "افزودن صف جدید";
-            DownloadQueueElement.ContextButtons.Add(accordionContextButton1);
-            DownloadQueueElement.Expanded = true;
+            accordionContextButton2.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            accordionContextButton2.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            accordionContextButton2.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
+            accordionContextButton2.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
+            accordionContextButton2.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
+            accordionContextButton2.Name = "AddNewDownloadQueueContextButton";
+            accordionContextButton2.ToolTip = "افزودن صف جدید";
+            DownloadQueueElement.ContextButtons.Add(accordionContextButton2);
             DownloadQueueElement.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DownloadQueueElement.ImageOptions.SvgImage");
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
@@ -864,9 +885,9 @@
             SettingMenuButton.ImageOptions.SvgImageSize = new Size(35, 32);
             SettingMenuButton.Name = "SettingMenuButton";
             SettingMenuButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem1.Text = "تنیمات اصلی";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            SettingMenuButton.SuperTip = superToolTip1;
+            toolTipTitleItem2.Text = "تنیمات اصلی";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            SettingMenuButton.SuperTip = superToolTip2;
             SettingMenuButton.Text = "تنظیمات";
             SettingMenuButton.Click += SettingMenuButton_Click;
             // 
@@ -1035,15 +1056,15 @@
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private DevExpress.XtraBars.BarSubItem barSubItem3;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarButtonItem dbarButtonItem10;
+        private DevExpress.XtraBars.BarButtonItem downloadGroupBarButton;
         private DevExpress.XtraBars.BarButtonItem barButtonItem15;
         private DevExpress.XtraBars.BarSubItem barSubItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
         private DevExpress.XtraBars.BarButtonItem barButtonItem14;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem16;
+        private DevExpress.XtraBars.BarButtonItem settingBarButtonItem;
         private DevExpress.XtraBars.BarSubItem barSubItem5;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem18;
+        private DevExpress.XtraBars.BarButtonItem aboutProgramButton;
         private DevExpress.XtraBars.BarButtonItem barButtonItem19;
         private DevExpress.XtraBars.BarButtonItem barButtonItem20;
         private DevExpress.XtraBars.BarButtonItem barButtonItem12;
