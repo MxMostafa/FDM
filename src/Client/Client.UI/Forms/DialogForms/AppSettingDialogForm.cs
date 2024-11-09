@@ -12,7 +12,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         xtraTabControl1.SelectedTabPageIndex = 0;
     }
 
-   
+
 
 
     private void AppSettingDialogForm_Load(object sender, EventArgs e)
@@ -31,20 +31,8 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         }
     }
 
-    private void radioGroup2_SelectedIndexChanged(object sender, EventArgs e)
+    private void ManulaProxySettingRadioButton_CheckedChanged(object sender, EventArgs e)
     {
-     
-
-
-
-
-    }
-
-    private void radioGroup4_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-        var selectedIndex = radioGroup4.SelectedIndex;
-        var selectedItem = radioGroup4.Properties.Items[selectedIndex].Description;
-
+        ProxySettingPanel.Enabled = ManulaProxySettingRadioButton.Checked;
     }
 }
