@@ -38,9 +38,19 @@ public class AppSettingService : IAppSettingService
     public async Task<ResultPattern<bool>> AddGeneralAppSettingsAsync(Dictionary<string, string> keyValuePairs)
     {
         var addList = new List<AppSetting>();
+        var updateList = new List<AppSetting>();
 
         foreach (var item in keyValuePairs)
         {
+            var appSetting = await _appSettingRepository.GetAppSettingByTypeAndKeyAsync(AppSettingType.General, item.Key);
+
+            if (appSetting != null)
+            {
+                appSetting.Value = item.Value;
+                updateList.Add(appSetting);
+                continue;
+            }
+
             addList.Add(new AppSetting()
             {
                 Id = 0,
@@ -50,7 +60,12 @@ public class AppSettingService : IAppSettingService
             });
         }
 
-        await _appSettingRepository.AddAppSettingAsync(addList);
+        if (addList.Any())
+            await _appSettingRepository.AddAppSettingAsync(addList);
+
+        if (updateList.Any())
+            await _appSettingRepository.UpdateAppSettingAsync(updateList);
+
         return true;
     }
 

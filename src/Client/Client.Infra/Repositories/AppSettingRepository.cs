@@ -36,6 +36,16 @@ public class AppSettingRepository : BaseRepository, IAppSettingRepository
         return appSetting;
     }
 
+    public async Task<List<AppSetting>> UpdateAppSettingAsync(List<AppSetting> appSettings)
+    {
+        _context.AppSettings.UpdateRange(appSettings);
+        await _context.SaveChangesAsync();
+        await GetAppSettingsAsync(true);
+
+        return appSettings;
+    }
+
+
     public async Task<List<AppSetting>> AddAppSettingAsync(List<AppSetting> appSettings)
     {
         await _context.AppSettings.AddRangeAsync(appSettings);
