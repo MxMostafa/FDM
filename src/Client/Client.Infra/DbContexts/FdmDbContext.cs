@@ -7,7 +7,7 @@ public class FdmDbContext : DbContext
     public DbSet<CategoryGroup> CategoryGroups { get; set; }
     public DbSet<CategoryItem> CategoryItems { get; set; }
     public DbSet<DownloadQueue> DownloadQueues { get; set; }
-
+    public DbSet<AppSetting> AppSettings { get; set; }
     public FdmDbContext(DbContextOptions<FdmDbContext> options) : base(options)
     {
 

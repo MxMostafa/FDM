@@ -13,11 +13,14 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
 
 
 
-    private void AppSettingDialogForm_Load(object sender, EventArgs e)
+    private async void AppSettingDialogForm_Load(object sender, EventArgs e)
     {
         try
         {
+
+            var appSettings = await _appSettingService.GetAllAppSettingAsync();
             LogInformation("all setting loaded");
+
             siteInfoViewModelBindingSource.DataSource = new List<SiteInfoViewModel>()
                     {
             new SiteInfoViewModel() {Address="http:\\test.com",User="سبس",pass="1234" }

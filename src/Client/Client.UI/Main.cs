@@ -1,8 +1,7 @@
 ﻿
 
-using Client.Domain.Interfaces.Services;
-using Client.UI.Extensions;
-using Client.UI.Forms.DialogForms;
+
+
 
 namespace Client.UI;
 
