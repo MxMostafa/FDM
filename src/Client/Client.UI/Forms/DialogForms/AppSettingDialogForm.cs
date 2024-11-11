@@ -76,6 +76,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
             var data = new Dictionary<string, string>();
             data.Add(RunAppWhenWindowsStartCheckBox.Name, RunAppWhenWindowsStartCheckBox.Checked.ToString());
             data.Add(AutoDownloadClipboardLinksCheckbox.Name, AutoDownloadClipboardLinksCheckbox.Checked.ToString());
+            data.Add(AdvancedSyncUsageCheckbox.Name,AdvancedSyncUsageCheckbox.Checked.ToString());
 
 
             await _appSettingService.AddGeneralAppSettingsAsync(data);
@@ -102,6 +103,9 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                         break;
                     case var key when key ==  AppSettingConfigs.AutoDownloadConfig:
                         AutoDownloadClipboardLinksCheckbox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.AdvancedSyncUsageConfig:
+                    AdvancedSyncUsageCheckbox.Checked=bool.Parse(setting.Value);
                         break;
                     default:
                         break;

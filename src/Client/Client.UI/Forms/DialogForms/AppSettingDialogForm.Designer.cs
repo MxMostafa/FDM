@@ -62,7 +62,7 @@
             mxCheckBox7 = new UserControls.Common.MxCheckBox();
             mxCheckBox9 = new UserControls.Common.MxCheckBox();
             mxButton1 = new UserControls.Common.MxButton();
-            mxCheckBox4 = new UserControls.Common.MxCheckBox();
+            AdvancedSyncUsageCheckbox = new UserControls.Common.MxCheckBox();
             AutoDownloadClipboardLinksCheckbox = new UserControls.Common.MxCheckBox();
             RunAppWhenWindowsStartCheckBox = new UserControls.Common.MxCheckBox();
             panelControl1 = new PanelControl();
@@ -79,7 +79,7 @@
             mxSearch2 = new UserControls.Common.MxSearch();
             mxCheckBox13 = new UserControls.Common.MxCheckBox();
             groupControl2 = new GroupControl();
-            mxCheckBox12 = new UserControls.Common.MxCheckBox();
+            LastPublicSaveDirectoryCheckBox = new UserControls.Common.MxCheckBox();
             mxSearch1 = new UserControls.Common.MxSearch();
             mxLabel16 = new UserControls.Common.MxLabel();
             mxTextBox1 = new UserControls.Common.MxTextBox();
@@ -155,7 +155,7 @@
             ((ISupportInitialize)mxCheckBox10.Properties).BeginInit();
             ((ISupportInitialize)mxCheckBox7.Properties).BeginInit();
             ((ISupportInitialize)mxCheckBox9.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox4.Properties).BeginInit();
+            ((ISupportInitialize)AdvancedSyncUsageCheckbox.Properties).BeginInit();
             ((ISupportInitialize)AutoDownloadClipboardLinksCheckbox.Properties).BeginInit();
             ((ISupportInitialize)RunAppWhenWindowsStartCheckBox.Properties).BeginInit();
             ((ISupportInitialize)panelControl1).BeginInit();
@@ -172,7 +172,7 @@
             ((ISupportInitialize)mxCheckBox13.Properties).BeginInit();
             ((ISupportInitialize)groupControl2).BeginInit();
             groupControl2.SuspendLayout();
-            ((ISupportInitialize)mxCheckBox12.Properties).BeginInit();
+            ((ISupportInitialize)LastPublicSaveDirectoryCheckBox.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
             ((ISupportInitialize)comboBoxEdit1.Properties).BeginInit();
             downloadsTb.SuspendLayout();
@@ -418,7 +418,7 @@
             // publicTb
             // 
             publicTb.Controls.Add(groupControl1);
-            publicTb.Controls.Add(mxCheckBox4);
+            publicTb.Controls.Add(AdvancedSyncUsageCheckbox);
             publicTb.Controls.Add(AutoDownloadClipboardLinksCheckbox);
             publicTb.Controls.Add(RunAppWhenWindowsStartCheckBox);
             publicTb.Controls.Add(panelControl1);
@@ -524,14 +524,14 @@
             mxButton1.TabIndex = 17;
             mxButton1.Text = "اضافه نمودن مرورگر";
             // 
-            // mxCheckBox4
+            // AdvancedSyncUsageCheckbox
             // 
-            mxCheckBox4.EditValue = true;
-            mxCheckBox4.Location = new Point(141, 135);
-            mxCheckBox4.Name = "mxCheckBox4";
-            mxCheckBox4.Properties.Caption = "استفاده از همسان سازی پیشرفته";
-            mxCheckBox4.Size = new Size(376, 22);
-            mxCheckBox4.TabIndex = 10;
+            AdvancedSyncUsageCheckbox.EditValue = true;
+            AdvancedSyncUsageCheckbox.Location = new Point(141, 135);
+            AdvancedSyncUsageCheckbox.Name = "AdvancedSyncUsageCheckbox";
+            AdvancedSyncUsageCheckbox.Properties.Caption = "استفاده از همسان سازی پیشرفته";
+            AdvancedSyncUsageCheckbox.Size = new Size(376, 22);
+            AdvancedSyncUsageCheckbox.TabIndex = 10;
             // 
             // AutoDownloadClipboardLinksCheckbox
             // 
@@ -680,7 +680,7 @@
             // 
             // groupControl2
             // 
-            groupControl2.Controls.Add(mxCheckBox12);
+            groupControl2.Controls.Add(LastPublicSaveDirectoryCheckBox);
             groupControl2.Controls.Add(mxSearch1);
             groupControl2.Controls.Add(mxLabel16);
             groupControl2.Controls.Add(mxTextBox1);
@@ -696,13 +696,13 @@
             groupControl2.TabIndex = 9;
             groupControl2.Text = "... ذخیره در";
             // 
-            // mxCheckBox12
+            // LastPublicSaveDirectoryCheckBox
             // 
-            mxCheckBox12.Location = new Point(121, 206);
-            mxCheckBox12.Name = "mxCheckBox12";
-            mxCheckBox12.Properties.Caption = "آخرین مسیر ذخیره فایلها در گروه عمومی را به یاد داشته باش.";
-            mxCheckBox12.Size = new Size(376, 22);
-            mxCheckBox12.TabIndex = 25;
+            LastPublicSaveDirectoryCheckBox.Location = new Point(121, 206);
+            LastPublicSaveDirectoryCheckBox.Name = "LastPublicSaveDirectoryCheckBox";
+            LastPublicSaveDirectoryCheckBox.Properties.Caption = "آخرین مسیر ذخیره فایلها در گروه عمومی را به یاد داشته باش.";
+            LastPublicSaveDirectoryCheckBox.Size = new Size(376, 22);
+            LastPublicSaveDirectoryCheckBox.TabIndex = 25;
             // 
             // mxSearch1
             // 
@@ -1196,7 +1196,7 @@
             ((ISupportInitialize)mxCheckBox10.Properties).EndInit();
             ((ISupportInitialize)mxCheckBox7.Properties).EndInit();
             ((ISupportInitialize)mxCheckBox9.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox4.Properties).EndInit();
+            ((ISupportInitialize)AdvancedSyncUsageCheckbox.Properties).EndInit();
             ((ISupportInitialize)AutoDownloadClipboardLinksCheckbox.Properties).EndInit();
             ((ISupportInitialize)RunAppWhenWindowsStartCheckBox.Properties).EndInit();
             ((ISupportInitialize)panelControl1).EndInit();
@@ -1216,7 +1216,7 @@
             ((ISupportInitialize)groupControl2).EndInit();
             groupControl2.ResumeLayout(false);
             groupControl2.PerformLayout();
-            ((ISupportInitialize)mxCheckBox12.Properties).EndInit();
+            ((ISupportInitialize)LastPublicSaveDirectoryCheckBox.Properties).EndInit();
             ((ISupportInitialize)mxTextBox1.Properties).EndInit();
             ((ISupportInitialize)comboBoxEdit1.Properties).EndInit();
             downloadsTb.ResumeLayout(false);
@@ -1259,7 +1259,7 @@
         private SeparatorControl separatorControl1;
         private PanelControl panelControl1;
         private UserControls.Common.MxCheckBox RunAppWhenWindowsStartCheckBox;
-        private UserControls.Common.MxCheckBox mxCheckBox4;
+        private UserControls.Common.MxCheckBox AdvancedSyncUsageCheckbox;
         private UserControls.Common.MxCheckBox AutoDownloadClipboardLinksCheckbox;
         private GroupControl groupControl1;
         private UserControls.Common.MxCheckBox mxCheckBox10;
@@ -1280,7 +1280,7 @@
         private UserControls.Common.MxTextBox mxTextBox1;
         private UserControls.Common.MxLabel mxLabel15;
         private UserControls.Common.MxSearch mxSearch1;
-        private UserControls.Common.MxCheckBox mxCheckBox12;
+        private UserControls.Common.MxCheckBox LastPublicSaveDirectoryCheckBox;
         private GroupControl groupControl3;
         private UserControls.Common.MxLabel mxLabel17;
         private UserControls.Common.MxSearch mxSearch2;
