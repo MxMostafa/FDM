@@ -2,6 +2,7 @@
 using Client.Domain.Dtos.Response.AppSetting;
 using Client.Domain.Interfaces.Services;
 using Client.UI.Constants;
+using Client.UI.Constants.Configs;
 using Client.UI.Helpers;
 using Client.UI.ViewModel;
 using Microsoft.Extensions.Logging;
@@ -96,16 +97,17 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
             {
                 switch (setting.Key)
                 {
-                    case "RunAppWhenWindowsStartCheckBox":
+                    case var key when key == AppSettingConfigs.RunWindowsStartConfig:
                         RunAppWhenWindowsStartCheckBox.Checked = bool.Parse(setting.Value);
                         break;
-                    case "AutoDownloadClipboardLinksCheckbox":
+                    case var key when key ==  AppSettingConfigs.AutoDownloadConfig:
                         AutoDownloadClipboardLinksCheckbox.Checked = bool.Parse(setting.Value);
                         break;
                     default:
                         break;
                 }
             }
+
         }
         catch (Exception ex)
         {
