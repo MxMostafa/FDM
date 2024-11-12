@@ -77,8 +77,18 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
             data.Add(RunAppWhenWindowsStartCheckBox.Name, RunAppWhenWindowsStartCheckBox.Checked.ToString());
             data.Add(AutoDownloadClipboardLinksCheckbox.Name, AutoDownloadClipboardLinksCheckbox.Checked.ToString());
             data.Add(AdvancedSyncUsageCheckbox.Name,AdvancedSyncUsageCheckbox.Checked.ToString());
-
-
+            data.Add(LastPublicSaveDirectoryCheckBox.Name, LastPublicSaveDirectoryCheckBox.Checked.ToString());
+            data.Add(DownloadedFileServerDateCheckBox.Name, DownloadedFileServerDateCheckBox.Checked.ToString());
+            data.Add(DownloadStartWindowCheckBox.Name, DownloadStartWindowCheckBox.Checked.ToString());
+            data.Add(AddToQueueOnlyCheckBox.Name, AddToQueueOnlyCheckBox.Checked.ToString());
+            data.Add(DownloadEndDialogCheckBox.Name, DownloadEndDialogCheckBox.Checked.ToString());
+            data.Add(AutoStartAfterPromptCheckBox.Name, AutoStartAfterPromptCheckBox.Checked.ToString());
+            data.Add(ShowAddToDownloadQueuePanelCheckBox.Name, ShowAddToDownloadQueuePanelCheckBox.Checked.ToString());
+            data.Add(EnableQueuePanelOnGroupAddCheckBox.Name, EnableQueuePanelOnGroupAddCheckBox.Checked.ToString());
+            data.Add(SkipDateUpdateOnDownloadResumeCheckBox.Name, SkipDateUpdateOnDownloadResumeCheckBox.Checked.ToString());
+            data.Add(DisableProxySettingRadioButton.Name, DisableProxySettingRadioButton.Checked.ToString());
+            data.Add(WindowsProxySettingRadioButton.Name, WindowsProxySettingRadioButton.Checked.ToString());
+            data.Add(ManulaProxySettingRadioButton.Name, ManulaProxySettingRadioButton.Checked.ToString());
             await _appSettingService.AddGeneralAppSettingsAsync(data);
 
             Close();
@@ -106,6 +116,42 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                         break;
                     case var key when key == AppSettingConfigs.AdvancedSyncUsageConfig:
                     AdvancedSyncUsageCheckbox.Checked=bool.Parse(setting.Value);
+                        break;
+                    case var key when key== AppSettingConfigs.LastPublicSaveDirectoryConfig:
+                        LastPublicSaveDirectoryCheckBox.Checked=bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.DownloadedFileServerDateConfig:
+                        DownloadedFileServerDateCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.DownloadStartWindowConfig:
+                        DownloadStartWindowCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.AddToQueueOnlyConfig:
+                        AddToQueueOnlyCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.DownloadEndDialogConfig:
+                        DownloadEndDialogCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.AutoStartAfterPromptConfig:
+                        AutoStartAfterPromptCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.ShowAddToDownloadQueuePanelConfig:
+                        ShowAddToDownloadQueuePanelCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.EnableQueuePanelOnGroupAddConfig:
+                        EnableQueuePanelOnGroupAddCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.SkipDateUpdateOnDownloadResumeConfig:
+                        SkipDateUpdateOnDownloadResumeCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.DisableProxySettingConfig:
+                        DisableProxySettingRadioButton.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.WindowsProxySettingConfig:
+                        WindowsProxySettingRadioButton.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.ManulaProxySettingConfig:
+                        ManulaProxySettingRadioButton.Checked = bool.Parse(setting.Value);
                         break;
                     default:
                         break;

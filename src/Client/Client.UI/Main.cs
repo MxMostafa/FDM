@@ -83,6 +83,8 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void settingBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
+        var appSettingDialogForm = _serviceProvider.GetRequiredService<AppSettingDialogForm>();
+        appSettingDialogForm.ShowDialog();
     }
 
     private void dbarButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

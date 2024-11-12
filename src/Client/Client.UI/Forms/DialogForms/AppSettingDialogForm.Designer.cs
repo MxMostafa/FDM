@@ -77,7 +77,7 @@
             groupControl3 = new GroupControl();
             mxLabel17 = new UserControls.Common.MxLabel();
             mxSearch2 = new UserControls.Common.MxSearch();
-            mxCheckBox13 = new UserControls.Common.MxCheckBox();
+            DownloadedFileServerDateCheckBox = new UserControls.Common.MxCheckBox();
             groupControl2 = new GroupControl();
             LastPublicSaveDirectoryCheckBox = new UserControls.Common.MxCheckBox();
             mxSearch1 = new UserControls.Common.MxSearch();
@@ -92,15 +92,15 @@
             comboBoxEdit2 = new ComboBoxEdit();
             mxLabel24 = new UserControls.Common.MxLabel();
             separatorControl7 = new SeparatorControl();
-            mxCheckBox20 = new UserControls.Common.MxCheckBox();
-            mxCheckBox19 = new UserControls.Common.MxCheckBox();
-            mxCheckBox18 = new UserControls.Common.MxCheckBox();
-            mxCheckBox17 = new UserControls.Common.MxCheckBox();
+            SkipDateUpdateOnDownloadResumeCheckBox = new UserControls.Common.MxCheckBox();
+            EnableQueuePanelOnGroupAddCheckBox = new UserControls.Common.MxCheckBox();
+            ShowAddToDownloadQueuePanelCheckBox = new UserControls.Common.MxCheckBox();
+            AutoStartAfterPromptCheckBox = new UserControls.Common.MxCheckBox();
             separatorControl6 = new SeparatorControl();
             mxLabel23 = new UserControls.Common.MxLabel();
-            mxCheckBox16 = new UserControls.Common.MxCheckBox();
-            mxCheckBox15 = new UserControls.Common.MxCheckBox();
-            mxCheckBox14 = new UserControls.Common.MxCheckBox();
+            DownloadEndDialogCheckBox = new UserControls.Common.MxCheckBox();
+            AddToQueueOnlyCheckBox = new UserControls.Common.MxCheckBox();
+            DownloadStartWindowCheckBox = new UserControls.Common.MxCheckBox();
             mxButton10 = new UserControls.Common.MxButton();
             mxLabel22 = new UserControls.Common.MxLabel();
             panelControl5 = new PanelControl();
@@ -169,7 +169,7 @@
             ((ISupportInitialize)pictureEdit2.Properties).BeginInit();
             ((ISupportInitialize)groupControl3).BeginInit();
             groupControl3.SuspendLayout();
-            ((ISupportInitialize)mxCheckBox13.Properties).BeginInit();
+            ((ISupportInitialize)DownloadedFileServerDateCheckBox.Properties).BeginInit();
             ((ISupportInitialize)groupControl2).BeginInit();
             groupControl2.SuspendLayout();
             ((ISupportInitialize)LastPublicSaveDirectoryCheckBox.Properties).BeginInit();
@@ -178,14 +178,14 @@
             downloadsTb.SuspendLayout();
             ((ISupportInitialize)comboBoxEdit2.Properties).BeginInit();
             ((ISupportInitialize)separatorControl7).BeginInit();
-            ((ISupportInitialize)mxCheckBox20.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox19.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox18.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox17.Properties).BeginInit();
+            ((ISupportInitialize)SkipDateUpdateOnDownloadResumeCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)EnableQueuePanelOnGroupAddCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)ShowAddToDownloadQueuePanelCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)AutoStartAfterPromptCheckBox.Properties).BeginInit();
             ((ISupportInitialize)separatorControl6).BeginInit();
-            ((ISupportInitialize)mxCheckBox16.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox15.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox14.Properties).BeginInit();
+            ((ISupportInitialize)DownloadEndDialogCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)AddToQueueOnlyCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)DownloadStartWindowCheckBox.Properties).BeginInit();
             ((ISupportInitialize)panelControl5).BeginInit();
             panelControl5.SuspendLayout();
             ((ISupportInitialize)separatorControl5).BeginInit();
@@ -594,7 +594,7 @@
             // 
             saveInTb.Controls.Add(panelControl3);
             saveInTb.Controls.Add(groupControl3);
-            saveInTb.Controls.Add(mxCheckBox13);
+            saveInTb.Controls.Add(DownloadedFileServerDateCheckBox);
             saveInTb.Controls.Add(groupControl2);
             saveInTb.Name = "saveInTb";
             saveInTb.Size = new Size(542, 548);
@@ -670,13 +670,13 @@
             mxSearch2.Size = new Size(488, 42);
             mxSearch2.TabIndex = 25;
             // 
-            // mxCheckBox13
+            // DownloadedFileServerDateCheckBox
             // 
-            mxCheckBox13.Location = new Point(132, 325);
-            mxCheckBox13.Name = "mxCheckBox13";
-            mxCheckBox13.Properties.Caption = "ثبت تاریخ فایل دانلود شده بر اساس تاریخ ثبت شده در سرور";
-            mxCheckBox13.Size = new Size(376, 22);
-            mxCheckBox13.TabIndex = 26;
+            DownloadedFileServerDateCheckBox.Location = new Point(132, 325);
+            DownloadedFileServerDateCheckBox.Name = "DownloadedFileServerDateCheckBox";
+            DownloadedFileServerDateCheckBox.Properties.Caption = "ثبت تاریخ فایل دانلود شده بر اساس تاریخ ثبت شده در سرور";
+            DownloadedFileServerDateCheckBox.Size = new Size(376, 22);
+            DownloadedFileServerDateCheckBox.TabIndex = 26;
             // 
             // groupControl2
             // 
@@ -785,15 +785,15 @@
             downloadsTb.Controls.Add(comboBoxEdit2);
             downloadsTb.Controls.Add(mxLabel24);
             downloadsTb.Controls.Add(separatorControl7);
-            downloadsTb.Controls.Add(mxCheckBox20);
-            downloadsTb.Controls.Add(mxCheckBox19);
-            downloadsTb.Controls.Add(mxCheckBox18);
-            downloadsTb.Controls.Add(mxCheckBox17);
+            downloadsTb.Controls.Add(SkipDateUpdateOnDownloadResumeCheckBox);
+            downloadsTb.Controls.Add(EnableQueuePanelOnGroupAddCheckBox);
+            downloadsTb.Controls.Add(ShowAddToDownloadQueuePanelCheckBox);
+            downloadsTb.Controls.Add(AutoStartAfterPromptCheckBox);
             downloadsTb.Controls.Add(separatorControl6);
             downloadsTb.Controls.Add(mxLabel23);
-            downloadsTb.Controls.Add(mxCheckBox16);
-            downloadsTb.Controls.Add(mxCheckBox15);
-            downloadsTb.Controls.Add(mxCheckBox14);
+            downloadsTb.Controls.Add(DownloadEndDialogCheckBox);
+            downloadsTb.Controls.Add(AddToQueueOnlyCheckBox);
+            downloadsTb.Controls.Add(DownloadStartWindowCheckBox);
             downloadsTb.Controls.Add(mxButton10);
             downloadsTb.Controls.Add(mxLabel22);
             downloadsTb.Controls.Add(panelControl5);
@@ -829,44 +829,44 @@
             separatorControl7.Size = new Size(517, 20);
             separatorControl7.TabIndex = 35;
             // 
-            // mxCheckBox20
+            // SkipDateUpdateOnDownloadResumeCheckBox
             // 
-            mxCheckBox20.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox20.Location = new Point(152, 321);
-            mxCheckBox20.Name = "mxCheckBox20";
-            mxCheckBox20.Properties.Caption = "در هنگام ادامه دانلود، از تغییر تاریخ چشم پوشی کن";
-            mxCheckBox20.Size = new Size(376, 22);
-            mxCheckBox20.TabIndex = 34;
+            SkipDateUpdateOnDownloadResumeCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            SkipDateUpdateOnDownloadResumeCheckBox.Location = new Point(152, 321);
+            SkipDateUpdateOnDownloadResumeCheckBox.Name = "SkipDateUpdateOnDownloadResumeCheckBox";
+            SkipDateUpdateOnDownloadResumeCheckBox.Properties.Caption = "در هنگام ادامه دانلود، از تغییر تاریخ چشم پوشی کن";
+            SkipDateUpdateOnDownloadResumeCheckBox.Size = new Size(376, 22);
+            SkipDateUpdateOnDownloadResumeCheckBox.TabIndex = 34;
             // 
-            // mxCheckBox19
+            // EnableQueuePanelOnGroupAddCheckBox
             // 
-            mxCheckBox19.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox19.EditValue = true;
-            mxCheckBox19.Location = new Point(152, 293);
-            mxCheckBox19.Name = "mxCheckBox19";
-            mxCheckBox19.Properties.Caption = "نمایش پنل افزودن به صفهای دانلود در هنگام افزودن دانلود گروهی";
-            mxCheckBox19.Size = new Size(376, 22);
-            mxCheckBox19.TabIndex = 33;
+            EnableQueuePanelOnGroupAddCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            EnableQueuePanelOnGroupAddCheckBox.EditValue = true;
+            EnableQueuePanelOnGroupAddCheckBox.Location = new Point(152, 293);
+            EnableQueuePanelOnGroupAddCheckBox.Name = "EnableQueuePanelOnGroupAddCheckBox";
+            EnableQueuePanelOnGroupAddCheckBox.Properties.Caption = "نمایش پنل افزودن به صفهای دانلود در هنگام افزودن دانلود گروهی";
+            EnableQueuePanelOnGroupAddCheckBox.Size = new Size(376, 22);
+            EnableQueuePanelOnGroupAddCheckBox.TabIndex = 33;
             // 
-            // mxCheckBox18
+            // ShowAddToDownloadQueuePanelCheckBox
             // 
-            mxCheckBox18.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox18.EditValue = true;
-            mxCheckBox18.Location = new Point(73, 265);
-            mxCheckBox18.Name = "mxCheckBox18";
-            mxCheckBox18.Properties.Caption = "نمایش پنل افزودن به صف دانلود پس از انتخاب گزینه بعدا دانلود شود در آغاز دانلود";
-            mxCheckBox18.Size = new Size(455, 22);
-            mxCheckBox18.TabIndex = 32;
+            ShowAddToDownloadQueuePanelCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ShowAddToDownloadQueuePanelCheckBox.EditValue = true;
+            ShowAddToDownloadQueuePanelCheckBox.Location = new Point(73, 265);
+            ShowAddToDownloadQueuePanelCheckBox.Name = "ShowAddToDownloadQueuePanelCheckBox";
+            ShowAddToDownloadQueuePanelCheckBox.Properties.Caption = "نمایش پنل افزودن به صف دانلود پس از انتخاب گزینه بعدا دانلود شود در آغاز دانلود";
+            ShowAddToDownloadQueuePanelCheckBox.Size = new Size(455, 22);
+            ShowAddToDownloadQueuePanelCheckBox.TabIndex = 32;
             // 
-            // mxCheckBox17
+            // AutoStartAfterPromptCheckBox
             // 
-            mxCheckBox17.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox17.EditValue = true;
-            mxCheckBox17.Location = new Point(152, 237);
-            mxCheckBox17.Name = "mxCheckBox17";
-            mxCheckBox17.Properties.Caption = "بلافاصله بعد از نمایش پنجره \"شروع دانلود\" دانلود شروع شود";
-            mxCheckBox17.Size = new Size(376, 22);
-            mxCheckBox17.TabIndex = 31;
+            AutoStartAfterPromptCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AutoStartAfterPromptCheckBox.EditValue = true;
+            AutoStartAfterPromptCheckBox.Location = new Point(152, 237);
+            AutoStartAfterPromptCheckBox.Name = "AutoStartAfterPromptCheckBox";
+            AutoStartAfterPromptCheckBox.Properties.Caption = "بلافاصله بعد از نمایش پنجره \"شروع دانلود\" دانلود شروع شود";
+            AutoStartAfterPromptCheckBox.Size = new Size(376, 22);
+            AutoStartAfterPromptCheckBox.TabIndex = 31;
             // 
             // separatorControl6
             // 
@@ -886,34 +886,34 @@
             mxLabel23.TabIndex = 29;
             mxLabel23.Text = "توجه: این تنظیمات به بخش زمانبندی مربوط نمی شود.";
             // 
-            // mxCheckBox16
+            // DownloadEndDialogCheckBox
             // 
-            mxCheckBox16.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox16.EditValue = true;
-            mxCheckBox16.Location = new Point(152, 161);
-            mxCheckBox16.Name = "mxCheckBox16";
-            mxCheckBox16.Properties.Caption = "نشان دادن پنجره اتمام دانلود";
-            mxCheckBox16.Size = new Size(376, 22);
-            mxCheckBox16.TabIndex = 28;
+            DownloadEndDialogCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DownloadEndDialogCheckBox.EditValue = true;
+            DownloadEndDialogCheckBox.Location = new Point(152, 161);
+            DownloadEndDialogCheckBox.Name = "DownloadEndDialogCheckBox";
+            DownloadEndDialogCheckBox.Properties.Caption = "نشان دادن پنجره اتمام دانلود";
+            DownloadEndDialogCheckBox.Size = new Size(376, 22);
+            DownloadEndDialogCheckBox.TabIndex = 28;
             // 
-            // mxCheckBox15
+            // AddToQueueOnlyCheckBox
             // 
-            mxCheckBox15.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox15.Location = new Point(140, 133);
-            mxCheckBox15.Name = "mxCheckBox15";
-            mxCheckBox15.Properties.Caption = "do not start downloading,only add files to the queue";
-            mxCheckBox15.Size = new Size(376, 22);
-            mxCheckBox15.TabIndex = 27;
+            AddToQueueOnlyCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AddToQueueOnlyCheckBox.Location = new Point(140, 133);
+            AddToQueueOnlyCheckBox.Name = "AddToQueueOnlyCheckBox";
+            AddToQueueOnlyCheckBox.Properties.Caption = "دانلود را شروع نکن، فقط فایل ها را به صف اضافه کن";
+            AddToQueueOnlyCheckBox.Size = new Size(376, 22);
+            AddToQueueOnlyCheckBox.TabIndex = 27;
             // 
-            // mxCheckBox14
+            // DownloadStartWindowCheckBox
             // 
-            mxCheckBox14.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox14.EditValue = true;
-            mxCheckBox14.Location = new Point(152, 105);
-            mxCheckBox14.Name = "mxCheckBox14";
-            mxCheckBox14.Properties.Caption = "نشان دادن پنجره شروع دانلود";
-            mxCheckBox14.Size = new Size(376, 22);
-            mxCheckBox14.TabIndex = 26;
+            DownloadStartWindowCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DownloadStartWindowCheckBox.EditValue = true;
+            DownloadStartWindowCheckBox.Location = new Point(152, 105);
+            DownloadStartWindowCheckBox.Name = "DownloadStartWindowCheckBox";
+            DownloadStartWindowCheckBox.Properties.Caption = "نشان دادن پنجره شروع دانلود";
+            DownloadStartWindowCheckBox.Size = new Size(376, 22);
+            DownloadStartWindowCheckBox.TabIndex = 26;
             // 
             // mxButton10
             // 
@@ -1212,7 +1212,7 @@
             ((ISupportInitialize)pictureEdit2.Properties).EndInit();
             ((ISupportInitialize)groupControl3).EndInit();
             groupControl3.ResumeLayout(false);
-            ((ISupportInitialize)mxCheckBox13.Properties).EndInit();
+            ((ISupportInitialize)DownloadedFileServerDateCheckBox.Properties).EndInit();
             ((ISupportInitialize)groupControl2).EndInit();
             groupControl2.ResumeLayout(false);
             groupControl2.PerformLayout();
@@ -1223,14 +1223,14 @@
             downloadsTb.PerformLayout();
             ((ISupportInitialize)comboBoxEdit2.Properties).EndInit();
             ((ISupportInitialize)separatorControl7).EndInit();
-            ((ISupportInitialize)mxCheckBox20.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox19.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox18.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox17.Properties).EndInit();
+            ((ISupportInitialize)SkipDateUpdateOnDownloadResumeCheckBox.Properties).EndInit();
+            ((ISupportInitialize)EnableQueuePanelOnGroupAddCheckBox.Properties).EndInit();
+            ((ISupportInitialize)ShowAddToDownloadQueuePanelCheckBox.Properties).EndInit();
+            ((ISupportInitialize)AutoStartAfterPromptCheckBox.Properties).EndInit();
             ((ISupportInitialize)separatorControl6).EndInit();
-            ((ISupportInitialize)mxCheckBox16.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox15.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox14.Properties).EndInit();
+            ((ISupportInitialize)DownloadEndDialogCheckBox.Properties).EndInit();
+            ((ISupportInitialize)AddToQueueOnlyCheckBox.Properties).EndInit();
+            ((ISupportInitialize)DownloadStartWindowCheckBox.Properties).EndInit();
             ((ISupportInitialize)panelControl5).EndInit();
             panelControl5.ResumeLayout(false);
             panelControl5.PerformLayout();
@@ -1284,25 +1284,25 @@
         private GroupControl groupControl3;
         private UserControls.Common.MxLabel mxLabel17;
         private UserControls.Common.MxSearch mxSearch2;
-        private UserControls.Common.MxCheckBox mxCheckBox13;
+        private UserControls.Common.MxCheckBox DownloadedFileServerDateCheckBox;
         private PanelControl panelControl5;
         private UserControls.Common.MxLabel mxLabel18;
         private UserControls.Common.MxLabel mxLabel19;
         private SeparatorControl separatorControl5;
         private PictureEdit pictureEdit4;
         private UserControls.Common.MxLabel mxLabel20;
-        private UserControls.Common.MxCheckBox mxCheckBox15;
-        private UserControls.Common.MxCheckBox mxCheckBox14;
+        private UserControls.Common.MxCheckBox AddToQueueOnlyCheckBox;
+        private UserControls.Common.MxCheckBox DownloadStartWindowCheckBox;
         private UserControls.Common.MxButton mxButton10;
         private UserControls.Common.MxLabel mxLabel22;
         private UserControls.Common.MxLabel mxLabel21;
-        private UserControls.Common.MxCheckBox mxCheckBox20;
-        private UserControls.Common.MxCheckBox mxCheckBox19;
-        private UserControls.Common.MxCheckBox mxCheckBox18;
-        private UserControls.Common.MxCheckBox mxCheckBox17;
+        private UserControls.Common.MxCheckBox SkipDateUpdateOnDownloadResumeCheckBox;
+        private UserControls.Common.MxCheckBox EnableQueuePanelOnGroupAddCheckBox;
+        private UserControls.Common.MxCheckBox ShowAddToDownloadQueuePanelCheckBox;
+        private UserControls.Common.MxCheckBox AutoStartAfterPromptCheckBox;
         private SeparatorControl separatorControl6;
         private UserControls.Common.MxLabel mxLabel23;
-        private UserControls.Common.MxCheckBox mxCheckBox16;
+        private UserControls.Common.MxCheckBox DownloadEndDialogCheckBox;
         private SeparatorControl separatorControl7;
         private ComboBoxEdit comboBoxEdit2;
         private UserControls.Common.MxLabel mxLabel24;
