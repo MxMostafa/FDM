@@ -54,13 +54,13 @@
             publicTb = new DevExpress.XtraTab.XtraTabPage();
             groupControl1 = new GroupControl();
             panelControl2 = new PanelControl();
-            mxCheckBox8 = new UserControls.Common.MxCheckBox();
-            mxCheckBox5 = new UserControls.Common.MxCheckBox();
-            mxCheckBox11 = new UserControls.Common.MxCheckBox();
-            mxCheckBox6 = new UserControls.Common.MxCheckBox();
-            mxCheckBox10 = new UserControls.Common.MxCheckBox();
-            mxCheckBox7 = new UserControls.Common.MxCheckBox();
-            mxCheckBox9 = new UserControls.Common.MxCheckBox();
+            EdgCheckBox = new UserControls.Common.MxCheckBox();
+            SafariCheckBox = new UserControls.Common.MxCheckBox();
+            OperaCheckBox = new UserControls.Common.MxCheckBox();
+            ChromeCheckBox = new UserControls.Common.MxCheckBox();
+            FireFoxCheckBox = new UserControls.Common.MxCheckBox();
+            IECheckBox = new UserControls.Common.MxCheckBox();
+            EdgLegacyCheckBox = new UserControls.Common.MxCheckBox();
             mxButton1 = new UserControls.Common.MxButton();
             AdvancedSyncUsageCheckbox = new UserControls.Common.MxCheckBox();
             AutoDownloadClipboardLinksCheckbox = new UserControls.Common.MxCheckBox();
@@ -148,13 +148,13 @@
             groupControl1.SuspendLayout();
             ((ISupportInitialize)panelControl2).BeginInit();
             panelControl2.SuspendLayout();
-            ((ISupportInitialize)mxCheckBox8.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox5.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox11.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox6.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox10.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox7.Properties).BeginInit();
-            ((ISupportInitialize)mxCheckBox9.Properties).BeginInit();
+            ((ISupportInitialize)EdgCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)SafariCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)OperaCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)ChromeCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)FireFoxCheckBox.Properties).BeginInit();
+            ((ISupportInitialize)IECheckBox.Properties).BeginInit();
+            ((ISupportInitialize)EdgLegacyCheckBox.Properties).BeginInit();
             ((ISupportInitialize)AdvancedSyncUsageCheckbox.Properties).BeginInit();
             ((ISupportInitialize)AutoDownloadClipboardLinksCheckbox.Properties).BeginInit();
             ((ISupportInitialize)RunAppWhenWindowsStartCheckBox.Properties).BeginInit();
@@ -439,80 +439,80 @@
             // 
             // panelControl2
             // 
-            panelControl2.Controls.Add(mxCheckBox8);
-            panelControl2.Controls.Add(mxCheckBox5);
-            panelControl2.Controls.Add(mxCheckBox11);
-            panelControl2.Controls.Add(mxCheckBox6);
-            panelControl2.Controls.Add(mxCheckBox10);
-            panelControl2.Controls.Add(mxCheckBox7);
-            panelControl2.Controls.Add(mxCheckBox9);
+            panelControl2.Controls.Add(EdgCheckBox);
+            panelControl2.Controls.Add(SafariCheckBox);
+            panelControl2.Controls.Add(OperaCheckBox);
+            panelControl2.Controls.Add(ChromeCheckBox);
+            panelControl2.Controls.Add(FireFoxCheckBox);
+            panelControl2.Controls.Add(IECheckBox);
+            panelControl2.Controls.Add(EdgLegacyCheckBox);
             panelControl2.Location = new Point(13, 26);
             panelControl2.Name = "panelControl2";
             panelControl2.Size = new Size(494, 159);
             panelControl2.TabIndex = 12;
             // 
-            // mxCheckBox8
+            // EdgCheckBox
             // 
-            mxCheckBox8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox8.Location = new Point(107, 68);
-            mxCheckBox8.Name = "mxCheckBox8";
-            mxCheckBox8.Properties.Caption = "Microsoft Edg";
-            mxCheckBox8.Size = new Size(376, 22);
-            mxCheckBox8.TabIndex = 13;
+            EdgCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            EdgCheckBox.Location = new Point(107, 68);
+            EdgCheckBox.Name = "EdgCheckBox";
+            EdgCheckBox.Properties.Caption = "Microsoft Edg";
+            EdgCheckBox.Size = new Size(376, 22);
+            EdgCheckBox.TabIndex = 13;
             // 
-            // mxCheckBox5
+            // SafariCheckBox
             // 
-            mxCheckBox5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox5.Location = new Point(107, 2);
-            mxCheckBox5.Name = "mxCheckBox5";
-            mxCheckBox5.Properties.Caption = "Apple Safari";
-            mxCheckBox5.Size = new Size(376, 22);
-            mxCheckBox5.TabIndex = 10;
+            SafariCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            SafariCheckBox.Location = new Point(107, 2);
+            SafariCheckBox.Name = "SafariCheckBox";
+            SafariCheckBox.Properties.Caption = "Apple Safari";
+            SafariCheckBox.Size = new Size(376, 22);
+            SafariCheckBox.TabIndex = 10;
             // 
-            // mxCheckBox11
+            // OperaCheckBox
             // 
-            mxCheckBox11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox11.Location = new Point(107, 134);
-            mxCheckBox11.Name = "mxCheckBox11";
-            mxCheckBox11.Properties.Caption = "Opera";
-            mxCheckBox11.Size = new Size(376, 22);
-            mxCheckBox11.TabIndex = 16;
+            OperaCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            OperaCheckBox.Location = new Point(107, 134);
+            OperaCheckBox.Name = "OperaCheckBox";
+            OperaCheckBox.Properties.Caption = "Opera";
+            OperaCheckBox.Size = new Size(376, 22);
+            OperaCheckBox.TabIndex = 16;
             // 
-            // mxCheckBox6
+            // ChromeCheckBox
             // 
-            mxCheckBox6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox6.Location = new Point(107, 24);
-            mxCheckBox6.Name = "mxCheckBox6";
-            mxCheckBox6.Properties.Caption = "Google Chrome";
-            mxCheckBox6.Size = new Size(376, 22);
-            mxCheckBox6.TabIndex = 11;
+            ChromeCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ChromeCheckBox.Location = new Point(107, 24);
+            ChromeCheckBox.Name = "ChromeCheckBox";
+            ChromeCheckBox.Properties.Caption = "Google Chrome";
+            ChromeCheckBox.Size = new Size(376, 22);
+            ChromeCheckBox.TabIndex = 11;
             // 
-            // mxCheckBox10
+            // FireFoxCheckBox
             // 
-            mxCheckBox10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox10.Location = new Point(107, 112);
-            mxCheckBox10.Name = "mxCheckBox10";
-            mxCheckBox10.Properties.Caption = "Mozilla FireFox";
-            mxCheckBox10.Size = new Size(376, 22);
-            mxCheckBox10.TabIndex = 15;
+            FireFoxCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            FireFoxCheckBox.Location = new Point(107, 112);
+            FireFoxCheckBox.Name = "FireFoxCheckBox";
+            FireFoxCheckBox.Properties.Caption = "Mozilla FireFox";
+            FireFoxCheckBox.Size = new Size(376, 22);
+            FireFoxCheckBox.TabIndex = 15;
             // 
-            // mxCheckBox7
+            // IECheckBox
             // 
-            mxCheckBox7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox7.Location = new Point(107, 46);
-            mxCheckBox7.Name = "mxCheckBox7";
-            mxCheckBox7.Properties.Caption = "Internet Explorer";
-            mxCheckBox7.Size = new Size(376, 22);
-            mxCheckBox7.TabIndex = 12;
+            IECheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            IECheckBox.Location = new Point(107, 46);
+            IECheckBox.Name = "IECheckBox";
+            IECheckBox.Properties.Caption = "Internet Explorer";
+            IECheckBox.Size = new Size(376, 22);
+            IECheckBox.TabIndex = 12;
             // 
-            // mxCheckBox9
+            // EdgLegacyCheckBox
             // 
-            mxCheckBox9.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            mxCheckBox9.Location = new Point(107, 90);
-            mxCheckBox9.Name = "mxCheckBox9";
-            mxCheckBox9.Properties.Caption = "Microsoft Edg legacy";
-            mxCheckBox9.Size = new Size(376, 22);
-            mxCheckBox9.TabIndex = 14;
+            EdgLegacyCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            EdgLegacyCheckBox.Location = new Point(107, 90);
+            EdgLegacyCheckBox.Name = "EdgLegacyCheckBox";
+            EdgLegacyCheckBox.Properties.Caption = "Microsoft Edg legacy";
+            EdgLegacyCheckBox.Size = new Size(376, 22);
+            EdgLegacyCheckBox.TabIndex = 14;
             // 
             // mxButton1
             // 
@@ -723,7 +723,7 @@
             // 
             // mxTextBox1
             // 
-            mxTextBox1.EditValue = "فایلهایی که در هیچکدام از گروهها دسته بندی نشده اند";
+            mxTextBox1.EditValue = "";
             mxTextBox1.Location = new Point(29, 104);
             mxTextBox1.Name = "mxTextBox1";
             mxTextBox1.Size = new Size(468, 28);
@@ -1189,13 +1189,13 @@
             groupControl1.ResumeLayout(false);
             ((ISupportInitialize)panelControl2).EndInit();
             panelControl2.ResumeLayout(false);
-            ((ISupportInitialize)mxCheckBox8.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox5.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox11.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox6.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox10.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox7.Properties).EndInit();
-            ((ISupportInitialize)mxCheckBox9.Properties).EndInit();
+            ((ISupportInitialize)EdgCheckBox.Properties).EndInit();
+            ((ISupportInitialize)SafariCheckBox.Properties).EndInit();
+            ((ISupportInitialize)OperaCheckBox.Properties).EndInit();
+            ((ISupportInitialize)ChromeCheckBox.Properties).EndInit();
+            ((ISupportInitialize)FireFoxCheckBox.Properties).EndInit();
+            ((ISupportInitialize)IECheckBox.Properties).EndInit();
+            ((ISupportInitialize)EdgLegacyCheckBox.Properties).EndInit();
             ((ISupportInitialize)AdvancedSyncUsageCheckbox.Properties).EndInit();
             ((ISupportInitialize)AutoDownloadClipboardLinksCheckbox.Properties).EndInit();
             ((ISupportInitialize)RunAppWhenWindowsStartCheckBox.Properties).EndInit();
@@ -1262,13 +1262,13 @@
         private UserControls.Common.MxCheckBox AdvancedSyncUsageCheckbox;
         private UserControls.Common.MxCheckBox AutoDownloadClipboardLinksCheckbox;
         private GroupControl groupControl1;
-        private UserControls.Common.MxCheckBox mxCheckBox10;
-        private UserControls.Common.MxCheckBox mxCheckBox9;
-        private UserControls.Common.MxCheckBox mxCheckBox8;
-        private UserControls.Common.MxCheckBox mxCheckBox7;
-        private UserControls.Common.MxCheckBox mxCheckBox6;
-        private UserControls.Common.MxCheckBox mxCheckBox5;
-        private UserControls.Common.MxCheckBox mxCheckBox11;
+        private UserControls.Common.MxCheckBox FireFoxCheckBox;
+        private UserControls.Common.MxCheckBox EdgLegacyCheckBox;
+        private UserControls.Common.MxCheckBox EdgCheckBox;
+        private UserControls.Common.MxCheckBox IECheckBox;
+        private UserControls.Common.MxCheckBox ChromeCheckBox;
+        private UserControls.Common.MxCheckBox SafariCheckBox;
+        private UserControls.Common.MxCheckBox OperaCheckBox;
         private PanelControl panelControl2;
         private UserControls.Common.MxButton mxButton1;
         private GroupControl groupControl2;

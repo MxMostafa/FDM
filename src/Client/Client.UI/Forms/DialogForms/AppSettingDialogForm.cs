@@ -89,6 +89,13 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
             data.Add(DisableProxySettingRadioButton.Name, DisableProxySettingRadioButton.Checked.ToString());
             data.Add(WindowsProxySettingRadioButton.Name, WindowsProxySettingRadioButton.Checked.ToString());
             data.Add(ManulaProxySettingRadioButton.Name, ManulaProxySettingRadioButton.Checked.ToString());
+            data.Add(SafariCheckBox.Name, SafariCheckBox.Checked.ToString());
+            data.Add(ChromeCheckBox.Name, ChromeCheckBox.Checked.ToString());
+            data.Add(IECheckBox.Name, IECheckBox.Checked.ToString());
+            data.Add(EdgCheckBox.Name, EdgCheckBox.Checked.ToString());
+            data.Add(EdgLegacyCheckBox.Name, EdgLegacyCheckBox.Checked.ToString());
+            data.Add(FireFoxCheckBox.Name, FireFoxCheckBox.Checked.ToString());
+            data.Add(OperaCheckBox.Name, OperaCheckBox.Checked.ToString());
             await _appSettingService.AddGeneralAppSettingsAsync(data);
 
             Close();
@@ -152,6 +159,27 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                         break;
                     case var key when key == AppSettingConfigs.ManulaProxySettingConfig:
                         ManulaProxySettingRadioButton.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.SafariConfig:
+                        SafariCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.ChromeConfig:
+                        ChromeCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.IEConfig:
+                        IECheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.EdgConfig:
+                        EdgCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.EdgLegacyConfig:
+                        EdgLegacyCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.FireFoxConfig:
+                        FireFoxCheckBox.Checked = bool.Parse(setting.Value);
+                        break;
+                    case var key when key == AppSettingConfigs.OperaConfig:
+                        OperaCheckBox.Checked = bool.Parse(setting.Value);
                         break;
                     default:
                         break;
