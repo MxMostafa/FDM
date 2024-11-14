@@ -15,4 +15,5 @@ global using Client.Domain.Interfaces.Services;
 global using Client.Domain.Interfaces.Repositories;
 global using Client.Domain.Resources;
 global using Client.Domain.Dtos.Response.AppSetting;
+global using System.ComponentModel.DataAnnotations.Schema;
 //final

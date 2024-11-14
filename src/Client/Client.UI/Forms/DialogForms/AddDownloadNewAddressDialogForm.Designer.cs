@@ -28,27 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(AddDownloadNewAddressDialogForm));
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             mxLabel1 = new UserControls.Common.MxLabel();
             mxComboBoxEdit1 = new UserControls.Common.MxComboBoxEdit();
-            groupControl1 = new GroupControl();
-            panelControl1 = new PanelControl();
-            mxTextBox1 = new UserControls.Common.MxTextBox();
-            mxLabel3 = new UserControls.Common.MxLabel();
-            mxLabel2 = new UserControls.Common.MxLabel();
-            mxTextBox2 = new UserControls.Common.MxTextBox();
-            UseAuthorizationCheckBox = new UserControls.Common.MxCheckBox();
-            mxButton1 = new UserControls.Common.MxButton();
-            mxButton16 = new UserControls.Common.MxButton();
+            mxCancelButton1 = new UserControls.Common.MxCancelButton();
+            mxConfirmButton1 = new UserControls.Common.MxConfirmButton();
             ((ISupportInitialize)mxComboBoxEdit1.Properties).BeginInit();
-            ((ISupportInitialize)groupControl1).BeginInit();
-            groupControl1.SuspendLayout();
-            ((ISupportInitialize)panelControl1).BeginInit();
-            panelControl1.SuspendLayout();
-            ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
-            ((ISupportInitialize)mxTextBox2.Properties).BeginInit();
-            ((ISupportInitialize)UseAuthorizationCheckBox.Properties).BeginInit();
             SuspendLayout();
             // 
             // barDockControlTop
@@ -71,137 +58,62 @@
             // 
             mxLabel1.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel1.Appearance.Options.UseFont = true;
-            mxLabel1.Location = new Point(16, 7);
+            mxLabel1.Location = new Point(12, 48);
             mxLabel1.Name = "mxLabel1";
-            mxLabel1.Size = new Size(26, 17);
+            mxLabel1.Size = new Size(35, 17);
             mxLabel1.TabIndex = 2;
-            mxLabel1.Text = "آدرس";
+            mxLabel1.Text = "آدرس : ";
             // 
             // mxComboBoxEdit1
             // 
-            mxComboBoxEdit1.Location = new Point(48, 1);
+            mxComboBoxEdit1.Location = new Point(50, 42);
             mxComboBoxEdit1.Name = "mxComboBoxEdit1";
             mxComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            mxComboBoxEdit1.Properties.Items.AddRange(new object[] { "https://download.visualstudio.microsoft.com/download/pr/6224f00f-08da-4e7f-85b1-00d42c2bb3d3/b775de636b91e023574a0bbc291f705a/dotnet-sdk-8.0.403-win-x64.exe", "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.403-windows-x64-installer", "https://dl2.soft98.ir/soft/n/NET.Desktop.Runtime.8.0.10.x64.rar?1730113279" });
             mxComboBoxEdit1.RightToLeft = RightToLeft.Yes;
-            mxComboBoxEdit1.Size = new Size(432, 28);
+            mxComboBoxEdit1.Size = new Size(520, 28);
             mxComboBoxEdit1.TabIndex = 5;
             // 
-            // groupControl1
+            // mxCancelButton1
             // 
-            groupControl1.CaptionImageOptions.SvgImage = Properties.Resources.SmallErase;
-            groupControl1.Controls.Add(panelControl1);
-            groupControl1.Controls.Add(UseAuthorizationCheckBox);
-            groupControl1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            groupControl1.Location = new Point(16, 32);
-            groupControl1.Name = "groupControl1";
-            groupControl1.RightToLeft = RightToLeft.No;
-            groupControl1.Size = new Size(464, 66);
-            groupControl1.TabIndex = 32;
-            groupControl1.Text = "Use authorization";
+            mxCancelButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            mxCancelButton1.DialogResult = DialogResult.Cancel;
+            mxCancelButton1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxCancelButton1.ImageOptions.SvgImage");
+            mxCancelButton1.ImageOptions.SvgImageSize = new Size(15, 15);
+            mxCancelButton1.Location = new Point(500, 103);
+            mxCancelButton1.Name = "mxCancelButton1";
+            mxCancelButton1.Size = new Size(70, 30);
+            mxCancelButton1.TabIndex = 40;
+            mxCancelButton1.Text = "انصراف";
             // 
-            // panelControl1
+            // mxConfirmButton1
             // 
-            panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            panelControl1.Controls.Add(mxTextBox1);
-            panelControl1.Controls.Add(mxLabel3);
-            panelControl1.Controls.Add(mxLabel2);
-            panelControl1.Controls.Add(mxTextBox2);
-            panelControl1.Enabled = false;
-            panelControl1.Location = new Point(32, 27);
-            panelControl1.Name = "panelControl1";
-            panelControl1.Size = new Size(410, 37);
-            panelControl1.TabIndex = 9;
-            // 
-            // mxTextBox1
-            // 
-            mxTextBox1.Location = new Point(47, 5);
-            mxTextBox1.Name = "mxTextBox1";
-            mxTextBox1.Size = new Size(121, 28);
-            mxTextBox1.TabIndex = 5;
-            // 
-            // mxLabel3
-            // 
-            mxLabel3.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            mxLabel3.Appearance.Options.UseFont = true;
-            mxLabel3.Location = new Point(199, 12);
-            mxLabel3.Name = "mxLabel3";
-            mxLabel3.Size = new Size(48, 17);
-            mxLabel3.TabIndex = 4;
-            mxLabel3.Text = "Password";
-            // 
-            // mxLabel2
-            // 
-            mxLabel2.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            mxLabel2.Appearance.Options.UseFont = true;
-            mxLabel2.Location = new Point(11, 12);
-            mxLabel2.Name = "mxLabel2";
-            mxLabel2.Size = new Size(30, 17);
-            mxLabel2.TabIndex = 7;
-            mxLabel2.Text = "Login";
-            // 
-            // mxTextBox2
-            // 
-            mxTextBox2.Location = new Point(253, 5);
-            mxTextBox2.Name = "mxTextBox2";
-            mxTextBox2.Size = new Size(121, 28);
-            mxTextBox2.TabIndex = 6;
-            // 
-            // UseAuthorizationCheckBox
-            // 
-            UseAuthorizationCheckBox.Location = new Point(22, 5);
-            UseAuthorizationCheckBox.Name = "UseAuthorizationCheckBox";
-            UseAuthorizationCheckBox.Properties.Caption = "";
-            UseAuthorizationCheckBox.Size = new Size(75, 22);
-            UseAuthorizationCheckBox.TabIndex = 8;
-            UseAuthorizationCheckBox.CheckedChanged += UseAuthorizationCheckBox_CheckedChanged;
-            // 
-            // mxButton1
-            // 
-            mxButton1.Appearance.BackColor = Color.Gainsboro;
-            mxButton1.Appearance.Options.UseBackColor = true;
-            mxButton1.Location = new Point(488, 38);
-            mxButton1.Name = "mxButton1";
-            mxButton1.Size = new Size(76, 23);
-            mxButton1.TabIndex = 37;
-            mxButton1.Text = "انصراف";
-            // 
-            // mxButton16
-            // 
-            mxButton16.Appearance.BackColor = Color.Gainsboro;
-            mxButton16.Appearance.Options.UseBackColor = true;
-            mxButton16.Location = new Point(488, 6);
-            mxButton16.Name = "mxButton16";
-            mxButton16.Size = new Size(76, 23);
-            mxButton16.TabIndex = 36;
-            mxButton16.Text = "تایید";
+            mxConfirmButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            mxConfirmButton1.DialogResult = DialogResult.Cancel;
+            mxConfirmButton1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxConfirmButton1.ImageOptions.SvgImage");
+            mxConfirmButton1.ImageOptions.SvgImageSize = new Size(15, 15);
+            mxConfirmButton1.Location = new Point(407, 103);
+            mxConfirmButton1.Name = "mxConfirmButton1";
+            mxConfirmButton1.Size = new Size(90, 30);
+            mxConfirmButton1.TabIndex = 46;
+            mxConfirmButton1.Text = "تائید";
             // 
             // AddDownloadNewAddressDialogForm
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(582, 111);
-            Controls.Add(mxButton1);
-            Controls.Add(mxButton16);
+            ClientSize = new Size(582, 145);
+            Controls.Add(mxConfirmButton1);
+            Controls.Add(mxCancelButton1);
             Controls.Add(mxComboBoxEdit1);
-            Controls.Add(groupControl1);
             Controls.Add(mxLabel1);
             Controls.Add(barDockControlTop);
             Controls.Add(barDockControl1);
             LookAndFeel.SkinName = "WXI";
             LookAndFeel.UseDefaultLookAndFeel = false;
             Name = "AddDownloadNewAddressDialogForm";
-            Text = "آدرس جدید برای دانلود وارد کنید";
+            Text = "آدرس جدیدی برای دانلود وارد کنید";
             ((ISupportInitialize)mxComboBoxEdit1.Properties).EndInit();
-            ((ISupportInitialize)groupControl1).EndInit();
-            groupControl1.ResumeLayout(false);
-            ((ISupportInitialize)panelControl1).EndInit();
-            panelControl1.ResumeLayout(false);
-            panelControl1.PerformLayout();
-            ((ISupportInitialize)mxTextBox1.Properties).EndInit();
-            ((ISupportInitialize)mxTextBox2.Properties).EndInit();
-            ((ISupportInitialize)UseAuthorizationCheckBox.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -212,14 +124,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private UserControls.Common.MxLabel mxLabel1;
         private UserControls.Common.MxComboBoxEdit mxComboBoxEdit1;
-        private GroupControl groupControl1;
-        private UserControls.Common.MxLabel mxLabel2;
-        private UserControls.Common.MxTextBox mxTextBox2;
-        private UserControls.Common.MxTextBox mxTextBox1;
-        private UserControls.Common.MxLabel mxLabel3;
-        private UserControls.Common.MxCheckBox UseAuthorizationCheckBox;
-        private PanelControl panelControl1;
-        private UserControls.Common.MxButton mxButton1;
-        private UserControls.Common.MxButton mxButton16;
+        private UserControls.Common.MxCancelButton mxCancelButton1;
+        private UserControls.Common.MxConfirmButton mxConfirmButton1;
     }
 }

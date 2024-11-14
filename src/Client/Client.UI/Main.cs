@@ -47,7 +47,8 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             {
                 DownloadQueueElement.Elements.Add(new DevExpress.XtraBars.Navigation.AccordionControlElement()
                 {
-                    Text = menu.Title
+                    Text = menu.Title,
+                    Tag = menu
                 });
             }
 
@@ -107,6 +108,11 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
         GetForm<TestComponentForm>()?.ShowDialog();
+    }
+
+    private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        GetForm<AddDownloadNewAddressDialogForm>()?.ShowDialog();
     }
 
     private TForm GetForm<TForm>() where TForm : Form

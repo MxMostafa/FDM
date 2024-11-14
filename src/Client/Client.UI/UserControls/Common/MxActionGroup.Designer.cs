@@ -48,7 +48,7 @@
             // saveButton
             // 
             saveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            saveButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxButton2.ImageOptions.SvgImage");
+            saveButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("saveButton.ImageOptions.SvgImage");
             saveButton.ImageOptions.SvgImageSize = new Size(15, 15);
             saveButton.Location = new Point(99, 4);
             saveButton.Name = "saveButton";

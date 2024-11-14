@@ -78,6 +78,7 @@
             aboutProgramButton = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             bar6 = new DevExpress.XtraBars.Bar();
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -133,7 +134,6 @@
             bar5 = new DevExpress.XtraBars.Bar();
             barButtonItem22 = new DevExpress.XtraBars.BarButtonItem();
             bar8 = new DevExpress.XtraBars.Bar();
-            barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             fluentDesignFormContainer1.SuspendLayout();
             ((ISupportInitialize)navigationFrame1).BeginInit();
             navigationFrame1.SuspendLayout();
@@ -501,6 +501,13 @@
             barButtonItem20.Id = 14;
             barButtonItem20.Name = "barButtonItem20";
             // 
+            // barButtonItem10
+            // 
+            barButtonItem10.Caption = "نمایش فرم تست (موقت)";
+            barButtonItem10.Id = 15;
+            barButtonItem10.Name = "barButtonItem10";
+            barButtonItem10.ItemClick += barButtonItem10_ItemClick;
+            // 
             // bar6
             // 
             bar6.BarName = "Status bar";
@@ -605,6 +612,7 @@
             barButtonItem21.ImageOptions.SvgImageSize = new Size(25, 25);
             barButtonItem21.Name = "barButtonItem21";
             barButtonItem21.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            barButtonItem21.ItemClick += barButtonItem21_ItemClick;
             // 
             // barButtonItem23
             // 
@@ -956,13 +964,6 @@
             bar8.DockRow = 1;
             bar8.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             bar8.Text = "Custom 3";
-            // 
-            // barButtonItem10
-            // 
-            barButtonItem10.Caption = "نمایش فرم تست (موقت)";
-            barButtonItem10.Id = 15;
-            barButtonItem10.Name = "barButtonItem10";
-            barButtonItem10.ItemClick += barButtonItem10_ItemClick;
             // 
             // Main
             // 

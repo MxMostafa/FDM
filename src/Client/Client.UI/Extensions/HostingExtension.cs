@@ -40,6 +40,8 @@ public static class HostingExtension
         services.AddTransient<AddDownloadNewAddressDialogForm>();
         services.AddTransient<AddDownloadGroupDialogForm>();
         services.AddTransient<AboutProgramDialogForm>();
+        services.AddTransient<AddNewDownloadQueueDialogForm>();
+        
         services.AddTransient<TestComponentForm>();
 
 
