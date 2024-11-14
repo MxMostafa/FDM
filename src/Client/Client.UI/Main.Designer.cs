@@ -63,6 +63,8 @@
             barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
+            darkLightButton = new DevExpress.XtraBars.BarButtonItem();
             barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             barManager1 = new DevExpress.XtraBars.BarManager(components);
             bar4 = new DevExpress.XtraBars.Bar();
@@ -156,7 +158,7 @@
             fluentDesignFormContainer1.Location = new Point(0, 68);
             fluentDesignFormContainer1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(1123, 603);
+            fluentDesignFormContainer1.Size = new Size(1037, 445);
             fluentDesignFormContainer1.TabIndex = 0;
             // 
             // navigationFrame1
@@ -167,7 +169,7 @@
             navigationFrame1.Name = "navigationFrame1";
             navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationPage1 });
             navigationFrame1.SelectedPage = navigationPage1;
-            navigationFrame1.Size = new Size(863, 603);
+            navigationFrame1.Size = new Size(777, 445);
             navigationFrame1.TabIndex = 5;
             navigationFrame1.Text = "navigationFrame1";
             // 
@@ -181,7 +183,7 @@
             navigationPage1.Controls.Add(barDockControl3);
             navigationPage1.Controls.Add(barDockControl2);
             navigationPage1.Name = "navigationPage1";
-            navigationPage1.Size = new Size(863, 603);
+            navigationPage1.Size = new Size(777, 445);
             // 
             // gridControl1
             // 
@@ -192,7 +194,7 @@
             gridControl1.MainView = gridView1;
             gridControl1.MenuManager = fluentFormDefaultManager1;
             gridControl1.Name = "gridControl1";
-            gridControl1.Size = new Size(863, 555);
+            gridControl1.Size = new Size(777, 397);
             gridControl1.TabIndex = 4;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
@@ -288,9 +290,9 @@
             // 
             fluentFormDefaultManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] { bar1, bar2, bar3 });
             fluentFormDefaultManager1.Form = this;
-            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8 });
+            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8, barToggleSwitchItem1, darkLightButton });
             fluentFormDefaultManager1.MainMenu = bar1;
-            fluentFormDefaultManager1.MaxItemId = 6;
+            fluentFormDefaultManager1.MaxItemId = 8;
             fluentFormDefaultManager1.StatusBar = bar2;
             // 
             // bar1
@@ -389,13 +391,28 @@
             barButtonItem8.ImageOptions.SvgImageSize = new Size(25, 25);
             barButtonItem8.Name = "barButtonItem8";
             // 
+            // barToggleSwitchItem1
+            // 
+            barToggleSwitchItem1.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            barToggleSwitchItem1.Id = 6;
+            barToggleSwitchItem1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barToggleSwitchItem1.ImageOptions.SvgImage");
+            barToggleSwitchItem1.Name = "barToggleSwitchItem1";
+            // 
+            // darkLightButton
+            // 
+            darkLightButton.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            darkLightButton.Id = 7;
+            darkLightButton.ImageOptions.SvgImage = Properties.Resources.QuietHours;
+            darkLightButton.Name = "darkLightButton";
+            darkLightButton.ItemClick += darkLightButton_ItemClick;
+            // 
             // barDockControl1
             // 
             barDockControl1.CausesValidation = false;
             barDockControl1.Dock = DockStyle.Top;
             barDockControl1.Location = new Point(0, 48);
             barDockControl1.Manager = barManager1;
-            barDockControl1.Size = new Size(863, 0);
+            barDockControl1.Size = new Size(777, 0);
             // 
             // barManager1
             // 
@@ -527,15 +544,15 @@
             barDockControlTop.Dock = DockStyle.Top;
             barDockControlTop.Location = new Point(0, 33);
             barDockControlTop.Manager = barManager1;
-            barDockControlTop.Size = new Size(1123, 35);
+            barDockControlTop.Size = new Size(1037, 35);
             // 
             // barDockControlBottom
             // 
             barDockControlBottom.CausesValidation = false;
             barDockControlBottom.Dock = DockStyle.Bottom;
-            barDockControlBottom.Location = new Point(0, 671);
+            barDockControlBottom.Location = new Point(0, 513);
             barDockControlBottom.Manager = barManager1;
-            barDockControlBottom.Size = new Size(1123, 29);
+            barDockControlBottom.Size = new Size(1037, 29);
             // 
             // barDockControlLeft
             // 
@@ -543,15 +560,15 @@
             barDockControlLeft.Dock = DockStyle.Left;
             barDockControlLeft.Location = new Point(0, 68);
             barDockControlLeft.Manager = barManager1;
-            barDockControlLeft.Size = new Size(0, 603);
+            barDockControlLeft.Size = new Size(0, 445);
             // 
             // barDockControlRight
             // 
             barDockControlRight.CausesValidation = false;
             barDockControlRight.Dock = DockStyle.Right;
-            barDockControlRight.Location = new Point(1123, 68);
+            barDockControlRight.Location = new Point(1037, 68);
             barDockControlRight.Manager = barManager1;
-            barDockControlRight.Size = new Size(0, 603);
+            barDockControlRight.Size = new Size(0, 445);
             // 
             // barButtonItem9
             // 
@@ -577,7 +594,7 @@
             barDockControl4.Dock = DockStyle.Left;
             barDockControl4.Location = new Point(0, 48);
             barDockControl4.Manager = barManager2;
-            barDockControl4.Size = new Size(0, 555);
+            barDockControl4.Size = new Size(0, 397);
             // 
             // barManager2
             // 
@@ -665,23 +682,23 @@
             barDockControl2.Dock = DockStyle.Top;
             barDockControl2.Location = new Point(0, 0);
             barDockControl2.Manager = barManager2;
-            barDockControl2.Size = new Size(863, 48);
+            barDockControl2.Size = new Size(777, 48);
             // 
             // barDockControl3
             // 
             barDockControl3.CausesValidation = false;
             barDockControl3.Dock = DockStyle.Bottom;
-            barDockControl3.Location = new Point(0, 603);
+            barDockControl3.Location = new Point(0, 445);
             barDockControl3.Manager = barManager2;
-            barDockControl3.Size = new Size(863, 0);
+            barDockControl3.Size = new Size(777, 0);
             // 
             // barDockControl5
             // 
             barDockControl5.CausesValidation = false;
             barDockControl5.Dock = DockStyle.Right;
-            barDockControl5.Location = new Point(863, 48);
+            barDockControl5.Location = new Point(777, 48);
             barDockControl5.Manager = barManager2;
-            barDockControl5.Size = new Size(0, 555);
+            barDockControl5.Size = new Size(0, 397);
             // 
             // barButtonItem26
             // 
@@ -699,12 +716,12 @@
             // 
             accordionControl1.Dock = DockStyle.Right;
             accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement2, SettingMenuButton });
-            accordionControl1.Location = new Point(863, 0);
+            accordionControl1.Location = new Point(777, 0);
             accordionControl1.Margin = new Padding(3, 4, 3, 4);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(260, 603);
+            accordionControl1.Size = new Size(260, 445);
             accordionControl1.TabIndex = 2;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -903,14 +920,15 @@
             // fluentDesignFormControl1
             // 
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8 });
+            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8, barToggleSwitchItem1, darkLightButton });
             fluentDesignFormControl1.Location = new Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new Size(1123, 33);
+            fluentDesignFormControl1.Size = new Size(1037, 33);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
+            fluentDesignFormControl1.TitleItemLinks.Add(darkLightButton);
             // 
             // barButtonItem4
             // 
@@ -970,7 +988,7 @@
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1123, 700);
+            ClientSize = new Size(1037, 542);
             ControlContainer = fluentDesignFormContainer1;
             Controls.Add(fluentDesignFormContainer1);
             Controls.Add(barDockControlLeft);
@@ -1108,5 +1126,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colLatestDownloadDateTime;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
+        private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
+        private DevExpress.XtraBars.BarButtonItem darkLightButton;
     }
 }

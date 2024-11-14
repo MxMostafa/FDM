@@ -32,11 +32,16 @@
             // 
             // MasterSizableDialogform
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            Appearance.Options.UseFont = true;
+            AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(686, 510);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            LookAndFeel.SkinName = "WXI";
+            LookAndFeel.UseDefaultLookAndFeel = false;
+            Margin = new Padding(3, 5, 3, 5);
             Name = "MasterSizableDialogform";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "MasterSizableDialogform";
             ResumeLayout(false);
         }

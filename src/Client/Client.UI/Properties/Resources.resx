@@ -166,4 +166,10 @@
   <data name="bolocalization_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bolocalization_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Brightness" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Brightness.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v24.1, Version=24.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="QuietHours" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QuietHours.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v24.1, Version=24.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
 </root>

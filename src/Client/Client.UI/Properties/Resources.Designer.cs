@@ -73,6 +73,16 @@ namespace Client.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage Brightness {
+            get {
+                object obj = ResourceManager.GetObject("Brightness", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage Dictionary {
             get {
                 object obj = ResourceManager.GetObject("Dictionary", resourceCulture);
@@ -137,6 +147,16 @@ namespace Client.UI.Properties {
             get {
                 object obj = ResourceManager.GetObject("properties_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage QuietHours {
+            get {
+                object obj = ResourceManager.GetObject("QuietHours", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
         

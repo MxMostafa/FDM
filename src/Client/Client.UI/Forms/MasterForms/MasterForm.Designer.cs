@@ -35,7 +35,7 @@
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 586);
+            ClientSize = new Size(800, 584);
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             LookAndFeel.SkinName = "WXI";
             LookAndFeel.UseDefaultLookAndFeel = false;
@@ -43,7 +43,7 @@
             Name = "MasterForm";
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "MasterForm";
             ResumeLayout(false);
         }

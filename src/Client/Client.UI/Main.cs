@@ -3,6 +3,8 @@
 
 
 
+using Client.UI.Properties;
+
 namespace Client.UI;
 
 public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
@@ -13,6 +15,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger)
     {
         InitializeComponent();
+        SetTheme();
         _downloadQueueService = downloadQueueService;
         DownloadQueueElement.ContextButtons.First().Click += Main_Click;
         _serviceProvider = serviceProvider;
@@ -115,6 +118,31 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         GetForm<AddDownloadNewAddressDialogForm>()?.ShowDialog();
     }
 
+    private void darkLightButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        try
+        {
+            if (Properties.Settings.Default.Dark)
+            {
+                
+                Properties.Settings.Default.Dark = false;
+                darkLightButton.ImageOptions.SvgImage = Resources.Brightness;
+            }
+            else
+            {
+                Properties.Settings.Default.Dark = true;
+                darkLightButton.ImageOptions.SvgImage = Resources.QuietHours;
+
+            }
+
+            SetTheme();
+        }
+        catch (Exception ex)
+        {
+            ex.Handle(_logger);
+        }
+    }
+
     private TForm GetForm<TForm>() where TForm : Form
     {
         try
@@ -127,5 +155,27 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             return null;
         }
 
+    }
+
+    private void SetTheme()
+    {
+        try
+        {
+            if (Properties.Settings.Default.Dark)
+            {
+                darkLightButton.ImageOptions.SvgImage = Resources.QuietHours;
+
+            }
+            else
+            {
+                darkLightButton.ImageOptions.SvgImage = Resources.Brightness;
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            ex.Handle(_logger);
+        }
     }
 }
