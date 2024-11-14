@@ -1,4 +1,5 @@
 ﻿
+using Client.Domain.Interfaces.Dto;
 using Client.UI.Constants;
 
 namespace Client.UI.Forms.DialogForms;
@@ -7,12 +8,14 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
 {
     private readonly ILogger _logger;
     private readonly IDownloadFileService _downloadFileService;
-    public AddDownloadNewAddressDialogForm(ILogger<AddDownloadNewAddressDialogForm> logger, IDownloadFileService downloadFileService)
+    private readonly IServiceProvider _serviceProvider;
+    public AddDownloadNewAddressDialogForm(ILogger<AddDownloadNewAddressDialogForm> logger, IDownloadFileService downloadFileService, IServiceProvider serviceProvider)
     {
         InitializeComponent();
         _logger = logger;
         ActiveControl = urlCombobox;
         _downloadFileService = downloadFileService;
+        _serviceProvider = serviceProvider;
     }
 
     private void UseAuthorizationCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -21,6 +24,19 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
     }
 
     private void AddDownloadNewAddressDialogForm_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            InsertUrlFromClipboardIfExist();
+        }
+        catch (Exception ex)
+        {
+            ex.Handle(_logger);
+        }
+    }
+
+
+    private void InsertUrlFromClipboardIfExist()
     {
         try
         {
@@ -54,18 +70,39 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
     {
         try
         {
-            var url = urlCombobox.SelectedText;
+            var url = string.Empty;
+            if (urlCombobox.Properties.Items.Count > 0)
+                 url = urlCombobox.Properties.Items[0].ToString();
+
             if (string.IsNullOrEmpty(url))
             {
-                ErrorHelper.ShowErrorAsMessageBox(AppMessages.WarningConfirmMessage);
+                ErrorHelper.ShowErrorAsMessageBox(AppMessages.UrlFormatValidationError);
                 return;
             }
 
-            var file = await _downloadFileService.GetFileInfoAsync(url);
+            var DownloadFileInfoRequest = await _downloadFileService.GetFileInfoAsync(url);
+
+            if (!DownloadFileInfoRequest.IsSucceed)
+            {
+                ErrorHelper.ShowErrorAsMessageBox(DownloadFileInfoRequest);
+                return;
+            }
+
+            var downloadFileInfoDialogForm = _serviceProvider.GetRequiredService<DownloadFileInfoDialogForm>();
+
+            downloadFileInfoDialogForm.SetDownloadFileInfo(DownloadFileInfoRequest.Data);
+            if (downloadFileInfoDialogForm.ShowDialog() != DialogResult.OK)
+                Close();
+
         }
         catch (Exception ex)
         {
             ex.Handle(_logger);
         }
+    }
+
+    private void mxButton15_Click(object sender, EventArgs e)
+    {
+        InsertUrlFromClipboardIfExist();
     }
 }

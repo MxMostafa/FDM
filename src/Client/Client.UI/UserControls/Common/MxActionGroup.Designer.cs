@@ -29,48 +29,48 @@
         private void InitializeComponent()
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(MxActionGroup));
-            mxButton1 = new MxButton();
             saveButton = new MxButton();
+            mxCancelButton1 = new MxCancelButton();
             SuspendLayout();
-            // 
-            // mxButton1
-            // 
-            mxButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            mxButton1.DialogResult = DialogResult.Cancel;
-            mxButton1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxButton1.ImageOptions.SvgImage");
-            mxButton1.ImageOptions.SvgImageSize = new Size(15, 15);
-            mxButton1.Location = new Point(3, 4);
-            mxButton1.Name = "mxButton1";
-            mxButton1.Size = new Size(90, 30);
-            mxButton1.TabIndex = 0;
-            mxButton1.Text = "لغو";
             // 
             // saveButton
             // 
             saveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             saveButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("saveButton.ImageOptions.SvgImage");
             saveButton.ImageOptions.SvgImageSize = new Size(15, 15);
-            saveButton.Location = new Point(99, 4);
+            saveButton.Location = new Point(81, 5);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(90, 30);
             saveButton.TabIndex = 1;
             saveButton.Text = "ذخیره";
             // 
+            // mxCancelButton1
+            // 
+            mxCancelButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            mxCancelButton1.DialogResult = DialogResult.Cancel;
+            mxCancelButton1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxCancelButton1.ImageOptions.SvgImage");
+            mxCancelButton1.ImageOptions.SvgImageSize = new Size(15, 15);
+            mxCancelButton1.Location = new Point(5, 5);
+            mxCancelButton1.Name = "mxCancelButton1";
+            mxCancelButton1.Size = new Size(70, 30);
+            mxCancelButton1.TabIndex = 41;
+            mxCancelButton1.Text = "انصراف";
+            // 
             // MxActionGroup
             // 
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(mxCancelButton1);
             Controls.Add(saveButton);
-            Controls.Add(mxButton1);
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             Name = "MxActionGroup";
+            RightToLeft = RightToLeft.Yes;
             Size = new Size(489, 39);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private MxButton mxButton1;
         private MxButton saveButton;
+        private MxCancelButton mxCancelButton1;
     }
 }

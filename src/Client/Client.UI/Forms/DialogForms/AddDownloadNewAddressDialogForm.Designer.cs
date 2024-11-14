@@ -35,6 +35,7 @@
             urlCombobox = new UserControls.Common.MxComboBoxEdit();
             mxCancelButton1 = new UserControls.Common.MxCancelButton();
             mxConfirmButton1 = new UserControls.Common.MxConfirmButton();
+            mxButton15 = new UserControls.Common.MxButton();
             ((ISupportInitialize)urlCombobox.Properties).BeginInit();
             SuspendLayout();
             // 
@@ -88,7 +89,6 @@
             // mxConfirmButton1
             // 
             mxConfirmButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            mxConfirmButton1.DialogResult = DialogResult.Cancel;
             mxConfirmButton1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxConfirmButton1.ImageOptions.SvgImage");
             mxConfirmButton1.ImageOptions.SvgImageSize = new Size(15, 15);
             mxConfirmButton1.Location = new Point(407, 103);
@@ -98,12 +98,24 @@
             mxConfirmButton1.Text = "تائید";
             mxConfirmButton1.Click += mxConfirmButton1_Click;
             // 
+            // mxButton15
+            // 
+            mxButton15.Appearance.BackColor = Color.Gainsboro;
+            mxButton15.Appearance.Options.UseBackColor = true;
+            mxButton15.Location = new Point(50, 76);
+            mxButton15.Name = "mxButton15";
+            mxButton15.Size = new Size(82, 23);
+            mxButton15.TabIndex = 49;
+            mxButton15.Text = "از کلیپ بورد";
+            mxButton15.Click += mxButton15_Click;
+            // 
             // AddDownloadNewAddressDialogForm
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(582, 145);
+            Controls.Add(mxButton15);
             Controls.Add(mxConfirmButton1);
             Controls.Add(mxCancelButton1);
             Controls.Add(urlCombobox);
@@ -128,5 +140,6 @@
         private UserControls.Common.MxComboBoxEdit urlCombobox;
         private UserControls.Common.MxCancelButton mxCancelButton1;
         private UserControls.Common.MxConfirmButton mxConfirmButton1;
+        private UserControls.Common.MxButton mxButton15;
     }
 }

@@ -1,10 +1,10 @@
 ﻿
 
-using System.ComponentModel;
+
 
 namespace Client.Domain.Dtos.Response.DownloadQueueItem;
 
-public record DownloadQueueItemResDto
+public record DownloadQueueItemResDto : IBaseDto
 {
     public int Id { get; set; }
     public string FileName { get; set; } = null!;

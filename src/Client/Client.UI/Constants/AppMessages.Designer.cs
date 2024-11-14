@@ -61,6 +61,15 @@ namespace Client.UI.Constants {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آدرس دانلود وارد شده صحیح نمی باشد.
+        /// </summary>
+        internal static string UrlFormatValidationError {
+            get {
+                return ResourceManager.GetString("UrlFormatValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آیا مطمئن هستید ؟ .
         /// </summary>
         internal static string WarningConfirmMessage {

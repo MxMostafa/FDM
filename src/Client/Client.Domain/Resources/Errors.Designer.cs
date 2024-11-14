@@ -68,14 +68,5 @@ namespace Client.Domain.Resources {
                 return ResourceManager.GetString("DuplicatedDownloadQueue", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to آدرس دانلود وارد شده صحیح نمی باشد.
-        /// </summary>
-        internal static string UrlFormatValidationError {
-            get {
-                return ResourceManager.GetString("UrlFormatValidationError", resourceCulture);
-            }
-        }
     }
 }

@@ -121,7 +121,4 @@
     <value>نام صف تکراری است</value>
     <comment>نام صف تکراری است</comment>
   </data>
-  <data name="UrlFormatValidationError" xml:space="preserve">
-    <value>آدرس دانلود وارد شده صحیح نمی باشد</value>
-  </data>
 </root>

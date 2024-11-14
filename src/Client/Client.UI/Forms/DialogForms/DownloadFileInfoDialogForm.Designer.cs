@@ -37,14 +37,15 @@
             mxComboBoxEdit1 = new UserControls.Common.MxComboBoxEdit();
             mxButton15 = new UserControls.Common.MxButton();
             mxButton1 = new UserControls.Common.MxButton();
-            pictureEdit5 = new PictureEdit();
+            fileTypeImage = new PictureEdit();
             mxButton2 = new UserControls.Common.MxButton();
             mxButton3 = new UserControls.Common.MxButton();
             mxCancelButton1 = new UserControls.Common.MxCancelButton();
+            FileSizeLabel = new UserControls.Common.MxLabel();
             ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox2.Properties).BeginInit();
             ((ISupportInitialize)mxComboBoxEdit1.Properties).BeginInit();
-            ((ISupportInitialize)pictureEdit5.Properties).BeginInit();
+            ((ISupportInitialize)fileTypeImage.Properties).BeginInit();
             SuspendLayout();
             // 
             // mxLabel1
@@ -119,18 +120,20 @@
             mxButton1.TabIndex = 21;
             mxButton1.Text = "...";
             // 
-            // pictureEdit5
+            // fileTypeImage
             // 
-            pictureEdit5.EditValue = resources.GetObject("pictureEdit5.EditValue");
-            pictureEdit5.Location = new Point(593, 12);
-            pictureEdit5.Name = "pictureEdit5";
-            pictureEdit5.Properties.ErrorImageOptions.Image = (Image)resources.GetObject("pictureEdit5.Properties.ErrorImageOptions.Image");
-            pictureEdit5.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            pictureEdit5.Size = new Size(165, 170);
-            pictureEdit5.TabIndex = 22;
+            fileTypeImage.EditValue = resources.GetObject("fileTypeImage.EditValue");
+            fileTypeImage.Location = new Point(593, 12);
+            fileTypeImage.Name = "fileTypeImage";
+            fileTypeImage.Properties.ErrorImageOptions.Image = (Image)resources.GetObject("fileTypeImage.Properties.ErrorImageOptions.Image");
+            fileTypeImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            fileTypeImage.Size = new Size(165, 108);
+            fileTypeImage.TabIndex = 22;
             // 
             // mxButton2
             // 
+            mxButton2.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxButton2.ImageOptions.SvgImage");
+            mxButton2.ImageOptions.SvgImageSize = new Size(16, 16);
             mxButton2.Location = new Point(227, 152);
             mxButton2.Name = "mxButton2";
             mxButton2.Size = new Size(129, 30);
@@ -153,11 +156,21 @@
             mxCancelButton1.DialogResult = DialogResult.Cancel;
             mxCancelButton1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxCancelButton1.ImageOptions.SvgImage");
             mxCancelButton1.ImageOptions.SvgImageSize = new Size(15, 15);
-            mxCancelButton1.Location = new Point(479, 152);
+            mxCancelButton1.Location = new Point(499, 152);
             mxCancelButton1.Name = "mxCancelButton1";
-            mxCancelButton1.Size = new Size(90, 30);
+            mxCancelButton1.Size = new Size(70, 30);
             mxCancelButton1.TabIndex = 25;
             mxCancelButton1.Text = "انصراف";
+            // 
+            // FileSizeLabel
+            // 
+            FileSizeLabel.Appearance.Font = new Font("B Yekan", 12F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            FileSizeLabel.Appearance.Options.UseFont = true;
+            FileSizeLabel.Location = new Point(593, 126);
+            FileSizeLabel.Name = "FileSizeLabel";
+            FileSizeLabel.Size = new Size(68, 24);
+            FileSizeLabel.TabIndex = 26;
+            FileSizeLabel.Text = "20 مگابایت";
             // 
             // DownloadFileInfoDialogForm
             // 
@@ -165,10 +178,11 @@
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(770, 199);
+            Controls.Add(FileSizeLabel);
             Controls.Add(mxCancelButton1);
             Controls.Add(mxButton3);
             Controls.Add(mxButton2);
-            Controls.Add(pictureEdit5);
+            Controls.Add(fileTypeImage);
             Controls.Add(mxButton1);
             Controls.Add(mxButton15);
             Controls.Add(mxComboBoxEdit1);
@@ -184,7 +198,7 @@
             ((ISupportInitialize)mxTextBox1.Properties).EndInit();
             ((ISupportInitialize)mxTextBox2.Properties).EndInit();
             ((ISupportInitialize)mxComboBoxEdit1.Properties).EndInit();
-            ((ISupportInitialize)pictureEdit5.Properties).EndInit();
+            ((ISupportInitialize)fileTypeImage.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -199,9 +213,10 @@
         private UserControls.Common.MxComboBoxEdit mxComboBoxEdit1;
         private UserControls.Common.MxButton mxButton15;
         private UserControls.Common.MxButton mxButton1;
-        private PictureEdit pictureEdit5;
+        private PictureEdit fileTypeImage;
         private UserControls.Common.MxButton mxButton2;
         private UserControls.Common.MxButton mxButton3;
         private UserControls.Common.MxCancelButton mxCancelButton1;
+        private UserControls.Common.MxLabel FileSizeLabel;
     }
 }

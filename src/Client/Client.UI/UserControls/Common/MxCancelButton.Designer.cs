@@ -37,7 +37,7 @@
             DialogResult = DialogResult.Cancel;
             ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("MxCancelButton.ImageOptions.SvgImage");
             ImageOptions.SvgImageSize = new Size(15, 15);
-            Size = new Size(90, 30);
+            Size = new Size(70, 30);
             Text = "انصراف";
             ResumeLayout(false);
         }
