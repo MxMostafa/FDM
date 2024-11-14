@@ -13,7 +13,7 @@ public static class HostingExtension
         services.AddInfrastructureToDC();
         services.AddDomainToDC();
         services.AddMemoryCache();
-
+        services.AddHttpClient();
         // پیکربندی و ایجاد Logger با استفاده از Serilog
         Log.Logger = new LoggerConfiguration()
              .MinimumLevel.Debug()

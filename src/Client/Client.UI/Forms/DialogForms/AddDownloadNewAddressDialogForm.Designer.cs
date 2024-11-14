@@ -32,10 +32,10 @@
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             mxLabel1 = new UserControls.Common.MxLabel();
-            mxComboBoxEdit1 = new UserControls.Common.MxComboBoxEdit();
+            urlCombobox = new UserControls.Common.MxComboBoxEdit();
             mxCancelButton1 = new UserControls.Common.MxCancelButton();
             mxConfirmButton1 = new UserControls.Common.MxConfirmButton();
-            ((ISupportInitialize)mxComboBoxEdit1.Properties).BeginInit();
+            ((ISupportInitialize)urlCombobox.Properties).BeginInit();
             SuspendLayout();
             // 
             // barDockControlTop
@@ -64,14 +64,14 @@
             mxLabel1.TabIndex = 2;
             mxLabel1.Text = "آدرس : ";
             // 
-            // mxComboBoxEdit1
+            // urlCombobox
             // 
-            mxComboBoxEdit1.Location = new Point(50, 42);
-            mxComboBoxEdit1.Name = "mxComboBoxEdit1";
-            mxComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            mxComboBoxEdit1.RightToLeft = RightToLeft.Yes;
-            mxComboBoxEdit1.Size = new Size(520, 28);
-            mxComboBoxEdit1.TabIndex = 5;
+            urlCombobox.Location = new Point(50, 42);
+            urlCombobox.Name = "urlCombobox";
+            urlCombobox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            urlCombobox.RightToLeft = RightToLeft.Yes;
+            urlCombobox.Size = new Size(520, 28);
+            urlCombobox.TabIndex = 5;
             // 
             // mxCancelButton1
             // 
@@ -96,6 +96,7 @@
             mxConfirmButton1.Size = new Size(90, 30);
             mxConfirmButton1.TabIndex = 46;
             mxConfirmButton1.Text = "تائید";
+            mxConfirmButton1.Click += mxConfirmButton1_Click;
             // 
             // AddDownloadNewAddressDialogForm
             // 
@@ -105,7 +106,7 @@
             ClientSize = new Size(582, 145);
             Controls.Add(mxConfirmButton1);
             Controls.Add(mxCancelButton1);
-            Controls.Add(mxComboBoxEdit1);
+            Controls.Add(urlCombobox);
             Controls.Add(mxLabel1);
             Controls.Add(barDockControlTop);
             Controls.Add(barDockControl1);
@@ -113,7 +114,8 @@
             LookAndFeel.UseDefaultLookAndFeel = false;
             Name = "AddDownloadNewAddressDialogForm";
             Text = "آدرس جدیدی برای دانلود وارد کنید";
-            ((ISupportInitialize)mxComboBoxEdit1.Properties).EndInit();
+            Load += AddDownloadNewAddressDialogForm_Load;
+            ((ISupportInitialize)urlCombobox.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,7 +125,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private UserControls.Common.MxLabel mxLabel1;
-        private UserControls.Common.MxComboBoxEdit mxComboBoxEdit1;
+        private UserControls.Common.MxComboBoxEdit urlCombobox;
         private UserControls.Common.MxCancelButton mxCancelButton1;
         private UserControls.Common.MxConfirmButton mxConfirmButton1;
     }

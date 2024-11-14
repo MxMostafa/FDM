@@ -16,4 +16,6 @@ global using Client.Domain.Interfaces.Repositories;
 global using Client.Domain.Resources;
 global using Client.Domain.Dtos.Response.AppSetting;
 global using System.ComponentModel.DataAnnotations.Schema;
-//final
+global using Client.Domain.Dtos.Response.DownloadQueueItem;
+global using Newtonsoft.Json;
+global using System.Drawing;
