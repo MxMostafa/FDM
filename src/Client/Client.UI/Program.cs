@@ -28,7 +28,7 @@ internal static class Program
         var serviceProvider = services.BuildServiceProvider();
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-
+        WindowsFormsSettings.TrackWindowsAppMode = DevExpress.Utils.DefaultBoolean.True;
         var mainForm = serviceProvider.GetRequiredService<Main>();
         Application.Run(mainForm);
     }

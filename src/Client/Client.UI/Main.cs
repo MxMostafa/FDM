@@ -124,7 +124,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         {
             if (Properties.Settings.Default.Dark)
             {
-                
+
                 Properties.Settings.Default.Dark = false;
                 darkLightButton.ImageOptions.SvgImage = Resources.Brightness;
             }
@@ -164,14 +164,14 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             if (Properties.Settings.Default.Dark)
             {
                 darkLightButton.ImageOptions.SvgImage = Resources.QuietHours;
-
+             //   LookAndFeel.SkinName = "DevExpress Dark Style";
             }
             else
             {
                 darkLightButton.ImageOptions.SvgImage = Resources.Brightness;
-
+               // LookAndFeel.SkinName = "WXI";
             }
-
+            Refresh();
         }
         catch (Exception ex)
         {

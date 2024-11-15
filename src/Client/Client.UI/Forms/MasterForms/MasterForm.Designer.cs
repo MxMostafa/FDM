@@ -35,7 +35,7 @@
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 584);
+            ClientSize = new Size(800, 582);
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             LookAndFeel.SkinName = "WXI";
             LookAndFeel.UseDefaultLookAndFeel = false;

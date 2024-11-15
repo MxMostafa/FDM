@@ -155,10 +155,10 @@
             fluentDesignFormContainer1.Controls.Add(navigationFrame1);
             fluentDesignFormContainer1.Controls.Add(accordionControl1);
             fluentDesignFormContainer1.Dock = DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new Point(0, 68);
+            fluentDesignFormContainer1.Location = new Point(0, 54);
             fluentDesignFormContainer1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(1037, 445);
+            fluentDesignFormContainer1.Size = new Size(1037, 467);
             fluentDesignFormContainer1.TabIndex = 0;
             // 
             // navigationFrame1
@@ -169,7 +169,7 @@
             navigationFrame1.Name = "navigationFrame1";
             navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationPage1 });
             navigationFrame1.SelectedPage = navigationPage1;
-            navigationFrame1.Size = new Size(777, 445);
+            navigationFrame1.Size = new Size(777, 467);
             navigationFrame1.TabIndex = 5;
             navigationFrame1.Text = "navigationFrame1";
             // 
@@ -183,18 +183,19 @@
             navigationPage1.Controls.Add(barDockControl3);
             navigationPage1.Controls.Add(barDockControl2);
             navigationPage1.Name = "navigationPage1";
-            navigationPage1.Size = new Size(777, 445);
+            navigationPage1.Size = new Size(777, 467);
             // 
             // gridControl1
             // 
             gridControl1.DataSource = downloadViewModelBindingSource;
             gridControl1.Dock = DockStyle.Fill;
             gridControl1.EmbeddedNavigator.Margin = new Padding(3, 2, 3, 2);
-            gridControl1.Location = new Point(0, 48);
+            gridControl1.Location = new Point(0, 36);
+            gridControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             gridControl1.MainView = gridView1;
             gridControl1.MenuManager = fluentFormDefaultManager1;
             gridControl1.Name = "gridControl1";
-            gridControl1.Size = new Size(777, 397);
+            gridControl1.Size = new Size(777, 431);
             gridControl1.TabIndex = 4;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
@@ -410,7 +411,7 @@
             // 
             barDockControl1.CausesValidation = false;
             barDockControl1.Dock = DockStyle.Top;
-            barDockControl1.Location = new Point(0, 48);
+            barDockControl1.Location = new Point(0, 36);
             barDockControl1.Manager = barManager1;
             barDockControl1.Size = new Size(777, 0);
             // 
@@ -542,33 +543,33 @@
             // 
             barDockControlTop.CausesValidation = false;
             barDockControlTop.Dock = DockStyle.Top;
-            barDockControlTop.Location = new Point(0, 33);
+            barDockControlTop.Location = new Point(0, 31);
             barDockControlTop.Manager = barManager1;
-            barDockControlTop.Size = new Size(1037, 35);
+            barDockControlTop.Size = new Size(1037, 23);
             // 
             // barDockControlBottom
             // 
             barDockControlBottom.CausesValidation = false;
             barDockControlBottom.Dock = DockStyle.Bottom;
-            barDockControlBottom.Location = new Point(0, 513);
+            barDockControlBottom.Location = new Point(0, 521);
             barDockControlBottom.Manager = barManager1;
-            barDockControlBottom.Size = new Size(1037, 29);
+            barDockControlBottom.Size = new Size(1037, 21);
             // 
             // barDockControlLeft
             // 
             barDockControlLeft.CausesValidation = false;
             barDockControlLeft.Dock = DockStyle.Left;
-            barDockControlLeft.Location = new Point(0, 68);
+            barDockControlLeft.Location = new Point(0, 54);
             barDockControlLeft.Manager = barManager1;
-            barDockControlLeft.Size = new Size(0, 445);
+            barDockControlLeft.Size = new Size(0, 467);
             // 
             // barDockControlRight
             // 
             barDockControlRight.CausesValidation = false;
             barDockControlRight.Dock = DockStyle.Right;
-            barDockControlRight.Location = new Point(1037, 68);
+            barDockControlRight.Location = new Point(1037, 54);
             barDockControlRight.Manager = barManager1;
-            barDockControlRight.Size = new Size(0, 445);
+            barDockControlRight.Size = new Size(0, 467);
             // 
             // barButtonItem9
             // 
@@ -592,9 +593,9 @@
             // 
             barDockControl4.CausesValidation = false;
             barDockControl4.Dock = DockStyle.Left;
-            barDockControl4.Location = new Point(0, 48);
+            barDockControl4.Location = new Point(0, 36);
             barDockControl4.Manager = barManager2;
-            barDockControl4.Size = new Size(0, 397);
+            barDockControl4.Size = new Size(0, 431);
             // 
             // barManager2
             // 
@@ -682,13 +683,13 @@
             barDockControl2.Dock = DockStyle.Top;
             barDockControl2.Location = new Point(0, 0);
             barDockControl2.Manager = barManager2;
-            barDockControl2.Size = new Size(777, 48);
+            barDockControl2.Size = new Size(777, 36);
             // 
             // barDockControl3
             // 
             barDockControl3.CausesValidation = false;
             barDockControl3.Dock = DockStyle.Bottom;
-            barDockControl3.Location = new Point(0, 445);
+            barDockControl3.Location = new Point(0, 467);
             barDockControl3.Manager = barManager2;
             barDockControl3.Size = new Size(777, 0);
             // 
@@ -696,9 +697,9 @@
             // 
             barDockControl5.CausesValidation = false;
             barDockControl5.Dock = DockStyle.Right;
-            barDockControl5.Location = new Point(777, 48);
+            barDockControl5.Location = new Point(777, 36);
             barDockControl5.Manager = barManager2;
-            barDockControl5.Size = new Size(0, 397);
+            barDockControl5.Size = new Size(0, 431);
             // 
             // barButtonItem26
             // 
@@ -717,11 +718,13 @@
             accordionControl1.Dock = DockStyle.Right;
             accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement2, SettingMenuButton });
             accordionControl1.Location = new Point(777, 0);
+            accordionControl1.LookAndFeel.SkinName = "WXI";
+            accordionControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             accordionControl1.Margin = new Padding(3, 4, 3, 4);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(260, 445);
+            accordionControl1.Size = new Size(260, 467);
             accordionControl1.TabIndex = 2;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -925,7 +928,7 @@
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Margin = new Padding(3, 4, 3, 4);
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new Size(1037, 33);
+            fluentDesignFormControl1.Size = new Size(1037, 31);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             fluentDesignFormControl1.TitleItemLinks.Add(darkLightButton);
@@ -998,7 +1001,7 @@
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            LookAndFeel.SkinName = "WXI";
+            LookAndFeel.SkinName = "Office 2019 Colorful";
             LookAndFeel.UseDefaultLookAndFeel = false;
             Margin = new Padding(3, 4, 3, 4);
             Name = "Main";
