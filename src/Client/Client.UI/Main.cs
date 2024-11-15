@@ -4,6 +4,7 @@
 
 
 using Client.UI.Properties;
+using DevExpress.XtraBars;
 
 namespace Client.UI;
 
@@ -15,12 +16,10 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger)
     {
         InitializeComponent();
-        SetTheme();
         _downloadQueueService = downloadQueueService;
         DownloadQueueElement.ContextButtons.First().Click += Main_Click;
         _serviceProvider = serviceProvider;
         _logger = logger;
-
         Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
         AppDomain.CurrentDomain.UnhandledException += (sender, e) => (e.ExceptionObject as Exception).Handle(_logger);
     }
@@ -135,7 +134,6 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
             }
 
-            SetTheme();
         }
         catch (Exception ex)
         {
@@ -157,25 +155,5 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     }
 
-    private void SetTheme()
-    {
-        try
-        {
-            if (Properties.Settings.Default.Dark)
-            {
-                darkLightButton.ImageOptions.SvgImage = Resources.QuietHours;
-             //   LookAndFeel.SkinName = "DevExpress Dark Style";
-            }
-            else
-            {
-                darkLightButton.ImageOptions.SvgImage = Resources.Brightness;
-               // LookAndFeel.SkinName = "WXI";
-            }
-            Refresh();
-        }
-        catch (Exception ex)
-        {
-            ex.Handle(_logger);
-        }
-    }
+   
 }
