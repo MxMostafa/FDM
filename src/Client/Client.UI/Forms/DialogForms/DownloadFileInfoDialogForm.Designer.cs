@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new Container();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(DownloadFileInfoDialogForm));
             mxLabel1 = new UserControls.Common.MxLabel();
             mxLabel2 = new UserControls.Common.MxLabel();
             mxLabel3 = new UserControls.Common.MxLabel();
-            mxTextBox1 = new UserControls.Common.MxTextBox();
+            downloadURLTextbox = new UserControls.Common.MxTextBox();
             mxTextBox2 = new UserControls.Common.MxTextBox();
-            mxComboBoxEdit1 = new UserControls.Common.MxComboBoxEdit();
             mxButton15 = new UserControls.Common.MxButton();
             mxButton1 = new UserControls.Common.MxButton();
             fileTypeImage = new PictureEdit();
@@ -42,10 +42,13 @@
             mxButton3 = new UserControls.Common.MxButton();
             mxCancelButton1 = new UserControls.Common.MxCancelButton();
             FileSizeLabel = new UserControls.Common.MxLabel();
-            ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
+            FileTypeGroupComboBox = new UserControls.Common.MxComboBox();
+            fileTypeGroupViewModelBindingSource = new BindingSource(components);
+            ((ISupportInitialize)downloadURLTextbox.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox2.Properties).BeginInit();
-            ((ISupportInitialize)mxComboBoxEdit1.Properties).BeginInit();
             ((ISupportInitialize)fileTypeImage.Properties).BeginInit();
+            ((ISupportInitialize)FileTypeGroupComboBox.Properties).BeginInit();
+            ((ISupportInitialize)fileTypeGroupViewModelBindingSource).BeginInit();
             SuspendLayout();
             // 
             // mxLabel1
@@ -78,12 +81,13 @@
             mxLabel3.TabIndex = 0;
             mxLabel3.Text = "محل ذخیره : ";
             // 
-            // mxTextBox1
+            // downloadURLTextbox
             // 
-            mxTextBox1.Location = new Point(92, 16);
-            mxTextBox1.Name = "mxTextBox1";
-            mxTextBox1.Size = new Size(477, 28);
-            mxTextBox1.TabIndex = 1;
+            downloadURLTextbox.Enabled = false;
+            downloadURLTextbox.Location = new Point(92, 16);
+            downloadURLTextbox.Name = "downloadURLTextbox";
+            downloadURLTextbox.Size = new Size(477, 28);
+            downloadURLTextbox.TabIndex = 1;
             // 
             // mxTextBox2
             // 
@@ -91,14 +95,6 @@
             mxTextBox2.Name = "mxTextBox2";
             mxTextBox2.Size = new Size(428, 28);
             mxTextBox2.TabIndex = 2;
-            // 
-            // mxComboBoxEdit1
-            // 
-            mxComboBoxEdit1.Location = new Point(92, 54);
-            mxComboBoxEdit1.Name = "mxComboBoxEdit1";
-            mxComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            mxComboBoxEdit1.Size = new Size(428, 28);
-            mxComboBoxEdit1.TabIndex = 3;
             // 
             // mxButton15
             // 
@@ -109,6 +105,7 @@
             mxButton15.Size = new Size(42, 23);
             mxButton15.TabIndex = 20;
             mxButton15.Text = "+";
+            mxButton15.Click += mxButton15_Click;
             // 
             // mxButton1
             // 
@@ -172,12 +169,29 @@
             FileSizeLabel.TabIndex = 26;
             FileSizeLabel.Text = "20 مگابایت";
             // 
+            // FileTypeGroupComboBox
+            // 
+            FileTypeGroupComboBox.Location = new Point(92, 54);
+            FileTypeGroupComboBox.Name = "FileTypeGroupComboBox";
+            FileTypeGroupComboBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            FileTypeGroupComboBox.Properties.DataSource = fileTypeGroupViewModelBindingSource;
+            FileTypeGroupComboBox.Properties.DisplayMember = "Title";
+            FileTypeGroupComboBox.Properties.PopupFilterMode = PopupFilterMode.Contains;
+            FileTypeGroupComboBox.Properties.ValueMember = "Id";
+            FileTypeGroupComboBox.Size = new Size(429, 28);
+            FileTypeGroupComboBox.TabIndex = 27;
+            // 
+            // fileTypeGroupViewModelBindingSource
+            // 
+            fileTypeGroupViewModelBindingSource.DataSource = typeof(ViewModel.FileTypeGroup.FileTypeGroupViewModel);
+            // 
             // DownloadFileInfoDialogForm
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(770, 199);
+            Controls.Add(FileTypeGroupComboBox);
             Controls.Add(FileSizeLabel);
             Controls.Add(mxCancelButton1);
             Controls.Add(mxButton3);
@@ -185,9 +199,8 @@
             Controls.Add(fileTypeImage);
             Controls.Add(mxButton1);
             Controls.Add(mxButton15);
-            Controls.Add(mxComboBoxEdit1);
             Controls.Add(mxTextBox2);
-            Controls.Add(mxTextBox1);
+            Controls.Add(downloadURLTextbox);
             Controls.Add(mxLabel3);
             Controls.Add(mxLabel2);
             Controls.Add(mxLabel1);
@@ -195,10 +208,12 @@
             LookAndFeel.UseDefaultLookAndFeel = false;
             Name = "DownloadFileInfoDialogForm";
             Text = "مشخصات فایل دانلود";
-            ((ISupportInitialize)mxTextBox1.Properties).EndInit();
+            Load += DownloadFileInfoDialogForm_Load;
+            ((ISupportInitialize)downloadURLTextbox.Properties).EndInit();
             ((ISupportInitialize)mxTextBox2.Properties).EndInit();
-            ((ISupportInitialize)mxComboBoxEdit1.Properties).EndInit();
             ((ISupportInitialize)fileTypeImage.Properties).EndInit();
+            ((ISupportInitialize)FileTypeGroupComboBox.Properties).EndInit();
+            ((ISupportInitialize)fileTypeGroupViewModelBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -208,9 +223,8 @@
         private UserControls.Common.MxLabel mxLabel1;
         private UserControls.Common.MxLabel mxLabel2;
         private UserControls.Common.MxLabel mxLabel3;
-        private UserControls.Common.MxTextBox mxTextBox1;
+        private UserControls.Common.MxTextBox downloadURLTextbox;
         private UserControls.Common.MxTextBox mxTextBox2;
-        private UserControls.Common.MxComboBoxEdit mxComboBoxEdit1;
         private UserControls.Common.MxButton mxButton15;
         private UserControls.Common.MxButton mxButton1;
         private PictureEdit fileTypeImage;
@@ -218,5 +232,7 @@
         private UserControls.Common.MxButton mxButton3;
         private UserControls.Common.MxCancelButton mxCancelButton1;
         private UserControls.Common.MxLabel FileSizeLabel;
+        private UserControls.Common.MxComboBox FileTypeGroupComboBox;
+        private BindingSource fileTypeGroupViewModelBindingSource;
     }
 }

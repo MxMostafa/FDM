@@ -68,5 +68,14 @@ namespace Client.Domain.Resources {
                 return ResourceManager.GetString("DuplicatedDownloadQueue", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آدرس دانلود نامعتبر است.
+        /// </summary>
+        internal static string InvalidURL {
+            get {
+                return ResourceManager.GetString("InvalidURL", resourceCulture);
+            }
+        }
     }
 }

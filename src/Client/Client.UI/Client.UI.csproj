@@ -55,7 +55,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Update="UserControls\Common\MxAcceptActionGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControls\Common\MxConfirmButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="UserControls\Common\MxAreaTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

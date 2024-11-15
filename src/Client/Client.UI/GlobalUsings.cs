@@ -26,3 +26,5 @@ global using Microsoft.EntityFrameworkCore;
 global using Serilog;
 global using System.Reflection;
 global using ILogger = Microsoft.Extensions.Logging.ILogger;
+global using Client.Domain.Dtos.Response.DownloadQueueItem;
+global using Client.UI.ViewModel.Download;

@@ -43,6 +43,7 @@ public static class HostingExtension
         services.AddTransient<AddNewDownloadQueueDialogForm>();
         services.AddTransient<DownloadFileInfoDialogForm>();
         services.AddTransient<TestComponentForm>();
+        services.AddTransient<AddFileTypeGroupDialogForm>();
         
 
         return services;

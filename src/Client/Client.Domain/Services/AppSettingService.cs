@@ -1,4 +1,5 @@
 ﻿
+using Client.Domain.Dtos.Response.FileTypeGroup;
 using MapsterMapper;
 using System.Collections.Generic;
 
@@ -6,11 +7,13 @@ namespace Client.Domain.Services;
 public class AppSettingService : IAppSettingService
 {
     private readonly IAppSettingRepository _appSettingRepository;
+    private readonly IFileTypeGroupRepository _fileTypeGroupRepository;
     private readonly IMapper _mapper;
-    public AppSettingService(IAppSettingRepository appSettingRepository, IMapper mapper)
+    public AppSettingService(IAppSettingRepository appSettingRepository, IMapper mapper, IFileTypeGroupRepository fileTypeGroupRepository)
     {
         _appSettingRepository = appSettingRepository;
         _mapper = mapper;
+        _fileTypeGroupRepository = fileTypeGroupRepository;
     }
 
     public async Task<ResultPattern<bool>> AddGeneralAppSettingAsync(string key, string value)
@@ -80,5 +83,20 @@ public class AppSettingService : IAppSettingService
     public Task<ResultPattern<AppSettingResDto?>> GetAppSettingByKeyAsync(string key)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<ResultPattern<List<FileTypeGroupResDto>>> GetAllFileTypeGroupsAsync()
+    {
+        var fileTypeGroups = await _fileTypeGroupRepository.GetAllAsync();
+
+        var result = fileTypeGroups.Select(fg => new FileTypeGroupResDto()
+        {
+            Id = fg.Id,
+            Title = fg.Title,
+            FileExtensions = fg.FileExtensions,
+            IconName = fg.IconName
+        }).ToList();
+
+        return result;
     }
 }

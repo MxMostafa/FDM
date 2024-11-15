@@ -66,13 +66,18 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
         }
     }
 
-    private async void mxConfirmButton1_Click(object sender, EventArgs e)
+    private void mxButton15_Click(object sender, EventArgs e)
+    {
+        InsertUrlFromClipboardIfExist();
+    }
+
+    private async void mxAcceptActionGroup1_ConfirmButtonClick(object sender, EventArgs e)
     {
         try
         {
             var url = string.Empty;
             if (urlCombobox.Properties.Items.Count > 0)
-                 url = urlCombobox.Properties.Items[0].ToString();
+                url = urlCombobox.Properties.Items[0].ToString();
 
             if (string.IsNullOrEmpty(url))
             {
@@ -99,10 +104,5 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
         {
             ex.Handle(_logger);
         }
-    }
-
-    private void mxButton15_Click(object sender, EventArgs e)
-    {
-        InsertUrlFromClipboardIfExist();
     }
 }

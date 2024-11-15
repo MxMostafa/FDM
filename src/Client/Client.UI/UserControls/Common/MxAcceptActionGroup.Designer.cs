@@ -1,6 +1,6 @@
 ﻿namespace Client.UI.UserControls.Common
 {
-    partial class MxActionGroup
+    partial class MxAcceptActionGroup
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(MxActionGroup));
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(MxAcceptActionGroup));
             saveButton = new MxButton();
             mxCancelButton1 = new MxCancelButton();
             SuspendLayout();
@@ -36,13 +36,13 @@
             // saveButton
             // 
             saveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            saveButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("saveButton.ImageOptions.SvgImage");
+            saveButton.ImageOptions.SvgImage = Properties.Resources.CompletedSolid1;
             saveButton.ImageOptions.SvgImageSize = new Size(15, 15);
             saveButton.Location = new Point(89, 5);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(90, 30);
             saveButton.TabIndex = 1;
-            saveButton.Text = "ذخیره";
+            saveButton.Text = "تائید";
             // 
             // mxCancelButton1
             // 
@@ -56,14 +56,14 @@
             mxCancelButton1.TabIndex = 41;
             mxCancelButton1.Text = "انصراف";
             // 
-            // MxActionGroup
+            // MxAcceptActionGroup
             // 
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(mxCancelButton1);
             Controls.Add(saveButton);
             Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            Name = "MxActionGroup";
+            Name = "MxAcceptActionGroup";
             RightToLeft = RightToLeft.Yes;
             Size = new Size(489, 39);
             ResumeLayout(false);

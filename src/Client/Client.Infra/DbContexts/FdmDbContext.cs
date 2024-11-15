@@ -8,6 +8,9 @@ public class FdmDbContext : DbContext
     public DbSet<CategoryItem> CategoryItems { get; set; }
     public DbSet<DownloadQueue> DownloadQueues { get; set; }
     public DbSet<AppSetting> AppSettings { get; set; }
+    public DbSet<FileTypeGroup> FileTypeGroups { get; set; }
+
+
     public FdmDbContext(DbContextOptions<FdmDbContext> options) : base(options)
     {
 

@@ -23,7 +23,7 @@ public class DownloadFileService : IDownloadFileService
             {
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new Exception("Failed to retrieve file headers.");
+                    return new ResultPattern<DownloadFileInfoResDto>(Errors.InvalidURL);
                 }
 
                 // Retrieve content headers
@@ -47,6 +47,7 @@ public class DownloadFileService : IDownloadFileService
 
                 return new DownloadFileInfoResDto()
                 {
+                    DownloadURL = url,
                     FileExtension = windowsMimeType?.Key,
                     MimeType = mimeType,
                     SizeInBytes = fileSize ?? 0,
