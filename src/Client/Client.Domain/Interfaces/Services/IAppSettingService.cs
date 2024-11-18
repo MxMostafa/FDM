@@ -15,5 +15,6 @@ public interface IAppSettingService
 
     #region FileTypeGroup
     Task<ResultPattern<List<FileTypeGroupResDto>>> GetAllFileTypeGroupsAsync();
+    Task<ResultPattern<bool>> AddFileGroupAsync(string title,string suffixName);
     #endregion
 }

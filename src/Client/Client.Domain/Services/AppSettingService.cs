@@ -99,4 +99,34 @@ public class AppSettingService : IAppSettingService
 
         return result;
     }
+
+    public async Task<ResultPattern<bool>> AddFileGroupAsync(string title, string suffixName)
+    {
+        var fileGroup = await _fileTypeGroupRepository.GetByTitleAsync(title);
+
+        if (fileGroup != null)
+        {
+            return new ResultPattern<bool>(Errors.DuplicatedFileTypeGroup);
+        }
+
+        var result = await _fileTypeGroupRepository.AddAsync(new FileTypeGroup 
+        { 
+            Title=title,
+            FileExtensions=suffixName,
+            Id=0
+        });
+
+        return true;
+    }
+
+
+    
+    //public async Task<ResultPattern<FileTypeGroupResDto?>> GetSelectedFileTypeGroupAsync(int id)
+    //{
+    //    var fileGroup = await _fileTypeGroupRepository.GetByIdAsync(id);
+
+        
+
+
+    //}
 }

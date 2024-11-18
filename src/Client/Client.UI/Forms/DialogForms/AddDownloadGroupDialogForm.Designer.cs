@@ -33,12 +33,12 @@
             mxComboBoxEdit1 = new UserControls.Common.MxComboBoxEdit();
             mxLabel1 = new UserControls.Common.MxLabel();
             groupControl1 = new GroupControl();
-            panelControl1 = new PanelControl();
             panelControl2 = new PanelControl();
             mxTextBox2 = new UserControls.Common.MxTextBox();
             mxTextBox1 = new UserControls.Common.MxTextBox();
             mxLabel6 = new UserControls.Common.MxLabel();
             mxLabel7 = new UserControls.Common.MxLabel();
+            panelControl1 = new PanelControl();
             spinEdit3 = new SpinEdit();
             spinEdit2 = new SpinEdit();
             spinEdit1 = new SpinEdit();
@@ -64,12 +64,12 @@
             ((ISupportInitialize)mxComboBoxEdit1.Properties).BeginInit();
             ((ISupportInitialize)groupControl1).BeginInit();
             groupControl1.SuspendLayout();
-            ((ISupportInitialize)panelControl1).BeginInit();
-            panelControl1.SuspendLayout();
             ((ISupportInitialize)panelControl2).BeginInit();
             panelControl2.SuspendLayout();
             ((ISupportInitialize)mxTextBox2.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
+            ((ISupportInitialize)panelControl1).BeginInit();
+            panelControl1.SuspendLayout();
             ((ISupportInitialize)spinEdit3.Properties).BeginInit();
             ((ISupportInitialize)spinEdit2.Properties).BeginInit();
             ((ISupportInitialize)spinEdit1.Properties).BeginInit();
@@ -131,21 +131,6 @@
             groupControl1.TabIndex = 30;
             groupControl1.Text = ": جایگزینی علامت ستاره با";
             // 
-            // panelControl1
-            // 
-            panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            panelControl1.Controls.Add(spinEdit3);
-            panelControl1.Controls.Add(spinEdit2);
-            panelControl1.Controls.Add(spinEdit1);
-            panelControl1.Controls.Add(mxLabel4);
-            panelControl1.Controls.Add(mxLabel3);
-            panelControl1.Controls.Add(mxLabel2);
-            panelControl1.Location = new Point(5, 53);
-            panelControl1.Name = "panelControl1";
-            panelControl1.Size = new Size(476, 42);
-            panelControl1.TabIndex = 33;
-            panelControl1.Visible = false;
-            // 
             // panelControl2
             // 
             panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -192,6 +177,21 @@
             mxLabel7.Size = new Size(11, 17);
             mxLabel7.TabIndex = 32;
             mxLabel7.Text = ":از";
+            // 
+            // panelControl1
+            // 
+            panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            panelControl1.Controls.Add(spinEdit3);
+            panelControl1.Controls.Add(spinEdit2);
+            panelControl1.Controls.Add(spinEdit1);
+            panelControl1.Controls.Add(mxLabel4);
+            panelControl1.Controls.Add(mxLabel3);
+            panelControl1.Controls.Add(mxLabel2);
+            panelControl1.Location = new Point(5, 53);
+            panelControl1.Name = "panelControl1";
+            panelControl1.Size = new Size(476, 42);
+            panelControl1.TabIndex = 33;
+            panelControl1.Visible = false;
             // 
             // spinEdit3
             // 
@@ -437,14 +437,14 @@
             ((ISupportInitialize)mxComboBoxEdit1.Properties).EndInit();
             ((ISupportInitialize)groupControl1).EndInit();
             groupControl1.ResumeLayout(false);
-            ((ISupportInitialize)panelControl1).EndInit();
-            panelControl1.ResumeLayout(false);
-            panelControl1.PerformLayout();
             ((ISupportInitialize)panelControl2).EndInit();
             panelControl2.ResumeLayout(false);
             panelControl2.PerformLayout();
             ((ISupportInitialize)mxTextBox2.Properties).EndInit();
             ((ISupportInitialize)mxTextBox1.Properties).EndInit();
+            ((ISupportInitialize)panelControl1).EndInit();
+            panelControl1.ResumeLayout(false);
+            panelControl1.PerformLayout();
             ((ISupportInitialize)spinEdit3.Properties).EndInit();
             ((ISupportInitialize)spinEdit2.Properties).EndInit();
             ((ISupportInitialize)spinEdit1.Properties).EndInit();

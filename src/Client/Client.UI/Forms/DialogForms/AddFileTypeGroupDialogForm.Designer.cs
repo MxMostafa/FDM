@@ -48,6 +48,7 @@
             mxActionGroup1.RightToLeft = RightToLeft.Yes;
             mxActionGroup1.Size = new Size(457, 39);
             mxActionGroup1.TabIndex = 0;
+            mxActionGroup1.SaveButtonClick += mxActionGroup1_SaveButtonClick;
             // 
             // mxLabel1
             // 

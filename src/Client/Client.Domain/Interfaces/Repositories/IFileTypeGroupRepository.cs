@@ -10,5 +10,5 @@ public interface IFileTypeGroupRepository
     Task<FileTypeGroup?> GetByFileExtensionAsync(string extension);
     Task<bool> DeleteAsync(FileTypeGroup fileTypeGroup);
     Task<FileTypeGroup> UpdateAsync(FileTypeGroup fileTypeGroup);
-    Task<FileTypeGroup> AddAsync(FileTypeGroup fileTypeGroup);
+    Task<bool> AddAsync(FileTypeGroup fileTypeGroup);
 }

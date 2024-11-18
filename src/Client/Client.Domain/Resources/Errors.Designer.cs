@@ -70,6 +70,24 @@ namespace Client.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نام گروه تکراری است.
+        /// </summary>
+        internal static string DuplicatedFileTypeGroup {
+            get {
+                return ResourceManager.GetString("DuplicatedFileTypeGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام گروه تکراری است.
+        /// </summary>
+        internal static string DuplicatedGroupName {
+            get {
+                return ResourceManager.GetString("DuplicatedGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آدرس دانلود نامعتبر است.
         /// </summary>
         internal static string InvalidURL {

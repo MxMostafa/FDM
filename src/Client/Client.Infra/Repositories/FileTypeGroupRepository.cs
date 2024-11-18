@@ -9,9 +9,18 @@ public class FileTypeGroupRepository : BaseRepository, IFileTypeGroupRepository
     {
     }
 
-    public Task<FileTypeGroup> AddAsync(FileTypeGroup fileTypeGroup)
+    public async Task<bool> AddAsync(FileTypeGroup fileTypeGroup)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _context.FileTypeGroups.AddAsync(fileTypeGroup);
+            return await _context.SaveChangesAsync() > 1;
+        }
+        catch (Exception ex)
+        {
+
+            throw new NotImplementedException();
+        }
     }
 
     public Task<bool> DeleteAsync(FileTypeGroup fileTypeGroup)
@@ -19,28 +28,31 @@ public class FileTypeGroupRepository : BaseRepository, IFileTypeGroupRepository
         throw new NotImplementedException();
     }
 
-    public Task<List<FileTypeGroup>> GetAllAsync()
+    public async Task<List<FileTypeGroup>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _context.FileTypeGroups.ToListAsync();
     }
 
-    public Task<FileTypeGroup?> GetByFileExtensionAsync(string extension)
+    public async Task<FileTypeGroup?> GetByFileExtensionAsync(string extension)
     {
-        throw new NotImplementedException();
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(d => d.FileExtensions == extension && d.IsDeleted == false);
     }
 
-    public Task<FileTypeGroup?> GetByIdAsync(int id)
+    public async Task<FileTypeGroup?> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(d => d.Id == id && d.IsDeleted == false);
     }
 
-    public Task<FileTypeGroup?> GetByTitleAsync(string Title)
+    public async Task<FileTypeGroup?> GetByTitleAsync(string Title)
     {
-        throw new NotImplementedException();
+        
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(d => d.Title == Title && d.IsDeleted == false);
     }
 
     public Task<FileTypeGroup> UpdateAsync(FileTypeGroup fileTypeGroup)
     {
         throw new NotImplementedException();
     }
+
+    
 }

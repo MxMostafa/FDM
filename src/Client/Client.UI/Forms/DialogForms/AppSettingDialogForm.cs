@@ -1,11 +1,15 @@
 ﻿
 using Client.Domain.Dtos.Response.AppSetting;
 using Client.Domain.Interfaces.Services;
+using Client.Domain.Services;
 using Client.UI.Constants;
 using Client.UI.Constants.Configs;
 using Client.UI.Helpers;
 using Client.UI.ViewModel;
+using Client.UI.ViewModel.FileTypeGroup;
+using DevExpress.XtraSpreadsheet.Model;
 using Microsoft.Extensions.Logging;
+using System.Windows.Forms;
 
 namespace Client.UI.Forms.DialogForms;
 public partial class AppSettingDialogForm : MasterFixedDialogForm
@@ -16,12 +20,14 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
     private readonly IAppSettingService _appSettingService;
 
     private readonly ILogger _logger;
-    public AppSettingDialogForm(IAppSettingService appSettingService, ILogger<AppSettingDialogForm> logger)
+    private readonly IServiceProvider _serviceProvider;
+    public AppSettingDialogForm(IAppSettingService appSettingService, ILogger<AppSettingDialogForm> logger, IServiceProvider serviceProvider)
     {
         InitializeComponent();
         xtraTabControl1.SelectedTabPageIndex = 0;
         _appSettingService = appSettingService;
         _logger = logger;
+        _serviceProvider = serviceProvider;
     }
 
 
@@ -29,6 +35,10 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
     {
         try
         {
+
+            await LoadAllGroupNameAsync();
+
+
 
             var appSettingsRequest = await _appSettingService.GetGeneralAppSettingAsync();
             if (appSettingsRequest.IsSucceed == false)
@@ -76,7 +86,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
             var data = new Dictionary<string, string>();
             data.Add(RunAppWhenWindowsStartCheckBox.Name, RunAppWhenWindowsStartCheckBox.Checked.ToString());
             data.Add(AutoDownloadClipboardLinksCheckbox.Name, AutoDownloadClipboardLinksCheckbox.Checked.ToString());
-            data.Add(AdvancedSyncUsageCheckbox.Name,AdvancedSyncUsageCheckbox.Checked.ToString());
+            data.Add(AdvancedSyncUsageCheckbox.Name, AdvancedSyncUsageCheckbox.Checked.ToString());
             data.Add(LastPublicSaveDirectoryCheckBox.Name, LastPublicSaveDirectoryCheckBox.Checked.ToString());
             data.Add(DownloadedFileServerDateCheckBox.Name, DownloadedFileServerDateCheckBox.Checked.ToString());
             data.Add(DownloadStartWindowCheckBox.Name, DownloadStartWindowCheckBox.Checked.ToString());
@@ -118,14 +128,14 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                     case var key when key == AppSettingConfigs.RunWindowsStartConfig:
                         RunAppWhenWindowsStartCheckBox.Checked = bool.Parse(setting.Value);
                         break;
-                    case var key when key ==  AppSettingConfigs.AutoDownloadConfig:
+                    case var key when key == AppSettingConfigs.AutoDownloadConfig:
                         AutoDownloadClipboardLinksCheckbox.Checked = bool.Parse(setting.Value);
                         break;
                     case var key when key == AppSettingConfigs.AdvancedSyncUsageConfig:
-                    AdvancedSyncUsageCheckbox.Checked=bool.Parse(setting.Value);
+                        AdvancedSyncUsageCheckbox.Checked = bool.Parse(setting.Value);
                         break;
-                    case var key when key== AppSettingConfigs.LastPublicSaveDirectoryConfig:
-                        LastPublicSaveDirectoryCheckBox.Checked=bool.Parse(setting.Value);
+                    case var key when key == AppSettingConfigs.LastPublicSaveDirectoryConfig:
+                        LastPublicSaveDirectoryCheckBox.Checked = bool.Parse(setting.Value);
                         break;
                     case var key when key == AppSettingConfigs.DownloadedFileServerDateConfig:
                         DownloadedFileServerDateCheckBox.Checked = bool.Parse(setting.Value);
@@ -189,6 +199,104 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         }
         catch (Exception ex)
         {
+            ex.Handle(_logger);
+        }
+    }
+
+    private async void mxButton8_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<AddFileTypeGroupDialogForm>();
+
+            if (addFileTypeGroupDialogForm.ShowDialog() != DialogResult.OK)
+                Close();
+
+            var result = await _appSettingService.AddFileGroupAsync(addFileTypeGroupDialogForm.Title, addFileTypeGroupDialogForm.suffixName);
+
+
+            if (result.IsSucceed)
+            {
+                await LoadAllGroupNameAsync();
+            }
+            else
+            {
+                MessageBox.Show(result.ErrorMessage);
+            }
+
+
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+    }
+
+    private async Task LoadAllGroupNameAsync()
+    {
+        try
+        {
+            var result = await _appSettingService.GetAllFileTypeGroupsAsync();
+            List<FileTypeGroupViewModel> temp = new List<FileTypeGroupViewModel>();
+            if (result.IsSucceed)
+            {
+                foreach (var item in result.Data)
+                {
+                    temp.Add(new FileTypeGroupViewModel()
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        FileExtensions = item.FileExtensions,
+                        IconName = item.IconName
+                    });
+                }
+            }
+
+            fileTypeGroupViewModelBindingSource.DataSource = temp;
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    private async void mxButton9_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            
+            var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<EditFileTypeGroupDialogForm>();
+
+            if (addFileTypeGroupDialogForm.ShowDialog() != DialogResult.OK)
+                Close();
+
+           var selected= FileTypeGroupComboBox.EditValue;
+            if (Convert.ToInt32(selected) > 0)
+            {
+
+            }
+           
+
+            //var result = await _appSettingService.AddFileGroupAsync(addFileTypeGroupDialogForm.Title, addFileTypeGroupDialogForm.suffixName);
+
+
+            //if (result.IsSucceed)
+            //{
+            //    await LoadAllGroupNameAsync();
+            //}
+            //else
+            //{
+            //    MessageBox.Show(result.ErrorMessage);
+            //}
+
+
+        }
+        catch (Exception ex)
+        {
+
             ex.Handle(_logger);
         }
     }
