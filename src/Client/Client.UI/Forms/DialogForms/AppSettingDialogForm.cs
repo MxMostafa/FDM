@@ -284,13 +284,25 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                         FileExtensions = result.Data.FileExtensions,
                         IconName = result.Data.IconName
                     };
-                    var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<EditFileTypeGroupDialogForm>();
-                    addFileTypeGroupDialogForm.EditGroup = current;
+                    var editFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<EditFileTypeGroupDialogForm>();
+                    editFileTypeGroupDialogForm.EditGroup = current;
 
-                    if (addFileTypeGroupDialogForm.ShowDialog() != DialogResult.OK)
+                    if (editFileTypeGroupDialogForm.ShowDialog() != DialogResult.OK)
                         Close();
 
-                    
+
+                    //var EditResult = await _appSettingService.UpdateGroup(editFileTypeGroupDialogForm.EditGroup);
+
+
+                    //if (EditResult.IsSucceed)
+                    //{
+                    //    await LoadAllGroupNameAsync();
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show(EditResult.ErrorMessage);
+                    //}
+
 
                 }
                 else

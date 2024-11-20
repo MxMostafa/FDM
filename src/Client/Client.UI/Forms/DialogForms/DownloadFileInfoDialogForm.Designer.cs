@@ -42,13 +42,13 @@
             mxButton3 = new UserControls.Common.MxButton();
             mxCancelButton1 = new UserControls.Common.MxCancelButton();
             FileSizeLabel = new UserControls.Common.MxLabel();
-            FileTypeGroupComboBox = new UserControls.Common.MxComboBox();
             fileTypeGroupViewModelBindingSource = new BindingSource(components);
+            FileTypeGroupComboBox = new UserControls.Common.MxComboBox();
             ((ISupportInitialize)downloadURLTextbox.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox2.Properties).BeginInit();
             ((ISupportInitialize)fileTypeImage.Properties).BeginInit();
-            ((ISupportInitialize)FileTypeGroupComboBox.Properties).BeginInit();
             ((ISupportInitialize)fileTypeGroupViewModelBindingSource).BeginInit();
+            ((ISupportInitialize)FileTypeGroupComboBox.Properties).BeginInit();
             SuspendLayout();
             // 
             // mxLabel1
@@ -169,21 +169,23 @@
             FileSizeLabel.TabIndex = 26;
             FileSizeLabel.Text = "20 مگابایت";
             // 
+            // fileTypeGroupViewModelBindingSource
+            // 
+            fileTypeGroupViewModelBindingSource.DataSource = typeof(ViewModel.FileTypeGroup.FileTypeGroupViewModel);
+            // 
             // FileTypeGroupComboBox
             // 
             FileTypeGroupComboBox.Location = new Point(92, 54);
             FileTypeGroupComboBox.Name = "FileTypeGroupComboBox";
             FileTypeGroupComboBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            FileTypeGroupComboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] { new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 26, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default), new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Title", "", 36, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default), new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FileExtensions", "File Extensions", 87, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default), new DevExpress.XtraEditors.Controls.LookUpColumnInfo("IconName", "Icon Name", 67, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default) });
             FileTypeGroupComboBox.Properties.DataSource = fileTypeGroupViewModelBindingSource;
             FileTypeGroupComboBox.Properties.DisplayMember = "Title";
+            FileTypeGroupComboBox.Properties.NullText = "";
             FileTypeGroupComboBox.Properties.PopupFilterMode = PopupFilterMode.Contains;
             FileTypeGroupComboBox.Properties.ValueMember = "Id";
-            FileTypeGroupComboBox.Size = new Size(429, 28);
-            FileTypeGroupComboBox.TabIndex = 27;
-            // 
-            // fileTypeGroupViewModelBindingSource
-            // 
-            fileTypeGroupViewModelBindingSource.DataSource = typeof(ViewModel.FileTypeGroup.FileTypeGroupViewModel);
+            FileTypeGroupComboBox.Size = new Size(428, 28);
+            FileTypeGroupComboBox.TabIndex = 30;
             // 
             // DownloadFileInfoDialogForm
             // 
@@ -212,8 +214,8 @@
             ((ISupportInitialize)downloadURLTextbox.Properties).EndInit();
             ((ISupportInitialize)mxTextBox2.Properties).EndInit();
             ((ISupportInitialize)fileTypeImage.Properties).EndInit();
-            ((ISupportInitialize)FileTypeGroupComboBox.Properties).EndInit();
             ((ISupportInitialize)fileTypeGroupViewModelBindingSource).EndInit();
+            ((ISupportInitialize)FileTypeGroupComboBox.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -232,7 +234,7 @@
         private UserControls.Common.MxButton mxButton3;
         private UserControls.Common.MxCancelButton mxCancelButton1;
         private UserControls.Common.MxLabel FileSizeLabel;
-        private UserControls.Common.MxComboBox FileTypeGroupComboBox;
         private BindingSource fileTypeGroupViewModelBindingSource;
+        private UserControls.Common.MxComboBox FileTypeGroupComboBox;
     }
 }

@@ -129,6 +129,7 @@
             mxActionGroup1.RightToLeft = RightToLeft.Yes;
             mxActionGroup1.Size = new Size(467, 39);
             mxActionGroup1.TabIndex = 14;
+            mxActionGroup1.SaveButtonClick += mxActionGroup1_SaveButtonClick;
             // 
             // EditFileTypeGroupDialogForm
             // 

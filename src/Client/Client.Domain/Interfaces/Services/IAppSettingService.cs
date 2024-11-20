@@ -18,6 +18,6 @@ public interface IAppSettingService
     Task<ResultPattern<bool>> AddFileGroupAsync(string title,string suffixName);
 
     Task<ResultPattern<FileTypeGroupResDto?>> GetSelectedFileTypeGroupAsync(int id);
-    Task<ResultPattern<bool>> EditFileGroupAsync(FileTypeGroupResDto value);
+   
     #endregion
 }

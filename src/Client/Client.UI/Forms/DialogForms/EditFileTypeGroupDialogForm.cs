@@ -23,5 +23,11 @@ namespace Client.UI.Forms.DialogForms
         {
             bindingSource1.DataSource = EditGroup;
         }
+
+        private void mxActionGroup1_SaveButtonClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
     }
 }
