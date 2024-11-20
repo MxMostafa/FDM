@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new Container();
             mxDescriptionLabel2 = new UserControls.Common.MxDescriptionLabel();
             mxAreaTextBox1 = new UserControls.Common.MxAreaTextBox();
+            bindingSource1 = new BindingSource(components);
             mxDescriptionLabel1 = new UserControls.Common.MxDescriptionLabel();
             mxTextBox1 = new UserControls.Common.MxTextBox();
             mxLabel2 = new UserControls.Common.MxLabel();
             mxLabel1 = new UserControls.Common.MxLabel();
             mxActionGroup1 = new UserControls.Common.MxActionGroup();
             ((ISupportInitialize)mxAreaTextBox1.Properties).BeginInit();
+            ((ISupportInitialize)bindingSource1).BeginInit();
             ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
             SuspendLayout();
             // 
@@ -59,11 +62,16 @@
             // 
             // mxAreaTextBox1
             // 
+            mxAreaTextBox1.DataBindings.Add(new Binding("Text", bindingSource1, "FileExtensions", true));
             mxAreaTextBox1.EditValue = "";
             mxAreaTextBox1.Location = new Point(71, 77);
             mxAreaTextBox1.Name = "mxAreaTextBox1";
             mxAreaTextBox1.Size = new Size(384, 96);
             mxAreaTextBox1.TabIndex = 12;
+            // 
+            // bindingSource1
+            // 
+            bindingSource1.DataSource = typeof(ViewModel.FileTypeGroup.EditFileTypeGroupViewModel);
             // 
             // mxDescriptionLabel1
             // 
@@ -85,6 +93,7 @@
             // 
             // mxTextBox1
             // 
+            mxTextBox1.DataBindings.Add(new Binding("Text", bindingSource1, "Title", true));
             mxTextBox1.Location = new Point(71, 3);
             mxTextBox1.Name = "mxTextBox1";
             mxTextBox1.Size = new Size(384, 28);
@@ -138,7 +147,9 @@
             LookAndFeel.UseDefaultLookAndFeel = false;
             Name = "EditFileTypeGroupDialogForm";
             Text = "ویرایش گروه فایل";
+            Load += EditFileTypeGroupDialogForm_Load;
             ((ISupportInitialize)mxAreaTextBox1.Properties).EndInit();
+            ((ISupportInitialize)bindingSource1).EndInit();
             ((ISupportInitialize)mxTextBox1.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -153,5 +164,6 @@
         private UserControls.Common.MxLabel mxLabel2;
         private UserControls.Common.MxLabel mxLabel1;
         private UserControls.Common.MxActionGroup mxActionGroup1;
+        private BindingSource bindingSource1;
     }
 }

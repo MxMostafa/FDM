@@ -268,29 +268,42 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         try
         {
             
-            var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<EditFileTypeGroupDialogForm>();
-
-            if (addFileTypeGroupDialogForm.ShowDialog() != DialogResult.OK)
-                Close();
-
-           var selected= FileTypeGroupComboBox.EditValue;
-            if (Convert.ToInt32(selected) > 0)
+           int selected= Convert.ToInt32(FileTypeGroupComboBox.EditValue);
+            if (selected > 0)
             {
+                var result = await _appSettingService.GetSelectedFileTypeGroupAsync(selected);
 
+
+                if (result.IsSucceed)
+                {
+                    EditFileTypeGroupViewModel current = new EditFileTypeGroupViewModel()
+                    {
+
+                        Id = result.Data.Id,
+                        Title = result.Data.Title,
+                        FileExtensions = result.Data.FileExtensions,
+                        IconName = result.Data.IconName
+                    };
+                    var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<EditFileTypeGroupDialogForm>();
+                    addFileTypeGroupDialogForm.EditGroup = current;
+
+                    if (addFileTypeGroupDialogForm.ShowDialog() != DialogResult.OK)
+                        Close();
+
+                    
+
+                }
+                else
+                {
+                    MessageBox.Show(result.ErrorMessage);
+                }
+
+               
             }
-           
-
-            //var result = await _appSettingService.AddFileGroupAsync(addFileTypeGroupDialogForm.Title, addFileTypeGroupDialogForm.suffixName);
 
 
-            //if (result.IsSucceed)
-            //{
-            //    await LoadAllGroupNameAsync();
-            //}
-            //else
-            //{
-            //    MessageBox.Show(result.ErrorMessage);
-            //}
+
+
 
 
         }

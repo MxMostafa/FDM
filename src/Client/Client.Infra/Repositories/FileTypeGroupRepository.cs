@@ -49,7 +49,7 @@ public class FileTypeGroupRepository : BaseRepository, IFileTypeGroupRepository
         return await _context.FileTypeGroups.FirstOrDefaultAsync(d => d.Title == Title && d.IsDeleted == false);
     }
 
-    public Task<FileTypeGroup> UpdateAsync(FileTypeGroup fileTypeGroup)
+    public Task<bool> UpdateAsync(FileTypeGroup fileTypeGroup)
     {
         throw new NotImplementedException();
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.UI.ViewModel.FileTypeGroup;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,15 @@ namespace Client.UI.Forms.DialogForms
 {
     public partial class EditFileTypeGroupDialogForm : MasterFixedDialogForm
     {
+        public EditFileTypeGroupViewModel EditGroup { get; set; }
         public EditFileTypeGroupDialogForm()
         {
             InitializeComponent();
+        }
+
+        private void EditFileTypeGroupDialogForm_Load(object sender, EventArgs e)
+        {
+            bindingSource1.DataSource = EditGroup;
         }
     }
 }

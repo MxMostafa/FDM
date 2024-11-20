@@ -1,6 +1,7 @@
 ﻿
 using Client.Domain.Dtos.Response.FileTypeGroup;
 using MapsterMapper;
+using System;
 using System.Collections.Generic;
 
 namespace Client.Domain.Services;
@@ -109,24 +110,40 @@ public class AppSettingService : IAppSettingService
             return new ResultPattern<bool>(Errors.DuplicatedFileTypeGroup);
         }
 
-        var result = await _fileTypeGroupRepository.AddAsync(new FileTypeGroup 
-        { 
-            Title=title,
-            FileExtensions=suffixName,
-            Id=0
+        var result = await _fileTypeGroupRepository.AddAsync(new FileTypeGroup
+        {
+            Title = title,
+            FileExtensions = suffixName,
+            Id = 0
         });
+
 
         return true;
     }
 
 
-    
-    //public async Task<ResultPattern<FileTypeGroupResDto?>> GetSelectedFileTypeGroupAsync(int id)
-    //{
-    //    var fileGroup = await _fileTypeGroupRepository.GetByIdAsync(id);
 
-        
+    public async Task<ResultPattern<FileTypeGroupResDto?>> GetSelectedFileTypeGroupAsync(int id)
+    {
+        var fileGroup = await _fileTypeGroupRepository.GetByIdAsync(id);
+        if (fileGroup != null)
+        {
+
+            var result = new FileTypeGroupResDto()
+            {
+                Id = fileGroup.Id,
+                Title = fileGroup.Title,
+                FileExtensions = fileGroup.FileExtensions,
+                IconName = fileGroup.IconName
+            };
+           return new ResultPattern<FileTypeGroupResDto>(result, null);
+        }
+        else
+        {
+            return new ResultPattern<FileTypeGroupResDto>(Errors.DuplicatedFileTypeGroup);
+        }
 
 
-    //}
+
+    }
 }
