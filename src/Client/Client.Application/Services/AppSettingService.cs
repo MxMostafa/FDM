@@ -1,5 +1,8 @@
 ﻿
+using Client.Application.Resources;
+using Client.Domain.Dtos.Request.FileTypeGroup;
 using Client.Domain.Dtos.Response.FileTypeGroup;
+using Client.Domain.Entites;
 using MapsterMapper;
 using System.Collections.Generic;
 
@@ -80,10 +83,6 @@ public class AppSettingService : IAppSettingService
         return result;
     }
 
-    public Task<ResultPattern<AppSettingResDto?>> GetAppSettingByKeyAsync(string key)
-    {
-        throw new NotImplementedException();
-    }
 
     public async Task<ResultPattern<List<FileTypeGroupResDto>>> GetAllFileTypeGroupsAsync()
     {
@@ -98,5 +97,98 @@ public class AppSettingService : IAppSettingService
         }).ToList();
 
         return result;
+    }
+
+    public Task<ResultPattern<AppSettingResDto?>> GetAppSettingByKeyAsync(string key)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByIdAsync(int id)
+    {
+        var fileTypeGroup = await _fileTypeGroupRepository.GetByIdAsync(id);
+
+        if (fileTypeGroup == null)
+            return new ResultPattern<FileTypeGroupResDto?>(Errors.NotFound);
+
+        return new FileTypeGroupResDto()
+        {
+            Id = fileTypeGroup.Id,
+            Title = fileTypeGroup.Title,
+            FileExtensions = fileTypeGroup.FileExtensions,
+            IconName = fileTypeGroup.IconName
+        };
+
+    }
+
+    public async Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByTitleAsync(string title)
+    {
+        var fileTypeGroup = await _fileTypeGroupRepository.GetByTitleAsync(title);
+
+        if (fileTypeGroup == null)
+            return new ResultPattern<FileTypeGroupResDto?>(Errors.NotFound);
+
+        return new FileTypeGroupResDto()
+        {
+            Id = fileTypeGroup.Id,
+            Title = fileTypeGroup.Title,
+            FileExtensions = fileTypeGroup.FileExtensions,
+            IconName = fileTypeGroup.IconName
+        };
+
+    }
+
+    public async Task<ResultPattern<FileTypeGroupResDto?>> AddFileTypeGroupAsync(AddFileTypeGroupReqDto model)
+    {
+        var fileTypeGroup = await _fileTypeGroupRepository.GetByTitleAsync(model.Title);
+
+        if (fileTypeGroup != null)
+            return new ResultPattern<FileTypeGroupResDto?>(Errors.DuplicatedFileTypeGroupError);
+
+        fileTypeGroup = new FileTypeGroup()
+        {
+            Id = 0,
+            Title = model.Title,
+            FileExtensions = model.FileExtensions
+        };
+
+        await _fileTypeGroupRepository.AddAsync(fileTypeGroup);
+
+        return new FileTypeGroupResDto()
+        {
+            Id = fileTypeGroup.Id,
+            Title = fileTypeGroup.Title,
+            FileExtensions = fileTypeGroup.FileExtensions,
+            IconName = fileTypeGroup.IconName
+        };
+    }
+
+    public async Task<ResultPattern<FileTypeGroupResDto?>> UpdateFileTypeGroupAsync(UpdateFileTypeGroupReqDto model)
+    {
+
+        var fileTypeGroup = await _fileTypeGroupRepository.GetByIdAsync(model.Id);
+
+        if (fileTypeGroup == null)
+            return new ResultPattern<FileTypeGroupResDto?>(Errors.NotFound);
+
+
+        var exitFileTypeGroupWithSameName = await _fileTypeGroupRepository.GetByTitleAsync(model.Title);
+
+        if (exitFileTypeGroupWithSameName != null && exitFileTypeGroupWithSameName.Id != fileTypeGroup.Id)
+            return new ResultPattern<FileTypeGroupResDto?>(Errors.DuplicatedFileTypeGroupError);
+
+        fileTypeGroup.Title = model.Title;
+        fileTypeGroup.FileExtensions = model.FileExtensions;
+
+
+        await _fileTypeGroupRepository.UpdateAsync(fileTypeGroup);
+
+        return new FileTypeGroupResDto()
+        {
+            Id = fileTypeGroup.Id,
+            Title = fileTypeGroup.Title,
+            FileExtensions = fileTypeGroup.FileExtensions,
+            IconName = fileTypeGroup.IconName
+        };
     }
 }

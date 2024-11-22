@@ -124,4 +124,10 @@
   <data name="InvalidURL" xml:space="preserve">
     <value>آدرس دانلود نامعتبر است</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>یافت نشد</value>
+  </data>
+  <data name="DuplicatedFileTypeGroupError" xml:space="preserve">
+    <value>گروه تکراری است</value>
+  </data>
 </root>

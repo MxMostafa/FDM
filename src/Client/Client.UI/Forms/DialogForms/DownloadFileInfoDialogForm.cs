@@ -76,11 +76,23 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
 
     private async Task FillFileTypeGroupsAsync()
     {
-        fileTypeGroupViewModelBindingSource.DataSource = await _appSettingService.GetAllFileTypeGroupsAsync();
-        FileTypeGroupComboBox.SelectedText = _downloadFileInfo.FileExtension;
+        try
+        {
+            var request = await _appSettingService.GetAllFileTypeGroupsAsync();
+            if (!request.IsSucceed) request.Throw();
+
+            fileTypeGroupViewModelBindingSource.DataSource = request.Data;
+            FileTypeGroupComboBox.SelectedText = _downloadFileInfo.FileExtension;
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+
     }
 
-    private void mxButton15_Click(object sender, EventArgs e)
+    private async void mxButton15_Click(object sender, EventArgs e)
     {
         try
         {
@@ -88,7 +100,7 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
 
             if (addFileTypeGroupDialogForm.ShowDialog() != DialogResult.OK)
                 Close();
-
+            await FillFileTypeGroupsAsync();
 
         }
         catch (Exception ex)

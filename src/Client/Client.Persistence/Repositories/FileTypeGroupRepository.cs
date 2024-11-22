@@ -9,38 +9,44 @@ public class FileTypeGroupRepository : BaseRepository, IFileTypeGroupRepository
     {
     }
 
-    public Task<FileTypeGroup> AddAsync(FileTypeGroup fileTypeGroup)
+    public async Task<FileTypeGroup> AddAsync(FileTypeGroup fileTypeGroup)
     {
-        throw new NotImplementedException();
+        await _context.AddAsync(fileTypeGroup);
+        await _context.SaveChangesAsync();
+        return fileTypeGroup;
     }
 
-    public Task<bool> DeleteAsync(FileTypeGroup fileTypeGroup)
+    public async Task<bool> DeleteAsync(FileTypeGroup fileTypeGroup)
     {
-        throw new NotImplementedException();
+        _context.Remove(fileTypeGroup);
+        await _context.SaveChangesAsync();
+        return true;
     }
 
-    public Task<List<FileTypeGroup>> GetAllAsync()
+    public async Task<List<FileTypeGroup>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _context.FileTypeGroups.Where(f => f.IsDeleted == false).ToListAsync();
     }
 
-    public Task<FileTypeGroup?> GetByFileExtensionAsync(string extension)
+    public async Task<FileTypeGroup?> GetByFileExtensionAsync(string extension)
     {
-        throw new NotImplementedException();
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(f => f.FileExtensions != null && f.FileExtensions.Contains(extension));
     }
 
-    public Task<FileTypeGroup?> GetByIdAsync(int id)
+    public async Task<FileTypeGroup?> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(f => f.Id == id);
     }
 
-    public Task<FileTypeGroup?> GetByTitleAsync(string Title)
+    public async Task<FileTypeGroup?> GetByTitleAsync(string title)
     {
-        throw new NotImplementedException();
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(f => f.Title == title);
     }
 
-    public Task<FileTypeGroup> UpdateAsync(FileTypeGroup fileTypeGroup)
+    public async Task<FileTypeGroup> UpdateAsync(FileTypeGroup fileTypeGroup)
     {
-        throw new NotImplementedException();
+        _context.Update(fileTypeGroup);
+        await _context.SaveChangesAsync();
+        return fileTypeGroup;
     }
 }

@@ -123,4 +123,7 @@
   <data name="UrlFormatValidationError" xml:space="preserve">
     <value>آدرس دانلود وارد شده صحیح نمی باشد</value>
   </data>
+  <data name="ValidationError" xml:space="preserve">
+    <value>لطفا اطلاعات را کامل کنید</value>
+  </data>
 </root>

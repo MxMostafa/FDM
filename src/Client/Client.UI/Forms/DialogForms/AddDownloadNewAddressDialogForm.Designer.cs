@@ -93,6 +93,7 @@
             mxAcceptActionGroup1.Size = new Size(582, 39);
             mxAcceptActionGroup1.TabIndex = 52;
             mxAcceptActionGroup1.ConfirmButtonClick += mxAcceptActionGroup1_ConfirmButtonClick;
+            mxAcceptActionGroup1.Load += mxAcceptActionGroup1_Load;
             // 
             // AddDownloadNewAddressDialogForm
             // 

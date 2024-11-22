@@ -26,4 +26,11 @@ public static class CommonExtension
         ErrorHelper.ShowErrorAsMessageBox(result.ErrorMessage);
 
     }
+
+    public static void Throw<T>(this ResultPattern<T> result)
+    {
+
+        throw new Exception(result.ErrorMessage);
+
+    }
 }

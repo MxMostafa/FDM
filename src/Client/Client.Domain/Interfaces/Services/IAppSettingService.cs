@@ -3,6 +3,7 @@
 
 
 using Client.Domain.Dtos;
+using Client.Domain.Dtos.Request.FileTypeGroup;
 using Client.Domain.Dtos.Response.AppSetting;
 using Client.Domain.Dtos.Response.FileTypeGroup;
 
@@ -17,5 +18,9 @@ public interface IAppSettingService
 
     #region FileTypeGroup
     Task<ResultPattern<List<FileTypeGroupResDto>>> GetAllFileTypeGroupsAsync();
+    Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByIdAsync(int id);
+    Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByTitleAsync(string title);
+    Task<ResultPattern<FileTypeGroupResDto?>> AddFileTypeGroupAsync(AddFileTypeGroupReqDto model);
+    Task<ResultPattern<FileTypeGroupResDto?>> UpdateFileTypeGroupAsync(UpdateFileTypeGroupReqDto model);
     #endregion
 }

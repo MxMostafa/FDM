@@ -70,11 +70,29 @@ namespace Client.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گروه تکراری است.
+        /// </summary>
+        internal static string DuplicatedFileTypeGroupError {
+            get {
+                return ResourceManager.GetString("DuplicatedFileTypeGroupError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آدرس دانلود نامعتبر است.
         /// </summary>
         internal static string InvalidURL {
             get {
                 return ResourceManager.GetString("InvalidURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to یافت نشد.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
             }
         }
     }

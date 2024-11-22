@@ -70,6 +70,15 @@ namespace Client.UI.Constants {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to لطفا اطلاعات را کامل کنید.
+        /// </summary>
+        internal static string ValidationError {
+            get {
+                return ResourceManager.GetString("ValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آیا مطمئن هستید ؟ .
         /// </summary>
         internal static string WarningConfirmMessage {

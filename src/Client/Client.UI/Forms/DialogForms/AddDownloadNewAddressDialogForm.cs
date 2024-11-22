@@ -105,4 +105,9 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
             ex.Handle(_logger);
         }
     }
+
+    private void mxAcceptActionGroup1_Load(object sender, EventArgs e)
+    {
+
+    }
 }

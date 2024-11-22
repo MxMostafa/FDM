@@ -3,16 +3,19 @@ using System;
 using Client.Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Client.Persistence.Migrations
+namespace Client.Infrastructure.Migrations
 {
     [DbContext(typeof(FdmDbContext))]
-    partial class FdmDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241122101428_fileTypeGroup")]
+    partial class fileTypeGroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -113,6 +116,36 @@ namespace Client.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DownloadQueues");
+                });
+
+            modelBuilder.Entity("Client.Domain.Entites.FileTypeGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FileExtensions")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("IconName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FileTypeGroups");
                 });
 
             modelBuilder.Entity("Client.Domain.Entites.CategoryItem", b =>
