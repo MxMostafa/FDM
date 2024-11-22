@@ -1,4 +1,4 @@
-﻿namespace Client.Infra.Repositories;
+﻿namespace Client.Persistence.Repositories;
 public class CategoryGroupRepository : ICategoryGroupRepository
 {
     public Task<List<CategoryGroup>> GetAllAsync()

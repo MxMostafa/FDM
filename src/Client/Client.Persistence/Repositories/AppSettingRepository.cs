@@ -1,6 +1,6 @@
 ﻿
 
-namespace Client.Infra.Repositories;
+namespace Client.Persistence.Repositories;
 public class AppSettingRepository : BaseRepository, IAppSettingRepository
 {
     private readonly IMemoryCache _memoryCache;

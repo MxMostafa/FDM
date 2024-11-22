@@ -2,7 +2,7 @@
 
 
 
-namespace Client.Infra.Repositories;
+namespace Client.Persistence.Repositories;
 
 public class DownloadQueueRepository : BaseRepository, IDownloadQueueRepository
 {

@@ -37,6 +37,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Client.Domain\Client.Domain.csproj" />
     <ProjectReference Include="..\Client.Infra\Client.Infra.csproj" />
+    <ProjectReference Include="..\Client.Persistence\Client.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

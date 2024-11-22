@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Client.Infra.Migrations
+namespace Client.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class appsettings : Migration

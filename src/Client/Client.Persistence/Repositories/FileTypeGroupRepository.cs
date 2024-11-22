@@ -1,7 +1,7 @@
 ﻿
 
 
-namespace Client.Infra.Repositories;
+namespace Client.Persistence.Repositories;
 
 public class FileTypeGroupRepository : BaseRepository, IFileTypeGroupRepository
 {

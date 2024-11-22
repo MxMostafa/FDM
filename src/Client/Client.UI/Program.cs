@@ -1,6 +1,6 @@
 ﻿
 
-using Client.Infra.DbContexts;
+using Client.Persistence.DbContexts;
 using DevExpress.XtraWaitForm;
 using Microsoft.EntityFrameworkCore;
 using Serilog;

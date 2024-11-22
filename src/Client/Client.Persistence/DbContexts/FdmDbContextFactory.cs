@@ -1,6 +1,6 @@
 ﻿
 
-namespace Client.Infra.DbContexts;
+namespace Client.Persistence.DbContexts;
 
 public class FdmDbContextFactory : IDesignTimeDbContextFactory<FdmDbContext>
 {

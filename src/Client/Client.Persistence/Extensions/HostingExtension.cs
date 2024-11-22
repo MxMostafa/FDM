@@ -1,7 +1,7 @@
 ﻿
 
 
-namespace Client.Infra.Extensions;
+namespace Client.Persistence.Extensions;
 
 public static class HostingExtension
 {
@@ -11,7 +11,7 @@ public static class HostingExtension
        
 
         var types = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.Namespace == "Client.Infra.Repositories" && t.Name.EndsWith("Repository"))
+            .Where(t => t.Namespace == "Client.Persistence.Repositories" && t.Name.EndsWith("Repository"))
             .ToList();
 
 

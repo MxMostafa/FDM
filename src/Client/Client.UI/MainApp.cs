@@ -1,4 +1,4 @@
-﻿using Client.Infra.DbContexts;
+﻿using Client.Persistence.DbContexts;
 using Client.UI.Extensions;
 using Client.UI.Forms.DialogForms;
 using DevExpress.XtraBars;

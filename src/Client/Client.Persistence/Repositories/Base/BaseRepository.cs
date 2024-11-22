@@ -1,6 +1,6 @@
 ﻿
 
-namespace Client.Infra.Repositories.Base;
+namespace Client.Persistence.Repositories.Base;
 
 public abstract class BaseRepository
 {
