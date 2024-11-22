@@ -3,7 +3,9 @@
 
 
 
-namespace Client.Domain.Services;
+using Client.Application.Resources;
+
+namespace Client.Application.Services;
 
 public class DownloadQueueService : IDownloadQueueService
 {

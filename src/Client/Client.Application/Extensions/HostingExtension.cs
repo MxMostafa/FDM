@@ -4,14 +4,14 @@
 
 
 
-namespace Client.Domain.Extensions;
+namespace Client.Application.Extensions;
 
 public static class HostingExtension
 {
-    public static IServiceCollection AddDomainToDC(this IServiceCollection services)
+    public static IServiceCollection AddApplicationServicesToDC(this IServiceCollection services)
     {
         var types = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.Namespace == "Client.Domain.Services" && t.Name.EndsWith("Service"))
+            .Where(t => t.Namespace == "Client.Application.Services" && t.Name.EndsWith("Service"))
             .ToList();
 
 

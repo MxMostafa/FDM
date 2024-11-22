@@ -2,6 +2,8 @@
 
 
 
+using Client.Domain.Dtos;
+using Client.Domain.Dtos.Response.AppSetting;
 using Client.Domain.Dtos.Response.FileTypeGroup;
 
 namespace Client.Domain.Interfaces.Services;

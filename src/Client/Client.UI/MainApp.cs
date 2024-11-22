@@ -1,8 +1,6 @@
-﻿using Client.Persistence.DbContexts;
-using Client.UI.Extensions;
+﻿using Client.UI.Extensions;
 using Client.UI.Forms.DialogForms;
 using DevExpress.XtraBars;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;

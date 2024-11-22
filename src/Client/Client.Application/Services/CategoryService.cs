@@ -1,6 +1,6 @@
-﻿using Client.Domain.Interfaces.Services;
+﻿
 
-namespace Client.Domain.Services;
+namespace Client.Application.Services;
 
 public class CategoryService : ICategoryService
 {

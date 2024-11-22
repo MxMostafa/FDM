@@ -20,7 +20,8 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         DownloadQueueElement.ContextButtons.First().Click += Main_Click;
         _serviceProvider = serviceProvider;
         _logger = logger;
-        Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
+
+        System.Windows.Forms.Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
         AppDomain.CurrentDomain.UnhandledException += (sender, e) => (e.ExceptionObject as Exception).Handle(_logger);
     }
 

@@ -3,7 +3,7 @@ using Client.Domain.Dtos.Response.FileTypeGroup;
 using MapsterMapper;
 using System.Collections.Generic;
 
-namespace Client.Domain.Services;
+namespace Client.Application.Services;
 public class AppSettingService : IAppSettingService
 {
     private readonly IAppSettingRepository _appSettingRepository;

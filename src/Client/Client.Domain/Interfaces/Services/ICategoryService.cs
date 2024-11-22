@@ -1,4 +1,8 @@
-﻿namespace Client.Domain.Interfaces.Services;
+﻿
+
+
+
+namespace Client.Domain.Interfaces.Services;
 
 public interface ICategoryService
 {

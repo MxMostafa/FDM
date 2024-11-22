@@ -2,9 +2,10 @@
 
 
 
-using Client.Domain.Helpers;
+using Client.Application.Helpers;
+using Client.Application.Resources;
 
-namespace Client.Domain.Services;
+namespace Client.Application.Services;
 
 public class DownloadFileService : IDownloadFileService
 {

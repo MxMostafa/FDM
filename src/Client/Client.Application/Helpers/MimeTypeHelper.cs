@@ -1,5 +1,5 @@
 ﻿
-namespace Client.Domain.Helpers;
+namespace Client.Application.Helpers;
 
 public static class MimeTypeHelper
 {

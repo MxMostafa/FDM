@@ -5,7 +5,7 @@ namespace Client.Persistence.Extensions;
 
 public static class HostingExtension
 {
-    public static IServiceCollection AddInfrastructureToDC(this IServiceCollection services)
+    public static IServiceCollection AddPersistenceToDC(this IServiceCollection services)
     {
 
        

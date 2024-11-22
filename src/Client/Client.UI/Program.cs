@@ -1,10 +1,5 @@
 ﻿
 
-using Client.Persistence.DbContexts;
-using DevExpress.XtraWaitForm;
-using Microsoft.EntityFrameworkCore;
-using Serilog;
-
 namespace Client.UI;
 
 internal static class Program
@@ -21,16 +16,16 @@ internal static class Program
         services.Configuration();
         services.AddMappings();
         services.RegisterForms();
-       
-        
+
+
 
         // تنظیمات برنامه و اجرای فرم اصلی
         var serviceProvider = services.BuildServiceProvider();
-        Application.EnableVisualStyles();
-        Application.SetCompatibleTextRenderingDefault(false);
+        System.Windows.Forms.Application.EnableVisualStyles();
+        System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
         WindowsFormsSettings.TrackWindowsAppMode = DevExpress.Utils.DefaultBoolean.True;
         var mainForm = serviceProvider.GetRequiredService<Main>();
-        Application.Run(mainForm);
+        System.Windows.Forms.Application.Run(mainForm);
     }
 
     private static void HandleException(Exception ex)

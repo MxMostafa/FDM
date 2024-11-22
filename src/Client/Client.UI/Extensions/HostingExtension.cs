@@ -2,16 +2,19 @@
 
 
 
+using Client.Application.Extensions;
+using Client.Persistence.Extensions;
+
 namespace Client.UI.Extensions;
 
 public static class HostingExtension
 {
     public static IServiceCollection Configuration(this IServiceCollection services)
     {
+        
 
-
-        services.AddInfrastructureToDC();
-        services.AddDomainToDC();
+        services.AddApplicationServicesToDC();
+        services.AddPersistenceToDC();
         services.AddMemoryCache();
         services.AddHttpClient();
         // پیکربندی و ایجاد Logger با استفاده از Serilog

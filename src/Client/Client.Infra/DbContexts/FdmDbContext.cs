@@ -1,7 +1,7 @@
 ﻿using Client.Domain.Entites.Base;
 using System.Linq.Expressions;
 
-namespace Client.Persistence.DbContexts;
+namespace Client.Infrastructure.DbContexts;
 public class FdmDbContext : DbContext
 {
     public DbSet<CategoryGroup> CategoryGroups { get; set; }
