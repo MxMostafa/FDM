@@ -44,6 +44,8 @@ public static class HostingExtension
         services.AddTransient<DownloadFileInfoDialogForm>();
         services.AddTransient<TestComponentForm>();
         services.AddTransient<AddFileTypeGroupDialogForm>();
+        services.AddTransient<LoginFormDialogForm>();
+        services.AddTransient<ErrorDialogForm>();
         
 
         return services;

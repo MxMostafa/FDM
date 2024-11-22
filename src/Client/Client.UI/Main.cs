@@ -141,6 +141,11 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         }
     }
 
+    private void LoginMenuButton_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        GetForm<LoginFormDialogForm>()?.ShowDialog();
+    }
+
     private TForm GetForm<TForm>() where TForm : Form
     {
         try
@@ -155,5 +160,5 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     }
 
-   
+
 }

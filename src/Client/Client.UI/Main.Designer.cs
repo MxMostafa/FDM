@@ -30,9 +30,11 @@
         {
             components = new Container();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
-            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -65,6 +67,11 @@
             barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
             darkLightButton = new DevExpress.XtraBars.BarButtonItem();
+            AccountButton = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            AccountMenuButton = new DevExpress.XtraBars.BarSubItem();
+            LoginMenuButton = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             barManager1 = new DevExpress.XtraBars.BarManager(components);
             bar4 = new DevExpress.XtraBars.Bar();
@@ -206,7 +213,7 @@
             // 
             // downloadViewModelBindingSource
             // 
-            downloadViewModelBindingSource.DataSource = typeof(ViewModel.Download.DownloadViewModel);
+            downloadViewModelBindingSource.DataSource = typeof(DownloadViewModel);
             // 
             // gridView1
             // 
@@ -296,9 +303,9 @@
             // 
             fluentFormDefaultManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] { bar1, bar2, bar3 });
             fluentFormDefaultManager1.Form = this;
-            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8, barToggleSwitchItem1, darkLightButton });
+            fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8, barToggleSwitchItem1, darkLightButton, AccountButton, barButtonItem11, AccountMenuButton, LoginMenuButton, barButtonItem18 });
             fluentFormDefaultManager1.MainMenu = bar1;
-            fluentFormDefaultManager1.MaxItemId = 8;
+            fluentFormDefaultManager1.MaxItemId = 13;
             fluentFormDefaultManager1.StatusBar = bar2;
             // 
             // bar1
@@ -411,6 +418,48 @@
             darkLightButton.ImageOptions.SvgImage = Properties.Resources.QuietHours;
             darkLightButton.Name = "darkLightButton";
             darkLightButton.ItemClick += darkLightButton_ItemClick;
+            // 
+            // AccountButton
+            // 
+            AccountButton.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            AccountButton.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
+            AccountButton.Id = 8;
+            AccountButton.ImageOptions.SvgImage = Properties.Resources.actions_user;
+            AccountButton.Name = "AccountButton";
+            // 
+            // barButtonItem11
+            // 
+            barButtonItem11.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            barButtonItem11.Caption = "barButtonItem11";
+            barButtonItem11.Id = 9;
+            barButtonItem11.Name = "barButtonItem11";
+            // 
+            // AccountMenuButton
+            // 
+            AccountMenuButton.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            AccountMenuButton.Id = 10;
+            AccountMenuButton.ImageOptions.SvgImage = Properties.Resources.actions_user1;
+            AccountMenuButton.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(LoginMenuButton), new DevExpress.XtraBars.LinkPersistInfo(barButtonItem18) });
+            AccountMenuButton.Name = "AccountMenuButton";
+            AccountMenuButton.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            toolTipTitleItem1.Text = "تنظیمات حساب کاربری";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            AccountMenuButton.SuperTip = superToolTip1;
+            // 
+            // LoginMenuButton
+            // 
+            LoginMenuButton.Caption = "ورود به حساب کاربری";
+            LoginMenuButton.Id = 11;
+            LoginMenuButton.ImageOptions.SvgImage = Properties.Resources.DynamicLock;
+            LoginMenuButton.Name = "LoginMenuButton";
+            LoginMenuButton.ItemClick += LoginMenuButton_ItemClick;
+            // 
+            // barButtonItem18
+            // 
+            barButtonItem18.Caption = "خروج از حساب کاربری";
+            barButtonItem18.Id = 12;
+            barButtonItem18.ImageOptions.SvgImage = Properties.Resources.ChromeClose;
+            barButtonItem18.Name = "barButtonItem18";
             // 
             // barDockControl1
             // 
@@ -919,16 +968,16 @@
             SettingMenuButton.ImageOptions.SvgImageSize = new Size(35, 32);
             SettingMenuButton.Name = "SettingMenuButton";
             SettingMenuButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem1.Text = "تنیمات اصلی";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            SettingMenuButton.SuperTip = superToolTip1;
+            toolTipTitleItem2.Text = "تنیمات اصلی";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            SettingMenuButton.SuperTip = superToolTip2;
             SettingMenuButton.Text = "تنظیمات";
             SettingMenuButton.Click += SettingMenuButton_Click;
             // 
             // fluentDesignFormControl1
             // 
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8, barToggleSwitchItem1, darkLightButton });
+            fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { skinBarSubItem1, barSubItem1, barButtonItem1, skinBarSubItem2, barSubItem2, barButtonItem2, barButtonItem3, barButtonItem7, barButtonItem8, barToggleSwitchItem1, darkLightButton, AccountButton, barButtonItem11, AccountMenuButton, LoginMenuButton, barButtonItem18 });
             fluentDesignFormControl1.Location = new Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Margin = new Padding(3, 4, 3, 4);
@@ -936,6 +985,7 @@
             fluentDesignFormControl1.Size = new Size(1063, 33);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
+            fluentDesignFormControl1.TitleItemLinks.Add(AccountMenuButton);
             // 
             // barButtonItem4
             // 
@@ -1167,5 +1217,10 @@
         private DevExpress.XtraBars.Bar bar9;
         private DevExpress.XtraBars.Bar bar10;
         private DevExpress.XtraBars.Bar bar11;
+        private DevExpress.XtraBars.BarButtonItem AccountButton;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarSubItem AccountMenuButton;
+        private DevExpress.XtraBars.BarButtonItem LoginMenuButton;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem18;
     }
 }
