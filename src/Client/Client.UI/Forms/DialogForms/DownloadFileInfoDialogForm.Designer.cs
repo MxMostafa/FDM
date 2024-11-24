@@ -34,9 +34,9 @@
             mxLabel2 = new UserControls.Common.MxLabel();
             mxLabel3 = new UserControls.Common.MxLabel();
             downloadURLTextbox = new UserControls.Common.MxTextBox();
-            mxTextBox2 = new UserControls.Common.MxTextBox();
+            FileTypeGroupSavePathTextBox = new UserControls.Common.MxTextBox();
             mxButton15 = new UserControls.Common.MxButton();
-            mxButton1 = new UserControls.Common.MxButton();
+            ChangeSavePathButton = new UserControls.Common.MxButton();
             fileTypeImage = new PictureEdit();
             mxButton2 = new UserControls.Common.MxButton();
             mxButton3 = new UserControls.Common.MxButton();
@@ -44,8 +44,9 @@
             FileSizeLabel = new UserControls.Common.MxLabel();
             FileTypeGroupComboBox = new UserControls.Common.MxComboBox();
             fileTypeGroupViewModelBindingSource = new BindingSource(components);
+            xtraFolderBrowserDialog1 = new XtraFolderBrowserDialog(components);
             ((ISupportInitialize)downloadURLTextbox.Properties).BeginInit();
-            ((ISupportInitialize)mxTextBox2.Properties).BeginInit();
+            ((ISupportInitialize)FileTypeGroupSavePathTextBox.Properties).BeginInit();
             ((ISupportInitialize)fileTypeImage.Properties).BeginInit();
             ((ISupportInitialize)FileTypeGroupComboBox.Properties).BeginInit();
             ((ISupportInitialize)fileTypeGroupViewModelBindingSource).BeginInit();
@@ -83,18 +84,21 @@
             // 
             // downloadURLTextbox
             // 
-            downloadURLTextbox.Enabled = false;
             downloadURLTextbox.Location = new Point(92, 16);
             downloadURLTextbox.Name = "downloadURLTextbox";
+            downloadURLTextbox.Properties.ReadOnly = true;
+            downloadURLTextbox.RightToLeft = RightToLeft.No;
             downloadURLTextbox.Size = new Size(477, 28);
             downloadURLTextbox.TabIndex = 1;
             // 
-            // mxTextBox2
+            // FileTypeGroupSavePathTextBox
             // 
-            mxTextBox2.Location = new Point(92, 92);
-            mxTextBox2.Name = "mxTextBox2";
-            mxTextBox2.Size = new Size(428, 28);
-            mxTextBox2.TabIndex = 2;
+            FileTypeGroupSavePathTextBox.Location = new Point(92, 92);
+            FileTypeGroupSavePathTextBox.Name = "FileTypeGroupSavePathTextBox";
+            FileTypeGroupSavePathTextBox.Properties.ReadOnly = true;
+            FileTypeGroupSavePathTextBox.RightToLeft = RightToLeft.No;
+            FileTypeGroupSavePathTextBox.Size = new Size(428, 28);
+            FileTypeGroupSavePathTextBox.TabIndex = 2;
             // 
             // mxButton15
             // 
@@ -107,15 +111,16 @@
             mxButton15.Text = "+";
             mxButton15.Click += mxButton15_Click;
             // 
-            // mxButton1
+            // ChangeSavePathButton
             // 
-            mxButton1.Appearance.BackColor = Color.Gainsboro;
-            mxButton1.Appearance.Options.UseBackColor = true;
-            mxButton1.Location = new Point(527, 94);
-            mxButton1.Name = "mxButton1";
-            mxButton1.Size = new Size(42, 23);
-            mxButton1.TabIndex = 21;
-            mxButton1.Text = "...";
+            ChangeSavePathButton.Appearance.BackColor = Color.Gainsboro;
+            ChangeSavePathButton.Appearance.Options.UseBackColor = true;
+            ChangeSavePathButton.Location = new Point(527, 94);
+            ChangeSavePathButton.Name = "ChangeSavePathButton";
+            ChangeSavePathButton.Size = new Size(42, 23);
+            ChangeSavePathButton.TabIndex = 21;
+            ChangeSavePathButton.Text = "...";
+            ChangeSavePathButton.Click += ChangeSavePathButton_Click;
             // 
             // fileTypeImage
             // 
@@ -187,6 +192,10 @@
             // 
             fileTypeGroupViewModelBindingSource.DataSource = typeof(ViewModel.FileTypeGroup.FileTypeGroupViewModel);
             // 
+            // xtraFolderBrowserDialog1
+            // 
+            xtraFolderBrowserDialog1.SelectedPath = "xtraFolderBrowserDialog1";
+            // 
             // DownloadFileInfoDialogForm
             // 
             Appearance.Options.UseFont = true;
@@ -199,9 +208,9 @@
             Controls.Add(mxButton3);
             Controls.Add(mxButton2);
             Controls.Add(fileTypeImage);
-            Controls.Add(mxButton1);
+            Controls.Add(ChangeSavePathButton);
             Controls.Add(mxButton15);
-            Controls.Add(mxTextBox2);
+            Controls.Add(FileTypeGroupSavePathTextBox);
             Controls.Add(downloadURLTextbox);
             Controls.Add(mxLabel3);
             Controls.Add(mxLabel2);
@@ -212,7 +221,7 @@
             Text = "مشخصات فایل دانلود";
             Load += DownloadFileInfoDialogForm_Load;
             ((ISupportInitialize)downloadURLTextbox.Properties).EndInit();
-            ((ISupportInitialize)mxTextBox2.Properties).EndInit();
+            ((ISupportInitialize)FileTypeGroupSavePathTextBox.Properties).EndInit();
             ((ISupportInitialize)fileTypeImage.Properties).EndInit();
             ((ISupportInitialize)FileTypeGroupComboBox.Properties).EndInit();
             ((ISupportInitialize)fileTypeGroupViewModelBindingSource).EndInit();
@@ -226,9 +235,9 @@
         private UserControls.Common.MxLabel mxLabel2;
         private UserControls.Common.MxLabel mxLabel3;
         private UserControls.Common.MxTextBox downloadURLTextbox;
-        private UserControls.Common.MxTextBox mxTextBox2;
+        private UserControls.Common.MxTextBox FileTypeGroupSavePathTextBox;
         private UserControls.Common.MxButton mxButton15;
-        private UserControls.Common.MxButton mxButton1;
+        private UserControls.Common.MxButton ChangeSavePathButton;
         private PictureEdit fileTypeImage;
         private UserControls.Common.MxButton mxButton2;
         private UserControls.Common.MxButton mxButton3;
@@ -236,5 +245,6 @@
         private UserControls.Common.MxLabel FileSizeLabel;
         private UserControls.Common.MxComboBox FileTypeGroupComboBox;
         private BindingSource fileTypeGroupViewModelBindingSource;
+        private XtraFolderBrowserDialog xtraFolderBrowserDialog1;
     }
 }

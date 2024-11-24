@@ -117,14 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="mxLabel17.Text" xml:space="preserve">
-    <value>پوشه موقتی برای ذخیره فایلهای موقتی لازم است.اگر بر روی کامپیوتر خود چند هارددیسک دارید
- باید این پوشه و پوشه "ذخیره در"  را روی هارددیسک دیگری ایجاد کنید
- تا الحاق فایلها  به یکدیگر سریعتر انجام گیرد</value>
-  </data>
-  <metadata name="fileTypeGroupViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="DevExpress.Data.v24.1" name="DevExpress.Data.v24.1, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="pictureEdit5.EditValue" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v24.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -301,6 +293,14 @@
         xKCeIztX9PxNfnPh7QLOr3VKAT0/bsYsAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="mxLabel17.Text" xml:space="preserve">
+    <value>پوشه موقتی برای ذخیره فایلهای موقتی لازم است.اگر بر روی کامپیوتر خود چند هارددیسک دارید
+ باید این پوشه و پوشه "ذخیره در"  را روی هارددیسک دیگری ایجاد کنید
+ تا الحاق فایلها  به یکدیگر سریعتر انجام گیرد</value>
+  </data>
+  <metadata name="fileTypeGroupViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="pictureEdit4.EditValue" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v24.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjI0LjEsIFZlcnNpb249MjQuMS4z

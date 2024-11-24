@@ -71,6 +71,8 @@ namespace Client.Infrastructure.Migrations
                     FileExtensions = table.Column<string>(type: "TEXT", nullable: true),
                     IconName = table.Column<string>(type: "TEXT", nullable: true),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    SavePath = table.Column<string>(type: "TEXT", nullable: false),
+                    FolderName = table.Column<string>(type: "TEXT", nullable: true),
                     Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Updated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
@@ -103,14 +105,14 @@ namespace Client.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "FileTypeGroups",
-                columns: new[] { "Id", "Created", "FileExtensions", "IconName", "IsDeleted", "Title", "Updated" },
+                columns: new[] { "Id", "Created", "FileExtensions", "FolderName", "IconName", "IsDeleted", "SavePath", "Title", "Updated" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(68), "zip rar", null, false, "فایل های فشرده", new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(79) },
-                    { 2, new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(86), "txt docx xls", null, false, "اسناد", new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(87) },
-                    { 3, new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(89), "mp3 wave", null, false, "موسیقی", new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(89) },
-                    { 4, new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(91), "exe msi", null, false, "برنامه ها", new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(91) },
-                    { 5, new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(93), "mpeg 3gp avi flv", null, false, "تصویری", new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(94) }
+                    { 1, new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2033), "zip rar", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "فایل های فشرده", new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2044) },
+                    { 2, new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2237), "txt docx xls", "Documents", null, false, "C:\\Users\\Sattec\\Downloads\\Documents", "اسناد", new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2238) },
+                    { 3, new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2255), "mp3 wave", "Music", null, false, "C:\\Users\\Sattec\\Downloads\\Music", "موسیقی", new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2255) },
+                    { 4, new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2268), "exe msi", "Video", null, false, "C:\\Users\\Sattec\\Downloads\\Video", "برنامه ها", new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2269) },
+                    { 5, new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2281), "mpeg 3gp avi flv", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "تصویری", new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2282) }
                 });
 
             migrationBuilder.CreateIndex(

@@ -84,7 +84,7 @@
             LastPublicSaveDirectoryCheckBox = new UserControls.Common.MxCheckBox();
             mxSearch1 = new UserControls.Common.MxSearch();
             mxLabel16 = new UserControls.Common.MxLabel();
-            mxTextBox1 = new UserControls.Common.MxTextBox();
+            FileTypeGroupSavePathTextbox = new UserControls.Common.MxTextBox();
             mxLabel15 = new UserControls.Common.MxLabel();
             EditFileTypeGroupButton = new UserControls.Common.MxButton();
             AddFileTypeGroupButton = new UserControls.Common.MxButton();
@@ -176,7 +176,7 @@
             ((ISupportInitialize)FileTypeGroupComboBox.Properties).BeginInit();
             ((ISupportInitialize)fileTypeGroupViewModelBindingSource).BeginInit();
             ((ISupportInitialize)LastPublicSaveDirectoryCheckBox.Properties).BeginInit();
-            ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
+            ((ISupportInitialize)FileTypeGroupSavePathTextbox.Properties).BeginInit();
             downloadsTb.SuspendLayout();
             ((ISupportInitialize)comboBoxEdit2.Properties).BeginInit();
             ((ISupportInitialize)separatorControl7).BeginInit();
@@ -686,7 +686,7 @@
             groupControl2.Controls.Add(LastPublicSaveDirectoryCheckBox);
             groupControl2.Controls.Add(mxSearch1);
             groupControl2.Controls.Add(mxLabel16);
-            groupControl2.Controls.Add(mxTextBox1);
+            groupControl2.Controls.Add(FileTypeGroupSavePathTextbox);
             groupControl2.Controls.Add(mxLabel15);
             groupControl2.Controls.Add(EditFileTypeGroupButton);
             groupControl2.Controls.Add(AddFileTypeGroupButton);
@@ -709,6 +709,7 @@
             FileTypeGroupComboBox.Properties.PopupFilterMode = PopupFilterMode.Contains;
             FileTypeGroupComboBox.Properties.ShowHeader = false;
             FileTypeGroupComboBox.Properties.ValueMember = "Id";
+            FileTypeGroupComboBox.Properties.SelectionChanged += FileTypeGroupComboBox_Properties_SelectionChanged;
             FileTypeGroupComboBox.Size = new Size(378, 28);
             FileTypeGroupComboBox.TabIndex = 28;
             // 
@@ -741,13 +742,13 @@
             mxLabel16.TabIndex = 23;
             mxLabel16.Text = "مسیر پیش فرض ذخیره فایلها(گروه عمومی):";
             // 
-            // mxTextBox1
+            // FileTypeGroupSavePathTextbox
             // 
-            mxTextBox1.EditValue = "";
-            mxTextBox1.Location = new Point(29, 104);
-            mxTextBox1.Name = "mxTextBox1";
-            mxTextBox1.Size = new Size(468, 28);
-            mxTextBox1.TabIndex = 22;
+            FileTypeGroupSavePathTextbox.EditValue = "";
+            FileTypeGroupSavePathTextbox.Location = new Point(29, 104);
+            FileTypeGroupSavePathTextbox.Name = "FileTypeGroupSavePathTextbox";
+            FileTypeGroupSavePathTextbox.Size = new Size(468, 28);
+            FileTypeGroupSavePathTextbox.TabIndex = 22;
             // 
             // mxLabel15
             // 
@@ -1231,7 +1232,7 @@
             ((ISupportInitialize)FileTypeGroupComboBox.Properties).EndInit();
             ((ISupportInitialize)fileTypeGroupViewModelBindingSource).EndInit();
             ((ISupportInitialize)LastPublicSaveDirectoryCheckBox.Properties).EndInit();
-            ((ISupportInitialize)mxTextBox1.Properties).EndInit();
+            ((ISupportInitialize)FileTypeGroupSavePathTextbox.Properties).EndInit();
             downloadsTb.ResumeLayout(false);
             downloadsTb.PerformLayout();
             ((ISupportInitialize)comboBoxEdit2.Properties).EndInit();
@@ -1289,7 +1290,7 @@
         private UserControls.Common.MxButton EditFileTypeGroupButton;
         private UserControls.Common.MxButton AddFileTypeGroupButton;
         private UserControls.Common.MxLabel mxLabel16;
-        private UserControls.Common.MxTextBox mxTextBox1;
+        private UserControls.Common.MxTextBox FileTypeGroupSavePathTextbox;
         private UserControls.Common.MxLabel mxLabel15;
         private UserControls.Common.MxSearch mxSearch1;
         private UserControls.Common.MxCheckBox LastPublicSaveDirectoryCheckBox;

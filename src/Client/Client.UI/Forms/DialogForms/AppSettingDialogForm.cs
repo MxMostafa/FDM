@@ -3,6 +3,7 @@
 
 
 
+using Client.Domain.Entites;
 using Client.UI.ViewModel.FileTypeGroup;
 
 namespace Client.UI.Forms.DialogForms;
@@ -67,7 +68,9 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                 Id = f.Id,
                 Title = f.Title,
                 FileExtensions = f.FileExtensions,
-                IconName = f.IconName
+                IconName = f.IconName,
+                SavePath = f.SavePath,
+                FolderName = f.FolderName
             }).ToList();
         }
         catch (Exception ex)
@@ -228,7 +231,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
             var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<AddFileTypeGroupDialogForm>();
 
             if (addFileTypeGroupDialogForm.ShowDialog() == DialogResult.OK)
-            await FillFileTypeGroupsAsync();
+                await FillFileTypeGroupsAsync();
 
         }
         catch (Exception ex)
@@ -248,8 +251,26 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
 
             addFileTypeGroupDialogForm.FileTypeGroupId = selected;
             if (addFileTypeGroupDialogForm.ShowDialog() == DialogResult.OK)
-            await FillFileTypeGroupsAsync();
+                await FillFileTypeGroupsAsync();
 
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+    }
+
+    private async void FileTypeGroupComboBox_Properties_SelectionChanged(object sender, DevExpress.XtraEditors.Controls.PopupSelectionChangedEventArgs e)
+    {
+        try
+        {
+            if (!(FileTypeGroupComboBox.EditValue is int selected)) return;
+            var fileTypeGroupRequest = await _appSettingService.GetFileTypeGroupByIdAsync(selected);
+            if (fileTypeGroupRequest.IsSucceed)
+            {
+                FileTypeGroupSavePathTextbox.Text = fileTypeGroupRequest.Data.SavePath;
+            }
         }
         catch (Exception ex)
         {

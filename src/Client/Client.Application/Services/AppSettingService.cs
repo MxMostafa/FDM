@@ -93,7 +93,9 @@ public class AppSettingService : IAppSettingService
             Id = fg.Id,
             Title = fg.Title,
             FileExtensions = fg.FileExtensions,
-            IconName = fg.IconName
+            IconName = fg.IconName,
+            SavePath = fg.SavePath,
+            FolderName = fg.FolderName
         }).ToList();
 
         return result;
@@ -116,7 +118,9 @@ public class AppSettingService : IAppSettingService
             Id = fileTypeGroup.Id,
             Title = fileTypeGroup.Title,
             FileExtensions = fileTypeGroup.FileExtensions,
-            IconName = fileTypeGroup.IconName
+            IconName = fileTypeGroup.IconName,
+            SavePath = fileTypeGroup.SavePath,
+            FolderName = fileTypeGroup.FolderName
         };
 
     }
@@ -133,7 +137,9 @@ public class AppSettingService : IAppSettingService
             Id = fileTypeGroup.Id,
             Title = fileTypeGroup.Title,
             FileExtensions = fileTypeGroup.FileExtensions,
-            IconName = fileTypeGroup.IconName
+            IconName = fileTypeGroup.IconName,
+            SavePath = fileTypeGroup.SavePath,
+            FolderName = fileTypeGroup.FolderName
         };
 
     }
@@ -150,7 +156,9 @@ public class AppSettingService : IAppSettingService
             Id = fileTypeGroup.Id,
             Title = fileTypeGroup.Title,
             FileExtensions = fileTypeGroup.FileExtensions,
-            IconName = fileTypeGroup.IconName
+            IconName = fileTypeGroup.IconName,
+            SavePath = fileTypeGroup.SavePath,
+            FolderName = fileTypeGroup.FolderName
         };
 
     }
@@ -166,7 +174,9 @@ public class AppSettingService : IAppSettingService
         {
             Id = 0,
             Title = model.Title,
-            FileExtensions = model.FileExtensions
+            FileExtensions = model.FileExtensions,
+            SavePath = model.SavePath,
+            FolderName = model.FolderName
         };
 
         await _fileTypeGroupRepository.AddAsync(fileTypeGroup);
@@ -176,7 +186,9 @@ public class AppSettingService : IAppSettingService
             Id = fileTypeGroup.Id,
             Title = fileTypeGroup.Title,
             FileExtensions = fileTypeGroup.FileExtensions,
-            IconName = fileTypeGroup.IconName
+            IconName = fileTypeGroup.IconName,
+            SavePath = fileTypeGroup.SavePath,
+            FolderName = fileTypeGroup.FolderName
         };
     }
 
@@ -196,7 +208,7 @@ public class AppSettingService : IAppSettingService
 
         fileTypeGroup.Title = model.Title;
         fileTypeGroup.FileExtensions = model.FileExtensions;
-
+        fileTypeGroup.SavePath = model.SavePath;
 
         await _fileTypeGroupRepository.UpdateAsync(fileTypeGroup);
 
@@ -205,7 +217,9 @@ public class AppSettingService : IAppSettingService
             Id = fileTypeGroup.Id,
             Title = fileTypeGroup.Title,
             FileExtensions = fileTypeGroup.FileExtensions,
-            IconName = fileTypeGroup.IconName
+            IconName = fileTypeGroup.IconName,
+            SavePath = fileTypeGroup.SavePath,
+            FolderName = fileTypeGroup.FolderName
         };
     }
 

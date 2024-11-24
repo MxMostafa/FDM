@@ -2,6 +2,7 @@
 
 
 
+using Client.Domain.Entites;
 using Client.UI.ViewModel.FileTypeGroup;
 
 namespace Client.UI.Forms.DialogForms;
@@ -88,14 +89,17 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
                 Id = f.Id,
                 Title = f.Title,
                 FileExtensions = f.FileExtensions,
-                IconName = f.IconName
+                IconName = f.IconName,
+                SavePath = f.SavePath,
+                FolderName = f.FolderName
             }).ToList();
 
             var downloadFileInfoTypeRequest = await _appSettingService.GetByFileExtensionAsync(_downloadFileInfo.FileExtension);
             if (downloadFileInfoTypeRequest.IsSucceed)
             {
-               
-                FileTypeGroupComboBox.EditValue= downloadFileInfoTypeRequest.Data.Id;
+
+                FileTypeGroupComboBox.EditValue = downloadFileInfoTypeRequest.Data.Id;
+                FileTypeGroupSavePathTextBox.Text = downloadFileInfoTypeRequest.Data.SavePath;
             }
 
         }
@@ -123,5 +127,19 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
             ex.Handle(_logger);
         }
 
+    }
+
+    private void ChangeSavePathButton_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (xtraFolderBrowserDialog1.ShowDialog() != DialogResult.OK) return;
+            FileTypeGroupSavePathTextBox.Text = xtraFolderBrowserDialog1.SelectedPath;
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 }

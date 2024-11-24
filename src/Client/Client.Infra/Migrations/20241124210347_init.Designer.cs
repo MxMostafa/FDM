@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Client.Infrastructure.Migrations
 {
     [DbContext(typeof(FdmDbContext))]
-    [Migration("20241124203819_init")]
+    [Migration("20241124210347_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -130,11 +130,18 @@ namespace Client.Infrastructure.Migrations
                     b.Property<string>("FileExtensions")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("FolderName")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("IconName")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("SavePath")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -151,47 +158,57 @@ namespace Client.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(68),
+                            Created = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2033),
                             FileExtensions = "zip rar",
+                            FolderName = "Compressed",
                             IsDeleted = false,
+                            SavePath = "C:\\Users\\Sattec\\Downloads\\Compressed",
                             Title = "فایل های فشرده",
-                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(79)
+                            Updated = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2044)
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(86),
+                            Created = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2237),
                             FileExtensions = "txt docx xls",
+                            FolderName = "Documents",
                             IsDeleted = false,
+                            SavePath = "C:\\Users\\Sattec\\Downloads\\Documents",
                             Title = "اسناد",
-                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(87)
+                            Updated = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2238)
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(89),
+                            Created = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2255),
                             FileExtensions = "mp3 wave",
+                            FolderName = "Music",
                             IsDeleted = false,
+                            SavePath = "C:\\Users\\Sattec\\Downloads\\Music",
                             Title = "موسیقی",
-                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(89)
+                            Updated = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2255)
                         },
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(91),
+                            Created = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2268),
                             FileExtensions = "exe msi",
+                            FolderName = "Video",
                             IsDeleted = false,
+                            SavePath = "C:\\Users\\Sattec\\Downloads\\Video",
                             Title = "برنامه ها",
-                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(91)
+                            Updated = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2269)
                         },
                         new
                         {
                             Id = 5,
-                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(93),
+                            Created = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2281),
                             FileExtensions = "mpeg 3gp avi flv",
+                            FolderName = "Compressed",
                             IsDeleted = false,
+                            SavePath = "C:\\Users\\Sattec\\Downloads\\Compressed",
                             Title = "تصویری",
-                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(94)
+                            Updated = new DateTime(2024, 11, 25, 0, 33, 46, 328, DateTimeKind.Local).AddTicks(2282)
                         });
                 });
 

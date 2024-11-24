@@ -1,4 +1,6 @@
-﻿using Client.UI.Constants;
+﻿using Client.Domain.Entites;
+using Client.UI.Constants;
+using DevExpress.XtraEditors;
 using System;
 
 
@@ -32,7 +34,8 @@ public partial class AddFileTypeGroupDialogForm : MasterFixedDialogForm
             var request = await _appSettingService.AddFileTypeGroupAsync(new Domain.Dtos.Request.FileTypeGroup.AddFileTypeGroupReqDto()
             {
                 Title = groumNameTextbox.Text,
-                FileExtensions = ExtensionsTextbox.Text
+                FileExtensions = ExtensionsTextbox.Text,
+                SavePath =FileTypeGroupSavePathTextBox.Text
             }
             );
 
@@ -43,6 +46,20 @@ public partial class AddFileTypeGroupDialogForm : MasterFixedDialogForm
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+    }
+
+    private void ChangeSavePathButton_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (xtraFolderBrowserDialog1.ShowDialog() != DialogResult.OK) return;
+            FileTypeGroupSavePathTextBox.Text = xtraFolderBrowserDialog1.SelectedPath;
         }
         catch (Exception ex)
         {
