@@ -11,4 +11,5 @@ public interface IFileTypeGroupRepository
     Task<bool> DeleteAsync(FileTypeGroup fileTypeGroup);
     Task<FileTypeGroup> UpdateAsync(FileTypeGroup fileTypeGroup);
     Task<FileTypeGroup> AddAsync(FileTypeGroup fileTypeGroup);
+    Task<FileTypeGroup> SoftDeleteAsync(FileTypeGroup fileTypeGroup);
 }

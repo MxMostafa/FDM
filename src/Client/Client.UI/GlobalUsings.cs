@@ -24,3 +24,6 @@ global using System.Reflection;
 global using ILogger = Microsoft.Extensions.Logging.ILogger;
 global using Client.Domain.Dtos.Response.DownloadQueueItem;
 global using Client.UI.ViewModel.Download;
+global using Client.Domain.Dtos.Response.AppSetting;
+global using Client.UI.Constants;
+global using Client.UI.Constants.Configs;

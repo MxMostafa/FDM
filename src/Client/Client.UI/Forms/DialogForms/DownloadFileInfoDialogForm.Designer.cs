@@ -174,9 +174,11 @@
             FileTypeGroupComboBox.Location = new Point(92, 54);
             FileTypeGroupComboBox.Name = "FileTypeGroupComboBox";
             FileTypeGroupComboBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            FileTypeGroupComboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] { new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Title", "Title", 36, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default) });
             FileTypeGroupComboBox.Properties.DataSource = fileTypeGroupViewModelBindingSource;
             FileTypeGroupComboBox.Properties.DisplayMember = "Title";
             FileTypeGroupComboBox.Properties.PopupFilterMode = PopupFilterMode.Contains;
+            FileTypeGroupComboBox.Properties.ShowHeader = false;
             FileTypeGroupComboBox.Properties.ValueMember = "Id";
             FileTypeGroupComboBox.Size = new Size(429, 28);
             FileTypeGroupComboBox.TabIndex = 27;

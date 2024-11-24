@@ -1,11 +1,9 @@
 ﻿
-using Client.Domain.Dtos.Response.AppSetting;
-using Client.Domain.Interfaces.Services;
-using Client.UI.Constants;
-using Client.UI.Constants.Configs;
-using Client.UI.Helpers;
-using Client.UI.ViewModel;
-using Microsoft.Extensions.Logging;
+
+
+
+
+using Client.UI.ViewModel.FileTypeGroup;
 
 namespace Client.UI.Forms.DialogForms;
 public partial class AppSettingDialogForm : MasterFixedDialogForm
@@ -16,12 +14,14 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
     private readonly IAppSettingService _appSettingService;
 
     private readonly ILogger _logger;
-    public AppSettingDialogForm(IAppSettingService appSettingService, ILogger<AppSettingDialogForm> logger)
+    private readonly IServiceProvider _serviceProvider;
+    public AppSettingDialogForm(IAppSettingService appSettingService, ILogger<AppSettingDialogForm> logger, IServiceProvider serviceProvider)
     {
         InitializeComponent();
         xtraTabControl1.SelectedTabPageIndex = 0;
         _appSettingService = appSettingService;
         _logger = logger;
+        _serviceProvider = serviceProvider;
     }
 
 
@@ -29,7 +29,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
     {
         try
         {
-
+            await FillFileTypeGroupsAsync();
             var appSettingsRequest = await _appSettingService.GetGeneralAppSettingAsync();
             if (appSettingsRequest.IsSucceed == false)
             {
@@ -50,6 +50,34 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         catch (Exception ex)
         {
             ex.Handle(_logger);
+        }
+
+    }
+
+    private async Task FillFileTypeGroupsAsync()
+    {
+        try
+        {
+            ShowPleaseWait();
+            var request = await _appSettingService.GetAllFileTypeGroupsAsync();
+            if (!request.IsSucceed) request.Throw();
+
+            fileTypeGroupViewModelBindingSource.DataSource = request.Data.Select(f => new FileTypeGroupViewModel()
+            {
+                Id = f.Id,
+                Title = f.Title,
+                FileExtensions = f.FileExtensions,
+                IconName = f.IconName
+            }).ToList();
+        }
+        catch (Exception ex)
+        {
+            HidePleaseWait();
+            ex.Handle(_logger);
+        }
+        finally
+        {
+            HidePleaseWait();
         }
 
     }
@@ -76,7 +104,7 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
             var data = new Dictionary<string, string>();
             data.Add(RunAppWhenWindowsStartCheckBox.Name, RunAppWhenWindowsStartCheckBox.Checked.ToString());
             data.Add(AutoDownloadClipboardLinksCheckbox.Name, AutoDownloadClipboardLinksCheckbox.Checked.ToString());
-            data.Add(AdvancedSyncUsageCheckbox.Name,AdvancedSyncUsageCheckbox.Checked.ToString());
+            data.Add(AdvancedSyncUsageCheckbox.Name, AdvancedSyncUsageCheckbox.Checked.ToString());
             data.Add(LastPublicSaveDirectoryCheckBox.Name, LastPublicSaveDirectoryCheckBox.Checked.ToString());
             data.Add(DownloadedFileServerDateCheckBox.Name, DownloadedFileServerDateCheckBox.Checked.ToString());
             data.Add(DownloadStartWindowCheckBox.Name, DownloadStartWindowCheckBox.Checked.ToString());
@@ -118,14 +146,14 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                     case var key when key == AppSettingConfigs.RunWindowsStartConfig:
                         RunAppWhenWindowsStartCheckBox.Checked = bool.Parse(setting.Value);
                         break;
-                    case var key when key ==  AppSettingConfigs.AutoDownloadConfig:
+                    case var key when key == AppSettingConfigs.AutoDownloadConfig:
                         AutoDownloadClipboardLinksCheckbox.Checked = bool.Parse(setting.Value);
                         break;
                     case var key when key == AppSettingConfigs.AdvancedSyncUsageConfig:
-                    AdvancedSyncUsageCheckbox.Checked=bool.Parse(setting.Value);
+                        AdvancedSyncUsageCheckbox.Checked = bool.Parse(setting.Value);
                         break;
-                    case var key when key== AppSettingConfigs.LastPublicSaveDirectoryConfig:
-                        LastPublicSaveDirectoryCheckBox.Checked=bool.Parse(setting.Value);
+                    case var key when key == AppSettingConfigs.LastPublicSaveDirectoryConfig:
+                        LastPublicSaveDirectoryCheckBox.Checked = bool.Parse(setting.Value);
                         break;
                     case var key when key == AppSettingConfigs.DownloadedFileServerDateConfig:
                         DownloadedFileServerDateCheckBox.Checked = bool.Parse(setting.Value);
@@ -189,6 +217,43 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         }
         catch (Exception ex)
         {
+            ex.Handle(_logger);
+        }
+    }
+
+    private async void AddFileTypeGroupButton_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<AddFileTypeGroupDialogForm>();
+
+            if (addFileTypeGroupDialogForm.ShowDialog() == DialogResult.OK)
+            await FillFileTypeGroupsAsync();
+
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+    }
+
+    private async void EditFileTypeGroupButton_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (!(FileTypeGroupComboBox.EditValue is int selected)) return;
+
+            var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<EditFileTypeGroupDialogForm>();
+
+            addFileTypeGroupDialogForm.FileTypeGroupId = selected;
+            if (addFileTypeGroupDialogForm.ShowDialog() == DialogResult.OK)
+            await FillFileTypeGroupsAsync();
+
+        }
+        catch (Exception ex)
+        {
+
             ex.Handle(_logger);
         }
     }

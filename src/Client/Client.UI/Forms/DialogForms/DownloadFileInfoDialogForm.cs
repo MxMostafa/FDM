@@ -2,6 +2,8 @@
 
 
 
+using Client.UI.ViewModel.FileTypeGroup;
+
 namespace Client.UI.Forms.DialogForms;
 
 public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
@@ -81,8 +83,21 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
             var request = await _appSettingService.GetAllFileTypeGroupsAsync();
             if (!request.IsSucceed) request.Throw();
 
-            fileTypeGroupViewModelBindingSource.DataSource = request.Data;
-            FileTypeGroupComboBox.SelectedText = _downloadFileInfo.FileExtension;
+            fileTypeGroupViewModelBindingSource.DataSource = request.Data.Select(f => new FileTypeGroupViewModel()
+            {
+                Id = f.Id,
+                Title = f.Title,
+                FileExtensions = f.FileExtensions,
+                IconName = f.IconName
+            }).ToList();
+
+            var downloadFileInfoTypeRequest = await _appSettingService.GetByFileExtensionAsync(_downloadFileInfo.FileExtension);
+            if (downloadFileInfoTypeRequest.IsSucceed)
+            {
+               
+                FileTypeGroupComboBox.EditValue= downloadFileInfoTypeRequest.Data.Id;
+            }
+
         }
         catch (Exception ex)
         {
@@ -98,9 +113,8 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
         {
             var addFileTypeGroupDialogForm = _serviceProvider.GetRequiredService<AddFileTypeGroupDialogForm>();
 
-            if (addFileTypeGroupDialogForm.ShowDialog() != DialogResult.OK)
-                Close();
-            await FillFileTypeGroupsAsync();
+            if (addFileTypeGroupDialogForm.ShowDialog() == DialogResult.OK)
+                await FillFileTypeGroupsAsync();
 
         }
         catch (Exception ex)

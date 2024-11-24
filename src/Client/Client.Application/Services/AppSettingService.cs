@@ -121,6 +121,23 @@ public class AppSettingService : IAppSettingService
 
     }
 
+    public async Task<ResultPattern<FileTypeGroupResDto?>> GetByFileExtensionAsync(string extension)
+    {
+        var fileTypeGroup = await _fileTypeGroupRepository.GetByFileExtensionAsync(extension);
+
+        if (fileTypeGroup == null)
+            return new ResultPattern<FileTypeGroupResDto?>(Errors.NotFound);
+
+        return new FileTypeGroupResDto()
+        {
+            Id = fileTypeGroup.Id,
+            Title = fileTypeGroup.Title,
+            FileExtensions = fileTypeGroup.FileExtensions,
+            IconName = fileTypeGroup.IconName
+        };
+
+    }
+
     public async Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByTitleAsync(string title)
     {
         var fileTypeGroup = await _fileTypeGroupRepository.GetByTitleAsync(title);
@@ -190,5 +207,20 @@ public class AppSettingService : IAppSettingService
             FileExtensions = fileTypeGroup.FileExtensions,
             IconName = fileTypeGroup.IconName
         };
+    }
+
+    public async Task<ResultPattern<bool>> DeleteFileTypeGroupAsync(int fileTypeGroupId)
+    {
+
+        var fileTypeGroup = await _fileTypeGroupRepository.GetByIdAsync(fileTypeGroupId);
+
+        if (fileTypeGroup == null)
+            return new ResultPattern<bool>(Errors.NotFound);
+
+
+        await _fileTypeGroupRepository.SoftDeleteAsync(fileTypeGroup);
+
+
+        return true;
     }
 }

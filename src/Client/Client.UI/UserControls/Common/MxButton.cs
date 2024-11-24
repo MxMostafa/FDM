@@ -8,4 +8,15 @@ public partial class MxButton : SimpleButton
     {
         InitializeComponent();
     }
+
+    public void StartProcessingMode()
+    {
+        Enabled = false;
+
+    }
+
+    public void EndProcessingMode()
+    {
+        Enabled = true;
+    }
 }

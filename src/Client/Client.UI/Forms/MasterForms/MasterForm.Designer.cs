@@ -28,7 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(WaitForm1), true, true);
             SuspendLayout();
+            // 
+            // splashScreenManager1
+            // 
+            splashScreenManager1.ClosingDelay = 500;
             // 
             // MasterForm
             // 
@@ -49,5 +54,7 @@
         }
 
         #endregion
+
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

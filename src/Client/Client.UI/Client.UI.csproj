@@ -45,6 +45,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppMessages.resx</DependentUpon>
     </Compile>
+    <Compile Update="Forms\DialogForms\EditFileTypeGroupDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

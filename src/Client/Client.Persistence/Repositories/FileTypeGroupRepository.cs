@@ -30,21 +30,31 @@ public class FileTypeGroupRepository : BaseRepository, IFileTypeGroupRepository
 
     public async Task<FileTypeGroup?> GetByFileExtensionAsync(string extension)
     {
-        return await _context.FileTypeGroups.FirstOrDefaultAsync(f => f.FileExtensions != null && f.FileExtensions.Contains(extension));
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(f =>f.IsDeleted==false && f.FileExtensions != null && f.FileExtensions.Contains(extension));
     }
 
     public async Task<FileTypeGroup?> GetByIdAsync(int id)
     {
-        return await _context.FileTypeGroups.FirstOrDefaultAsync(f => f.Id == id);
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(f => f.IsDeleted == false && f.Id == id);
     }
 
     public async Task<FileTypeGroup?> GetByTitleAsync(string title)
     {
-        return await _context.FileTypeGroups.FirstOrDefaultAsync(f => f.Title == title);
+        return await _context.FileTypeGroups.FirstOrDefaultAsync(f => f.IsDeleted == false && f.Title == title);
     }
 
     public async Task<FileTypeGroup> UpdateAsync(FileTypeGroup fileTypeGroup)
     {
+        _context.Update(fileTypeGroup);
+        await _context.SaveChangesAsync();
+        return fileTypeGroup;
+    }
+
+
+
+    public async Task<FileTypeGroup> SoftDeleteAsync(FileTypeGroup fileTypeGroup)
+    {
+        fileTypeGroup.IsDeleted = true;
         _context.Update(fileTypeGroup);
         await _context.SaveChangesAsync();
         return fileTypeGroup;

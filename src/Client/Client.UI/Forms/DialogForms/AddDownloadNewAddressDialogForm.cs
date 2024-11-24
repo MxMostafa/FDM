@@ -1,6 +1,7 @@
 ﻿
 using Client.Domain.Interfaces.Dto;
 using Client.UI.Constants;
+using Client.UI.UserControls.Common;
 
 namespace Client.UI.Forms.DialogForms;
 
@@ -85,7 +86,13 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
                 return;
             }
 
+            ShowPleaseWait();
+            //Disable Confirm Button
+            mxAcceptActionGroup1.StartProcessingMode();
+
             var DownloadFileInfoRequest = await _downloadFileService.GetFileInfoAsync(url);
+
+            HidePleaseWait();
 
             if (!DownloadFileInfoRequest.IsSucceed)
             {
@@ -96,6 +103,9 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
             var downloadFileInfoDialogForm = _serviceProvider.GetRequiredService<DownloadFileInfoDialogForm>();
 
             downloadFileInfoDialogForm.SetDownloadFileInfo(DownloadFileInfoRequest.Data);
+
+            
+
             if (downloadFileInfoDialogForm.ShowDialog() != DialogResult.OK)
                 Close();
 
@@ -103,6 +113,11 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
         catch (Exception ex)
         {
             ex.Handle(_logger);
+        }
+        finally
+        {
+            HidePleaseWait();
+            mxAcceptActionGroup1.EndProcessingMode();
         }
     }
 

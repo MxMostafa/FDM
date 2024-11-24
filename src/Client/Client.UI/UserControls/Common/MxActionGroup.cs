@@ -23,5 +23,16 @@ namespace Client.UI.UserControls.Common
         {
             SaveButtonClick?.Invoke(this, EventArgs.Empty);
         }
+
+        public void StartProcessingMode()
+        {
+            saveButton.StartProcessingMode();
+
+        }
+
+        public void EndProcessingMode()
+        {
+            saveButton.EndProcessingMode();
+        }
     }
 }

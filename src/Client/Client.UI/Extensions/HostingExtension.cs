@@ -49,6 +49,7 @@ public static class HostingExtension
         services.AddTransient<AddFileTypeGroupDialogForm>();
         services.AddTransient<LoginFormDialogForm>();
         services.AddTransient<ErrorDialogForm>();
+        services.AddTransient<EditFileTypeGroupDialogForm>();
         
 
         return services;

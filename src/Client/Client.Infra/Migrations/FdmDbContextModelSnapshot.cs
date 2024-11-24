@@ -143,6 +143,53 @@ namespace Client.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FileTypeGroups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(68),
+                            FileExtensions = "zip rar",
+                            IsDeleted = false,
+                            Title = "فایل های فشرده",
+                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(79)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(86),
+                            FileExtensions = "txt docx xls",
+                            IsDeleted = false,
+                            Title = "اسناد",
+                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(87)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(89),
+                            FileExtensions = "mp3 wave",
+                            IsDeleted = false,
+                            Title = "موسیقی",
+                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(89)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(91),
+                            FileExtensions = "exe msi",
+                            IsDeleted = false,
+                            Title = "برنامه ها",
+                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(91)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Created = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(93),
+                            FileExtensions = "mpeg 3gp avi flv",
+                            IsDeleted = false,
+                            Title = "تصویری",
+                            Updated = new DateTime(2024, 11, 25, 0, 8, 19, 444, DateTimeKind.Local).AddTicks(94)
+                        });
                 });
 
             modelBuilder.Entity("Client.Domain.Entites.CategoryItem", b =>

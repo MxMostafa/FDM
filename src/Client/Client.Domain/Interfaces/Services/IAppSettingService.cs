@@ -19,8 +19,10 @@ public interface IAppSettingService
     #region FileTypeGroup
     Task<ResultPattern<List<FileTypeGroupResDto>>> GetAllFileTypeGroupsAsync();
     Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByIdAsync(int id);
+    Task<ResultPattern<FileTypeGroupResDto?>> GetByFileExtensionAsync(string extension);
     Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByTitleAsync(string title);
     Task<ResultPattern<FileTypeGroupResDto?>> AddFileTypeGroupAsync(AddFileTypeGroupReqDto model);
     Task<ResultPattern<FileTypeGroupResDto?>> UpdateFileTypeGroupAsync(UpdateFileTypeGroupReqDto model);
+    Task<ResultPattern<bool>> DeleteFileTypeGroupAsync(int fileTypeGroupId);
     #endregion
 }

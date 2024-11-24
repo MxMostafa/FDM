@@ -79,14 +79,15 @@
             mxSearch2 = new UserControls.Common.MxSearch();
             DownloadedFileServerDateCheckBox = new UserControls.Common.MxCheckBox();
             groupControl2 = new GroupControl();
+            FileTypeGroupComboBox = new UserControls.Common.MxComboBox();
+            fileTypeGroupViewModelBindingSource = new BindingSource(components);
             LastPublicSaveDirectoryCheckBox = new UserControls.Common.MxCheckBox();
             mxSearch1 = new UserControls.Common.MxSearch();
             mxLabel16 = new UserControls.Common.MxLabel();
             mxTextBox1 = new UserControls.Common.MxTextBox();
             mxLabel15 = new UserControls.Common.MxLabel();
-            mxButton9 = new UserControls.Common.MxButton();
-            mxButton8 = new UserControls.Common.MxButton();
-            comboBoxEdit1 = new ComboBoxEdit();
+            EditFileTypeGroupButton = new UserControls.Common.MxButton();
+            AddFileTypeGroupButton = new UserControls.Common.MxButton();
             mxLabel14 = new UserControls.Common.MxLabel();
             downloadsTb = new DevExpress.XtraTab.XtraTabPage();
             comboBoxEdit2 = new ComboBoxEdit();
@@ -172,9 +173,10 @@
             ((ISupportInitialize)DownloadedFileServerDateCheckBox.Properties).BeginInit();
             ((ISupportInitialize)groupControl2).BeginInit();
             groupControl2.SuspendLayout();
+            ((ISupportInitialize)FileTypeGroupComboBox.Properties).BeginInit();
+            ((ISupportInitialize)fileTypeGroupViewModelBindingSource).BeginInit();
             ((ISupportInitialize)LastPublicSaveDirectoryCheckBox.Properties).BeginInit();
             ((ISupportInitialize)mxTextBox1.Properties).BeginInit();
-            ((ISupportInitialize)comboBoxEdit1.Properties).BeginInit();
             downloadsTb.SuspendLayout();
             ((ISupportInitialize)comboBoxEdit2.Properties).BeginInit();
             ((ISupportInitialize)separatorControl7).BeginInit();
@@ -680,14 +682,14 @@
             // 
             // groupControl2
             // 
+            groupControl2.Controls.Add(FileTypeGroupComboBox);
             groupControl2.Controls.Add(LastPublicSaveDirectoryCheckBox);
             groupControl2.Controls.Add(mxSearch1);
             groupControl2.Controls.Add(mxLabel16);
             groupControl2.Controls.Add(mxTextBox1);
             groupControl2.Controls.Add(mxLabel15);
-            groupControl2.Controls.Add(mxButton9);
-            groupControl2.Controls.Add(mxButton8);
-            groupControl2.Controls.Add(comboBoxEdit1);
+            groupControl2.Controls.Add(EditFileTypeGroupButton);
+            groupControl2.Controls.Add(AddFileTypeGroupButton);
             groupControl2.Controls.Add(mxLabel14);
             groupControl2.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             groupControl2.Location = new Point(11, 83);
@@ -695,6 +697,24 @@
             groupControl2.Size = new Size(520, 236);
             groupControl2.TabIndex = 9;
             groupControl2.Text = "... ذخیره در";
+            // 
+            // FileTypeGroupComboBox
+            // 
+            FileTypeGroupComboBox.Location = new Point(119, 50);
+            FileTypeGroupComboBox.Name = "FileTypeGroupComboBox";
+            FileTypeGroupComboBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            FileTypeGroupComboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] { new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Title", "Title", 36, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default) });
+            FileTypeGroupComboBox.Properties.DataSource = fileTypeGroupViewModelBindingSource;
+            FileTypeGroupComboBox.Properties.DisplayMember = "Title";
+            FileTypeGroupComboBox.Properties.PopupFilterMode = PopupFilterMode.Contains;
+            FileTypeGroupComboBox.Properties.ShowHeader = false;
+            FileTypeGroupComboBox.Properties.ValueMember = "Id";
+            FileTypeGroupComboBox.Size = new Size(378, 28);
+            FileTypeGroupComboBox.TabIndex = 28;
+            // 
+            // fileTypeGroupViewModelBindingSource
+            // 
+            fileTypeGroupViewModelBindingSource.DataSource = typeof(ViewModel.FileTypeGroup.FileTypeGroupViewModel);
             // 
             // LastPublicSaveDirectoryCheckBox
             // 
@@ -739,36 +759,27 @@
             mxLabel15.TabIndex = 21;
             mxLabel15.Text = "فایلهای زیر را در گروه \"عمومی\" قرار بده :";
             // 
-            // mxButton9
+            // EditFileTypeGroupButton
             // 
-            mxButton9.Appearance.BackColor = Color.Gainsboro;
-            mxButton9.Appearance.Options.UseBackColor = true;
-            mxButton9.Enabled = false;
-            mxButton9.Location = new Point(29, 48);
-            mxButton9.Name = "mxButton9";
-            mxButton9.Size = new Size(84, 23);
-            mxButton9.TabIndex = 20;
-            mxButton9.Text = "ویرایش";
+            EditFileTypeGroupButton.Appearance.BackColor = Color.Gainsboro;
+            EditFileTypeGroupButton.Appearance.Options.UseBackColor = true;
+            EditFileTypeGroupButton.Location = new Point(29, 55);
+            EditFileTypeGroupButton.Name = "EditFileTypeGroupButton";
+            EditFileTypeGroupButton.Size = new Size(84, 23);
+            EditFileTypeGroupButton.TabIndex = 20;
+            EditFileTypeGroupButton.Text = "ویرایش";
+            EditFileTypeGroupButton.Click += EditFileTypeGroupButton_Click;
             // 
-            // mxButton8
+            // AddFileTypeGroupButton
             // 
-            mxButton8.Appearance.BackColor = Color.Gainsboro;
-            mxButton8.Appearance.Options.UseBackColor = true;
-            mxButton8.Location = new Point(29, 21);
-            mxButton8.Name = "mxButton8";
-            mxButton8.Size = new Size(84, 23);
-            mxButton8.TabIndex = 19;
-            mxButton8.Text = "جدید";
-            // 
-            // comboBoxEdit1
-            // 
-            comboBoxEdit1.EditValue = "عمومی";
-            comboBoxEdit1.Location = new Point(352, 46);
-            comboBoxEdit1.Name = "comboBoxEdit1";
-            comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            comboBoxEdit1.Properties.Items.AddRange(new object[] { "عمومی", "فایلهای فشرده", "اسناد", "موسیقی", "برنامه ها", "تصویری" });
-            comboBoxEdit1.Size = new Size(145, 28);
-            comboBoxEdit1.TabIndex = 1;
+            AddFileTypeGroupButton.Appearance.BackColor = Color.Gainsboro;
+            AddFileTypeGroupButton.Appearance.Options.UseBackColor = true;
+            AddFileTypeGroupButton.Location = new Point(29, 26);
+            AddFileTypeGroupButton.Name = "AddFileTypeGroupButton";
+            AddFileTypeGroupButton.Size = new Size(84, 23);
+            AddFileTypeGroupButton.TabIndex = 19;
+            AddFileTypeGroupButton.Text = "جدید";
+            AddFileTypeGroupButton.Click += AddFileTypeGroupButton_Click;
             // 
             // mxLabel14
             // 
@@ -1146,6 +1157,7 @@
             mxActionGroup1.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxActionGroup1.Location = new Point(0, 579);
             mxActionGroup1.Name = "mxActionGroup1";
+            mxActionGroup1.RightToLeft = RightToLeft.Yes;
             mxActionGroup1.Size = new Size(544, 39);
             mxActionGroup1.TabIndex = 12;
             mxActionGroup1.SaveButtonClick += mxActionGroup1_SaveButtonClick;
@@ -1216,9 +1228,10 @@
             ((ISupportInitialize)groupControl2).EndInit();
             groupControl2.ResumeLayout(false);
             groupControl2.PerformLayout();
+            ((ISupportInitialize)FileTypeGroupComboBox.Properties).EndInit();
+            ((ISupportInitialize)fileTypeGroupViewModelBindingSource).EndInit();
             ((ISupportInitialize)LastPublicSaveDirectoryCheckBox.Properties).EndInit();
             ((ISupportInitialize)mxTextBox1.Properties).EndInit();
-            ((ISupportInitialize)comboBoxEdit1.Properties).EndInit();
             downloadsTb.ResumeLayout(false);
             downloadsTb.PerformLayout();
             ((ISupportInitialize)comboBoxEdit2.Properties).EndInit();
@@ -1272,10 +1285,9 @@
         private PanelControl panelControl2;
         private UserControls.Common.MxButton mxButton1;
         private GroupControl groupControl2;
-        private ComboBoxEdit comboBoxEdit1;
         private UserControls.Common.MxLabel mxLabel14;
-        private UserControls.Common.MxButton mxButton9;
-        private UserControls.Common.MxButton mxButton8;
+        private UserControls.Common.MxButton EditFileTypeGroupButton;
+        private UserControls.Common.MxButton AddFileTypeGroupButton;
         private UserControls.Common.MxLabel mxLabel16;
         private UserControls.Common.MxTextBox mxTextBox1;
         private UserControls.Common.MxLabel mxLabel15;
@@ -1345,5 +1357,7 @@
         private UserControls.Common.MxRadioButton ManulaProxySettingRadioButton;
         private UserControls.Common.MxRadioButton WindowsProxySettingRadioButton;
         private UserControls.Common.MxRadioButton DisableProxySettingRadioButton;
+        private UserControls.Common.MxComboBox FileTypeGroupComboBox;
+        private BindingSource fileTypeGroupViewModelBindingSource;
     }
 }

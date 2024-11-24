@@ -53,7 +53,6 @@
             mxLabel8 = new UserControls.Common.MxLabel();
             mxTextBox4 = new UserControls.Common.MxTextBox();
             UseAuthorizationCheckBox = new UserControls.Common.MxCheckBox();
-            mxAcctionGroup_Accept1 = new UserControls.Common.MxAcctionGroup_Accept();
             mxLabel9 = new UserControls.Common.MxLabel();
             mxLabel10 = new UserControls.Common.MxLabel();
             mxLabel11 = new UserControls.Common.MxLabel();
@@ -340,11 +339,7 @@
             // 
             // mxAcctionGroup_Accept1
             // 
-            mxAcctionGroup_Accept1.Dock = DockStyle.Bottom;
-            mxAcctionGroup_Accept1.Location = new Point(0, 401);
-            mxAcctionGroup_Accept1.Name = "mxAcctionGroup_Accept1";
-            mxAcctionGroup_Accept1.Size = new Size(520, 49);
-            mxAcctionGroup_Accept1.TabIndex = 34;
+      
             // 
             // mxLabel9
             // 
@@ -423,7 +418,6 @@
             Controls.Add(mxLabel11);
             Controls.Add(mxLabel10);
             Controls.Add(mxLabel9);
-            Controls.Add(mxAcctionGroup_Accept1);
             Controls.Add(groupControl2);
             Controls.Add(groupControl1);
             Controls.Add(mxComboBoxEdit1);
@@ -487,7 +481,6 @@
         private UserControls.Common.MxLabel mxLabel8;
         private UserControls.Common.MxTextBox mxTextBox4;
         private UserControls.Common.MxCheckBox UseAuthorizationCheckBox;
-        private UserControls.Common.MxAcctionGroup_Accept mxAcctionGroup_Accept1;
         private UserControls.Common.MxLabel mxLabel9;
         private UserControls.Common.MxLabel mxLabel10;
         private UserControls.Common.MxLabel mxLabel11;
