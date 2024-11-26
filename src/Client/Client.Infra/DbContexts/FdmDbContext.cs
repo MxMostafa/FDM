@@ -1,5 +1,6 @@
 ﻿using Client.Domain.Entites.Base;
 using Client.Domain.SeedData;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Client.Infrastructure.DbContexts;
@@ -17,7 +18,11 @@ public class FdmDbContext : DbContext
 
     }
 
-
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+            .ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -44,5 +49,7 @@ public class FdmDbContext : DbContext
 
         // Apply seed data from external classes
         modelBuilder.Entity<FileTypeGroup>().HasData(FileTypeGroupSeed.GetSeedData());
-    }
+
+
+}
 }

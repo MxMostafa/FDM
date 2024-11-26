@@ -4,6 +4,7 @@
 
 using Client.Domain.Entites;
 using Client.UI.ViewModel.FileTypeGroup;
+using System.ComponentModel;
 
 namespace Client.UI.Forms.DialogForms;
 
@@ -22,6 +23,9 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
         _appSettingService = appSettingService;
         _serviceProvider = serviceProvider;
     }
+
+    // Property injection (you can use this in the form)
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
     // Property injection (you can use this in the form)
     public DownloadFileInfoResDto DownloadFileInfo

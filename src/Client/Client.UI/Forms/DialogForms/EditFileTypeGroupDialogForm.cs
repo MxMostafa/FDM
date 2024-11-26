@@ -2,6 +2,7 @@
 using Client.Domain.Entites;
 using Client.UI.Constants;
 using System;
+using System.ComponentModel;
 
 
 namespace Client.UI.Forms.DialogForms;
@@ -10,6 +11,8 @@ public partial class EditFileTypeGroupDialogForm : MasterFixedDialogForm
 {
     private readonly ILogger _logger;
     private readonly IAppSettingService _appSettingService;
+
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int FileTypeGroupId { get; set; }
     public EditFileTypeGroupDialogForm(ILogger<AddFileTypeGroupDialogForm> logger, IAppSettingService appSettingService)
     {
