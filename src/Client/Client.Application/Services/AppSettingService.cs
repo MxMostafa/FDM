@@ -1,8 +1,8 @@
 ﻿
-using Client.Application.Resources;
 using Client.Domain.Dtos.Request.FileTypeGroup;
 using Client.Domain.Dtos.Response.FileTypeGroup;
 using Client.Domain.Entites;
+using Client.Domain.Interfaces.General.Errors;
 using MapsterMapper;
 using System.Collections.Generic;
 
@@ -12,11 +12,14 @@ public class AppSettingService : IAppSettingService
     private readonly IAppSettingRepository _appSettingRepository;
     private readonly IFileTypeGroupRepository _fileTypeGroupRepository;
     private readonly IMapper _mapper;
-    public AppSettingService(IAppSettingRepository appSettingRepository, IMapper mapper, IFileTypeGroupRepository fileTypeGroupRepository)
+
+    private readonly IAppErrors _appErrors;
+    public AppSettingService(IAppSettingRepository appSettingRepository, IMapper mapper, IFileTypeGroupRepository fileTypeGroupRepository, IAppErrors appErrors)
     {
         _appSettingRepository = appSettingRepository;
         _mapper = mapper;
         _fileTypeGroupRepository = fileTypeGroupRepository;
+        _appErrors = appErrors;
     }
 
     public async Task<ResultPattern<bool>> AddGeneralAppSettingAsync(string key, string value)
@@ -111,7 +114,7 @@ public class AppSettingService : IAppSettingService
         var fileTypeGroup = await _fileTypeGroupRepository.GetByIdAsync(id);
 
         if (fileTypeGroup == null)
-            return new ResultPattern<FileTypeGroupResDto?>(Errors.NotFound);
+            return new ResultPattern<FileTypeGroupResDto?>(_appErrors.NotFound);
 
         return new FileTypeGroupResDto()
         {
@@ -130,7 +133,7 @@ public class AppSettingService : IAppSettingService
         var fileTypeGroup = await _fileTypeGroupRepository.GetByFileExtensionAsync(extension);
 
         if (fileTypeGroup == null)
-            return new ResultPattern<FileTypeGroupResDto?>(Errors.NotFound);
+            return new ResultPattern<FileTypeGroupResDto?>(_appErrors.NotFound);
 
         return new FileTypeGroupResDto()
         {
@@ -149,7 +152,7 @@ public class AppSettingService : IAppSettingService
         var fileTypeGroup = await _fileTypeGroupRepository.GetByTitleAsync(title);
 
         if (fileTypeGroup == null)
-            return new ResultPattern<FileTypeGroupResDto?>(Errors.NotFound);
+            return new ResultPattern<FileTypeGroupResDto?>(_appErrors.NotFound);
 
         return new FileTypeGroupResDto()
         {
@@ -168,7 +171,7 @@ public class AppSettingService : IAppSettingService
         var fileTypeGroup = await _fileTypeGroupRepository.GetByTitleAsync(model.Title);
 
         if (fileTypeGroup != null)
-            return new ResultPattern<FileTypeGroupResDto?>(Errors.DuplicatedFileTypeGroupError);
+            return new ResultPattern<FileTypeGroupResDto?>(_appErrors.DuplicatedFileTypeGroupError);
 
         fileTypeGroup = new FileTypeGroup()
         {
@@ -198,13 +201,13 @@ public class AppSettingService : IAppSettingService
         var fileTypeGroup = await _fileTypeGroupRepository.GetByIdAsync(model.Id);
 
         if (fileTypeGroup == null)
-            return new ResultPattern<FileTypeGroupResDto?>(Errors.NotFound);
+            return new ResultPattern<FileTypeGroupResDto?>(_appErrors.NotFound);
 
 
         var exitFileTypeGroupWithSameName = await _fileTypeGroupRepository.GetByTitleAsync(model.Title);
 
         if (exitFileTypeGroupWithSameName != null && exitFileTypeGroupWithSameName.Id != fileTypeGroup.Id)
-            return new ResultPattern<FileTypeGroupResDto?>(Errors.DuplicatedFileTypeGroupError);
+            return new ResultPattern<FileTypeGroupResDto?>(_appErrors.DuplicatedFileTypeGroupError);
 
         fileTypeGroup.Title = model.Title;
         fileTypeGroup.FileExtensions = model.FileExtensions;
@@ -229,7 +232,7 @@ public class AppSettingService : IAppSettingService
         var fileTypeGroup = await _fileTypeGroupRepository.GetByIdAsync(fileTypeGroupId);
 
         if (fileTypeGroup == null)
-            return new ResultPattern<bool>(Errors.NotFound);
+            return new ResultPattern<bool>(_appErrors.NotFound);
 
 
         await _fileTypeGroupRepository.SoftDeleteAsync(fileTypeGroup);

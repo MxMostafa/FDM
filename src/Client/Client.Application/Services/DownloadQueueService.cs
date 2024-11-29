@@ -2,18 +2,19 @@
 
 
 
-
-using Client.Application.Resources;
+using Client.Domain.Interfaces.General.Errors;
 
 namespace Client.Application.Services;
 
 public class DownloadQueueService : IDownloadQueueService
 {
     private readonly IDownloadQueueRepository _downloadQueueRepo;
+    private readonly IAppErrors _appErrors;
 
-    public DownloadQueueService(IDownloadQueueRepository downloadQueueRepo)
+    public DownloadQueueService(IDownloadQueueRepository downloadQueueRepo, IAppErrors appErrors)
     {
         _downloadQueueRepo = downloadQueueRepo;
+        _appErrors = appErrors;
     }
 
     public async Task<List<DownloadQueueResDto>> GetAllDownloadQueuesAsync()
@@ -32,7 +33,7 @@ public class DownloadQueueService : IDownloadQueueService
 
         if (downloadQueue != null)
         {
-            return new ResultPattern<bool>(Errors.DuplicatedDownloadQueue);
+            return new ResultPattern<bool>(_appErrors.DuplicatedDownloadQueue);
         }
 
         var result = await _downloadQueueRepo.AddAsync(title);

@@ -1,5 +1,7 @@
 ﻿
-namespace Client.Application.Helpers;
+using System.Drawing;
+
+namespace Client.Infrastructure.Helpers;
 
 public static class MimeTypeHelper
 {

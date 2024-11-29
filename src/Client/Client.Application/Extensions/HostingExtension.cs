@@ -4,6 +4,9 @@
 
 
 
+using Client.Application.General.Errors;
+using Client.Domain.Interfaces.General.Errors;
+
 namespace Client.Application.Extensions;
 
 public static class HostingExtension
@@ -21,6 +24,9 @@ public static class HostingExtension
             services.AddScoped(interfaceType, type);
         }
 
+
+        services.AddScoped<IHttpErros, HttpErros>();
+        services.AddScoped<IAppErrors, AppErrors>();
         return services;
 
     }

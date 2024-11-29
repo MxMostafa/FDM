@@ -5,6 +5,7 @@
 using Client.Domain.Entites;
 using Client.UI.ViewModel.FileTypeGroup;
 using System.ComponentModel;
+using System.IO;
 
 namespace Client.UI.Forms.DialogForms;
 
@@ -137,6 +138,9 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
     {
         try
         {
+            if (Path.Exists(FileTypeGroupSavePathTextBox.Text))
+                xtraFolderBrowserDialog1.SelectedPath = FileTypeGroupSavePathTextBox.Text;
+
             if (xtraFolderBrowserDialog1.ShowDialog() != DialogResult.OK) return;
             FileTypeGroupSavePathTextBox.Text = xtraFolderBrowserDialog1.SelectedPath;
         }

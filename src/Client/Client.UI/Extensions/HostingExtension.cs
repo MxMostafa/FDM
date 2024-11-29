@@ -3,6 +3,7 @@
 
 
 using Client.Application.Extensions;
+using Client.Infrastructure.Extensions;
 using Client.Persistence.Extensions;
 
 namespace Client.UI.Extensions;
@@ -15,6 +16,7 @@ public static class HostingExtension
 
         services.AddApplicationServicesToDC();
         services.AddPersistenceToDC();
+        services.AddInfrastructureToDC();
         services.AddMemoryCache();
         services.AddHttpClient();
         // پیکربندی و ایجاد Logger با استفاده از Serilog

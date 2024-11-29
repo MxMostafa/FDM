@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\MimeTypes.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Resources\MimeTypes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -21,18 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\Errors.Designer.cs">
-      <DependentUpon>Errors.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\Errors.resx">
-      <LastGenOutput>Errors.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
+    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>
