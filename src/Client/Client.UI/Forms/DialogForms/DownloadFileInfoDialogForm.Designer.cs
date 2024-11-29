@@ -39,7 +39,7 @@
             ChangeSavePathButton = new UserControls.Common.MxButton();
             fileTypeImage = new PictureEdit();
             mxButton2 = new UserControls.Common.MxButton();
-            mxButton3 = new UserControls.Common.MxButton();
+            StartDownloadButton = new UserControls.Common.MxButton();
             mxCancelButton1 = new UserControls.Common.MxCancelButton();
             FileSizeLabel = new UserControls.Common.MxLabel();
             FileTypeGroupComboBox = new UserControls.Common.MxComboBox();
@@ -142,15 +142,16 @@
             mxButton2.TabIndex = 23;
             mxButton2.Text = "بعدا دانلود شود";
             // 
-            // mxButton3
+            // StartDownloadButton
             // 
-            mxButton3.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("mxButton3.ImageOptions.SvgImage");
-            mxButton3.ImageOptions.SvgImageSize = new Size(16, 16);
-            mxButton3.Location = new Point(92, 152);
-            mxButton3.Name = "mxButton3";
-            mxButton3.Size = new Size(129, 30);
-            mxButton3.TabIndex = 24;
-            mxButton3.Text = "شروع دانلود";
+            StartDownloadButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("StartDownloadButton.ImageOptions.SvgImage");
+            StartDownloadButton.ImageOptions.SvgImageSize = new Size(16, 16);
+            StartDownloadButton.Location = new Point(92, 152);
+            StartDownloadButton.Name = "StartDownloadButton";
+            StartDownloadButton.Size = new Size(129, 30);
+            StartDownloadButton.TabIndex = 24;
+            StartDownloadButton.Text = "شروع دانلود";
+            StartDownloadButton.Click += StartDownloadButton_Click;
             // 
             // mxCancelButton1
             // 
@@ -205,7 +206,7 @@
             Controls.Add(FileTypeGroupComboBox);
             Controls.Add(FileSizeLabel);
             Controls.Add(mxCancelButton1);
-            Controls.Add(mxButton3);
+            Controls.Add(StartDownloadButton);
             Controls.Add(mxButton2);
             Controls.Add(fileTypeImage);
             Controls.Add(ChangeSavePathButton);
@@ -240,7 +241,7 @@
         private UserControls.Common.MxButton ChangeSavePathButton;
         private PictureEdit fileTypeImage;
         private UserControls.Common.MxButton mxButton2;
-        private UserControls.Common.MxButton mxButton3;
+        private UserControls.Common.MxButton StartDownloadButton;
         private UserControls.Common.MxCancelButton mxCancelButton1;
         private UserControls.Common.MxLabel FileSizeLabel;
         private UserControls.Common.MxComboBox FileTypeGroupComboBox;

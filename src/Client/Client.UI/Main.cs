@@ -11,9 +11,10 @@ namespace Client.UI;
 public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
 {
     private readonly IDownloadQueueService _downloadQueueService;
+    private readonly IDownloadFileService _downloadFileService;
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<Main> _logger;
-    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger)
+    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService)
     {
         InitializeComponent();
         _downloadQueueService = downloadQueueService;
@@ -23,13 +24,14 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
         System.Windows.Forms.Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
         AppDomain.CurrentDomain.UnhandledException += (sender, e) => (e.ExceptionObject as Exception).Handle(_logger);
+        _downloadFileService = downloadFileService;
     }
 
     private async void Main_Click(object sender, DevExpress.Utils.ContextItemClickEventArgs e)
     {
         var frm = GetForm<AddNewDownloadQueueDialogForm>();
         if (frm.ShowDialog() != DialogResult.OK) return;
-        var result = await _downloadQueueService.AddDownloadQueueAsync(frm.DowanloadQueueTitle);
+        var result = await _downloadQueueService.CreateNewDownloadQueueAsync(frm.DowanloadQueueTitle);
         if (result.IsSucceed)
         {
             await LoadAllQueuesIntoSideMenuAsync();
@@ -40,32 +42,21 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         }
     }
 
-    private async Task LoadAllQueuesIntoSideMenuAsync()
-    {
-        try
-        {
-            var downloadQueues = await _downloadQueueService.GetAllDownloadQueuesAsync();
-            DownloadQueueElement.Elements.Clear();
-            foreach (var menu in downloadQueues)
-            {
-                DownloadQueueElement.Elements.Add(new DevExpress.XtraBars.Navigation.AccordionControlElement()
-                {
-                    Text = menu.Title,
-                    Tag = menu
-                });
-            }
 
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-    }
 
     private async void Main_Load(object sender, EventArgs e)
     {
-        await LoadAllQueuesIntoSideMenuAsync();
+        try
+        {
+            await LoadAllQueuesIntoSideMenuAsync();
+            await LoadAllDownloadFilesIntoGridAsync();
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+
     }
 
 
@@ -93,7 +84,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void dbarButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        GetForm<AddDownloadNewAddressDialogForm>().ShowDialog();
+        AddNewDownload();
     }
 
     private void downloadGroupBarButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -115,7 +106,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        GetForm<AddDownloadNewAddressDialogForm>()?.ShowDialog();
+        AddNewDownload();
     }
 
     private void darkLightButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -162,4 +153,70 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     }
 
 
+    #region Private Methods
+    private async void AddNewDownload()
+    {
+        var frm = GetForm<AddDownloadNewAddressDialogForm>();
+        if (frm.ShowDialog() !=DialogResult.OK ) return;
+
+        await LoadAllDownloadFilesIntoGridAsync();
+    }
+
+    private async Task LoadAllQueuesIntoSideMenuAsync()
+    {
+        try
+        {
+            var request = await _downloadQueueService.GetAllDownloadQueuesAsync();
+
+            if (request.IsSucceed == false)
+            {
+                request.Handle();
+                return;
+            }
+
+
+            DownloadQueueElement.Elements.Clear();
+            foreach (var menu in request.Data)
+            {
+                DownloadQueueElement.Elements.Add(new DevExpress.XtraBars.Navigation.AccordionControlElement()
+                {
+                    Text = menu.Title,
+                    Tag = menu
+                });
+            }
+
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+    }
+
+    private async Task LoadAllDownloadFilesIntoGridAsync()
+    {
+        var request = await _downloadFileService.GetDownloadFilesAsync(null);
+        if (request.IsSucceed == false)
+        {
+            request.Handle();
+            return;
+        }
+
+        var result = request.Data;
+
+        downloadViewModelBindingSource.DataSource = result.Select(d => new DownloadViewModel()
+        {
+            Description=d.Description,
+            DownloadQueue=d.DownloadQueue.Title,
+            FileName=d.FileName,
+            Percent=0,
+            Id=d.Id,
+            LatestDownloadDateTime=DateTime.Now,
+            Remain=5,
+            Size=d.Size,
+            Speed=100,
+            Status=d.DownloadStatus.ToString()
+        }).ToList();
+    }
+    #endregion
 }

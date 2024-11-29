@@ -91,6 +91,57 @@ namespace Client.Infrastructure.Migrations
                     b.ToTable("CategoryItems");
                 });
 
+            modelBuilder.Entity("Client.Domain.Entites.DownloadFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DownloadPath")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DownloadQueueId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DownloadStatus")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("FileTypeGroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("LocalSavePath")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DownloadQueueId");
+
+                    b.HasIndex("FileTypeGroupId");
+
+                    b.ToTable("DownloadFiles");
+                });
+
             modelBuilder.Entity("Client.Domain.Entites.DownloadQueue", b =>
                 {
                     b.Property<int>("Id")
@@ -113,6 +164,16 @@ namespace Client.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DownloadQueues");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 627, DateTimeKind.Local).AddTicks(6020),
+                            IsDeleted = false,
+                            Title = "صف اصلی",
+                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 627, DateTimeKind.Local).AddTicks(6024)
+                        });
                 });
 
             modelBuilder.Entity("Client.Domain.Entites.FileTypeGroup", b =>
@@ -155,57 +216,57 @@ namespace Client.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 11, 26, 23, 34, 22, 794, DateTimeKind.Local).AddTicks(6837),
+                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 624, DateTimeKind.Local).AddTicks(2489),
                             FileExtensions = "zip rar",
                             FolderName = "Compressed",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Compressed",
                             Title = "فایل های فشرده",
-                            Updated = new DateTime(2024, 11, 26, 23, 34, 22, 797, DateTimeKind.Local).AddTicks(7013)
+                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(2430)
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 11, 26, 23, 34, 22, 798, DateTimeKind.Local).AddTicks(6070),
+                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(8364),
                             FileExtensions = "txt docx xls",
                             FolderName = "Documents",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Documents",
                             Title = "اسناد",
-                            Updated = new DateTime(2024, 11, 26, 23, 34, 22, 798, DateTimeKind.Local).AddTicks(6075)
+                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(8367)
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 11, 26, 23, 34, 22, 798, DateTimeKind.Local).AddTicks(6588),
+                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(8913),
                             FileExtensions = "mp3 wave",
                             FolderName = "Music",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Music",
                             Title = "موسیقی",
-                            Updated = new DateTime(2024, 11, 26, 23, 34, 22, 798, DateTimeKind.Local).AddTicks(6590)
+                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(8914)
                         },
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2024, 11, 26, 23, 34, 22, 798, DateTimeKind.Local).AddTicks(7005),
+                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(9329),
                             FileExtensions = "exe msi",
                             FolderName = "Video",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Video",
                             Title = "برنامه ها",
-                            Updated = new DateTime(2024, 11, 26, 23, 34, 22, 798, DateTimeKind.Local).AddTicks(7006)
+                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(9330)
                         },
                         new
                         {
                             Id = 5,
-                            Created = new DateTime(2024, 11, 26, 23, 34, 22, 798, DateTimeKind.Local).AddTicks(7547),
+                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(9730),
                             FileExtensions = "mpeg 3gp avi flv",
                             FolderName = "Compressed",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Compressed",
                             Title = "تصویری",
-                            Updated = new DateTime(2024, 11, 26, 23, 34, 22, 798, DateTimeKind.Local).AddTicks(7549)
+                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(9731)
                         });
                 });
 
@@ -218,6 +279,23 @@ namespace Client.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("CategoryGroup");
+                });
+
+            modelBuilder.Entity("Client.Domain.Entites.DownloadFile", b =>
+                {
+                    b.HasOne("Client.Domain.Entites.DownloadQueue", "DownloadQueue")
+                        .WithMany()
+                        .HasForeignKey("DownloadQueueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Client.Domain.Entites.FileTypeGroup", "FileTypeGroup")
+                        .WithMany()
+                        .HasForeignKey("FileTypeGroupId");
+
+                    b.Navigation("DownloadQueue");
+
+                    b.Navigation("FileTypeGroup");
                 });
 #pragma warning restore 612, 618
         }

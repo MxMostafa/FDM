@@ -2,6 +2,7 @@
 
 
 
+using Client.Domain.Dtos.Request.DownloadFile;
 using Client.Domain.Entites;
 using Client.UI.ViewModel.FileTypeGroup;
 using System.ComponentModel;
@@ -14,15 +15,17 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
     private readonly ILogger _logger;
     private readonly IAppSettingService _appSettingService;
     private readonly IServiceProvider _serviceProvider;
+    private readonly IDownloadFileService _downloadFileService;
     //Property Injection or Method Injection
     private DownloadFileInfoResDto _downloadFileInfo;
 
-    public DownloadFileInfoDialogForm(ILogger<DownloadFileInfoDialogForm> logger, IAppSettingService appSettingService, IServiceProvider serviceProvider)
+    public DownloadFileInfoDialogForm(ILogger<DownloadFileInfoDialogForm> logger, IAppSettingService appSettingService, IServiceProvider serviceProvider, IDownloadFileService downloadFileService)
     {
         InitializeComponent();
         _logger = logger;
         _appSettingService = appSettingService;
         _serviceProvider = serviceProvider;
+        _downloadFileService = downloadFileService;
     }
 
     // Property injection (you can use this in the form)
@@ -143,6 +146,45 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
 
             if (xtraFolderBrowserDialog1.ShowDialog() != DialogResult.OK) return;
             FileTypeGroupSavePathTextBox.Text = xtraFolderBrowserDialog1.SelectedPath;
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+    }
+
+    private async void StartDownloadButton_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int downloadQueueId = 0;
+            if (int.TryParse(FileTypeGroupComboBox.EditValue.ToString(), out var id))
+            {
+                downloadQueueId = id;
+            }
+
+            var fileModel = new AddFileToQueueReqDto(
+                                                     Path.GetFileName(_downloadFileInfo.DownloadURL),
+                                                     downloadQueueId,
+                                                     _downloadFileInfo.DownloadURL,
+                                                     FileTypeGroupSavePathTextBox.Text,
+                                                     _downloadFileInfo.SizeInBytes,
+                                                     _downloadFileInfo.FileExtension);
+
+            var request = await _downloadFileService.AddFileToQueueAsync(fileModel);
+
+            if (request.IsSucceed)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+            {
+                request.Handle();
+            }
+
+          
         }
         catch (Exception ex)
         {

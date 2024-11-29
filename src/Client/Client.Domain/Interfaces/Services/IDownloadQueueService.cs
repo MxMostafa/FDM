@@ -4,6 +4,8 @@ namespace Client.Domain.Interfaces.Services;
 
 public interface IDownloadQueueService
 {
-    Task<List<DownloadQueueResDto>> GetAllDownloadQueuesAsync();
-    Task<ResultPattern<bool>> AddDownloadQueueAsync(string title);
+    Task<ResultPattern< List<DownloadQueueResDto>>> GetAllDownloadQueuesAsync();
+    Task<ResultPattern<bool>> CreateNewDownloadQueueAsync(string title);
+
+
 }

@@ -31,10 +31,10 @@
             barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             mxLabel1 = new UserControls.Common.MxLabel();
-            urlCombobox = new UserControls.Common.MxComboBoxEdit();
             mxButton15 = new UserControls.Common.MxButton();
             mxAcceptActionGroup1 = new UserControls.Common.MxAcceptActionGroup();
-            ((ISupportInitialize)urlCombobox.Properties).BeginInit();
+            UrlTextbox = new UserControls.Common.MxTextBox();
+            ((ISupportInitialize)UrlTextbox.Properties).BeginInit();
             SuspendLayout();
             // 
             // barDockControlTop
@@ -57,20 +57,11 @@
             // 
             mxLabel1.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel1.Appearance.Options.UseFont = true;
-            mxLabel1.Location = new Point(12, 48);
+            mxLabel1.Location = new Point(12, 42);
             mxLabel1.Name = "mxLabel1";
             mxLabel1.Size = new Size(35, 17);
             mxLabel1.TabIndex = 2;
             mxLabel1.Text = "آدرس : ";
-            // 
-            // urlCombobox
-            // 
-            urlCombobox.Location = new Point(50, 42);
-            urlCombobox.Name = "urlCombobox";
-            urlCombobox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            urlCombobox.RightToLeft = RightToLeft.Yes;
-            urlCombobox.Size = new Size(520, 28);
-            urlCombobox.TabIndex = 5;
             // 
             // mxButton15
             // 
@@ -95,15 +86,23 @@
             mxAcceptActionGroup1.ConfirmButtonClick += mxAcceptActionGroup1_ConfirmButtonClick;
             mxAcceptActionGroup1.Load += mxAcceptActionGroup1_Load;
             // 
+            // UrlTextbox
+            // 
+            UrlTextbox.Location = new Point(53, 37);
+            UrlTextbox.Name = "UrlTextbox";
+            UrlTextbox.RightToLeft = RightToLeft.No;
+            UrlTextbox.Size = new Size(520, 28);
+            UrlTextbox.TabIndex = 55;
+            // 
             // AddDownloadNewAddressDialogForm
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(582, 145);
+            Controls.Add(UrlTextbox);
             Controls.Add(mxAcceptActionGroup1);
             Controls.Add(mxButton15);
-            Controls.Add(urlCombobox);
             Controls.Add(mxLabel1);
             Controls.Add(barDockControlTop);
             Controls.Add(barDockControl1);
@@ -112,7 +111,7 @@
             Name = "AddDownloadNewAddressDialogForm";
             Text = "آدرس جدیدی برای دانلود وارد کنید";
             Load += AddDownloadNewAddressDialogForm_Load;
-            ((ISupportInitialize)urlCombobox.Properties).EndInit();
+            ((ISupportInitialize)UrlTextbox.Properties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -122,8 +121,8 @@
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private UserControls.Common.MxLabel mxLabel1;
-        private UserControls.Common.MxComboBoxEdit urlCombobox;
         private UserControls.Common.MxButton mxButton15;
         private UserControls.Common.MxAcceptActionGroup mxAcceptActionGroup1;
+        private UserControls.Common.MxTextBox UrlTextbox;
     }
 }

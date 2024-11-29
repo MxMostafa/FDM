@@ -14,7 +14,7 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
     {
         InitializeComponent();
         _logger = logger;
-        ActiveControl = urlCombobox;
+        ActiveControl = UrlTextbox;
         _downloadFileService = downloadFileService;
         _serviceProvider = serviceProvider;
     }
@@ -44,7 +44,7 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
             var clipBoardURL = Clipboard.GetText();
 
             if (!string.IsNullOrEmpty(clipBoardURL) && FormatHelper.IsUrl(clipBoardURL))
-                AddURLToCombo(clipBoardURL);
+                UrlTextbox.Text = clipBoardURL;
         }
         catch (Exception ex)
         {
@@ -53,19 +53,7 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
     }
 
 
-    private void AddURLToCombo(string url)
-    {
-        try
-        {
-            urlCombobox.Properties.Items.Add(url);
-            if (urlCombobox.Properties.Items.Count > 0)
-                urlCombobox.SelectedIndex = 0;
-        }
-        catch (Exception ex)
-        {
-            ex.Handle(_logger);
-        }
-    }
+
 
     private void mxButton15_Click(object sender, EventArgs e)
     {
@@ -77,8 +65,8 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
         try
         {
             var url = string.Empty;
-            if (urlCombobox.Properties.Items.Count > 0)
-                url = urlCombobox.Properties.Items[0].ToString();
+
+            url = UrlTextbox.Text;
 
             if (string.IsNullOrEmpty(url))
             {
@@ -104,10 +92,17 @@ public partial class AddDownloadNewAddressDialogForm : MasterFixedDialogForm
 
             downloadFileInfoDialogForm.SetDownloadFileInfo(DownloadFileInfoRequest.Data);
 
-            
+
 
             if (downloadFileInfoDialogForm.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
                 Close();
+            }
 
         }
         catch (Exception ex)

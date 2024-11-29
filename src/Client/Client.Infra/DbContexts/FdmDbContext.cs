@@ -11,7 +11,7 @@ public class FdmDbContext : DbContext
     public DbSet<DownloadQueue> DownloadQueues { get; set; }
     public DbSet<AppSetting> AppSettings { get; set; }
     public DbSet<FileTypeGroup> FileTypeGroups { get; set; }
-
+    public DbSet<DownloadFile> DownloadFiles { get; set; }
 
     public FdmDbContext(DbContextOptions<FdmDbContext> options) : base(options)
     {
@@ -49,7 +49,8 @@ public class FdmDbContext : DbContext
 
         // Apply seed data from external classes
         modelBuilder.Entity<FileTypeGroup>().HasData(FileTypeGroupSeed.GetSeedData());
-
+        modelBuilder.Entity<DownloadQueue>().HasData(DownloadQueueSeed.GetSeedData());
+        
 
 }
 }

@@ -13,7 +13,7 @@ public class DownloadViewModel
     [DisplayName("صف")]
     public string DownloadQueue { get; set; }
     [DisplayName("اندازه")]
-    public int Size { get; set; }
+    public long Size { get; set; }
     [DisplayName("وضعیت")]
     public string Status { get; set; }
     [DisplayName("پیشرفت")]

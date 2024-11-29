@@ -10,4 +10,6 @@ public class AppErrors : IAppErrors
     public string DuplicatedFileTypeGroupError => "گروه تکراری است";
 
     public string DuplicatedDownloadQueue => "نام صف تکراری است";
+
+    public string DuplicatedDownloadFile => "این فایل قبلا در لیست دانلود اضافه شده است";
 }

@@ -17,7 +17,7 @@ public class DownloadQueueService : IDownloadQueueService
         _appErrors = appErrors;
     }
 
-    public async Task<List<DownloadQueueResDto>> GetAllDownloadQueuesAsync()
+    public async Task<ResultPattern<List<DownloadQueueResDto>>> GetAllDownloadQueuesAsync()
     {
         var result = await _downloadQueueRepo.GetAllAsync();
 
@@ -27,7 +27,7 @@ public class DownloadQueueService : IDownloadQueueService
         }).ToList();
     }
 
-    public async Task<ResultPattern<bool>> AddDownloadQueueAsync(string title)
+    public async Task<ResultPattern<bool>> CreateNewDownloadQueueAsync(string title)
     {
         var downloadQueue = await _downloadQueueRepo.GetByTitleAsync(title);
 
