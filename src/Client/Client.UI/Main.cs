@@ -3,8 +3,14 @@
 
 
 
+using Client.Domain.Dtos.Response.DownloadFile;
 using Client.UI.Properties;
+using DevExpress.Dialogs.Core.View;
+using DevExpress.Mvvm.Native;
+using DevExpress.Office.Utils;
 using DevExpress.XtraBars;
+using DevExpress.XtraSpreadsheet.Model;
+using System.Threading;
 
 namespace Client.UI;
 
@@ -14,6 +20,9 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private readonly IDownloadFileService _downloadFileService;
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<Main> _logger;
+    private readonly List<DownloadFileResDto> mainDownloadQueue;
+    private BindingList<DownloadViewModel> dataList = new BindingList<DownloadViewModel>();
+    private SynchronizationContext _uiContext;
     public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService)
     {
         InitializeComponent();
@@ -25,6 +34,8 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         System.Windows.Forms.Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
         AppDomain.CurrentDomain.UnhandledException += (sender, e) => (e.ExceptionObject as Exception).Handle(_logger);
         _downloadFileService = downloadFileService;
+        mainDownloadQueue = new List<DownloadFileResDto>();
+        _uiContext = SynchronizationContext.Current;
     }
 
     private async void Main_Click(object sender, DevExpress.Utils.ContextItemClickEventArgs e)
@@ -50,6 +61,8 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         {
             await LoadAllQueuesIntoSideMenuAsync();
             await LoadAllDownloadFilesIntoGridAsync();
+            var task = LoadAllDownloadFileIntoQueue();
+
         }
         catch (Exception ex)
         {
@@ -157,7 +170,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private async void AddNewDownload()
     {
         var frm = GetForm<AddDownloadNewAddressDialogForm>();
-        if (frm.ShowDialog() !=DialogResult.OK ) return;
+        if (frm.ShowDialog() != DialogResult.OK) return;
 
         await LoadAllDownloadFilesIntoGridAsync();
     }
@@ -203,20 +216,90 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         }
 
         var result = request.Data;
+        result.ForEach(d => dataList.Add(new DownloadViewModel()
+        {
+            Description = d.Description,
+            DownloadQueue = d.DownloadQueue.Title,
+            FileName = d.FileName,
+            Percent = 0,
+            Id = d.Id,
+            LatestDownloadDateTime = DateTime.Now,
+            Remain = 5,
+            Size = d.Size,
+            Speed = 100,
+            Status = d.DownloadStatus.ToString()
+        }));
 
+        downloadViewModelBindingSource.DataSource = dataList;
+        return;
         downloadViewModelBindingSource.DataSource = result.Select(d => new DownloadViewModel()
         {
-            Description=d.Description,
-            DownloadQueue=d.DownloadQueue.Title,
-            FileName=d.FileName,
-            Percent=0,
-            Id=d.Id,
-            LatestDownloadDateTime=DateTime.Now,
-            Remain=5,
-            Size=d.Size,
-            Speed=100,
-            Status=d.DownloadStatus.ToString()
+            Description = d.Description,
+            DownloadQueue = d.DownloadQueue.Title,
+            FileName = d.FileName,
+            Percent = 0,
+            Id = d.Id,
+            LatestDownloadDateTime = DateTime.Now,
+            Remain = 5,
+            Size = d.Size,
+            Speed = 100,
+            Status = d.DownloadStatus.ToString()
         }).ToList();
+    }
+
+    private async Task LoadAllDownloadFileIntoQueue()
+    {
+        //var request = await _downloadFileService.GetAllStartedDownloadFilesAsync();
+       // mainDownloadQueue.AddRange(request.Data);
+        //  if (request.Data.Any())
+        //  request.Data.ForEach(d => mainDownloadQueue.Enqueue(d, false));
+
+        foreach (var item in dataList)
+        {
+            var download = item;
+            var task = new Task(async () =>
+            {
+                var i = 0;
+                while (i < 1000)
+                {
+                    i=i+ new Random().Next(1, 10);
+                    _uiContext.Post(_ => download.Description = $"{i}%", null);
+                  //  download.Description = i.ToString();
+                    await Task.Delay(new Random().Next(1, 500));
+                }
+
+            });
+
+            task.Start();
+        }
+
+
+    }
+
+    private void UpdateGrid()
+    {
+       if (!(downloadViewModelBindingSource.List is List<DownloadViewModel> list)) return;
+        Task.Run(() =>
+        {
+            while (true)
+            {
+                foreach (var item in list)
+                {
+                    item.Description = dataList.FirstOrDefault(p => p.Id == item.Id)?.Description;
+
+                }
+                //if (gridControl1.InvokeRequired)
+                //{
+                //    gridControl1.Invoke(new Action(() =>
+                //    {
+                //        gridView1.RefreshData();
+                //    }));
+                //}
+
+            }
+        });
+
+
     }
     #endregion
 }

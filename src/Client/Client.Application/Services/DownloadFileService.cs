@@ -39,10 +39,27 @@ public class DownloadFileService : IDownloadFileService
         }).ToList();
     }
 
+
+    public async Task<ResultPattern<List<DownloadFileResDto>>> GetAllStartedDownloadFilesAsync()
+    {
+        var downloads = await _downloadFileRepo.GetsStartedAsync();
+
+        return downloads.Select(d => new DownloadFileResDto()
+        {
+            DownloadQueue = d.DownloadQueue,
+            FileName = d.FileName,
+            Description = d.Description,
+            DownloadStatus = d.DownloadStatus,
+            Id = d.Id,
+            Size = d.Size
+        }).ToList();
+    }
+
+
     public async Task<ResultPattern<bool>> AddFileToQueueAsync(AddFileToQueueReqDto model)
     {
         var downloadFile = await _downloadFileRepo.GetAsync(model.FileName, model.DownloadURL);
-
+        downloadFile = null;
         if (downloadFile == null)
         {
             var downloadQueue = await _downloadQueueRepo.GetByIdAsync(model.downloadQueueId);

@@ -10,6 +10,6 @@ public interface IDownloadFileService
 {
     Task<ResultPattern<List<DownloadFileResDto>>> GetDownloadFilesAsync(int? downloadQueueId);
     Task<ResultPattern<DownloadFileInfoResDto>> GetFileInfoAsync(string url);
-
+    Task<ResultPattern<List<DownloadFileResDto>>> GetAllStartedDownloadFilesAsync();
     Task<ResultPattern<bool>> AddFileToQueueAsync(AddFileToQueueReqDto addFileToQueueReqDto);
 }

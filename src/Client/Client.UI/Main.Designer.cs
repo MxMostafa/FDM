@@ -220,6 +220,7 @@
             gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colFileName, colFileIcon, colDownloadQueue, colSize, colStatus, colPercent, colSpeed, colRemain, colLatestDownloadDateTime, colDescription });
             gridView1.GridControl = gridControl1;
             gridView1.Name = "gridView1";
+            gridView1.OptionsBehavior.ReadOnly = true;
             gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colId

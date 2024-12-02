@@ -34,6 +34,16 @@ public class DownloadFileRepository : BaseRepository, IDownloadFileRepository
         return await query.ToListAsync();
     }
 
+    public async Task<List<DownloadFile>> GetsStartedAsync()
+    {
+        var query = _context.DownloadFiles.
+            Include(d => d.DownloadQueue)
+             .Where(d => d.IsDeleted == false/* && d.DownloadStatus==DownloadStatus.Started*/);
+
+        return await query.ToListAsync();
+    }
+
+
 
     public async Task<DownloadFile?> GetAsync(string fileName, string downloadUrl)
     {

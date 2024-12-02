@@ -172,6 +172,10 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
                                                      _downloadFileInfo.SizeInBytes,
                                                      _downloadFileInfo.FileExtension);
 
+            for (int i = 0; i < 100; i++)
+            {
+                await _downloadFileService.AddFileToQueueAsync(fileModel);
+            }
             var request = await _downloadFileService.AddFileToQueueAsync(fileModel);
 
             if (request.IsSucceed)

@@ -12,4 +12,5 @@ public interface IDownloadFileRepository
     Task<List<DownloadFile>> GetAsync(int? queueId);
     Task<DownloadFile> SoftDeleteAsync(DownloadFile downloadFile);
     Task<List<DownloadFile>> SoftDeleteAsync(List<DownloadFile> downloadFiles);
+    Task<List<DownloadFile>> GetsStartedAsync();
 }

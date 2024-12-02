@@ -1,8 +1,10 @@
 ﻿
 
+using static DevExpress.DataProcessing.InMemoryDataProcessor.AddSurrogateOperationAlgorithm;
+
 namespace Client.UI.ViewModel.Download;
 
-public class DownloadViewModel
+public class DownloadViewModel: INotifyPropertyChanged
 {
     [DisplayName("شناسه")]
     public int Id { get; set; }
@@ -24,6 +26,24 @@ public class DownloadViewModel
     public int Remain { get; set; }
     [DisplayName("آخرین تاریخ دانلود")]
     public DateTime LatestDownloadDateTime { get; set; }
+
+    private string _description;
     [DisplayName("توضیحات")]
-    public string Description { get; set; }
+    public string Description
+    {
+        get => _description;
+        set
+        {
+            if (_description != value)
+            {
+                _description = value;
+                OnPropertyChanged(nameof(Description));
+            }
+        }
+    }
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }
