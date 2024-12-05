@@ -418,7 +418,6 @@
             darkLightButton.Id = 7;
             darkLightButton.ImageOptions.SvgImage = Properties.Resources.QuietHours;
             darkLightButton.Name = "darkLightButton";
-            darkLightButton.ItemClick += darkLightButton_ItemClick;
             // 
             // AccountButton
             // 

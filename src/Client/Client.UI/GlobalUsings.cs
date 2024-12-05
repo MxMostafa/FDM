@@ -27,3 +27,8 @@ global using Client.UI.ViewModel.Download;
 global using Client.Domain.Dtos.Response.AppSetting;
 global using Client.UI.Constants;
 global using Client.UI.Constants.Configs;
+global using Client.Domain.Dtos.Response.DownloadFile;
+global using Client.UI.Properties;
+global using DevExpress.Mvvm.Native;
+global using DevExpress.XtraBars;
+global using System.Threading;

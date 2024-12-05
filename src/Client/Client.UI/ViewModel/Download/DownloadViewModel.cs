@@ -14,6 +14,7 @@ public class DownloadViewModel: INotifyPropertyChanged
     public string FileIcon { get; set; }
     [DisplayName("صف")]
     public string DownloadQueue { get; set; }
+    public int DownloadQueueId { get; set; }
     [DisplayName("اندازه")]
     public long Size { get; set; }
     [DisplayName("وضعیت")]
