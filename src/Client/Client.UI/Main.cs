@@ -1,7 +1,4 @@
-﻿
-
-using Client.UI.Languages;
-using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
+﻿using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace Client.UI;
 
@@ -207,32 +204,69 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     }
 
 
-    private async Task RunDownladMainTask()
+    private Task RunDownladMainTask()
     {
-        var downloadItems = _mainDownloadList.Where(d => d.DownloadStatus == Domain.Enums.DownloadStatus.Started).ToList();
+        return Task.Run(async () =>
+           {
+               while (true)
+               {
+                   var downloadItems = _mainDownloadList.Where(d => d.DownloadStatus == Domain.Enums.DownloadStatus.Started).ToList();
+                   if (downloadItems.Count == 0)
+                   {
+                       await Task.Delay(1000);
+                       continue;
+                   }
+                   foreach (var item in downloadItems)
+                   {
+                       var download = item;
+                       var task = new Task(async () =>
+                       {
+                           var i = 0;
+                           while (i < 1000)
+                           {
+                               i = i + new Random().Next(1, 10);
+                               _uiContext.Post(_ => download.Description = $"{i}%", null);
+                               //  download.Description = i.ToString();
+                               await Task.Delay(new Random().Next(1, 500));
+                           }
+
+                       });
+
+                       task.Start();
+                   }
+               }
+           });
 
 
-        foreach (var item in _mainDownloadList)
-        {
-            var download = item;
-            var task = new Task(async () =>
-            {
-                var i = 0;
-                while (i < 1000)
-                {
-                    i = i + new Random().Next(1, 10);
-                    _uiContext.Post(_ => download.Description = $"{i}%", null);
-                    //  download.Description = i.ToString();
-                    await Task.Delay(new Random().Next(1, 500));
-                }
 
-            });
 
-            task.Start();
-        }
+
 
 
     }
 
+    #endregion
+
+    private void ContinueDownloadUrlButton_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        foreach (int i in gridView1.GetSelectedRows())
+        {
+            if (!(gridView1.GetRow(i) is DownloadViewModel selectedItem)) continue;
+
+            ContinueDownloadCommand(selectedItem);
+
+
+
+        }
+    }
+
+
+
+    #region DownloadActions
+
+    private void ContinueDownloadCommand(DownloadViewModel item)
+    {
+        _uiContext.Post(_ => item.DownloadStatus =Domain.Enums.DownloadStatus.Started, null);
+    }
     #endregion
 }

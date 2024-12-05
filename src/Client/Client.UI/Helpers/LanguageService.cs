@@ -6,14 +6,14 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.UI.Languages;
+namespace Client.UI.Helpers;
 
 public class LanguageService
 {
     private ResourceManager _resourceManager;
     private CultureInfo _culture;
 
-    public LanguageService(string baseName )
+    public LanguageService(string baseName)
     {
         _resourceManager = new ResourceManager(baseName, typeof(LanguageService).Assembly);
         _culture = CultureInfo.CurrentCulture;

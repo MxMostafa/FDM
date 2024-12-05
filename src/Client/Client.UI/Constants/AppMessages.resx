@@ -126,4 +126,10 @@
   <data name="ValidationError" xml:space="preserve">
     <value>لطفا اطلاعات را کامل کنید</value>
   </data>
+  <data name="Started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="NotStarted" xml:space="preserve">
+    <value>NotStarted</value>
+  </data>
 </root>

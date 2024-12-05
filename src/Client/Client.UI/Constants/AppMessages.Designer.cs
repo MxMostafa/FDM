@@ -61,6 +61,24 @@ namespace Client.UI.Constants {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NotStarted.
+        /// </summary>
+        internal static string NotStarted {
+            get {
+                return ResourceManager.GetString("NotStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started.
+        /// </summary>
+        internal static string Started {
+            get {
+                return ResourceManager.GetString("Started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آدرس دانلود وارد شده صحیح نمی باشد.
         /// </summary>
         internal static string UrlFormatValidationError {

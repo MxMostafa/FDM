@@ -5,7 +5,6 @@
 using Client.Application.Extensions;
 using Client.Infrastructure.Extensions;
 using Client.Persistence.Extensions;
-using Client.UI.Languages;
 
 namespace Client.UI.Extensions;
 
@@ -29,7 +28,7 @@ public static class HostingExtension
         services.AddLogging(loggingBuilder =>
                              loggingBuilder.AddSerilog(dispose: true));
 
-        services.AddSingleton<LanguageService>(new LanguageService("Client.UI.Languages"));
+        services.AddSingleton<LanguageService>(new LanguageService("Client.UI.Constants.AppMessages"));
         return services;
     }
 
