@@ -1,4 +1,5 @@
-﻿using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
+﻿using Client.Domain.Enums;
+using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace Client.UI;
 
@@ -27,6 +28,8 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         _languageService = languageService;
 
         _languageService.SetLanguage("fa");
+        gridView1.OptionsBehavior.Editable = false;
+        gridView1.OptionsSelection.MultiSelect = true;
     }
 
     #region Events
@@ -199,8 +202,10 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     }
     private void LoadFilteredMainDownloadList(int? downloadQueueId)
     {
-        downloadViewModelBindingSource.DataSource = _mainDownloadList
-            .Where(d => downloadQueueId == null || d.DownloadQueueId == downloadQueueId).ToList();
+        var filteredList = _mainDownloadList
+          .Where(d => downloadQueueId == null || d.DownloadQueueId == downloadQueueId).ToList();
+
+        downloadViewModelBindingSource.DataSource = downloadViewModelBindingSource.DataSource = new BindingList<DownloadViewModel>(filteredList);
     }
 
 
@@ -210,28 +215,28 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
            {
                while (true)
                {
-                   var downloadItems = _mainDownloadList.Where(d => d.DownloadStatus == Domain.Enums.DownloadStatus.Started).ToList();
+                   var downloadItems = _mainDownloadList.Where(d => d.DownloadStatus == Domain.Enums.DownloadStatus.WaitingToStart).ToList();
                    if (downloadItems.Count == 0)
                    {
                        await Task.Delay(1000);
                        continue;
                    }
-                   foreach (var item in downloadItems)
+                   foreach (var download in downloadItems)
                    {
-                       var download = item;
                        var task = new Task(async () =>
                        {
                            var i = 0;
-                           while (i < 1000)
+                           while (download.DownloadedBytes < download.Size)
                            {
-                               i = i + new Random().Next(1, 10);
-                               _uiContext.Post(_ => download.Description = $"{i}%", null);
-                               //  download.Description = i.ToString();
+                               i = i + new Random().Next(1, 100000);
+                               download.DownloadedBytes += i;
+                               var percent = FormatHelper.GetPercent(download.DownloadedBytes, download.Size);
+                               _uiContext.Post(_ => download.Percent = percent, null);
                                await Task.Delay(new Random().Next(1, 500));
                            }
 
                        });
-
+                       ContinueDownloadCommand(download);
                        task.Start();
                    }
                }
@@ -253,9 +258,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         {
             if (!(gridView1.GetRow(i) is DownloadViewModel selectedItem)) continue;
 
-            ContinueDownloadCommand(selectedItem);
-
-
+            WaitingContinueDownloadCommand(selectedItem);
 
         }
     }
@@ -263,10 +266,14 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
 
     #region DownloadActions
-
+    private void WaitingContinueDownloadCommand(DownloadViewModel item)
+    {
+        _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.WaitingToStart, null);
+    }
     private void ContinueDownloadCommand(DownloadViewModel item)
     {
-        _uiContext.Post(_ => item.DownloadStatus =Domain.Enums.DownloadStatus.Started, null);
+        _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.Started, null);
+        _uiContext.Post(_ => item.Status = _languageService.GetString(DownloadStatus.Started.ToString()), null);
     }
     #endregion
 }

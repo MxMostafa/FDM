@@ -30,11 +30,11 @@
         {
             components = new Container();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
-            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton2 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
-            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -267,10 +267,18 @@
             // 
             // colPercent
             // 
+            colPercent.AppearanceCell.Font = new Font("Tahoma", 8.25F, FontStyle.Bold);
+            colPercent.AppearanceCell.Options.UseFont = true;
+            colPercent.AppearanceCell.Options.UseTextOptions = true;
+            colPercent.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            colPercent.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            colPercent.DisplayFormat.FormatString = "% {0}";
+            colPercent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             colPercent.FieldName = "Percent";
             colPercent.Name = "colPercent";
             colPercent.Visible = true;
             colPercent.VisibleIndex = 6;
+            colPercent.Width = 104;
             // 
             // colSpeed
             // 
@@ -442,9 +450,9 @@
             AccountMenuButton.LinksPersistInfo.AddRange(new LinkPersistInfo[] { new LinkPersistInfo(LoginMenuButton), new LinkPersistInfo(barButtonItem18) });
             AccountMenuButton.Name = "AccountMenuButton";
             AccountMenuButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
-            toolTipTitleItem3.Text = "تنظیمات حساب کاربری";
-            superToolTip3.Items.Add(toolTipTitleItem3);
-            AccountMenuButton.SuperTip = superToolTip3;
+            toolTipTitleItem1.Text = "تنظیمات حساب کاربری";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            AccountMenuButton.SuperTip = superToolTip1;
             // 
             // LoginMenuButton
             // 
@@ -680,7 +688,7 @@
             AddNewDownloadUrlButton.Caption = "آدرس";
             AddNewDownloadUrlButton.ContentHorizontalAlignment = BarItemContentAlignment.Center;
             AddNewDownloadUrlButton.Id = 15;
-            AddNewDownloadUrlButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem21.ImageOptions.SvgImage");
+            AddNewDownloadUrlButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("AddNewDownloadUrlButton.ImageOptions.SvgImage");
             AddNewDownloadUrlButton.ImageOptions.SvgImageSize = new Size(25, 25);
             AddNewDownloadUrlButton.Name = "AddNewDownloadUrlButton";
             AddNewDownloadUrlButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
@@ -690,7 +698,7 @@
             // 
             ContinueDownloadUrlButton.Caption = "ادامه";
             ContinueDownloadUrlButton.Id = 16;
-            ContinueDownloadUrlButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem23.ImageOptions.SvgImage");
+            ContinueDownloadUrlButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ContinueDownloadUrlButton.ImageOptions.SvgImage");
             ContinueDownloadUrlButton.ImageOptions.SvgImageSize = new Size(25, 25);
             ContinueDownloadUrlButton.Name = "ContinueDownloadUrlButton";
             ContinueDownloadUrlButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
@@ -947,14 +955,14 @@
             // 
             // DownloadQueueElement
             // 
-            accordionContextButton2.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            accordionContextButton2.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            accordionContextButton2.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
-            accordionContextButton2.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
-            accordionContextButton2.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
-            accordionContextButton2.Name = "AddNewDownloadQueueContextButton";
-            accordionContextButton2.ToolTip = "افزودن صف جدید";
-            DownloadQueueElement.ContextButtons.Add(accordionContextButton2);
+            accordionContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            accordionContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            accordionContextButton1.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
+            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
+            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
+            accordionContextButton1.Name = "AddNewDownloadQueueContextButton";
+            accordionContextButton1.ToolTip = "افزودن صف جدید";
+            DownloadQueueElement.ContextButtons.Add(accordionContextButton1);
             DownloadQueueElement.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DownloadQueueElement.ImageOptions.SvgImage");
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
@@ -969,9 +977,9 @@
             SettingMenuButton.ImageOptions.SvgImageSize = new Size(35, 32);
             SettingMenuButton.Name = "SettingMenuButton";
             SettingMenuButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem4.Text = "تنیمات اصلی";
-            superToolTip4.Items.Add(toolTipTitleItem4);
-            SettingMenuButton.SuperTip = superToolTip4;
+            toolTipTitleItem2.Text = "تنیمات اصلی";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            SettingMenuButton.SuperTip = superToolTip2;
             SettingMenuButton.Text = "تنظیمات";
             SettingMenuButton.Click += SettingMenuButton_Click;
             // 

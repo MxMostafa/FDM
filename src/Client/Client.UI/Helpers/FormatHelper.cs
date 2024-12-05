@@ -38,4 +38,15 @@ public static class FormatHelper
             return string.Format("{0} بایت", bytes);
         }
     }
+
+    public static float GetPercent(long number,long total)
+    {
+        if (total == 0) return 0;
+
+        var res= (float)((((decimal)(number * 100)) / (decimal)total));
+
+        res = Math.Min(res, 100);
+
+        return (float)Math.Round(res, 2);
+    }
 }

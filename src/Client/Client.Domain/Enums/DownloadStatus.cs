@@ -5,6 +5,7 @@ namespace Client.Domain.Enums;
 public enum DownloadStatus
 {
     NotStarted,   // دانلود هنوز شروع نشده است
+    WaitingToStart,
     Started,      // دانلود شروع شده است
     Paused,       // دانلود متوقف شده است (موقتی)
     Finished,     // دانلود به اتمام رسیده است
