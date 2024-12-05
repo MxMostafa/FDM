@@ -84,4 +84,6 @@ public class DownloadViewModel : INotifyPropertyChanged
         }
     }
     public long DownloadedBytes { get; set; }
+
+    public CancellationTokenSource CancellationTokenSource { get; set; } = new CancellationTokenSource();
 }

@@ -208,72 +208,137 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         downloadViewModelBindingSource.DataSource = downloadViewModelBindingSource.DataSource = new BindingList<DownloadViewModel>(filteredList);
     }
 
+    private BindingList<DownloadViewModel> GetSelectedItems()
+    {
+        var items = new BindingList<DownloadViewModel>();
 
+        foreach (int i in gridView1.GetSelectedRows())
+        {
+            if (!(gridView1.GetRow(i) is DownloadViewModel selectedItem)) continue;
+
+            items.Add(selectedItem);
+        }
+
+        return items;
+    }
+
+    #region Always RUN
+    private SemaphoreSlim _semaphore = new SemaphoreSlim(100); // حداکثر 100 تسک همزمان
     private Task RunDownladMainTask()
     {
         return Task.Run(async () =>
-           {
-               while (true)
-               {
-                   var downloadItems = _mainDownloadList.Where(d => d.DownloadStatus == Domain.Enums.DownloadStatus.WaitingToStart).ToList();
-                   if (downloadItems.Count == 0)
-                   {
-                       await Task.Delay(1000);
-                       continue;
-                   }
-                   foreach (var download in downloadItems)
-                   {
-                       var task = new Task(async () =>
-                       {
-                           var i = 0;
-                           while (download.DownloadedBytes < download.Size)
-                           {
-                               i = i + new Random().Next(1, 100000);
-                               download.DownloadedBytes += i;
-                               var percent = FormatHelper.GetPercent(download.DownloadedBytes, download.Size);
-                               _uiContext.Post(_ => download.Percent = percent, null);
-                               await Task.Delay(new Random().Next(1, 500));
-                           }
+        {
+            while (true)
+            {
+                try
+                {
+                    var downloadItems = _mainDownloadList.Where(d => d.DownloadStatus == Domain.Enums.DownloadStatus.WaitingToStart).ToList();
+                    if (downloadItems.Count == 0)
+                    {
+                        await Task.Delay(1000);
+                        continue;
+                    }
+                    foreach (var download in downloadItems)
+                    {
+                        await _semaphore.WaitAsync();
 
-                       });
-                       ContinueDownloadCommand(download);
-                       task.Start();
-                   }
-               }
-           });
+                        _ = Task.Run(async () =>
+                        {
+                            try
+                            {
+                                var i = 0;
+                                while (download.DownloadedBytes < download.Size && !download.CancellationTokenSource.Token.IsCancellationRequested)
+                                {
+                                    try
+                                    {
+                                        i = i + new Random().Next(1, 100000);
+                                        download.DownloadedBytes += i;
+                                        var percent = FormatHelper.GetPercent(download.DownloadedBytes, download.Size);
+                                        _uiContext.Post(_ => download.Percent = percent, null);
+                                        await Task.Delay(new Random().Next(1, 500));
+                                    }
+                                    catch (OperationCanceledException)
+                                    {
+                                        PauseDownloadCommand(new BindingList<DownloadViewModel> { download });
+                                    }
+
+                                }
+                            }
+                            finally
+                            {
+                                _semaphore.Release();
+                            }
 
 
+                        }, download.CancellationTokenSource.Token);
+                        ContinueDownloadCommand(new BindingList<DownloadViewModel> { download });
+                    }
+                }
+                catch (Exception ex)
+                {
 
+                }
 
-
-
-
+            }
+        });
     }
+    #endregion
+
 
     #endregion
 
     private void ContinueDownloadUrlButton_ItemClick(object sender, ItemClickEventArgs e)
     {
-        foreach (int i in gridView1.GetSelectedRows())
-        {
-            if (!(gridView1.GetRow(i) is DownloadViewModel selectedItem)) continue;
-
-            WaitingContinueDownloadCommand(selectedItem);
-
-        }
+        var items = GetSelectedItems();
+        WaitingContinueDownloadCommand(items);
     }
 
 
 
     #region DownloadActions
-    private void WaitingContinueDownloadCommand(DownloadViewModel item)
+    private void WaitingContinueDownloadCommand(BindingList<DownloadViewModel> items)
     {
-        _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.WaitingToStart, null);
+        foreach (var item in items)
+        {
+            _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.WaitingToStart, null);
+            item.CancellationTokenSource = new CancellationTokenSource();
+        }
+
     }
-    private void ContinueDownloadCommand(DownloadViewModel item)
+    private void ContinueDownloadCommand(BindingList<DownloadViewModel> items)
     {
-        _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.Started, null);
-        _uiContext.Post(_ => item.Status = _languageService.GetString(DownloadStatus.Started.ToString()), null);
+        foreach (var item in items)
+        {
+            _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.Started, null);
+            _uiContext.Post(_ => item.Status = _languageService.GetString(DownloadStatus.Started.ToString()), null);
+        }
+
+    }
+
+    private void PauseDownloadCommand(BindingList<DownloadViewModel> items)
+    {
+        foreach (var item in items)
+        {
+            item.CancellationTokenSource.Cancel();
+            _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.Paused, null);
+            _uiContext.Post(_ => item.Status = _languageService.GetString(DownloadStatus.Paused.ToString()), null);
+        }
     }
     #endregion
+
+    private void StopAllDownloadButton_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        PauseDownloadCommand(_mainDownloadList);
+    }
+
+    private void ContinueAllDownloadUrlButton_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        WaitingContinueDownloadCommand(_mainDownloadList);
+    }
+
+    private void StopDownloadButton_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        var items = GetSelectedItems();
+        PauseDownloadCommand(items);
+    }
 }

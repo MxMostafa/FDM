@@ -123,6 +123,16 @@ namespace Client.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage CheckboxCompositeReversed {
+            get {
+                object obj = ResourceManager.GetObject("CheckboxCompositeReversed", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage CheckMark {
             get {
                 object obj = ResourceManager.GetObject("CheckMark", resourceCulture);
@@ -196,6 +206,16 @@ namespace Client.UI.Properties {
         internal static DevExpress.Utils.Svg.SvgImage DynamicLock {
             get {
                 object obj = ResourceManager.GetObject("DynamicLock", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage ForwardSolidBold {
+            get {
+                object obj = ResourceManager.GetObject("ForwardSolidBold", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }

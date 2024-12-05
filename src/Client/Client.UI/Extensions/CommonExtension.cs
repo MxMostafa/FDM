@@ -14,13 +14,13 @@ public static class CommonExtension
         if (ex == null || logger == null) return;
 
         // لاگ خطا با استفاده از Serilog
-        logger.LogError(ex, "An exception occurred: {Message}", ex.InnerException?.Message??ex.Message);
+        logger.LogError(ex, "An exception occurred: {Message}", ex.InnerException?.Message ?? ex.Message);
 
         ErrorHelper.ShowErrorAsMessageBox(ex);
 
     }
 
-    public static void Handle<T>(this ResultPattern<T> result) 
+    public static void Handle<T>(this ResultPattern<T> result)
     {
 
         ErrorHelper.ShowErrorAsMessageBox(result.ErrorMessage);
@@ -32,6 +32,13 @@ public static class CommonExtension
 
         throw new Exception(result.ErrorMessage);
 
+    }
+
+
+    public static void StartAgain(this CancellationTokenSource ct)
+    {
+        if (ct.IsCancellationRequested)
+            ct = new CancellationTokenSource();
     }
 
 }

@@ -30,11 +30,11 @@
         {
             components = new Container();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton3 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
+            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -48,6 +48,7 @@
             colSize = new DevExpress.XtraGrid.Columns.GridColumn();
             colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             colPercent = new DevExpress.XtraGrid.Columns.GridColumn();
+            DownloadPercentProgressBar = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             colSpeed = new DevExpress.XtraGrid.Columns.GridColumn();
             colRemain = new DevExpress.XtraGrid.Columns.GridColumn();
             colLatestDownloadDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -101,8 +102,10 @@
             bar7 = new Bar();
             AddNewDownloadUrlButton = new BarButtonItem();
             ContinueDownloadUrlButton = new BarButtonItem();
-            barButtonItem24 = new BarButtonItem();
-            barButtonItem25 = new BarButtonItem();
+            popupMenu1 = new PopupMenu(components);
+            StopDownloadButton = new BarButtonItem();
+            ContinueAllDownloadUrlButton = new BarButtonItem();
+            StopAllDownloadButton = new BarButtonItem();
             barButtonItem27 = new BarButtonItem();
             barButtonItem28 = new BarButtonItem();
             barDockControl2 = new BarDockControl();
@@ -147,6 +150,7 @@
             bar9 = new Bar();
             bar10 = new Bar();
             bar11 = new Bar();
+            barButtonItem16 = new BarButtonItem();
             fluentDesignFormContainer1.SuspendLayout();
             ((ISupportInitialize)navigationFrame1).BeginInit();
             navigationFrame1.SuspendLayout();
@@ -154,9 +158,11 @@
             ((ISupportInitialize)gridControl1).BeginInit();
             ((ISupportInitialize)downloadViewModelBindingSource).BeginInit();
             ((ISupportInitialize)gridView1).BeginInit();
+            ((ISupportInitialize)DownloadPercentProgressBar).BeginInit();
             ((ISupportInitialize)fluentFormDefaultManager1).BeginInit();
             ((ISupportInitialize)barManager1).BeginInit();
             ((ISupportInitialize)barManager2).BeginInit();
+            ((ISupportInitialize)popupMenu1).BeginInit();
             ((ISupportInitialize)accordionControl1).BeginInit();
             ((ISupportInitialize)fluentDesignFormControl1).BeginInit();
             SuspendLayout();
@@ -207,6 +213,7 @@
             gridControl1.MainView = gridView1;
             gridControl1.MenuManager = fluentFormDefaultManager1;
             gridControl1.Name = "gridControl1";
+            gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { DownloadPercentProgressBar });
             gridControl1.Size = new Size(803, 547);
             gridControl1.TabIndex = 4;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
@@ -272,6 +279,7 @@
             colPercent.AppearanceCell.Options.UseTextOptions = true;
             colPercent.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colPercent.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            colPercent.ColumnEdit = DownloadPercentProgressBar;
             colPercent.DisplayFormat.FormatString = "% {0}";
             colPercent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             colPercent.FieldName = "Percent";
@@ -279,6 +287,14 @@
             colPercent.Visible = true;
             colPercent.VisibleIndex = 6;
             colPercent.Width = 104;
+            // 
+            // DownloadPercentProgressBar
+            // 
+            DownloadPercentProgressBar.ExportMode = DevExpress.XtraEditors.Repository.ExportMode.DisplayText;
+            DownloadPercentProgressBar.Name = "DownloadPercentProgressBar";
+            DownloadPercentProgressBar.ReadOnly = true;
+            DownloadPercentProgressBar.ShowTitle = true;
+            DownloadPercentProgressBar.Step = 1;
             // 
             // colSpeed
             // 
@@ -450,9 +466,9 @@
             AccountMenuButton.LinksPersistInfo.AddRange(new LinkPersistInfo[] { new LinkPersistInfo(LoginMenuButton), new LinkPersistInfo(barButtonItem18) });
             AccountMenuButton.Name = "AccountMenuButton";
             AccountMenuButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
-            toolTipTitleItem1.Text = "تنظیمات حساب کاربری";
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            AccountMenuButton.SuperTip = superToolTip1;
+            toolTipTitleItem5.Text = "تنظیمات حساب کاربری";
+            superToolTip5.Items.Add(toolTipTitleItem5);
+            AccountMenuButton.SuperTip = superToolTip5;
             // 
             // LoginMenuButton
             // 
@@ -671,8 +687,8 @@
             barManager2.DockControls.Add(barDockControl4);
             barManager2.DockControls.Add(barDockControl5);
             barManager2.Form = navigationPage1;
-            barManager2.Items.AddRange(new BarItem[] { AddNewDownloadUrlButton, ContinueDownloadUrlButton, barButtonItem24, barButtonItem25, barButtonItem26, barButtonItem27, barButtonItem28, barButtonItem29 });
-            barManager2.MaxItemId = 23;
+            barManager2.Items.AddRange(new BarItem[] { AddNewDownloadUrlButton, ContinueDownloadUrlButton, StopDownloadButton, StopAllDownloadButton, barButtonItem26, barButtonItem27, barButtonItem28, barButtonItem29, ContinueAllDownloadUrlButton });
+            barManager2.MaxItemId = 24;
             // 
             // bar7
             // 
@@ -680,7 +696,7 @@
             bar7.DockCol = 0;
             bar7.DockRow = 0;
             bar7.DockStyle = BarDockStyle.Top;
-            bar7.LinksPersistInfo.AddRange(new LinkPersistInfo[] { new LinkPersistInfo(AddNewDownloadUrlButton, true), new LinkPersistInfo(ContinueDownloadUrlButton), new LinkPersistInfo(barButtonItem24), new LinkPersistInfo(barButtonItem25), new LinkPersistInfo(barButtonItem27), new LinkPersistInfo(barButtonItem28) });
+            bar7.LinksPersistInfo.AddRange(new LinkPersistInfo[] { new LinkPersistInfo(AddNewDownloadUrlButton, true), new LinkPersistInfo(ContinueDownloadUrlButton), new LinkPersistInfo(StopDownloadButton), new LinkPersistInfo(ContinueAllDownloadUrlButton), new LinkPersistInfo(StopAllDownloadButton), new LinkPersistInfo(barButtonItem27), new LinkPersistInfo(barButtonItem28) });
             bar7.Text = "Custom 1";
             // 
             // AddNewDownloadUrlButton
@@ -696,7 +712,9 @@
             // 
             // ContinueDownloadUrlButton
             // 
+            ContinueDownloadUrlButton.ActAsDropDown = true;
             ContinueDownloadUrlButton.Caption = "ادامه";
+            ContinueDownloadUrlButton.DropDownControl = popupMenu1;
             ContinueDownloadUrlButton.Id = 16;
             ContinueDownloadUrlButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ContinueDownloadUrlButton.ImageOptions.SvgImage");
             ContinueDownloadUrlButton.ImageOptions.SvgImageSize = new Size(25, 25);
@@ -704,23 +722,40 @@
             ContinueDownloadUrlButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
             ContinueDownloadUrlButton.ItemClick += ContinueDownloadUrlButton_ItemClick;
             // 
-            // barButtonItem24
+            // popupMenu1
             // 
-            barButtonItem24.Caption = "توقف";
-            barButtonItem24.Id = 17;
-            barButtonItem24.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem24.ImageOptions.SvgImage");
-            barButtonItem24.ImageOptions.SvgImageSize = new Size(25, 25);
-            barButtonItem24.Name = "barButtonItem24";
-            barButtonItem24.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+            popupMenu1.Manager = barManager2;
+            popupMenu1.Name = "popupMenu1";
             // 
-            // barButtonItem25
+            // StopDownloadButton
             // 
-            barButtonItem25.Caption = "توقف همه";
-            barButtonItem25.Id = 18;
-            barButtonItem25.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem25.ImageOptions.SvgImage");
-            barButtonItem25.ImageOptions.SvgImageSize = new Size(25, 25);
-            barButtonItem25.Name = "barButtonItem25";
-            barButtonItem25.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+            StopDownloadButton.Caption = "توقف";
+            StopDownloadButton.Id = 17;
+            StopDownloadButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem24.ImageOptions.SvgImage");
+            StopDownloadButton.ImageOptions.SvgImageSize = new Size(25, 25);
+            StopDownloadButton.Name = "StopDownloadButton";
+            StopDownloadButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+            StopDownloadButton.ItemClick += StopDownloadButton_ItemClick;
+            // 
+            // ContinueAllDownloadUrlButton
+            // 
+            ContinueAllDownloadUrlButton.Caption = "ادامه همه";
+            ContinueAllDownloadUrlButton.Id = 23;
+            ContinueAllDownloadUrlButton.ImageOptions.SvgImage = Resources.ForwardSolidBold;
+            ContinueAllDownloadUrlButton.ImageOptions.SvgImageSize = new Size(25, 25);
+            ContinueAllDownloadUrlButton.Name = "ContinueAllDownloadUrlButton";
+            ContinueAllDownloadUrlButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+            ContinueAllDownloadUrlButton.ItemClick += ContinueAllDownloadUrlButton_ItemClick;
+            // 
+            // StopAllDownloadButton
+            // 
+            StopAllDownloadButton.Caption = "توقف همه";
+            StopAllDownloadButton.Id = 18;
+            StopAllDownloadButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("StopAllDownloadButton.ImageOptions.SvgImage");
+            StopAllDownloadButton.ImageOptions.SvgImageSize = new Size(25, 25);
+            StopAllDownloadButton.Name = "StopAllDownloadButton";
+            StopAllDownloadButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+            StopAllDownloadButton.ItemClick += StopAllDownloadButton_ItemClick;
             // 
             // barButtonItem27
             // 
@@ -955,14 +990,14 @@
             // 
             // DownloadQueueElement
             // 
-            accordionContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            accordionContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            accordionContextButton1.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
-            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
-            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
-            accordionContextButton1.Name = "AddNewDownloadQueueContextButton";
-            accordionContextButton1.ToolTip = "افزودن صف جدید";
-            DownloadQueueElement.ContextButtons.Add(accordionContextButton1);
+            accordionContextButton3.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            accordionContextButton3.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            accordionContextButton3.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
+            accordionContextButton3.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
+            accordionContextButton3.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
+            accordionContextButton3.Name = "AddNewDownloadQueueContextButton";
+            accordionContextButton3.ToolTip = "افزودن صف جدید";
+            DownloadQueueElement.ContextButtons.Add(accordionContextButton3);
             DownloadQueueElement.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DownloadQueueElement.ImageOptions.SvgImage");
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
@@ -977,9 +1012,9 @@
             SettingMenuButton.ImageOptions.SvgImageSize = new Size(35, 32);
             SettingMenuButton.Name = "SettingMenuButton";
             SettingMenuButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem2.Text = "تنیمات اصلی";
-            superToolTip2.Items.Add(toolTipTitleItem2);
-            SettingMenuButton.SuperTip = superToolTip2;
+            toolTipTitleItem6.Text = "تنیمات اصلی";
+            superToolTip6.Items.Add(toolTipTitleItem6);
+            SettingMenuButton.SuperTip = superToolTip6;
             SettingMenuButton.Text = "تنظیمات";
             SettingMenuButton.Click += SettingMenuButton_Click;
             // 
@@ -1077,6 +1112,17 @@
             bar11.DockStyle = BarDockStyle.Top;
             bar11.Text = "Custom 6";
             // 
+            // barButtonItem16
+            // 
+            barButtonItem16.ActAsDropDown = true;
+            barButtonItem16.Caption = "ادامه";
+            barButtonItem16.DropDownControl = popupMenu1;
+            barButtonItem16.Id = 16;
+            barButtonItem16.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem16.ImageOptions.SvgImage");
+            barButtonItem16.ImageOptions.SvgImageSize = new Size(25, 25);
+            barButtonItem16.Name = "barButtonItem16";
+            barButtonItem16.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+            // 
             // Main
             // 
             Appearance.Options.UseFont = true;
@@ -1109,9 +1155,11 @@
             ((ISupportInitialize)gridControl1).EndInit();
             ((ISupportInitialize)downloadViewModelBindingSource).EndInit();
             ((ISupportInitialize)gridView1).EndInit();
+            ((ISupportInitialize)DownloadPercentProgressBar).EndInit();
             ((ISupportInitialize)fluentFormDefaultManager1).EndInit();
             ((ISupportInitialize)barManager1).EndInit();
             ((ISupportInitialize)barManager2).EndInit();
+            ((ISupportInitialize)popupMenu1).EndInit();
             ((ISupportInitialize)accordionControl1).EndInit();
             ((ISupportInitialize)fluentDesignFormControl1).EndInit();
             ResumeLayout(false);
@@ -1200,8 +1248,8 @@
         private DevExpress.XtraBars.BarButtonItem AddNewDownloadUrlButton;
         private DevExpress.XtraBars.BarButtonItem barButtonItem22;
         private DevExpress.XtraBars.BarButtonItem ContinueDownloadUrlButton;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem24;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem25;
+        private DevExpress.XtraBars.BarButtonItem StopDownloadButton;
+        private DevExpress.XtraBars.BarButtonItem StopAllDownloadButton;
         private DevExpress.XtraBars.BarButtonItem barButtonItem26;
         private DevExpress.XtraBars.BarButtonItem barButtonItem27;
         private DevExpress.XtraBars.Bar bar8;
@@ -1231,5 +1279,9 @@
         private DevExpress.XtraBars.BarSubItem AccountMenuButton;
         private DevExpress.XtraBars.BarButtonItem LoginMenuButton;
         private DevExpress.XtraBars.BarButtonItem barButtonItem18;
+        private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar DownloadPercentProgressBar;
+        private PopupMenu popupMenu1;
+        private BarButtonItem ContinueAllDownloadUrlButton;
+        private BarButtonItem barButtonItem16;
     }
 }
