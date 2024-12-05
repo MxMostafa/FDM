@@ -1,5 +1,8 @@
 ﻿
 
+using Client.UI.Languages;
+using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
+
 namespace Client.UI;
 
 public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
@@ -10,7 +13,8 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private readonly ILogger<Main> _logger;
     private readonly BindingList<DownloadViewModel> _mainDownloadList;
     private readonly SynchronizationContext _uiContext;
-    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService)
+    private readonly LanguageService _languageService;
+    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService, LanguageService languageService)
     {
         InitializeComponent();
         _downloadQueueService = downloadQueueService;
@@ -23,6 +27,9 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         _downloadFileService = downloadFileService;
         _mainDownloadList = new BindingList<DownloadViewModel>();
         _uiContext = SynchronizationContext.Current;
+        _languageService = languageService;
+
+        _languageService.SetLanguage("fa");
     }
 
     #region Events
@@ -48,7 +55,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         try
         {
             await LoadAllQueuesIntoSideMenuAsync();
-            await LoadAllDownloadFilesIntoGridAsync();
+            await LoadAllDownloadFilesAndUpdateMainGridAsync();
             var task = RunDownladMainTask();
 
         }
@@ -126,7 +133,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         var frm = GetForm<AddDownloadNewAddressDialogForm>();
         if (frm.ShowDialog() != DialogResult.OK) return;
 
-        await LoadAllDownloadFilesIntoGridAsync();
+        await LoadAllDownloadFilesAndUpdateMainGridAsync();
     }
 
     private async Task LoadAllQueuesIntoSideMenuAsync()
@@ -160,7 +167,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         }
     }
 
-    private async Task LoadAllDownloadFilesIntoGridAsync()
+    private async Task LoadAllDownloadFilesAndUpdateMainGridAsync()
     {
         var request = await _downloadFileService.GetDownloadFilesAsync(null);
         if (request.IsSucceed == false)
@@ -169,8 +176,14 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             return;
         }
 
-        var result = request.Data;
-        result.ForEach(d => _mainDownloadList.Add(new DownloadViewModel()
+        PreparedDataIntoGridView(request.Data);
+        LoadFilteredMainDownloadList(null);
+    }
+
+
+    private void PreparedDataIntoGridView(List<DownloadFileResDto> downloadFileResDtos)
+    {
+        downloadFileResDtos.ForEach(d => _mainDownloadList.Add(new DownloadViewModel()
         {
             DownloadQueueId = d.DownloadQueue.Id,
             Description = d.Description,
@@ -182,20 +195,22 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             Remain = 5,
             Size = d.Size,
             Speed = 100,
-            Status = d.DownloadStatus.ToString()
+            Status = _languageService.GetString(d.DownloadStatus.ToString()),
+            DownloadStatus = d.DownloadStatus,
+            DownloadedBytes = d.DownloadedBytes
         }));
-
-        LoadFilteredMainDoanloadList(null);
     }
-
-
-    private void LoadFilteredMainDoanloadList(int? downloadQueueId)
+    private void LoadFilteredMainDownloadList(int? downloadQueueId)
     {
         downloadViewModelBindingSource.DataSource = _mainDownloadList
             .Where(d => downloadQueueId == null || d.DownloadQueueId == downloadQueueId).ToList();
     }
+
+
     private async Task RunDownladMainTask()
     {
+        var downloadItems = _mainDownloadList.Where(d => d.DownloadStatus == Domain.Enums.DownloadStatus.Started).ToList();
+
 
         foreach (var item in _mainDownloadList)
         {

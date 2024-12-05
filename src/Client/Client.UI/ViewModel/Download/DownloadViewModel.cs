@@ -1,5 +1,6 @@
 ﻿
 
+using Client.Domain.Enums;
 using static DevExpress.DataProcessing.InMemoryDataProcessor.AddSurrogateOperationAlgorithm;
 
 namespace Client.UI.ViewModel.Download;
@@ -7,14 +8,15 @@ namespace Client.UI.ViewModel.Download;
 public class DownloadViewModel: INotifyPropertyChanged
 {
     [DisplayName("شناسه")]
-    public int Id { get; set; }
+    public long Id { get; set; }
     [DisplayName("نام  فایل")]
     public string FileName { get; set; }
     [DisplayName("آیکن")]
     public string FileIcon { get; set; }
     [DisplayName("صف")]
     public string DownloadQueue { get; set; }
-    public int DownloadQueueId { get; set; }
+   
+
     [DisplayName("اندازه")]
     public long Size { get; set; }
     [DisplayName("وضعیت")]
@@ -47,4 +49,9 @@ public class DownloadViewModel: INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
+
+    public int DownloadQueueId { get; set; }
+    public DownloadStatus DownloadStatus { get; set; }
+    public long DownloadedBytes { get; set; }
 }

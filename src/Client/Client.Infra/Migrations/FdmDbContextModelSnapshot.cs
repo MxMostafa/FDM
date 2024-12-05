@@ -93,7 +93,7 @@ namespace Client.Infrastructure.Migrations
 
             modelBuilder.Entity("Client.Domain.Entites.DownloadFile", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -111,6 +111,9 @@ namespace Client.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("DownloadStatus")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("DownloadedBytes")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FileName")
@@ -142,6 +145,47 @@ namespace Client.Infrastructure.Migrations
                     b.ToTable("DownloadFiles");
                 });
 
+            modelBuilder.Entity("Client.Domain.Entites.DownloadFileChunk", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DownloadFileChunkStatus")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DownloadFileId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("DownloadFileId1")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("End")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("Start")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TempFilePath")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DownloadFileId1");
+
+                    b.ToTable("DownloadFileChunk");
+                });
+
             modelBuilder.Entity("Client.Domain.Entites.DownloadQueue", b =>
                 {
                     b.Property<int>("Id")
@@ -169,10 +213,10 @@ namespace Client.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 627, DateTimeKind.Local).AddTicks(6020),
+                            Created = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(7854),
                             IsDeleted = false,
                             Title = "صف اصلی",
-                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 627, DateTimeKind.Local).AddTicks(6024)
+                            Updated = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(7857)
                         });
                 });
 
@@ -216,57 +260,57 @@ namespace Client.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 624, DateTimeKind.Local).AddTicks(2489),
+                            Created = new DateTime(2024, 12, 5, 18, 41, 15, 351, DateTimeKind.Local).AddTicks(7344),
                             FileExtensions = "zip rar",
                             FolderName = "Compressed",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Compressed",
                             Title = "فایل های فشرده",
-                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(2430)
+                            Updated = new DateTime(2024, 12, 5, 18, 41, 15, 353, DateTimeKind.Local).AddTicks(4755)
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(8364),
+                            Created = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(428),
                             FileExtensions = "txt docx xls",
                             FolderName = "Documents",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Documents",
                             Title = "اسناد",
-                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(8367)
+                            Updated = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(431)
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(8913),
+                            Created = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(912),
                             FileExtensions = "mp3 wave",
                             FolderName = "Music",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Music",
                             Title = "موسیقی",
-                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(8914)
+                            Updated = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(913)
                         },
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(9329),
+                            Created = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(1323),
                             FileExtensions = "exe msi",
                             FolderName = "Video",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Video",
                             Title = "برنامه ها",
-                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(9330)
+                            Updated = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(1324)
                         },
                         new
                         {
                             Id = 5,
-                            Created = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(9730),
+                            Created = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(1706),
                             FileExtensions = "mpeg 3gp avi flv",
                             FolderName = "Compressed",
                             IsDeleted = false,
                             SavePath = "C:\\Users\\Sattec\\Downloads\\Compressed",
                             Title = "تصویری",
-                            Updated = new DateTime(2024, 11, 30, 1, 42, 17, 626, DateTimeKind.Local).AddTicks(9731)
+                            Updated = new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(1707)
                         });
                 });
 
@@ -296,6 +340,22 @@ namespace Client.Infrastructure.Migrations
                     b.Navigation("DownloadQueue");
 
                     b.Navigation("FileTypeGroup");
+                });
+
+            modelBuilder.Entity("Client.Domain.Entites.DownloadFileChunk", b =>
+                {
+                    b.HasOne("Client.Domain.Entites.DownloadFile", "DownloadFile")
+                        .WithMany("DownloadFileChunks")
+                        .HasForeignKey("DownloadFileId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DownloadFile");
+                });
+
+            modelBuilder.Entity("Client.Domain.Entites.DownloadFile", b =>
+                {
+                    b.Navigation("DownloadFileChunks");
                 });
 #pragma warning restore 612, 618
         }

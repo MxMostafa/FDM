@@ -5,6 +5,7 @@
 using Client.Application.Extensions;
 using Client.Infrastructure.Extensions;
 using Client.Persistence.Extensions;
+using Client.UI.Languages;
 
 namespace Client.UI.Extensions;
 
@@ -12,7 +13,7 @@ public static class HostingExtension
 {
     public static IServiceCollection Configuration(this IServiceCollection services)
     {
-        
+
 
         services.AddApplicationServicesToDC();
         services.AddPersistenceToDC();
@@ -28,6 +29,7 @@ public static class HostingExtension
         services.AddLogging(loggingBuilder =>
                              loggingBuilder.AddSerilog(dispose: true));
 
+        services.AddSingleton<LanguageService>(new LanguageService("Client.UI.Languages"));
         return services;
     }
 
@@ -52,7 +54,7 @@ public static class HostingExtension
         services.AddTransient<LoginFormDialogForm>();
         services.AddTransient<ErrorDialogForm>();
         services.AddTransient<EditFileTypeGroupDialogForm>();
-        
+
 
         return services;
     }

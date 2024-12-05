@@ -33,4 +33,5 @@ public static class CommonExtension
         throw new Exception(result.ErrorMessage);
 
     }
+
 }

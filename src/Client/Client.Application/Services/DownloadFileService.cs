@@ -35,7 +35,8 @@ public class DownloadFileService : IDownloadFileService
             Description = d.Description,
             DownloadStatus = d.DownloadStatus,
             Id = d.Id,
-            Size = d.Size
+            Size = d.Size,
+            DownloadedBytes=d.DownloadedBytes
         }).ToList();
     }
 
