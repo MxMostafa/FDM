@@ -164,8 +164,10 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
                 downloadQueueId = id;
             }
 
-            var fileModel = new AddFileToQueueReqDto(
-                                                     Path.GetFileName(_downloadFileInfo.DownloadURL),
+            var url = _downloadFileInfo.DownloadURL.Split('?')[0];
+            var fileName = Path.GetFileName(url);
+            fileName = fileName.Replace("%20", " ");
+            var fileModel = new AddFileToQueueReqDto(fileName,
                                                      downloadQueueId,
                                                      _downloadFileInfo.DownloadURL,
                                                      FileTypeGroupSavePathTextBox.Text,
