@@ -132,4 +132,25 @@
   <data name="NotStarted" xml:space="preserve">
     <value>شروع نشده</value>
   </data>
+  <data name="WaitingToStart" xml:space="preserve">
+    <value>در انتظار</value>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>متوقف شده</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>اتمام دانلود</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>خطا</value>
+  </data>
+  <data name="Cancelling" xml:space="preserve">
+    <value>در حال لغو</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>لغو شده</value>
+  </data>
+  <data name="Retrying" xml:space="preserve">
+    <value>تلاش مجدد</value>
+  </data>
 </root>

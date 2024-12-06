@@ -226,6 +226,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private SemaphoreSlim _semaphore = new SemaphoreSlim(100); // حداکثر 100 تسک همزمان
     private Task RunDownladMainTask()
     {
+
         return Task.Run(async () =>
         {
             while (true)
@@ -249,29 +250,29 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
                                 var i = 0;
                                 while (download.DownloadedBytes < download.Size && !download.CancellationTokenSource.Token.IsCancellationRequested)
                                 {
-                                    try
-                                    {
-                                        i = i + new Random().Next(1, 100000);
-                                        download.DownloadedBytes += i;
-                                        var percent = FormatHelper.GetPercent(download.DownloadedBytes, download.Size);
-                                        _uiContext.Post(_ => download.Percent = percent, null);
-                                        await Task.Delay(new Random().Next(1, 500));
-                                    }
-                                    catch (OperationCanceledException)
-                                    {
-                                        PauseDownloadCommand(new BindingList<DownloadViewModel> { download });
-                                    }
+
+                                    i = i + new Random().Next(1, 100000);
+                                    download.DownloadedBytes += i;
+                                    var percent = FormatHelper.GetPercent(download.DownloadedBytes, download.Size);
+                                    _uiContext.Post(_ => download.Percent = percent, null);
+                                    await Task.Delay(new Random().Next(1, 500));
+
 
                                 }
                             }
                             finally
                             {
+
                                 _semaphore.Release();
+                                if (download.DownloadedBytes >= download.Size)
+                                {
+                                    FinishedDownloadCommand(download.Id);
+                                }
                             }
 
 
                         }, download.CancellationTokenSource.Token);
-                        ContinueDownloadCommand(new BindingList<DownloadViewModel> { download });
+                        ContinueDownloadCommand(download.Id);
                     }
                 }
                 catch (Exception ex)
@@ -290,55 +291,127 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private void ContinueDownloadUrlButton_ItemClick(object sender, ItemClickEventArgs e)
     {
         var items = GetSelectedItems();
-        WaitingContinueDownloadCommand(items);
+        items.ForEach(d => WaitingContinueDownloadCommand(d.Id));
+
     }
 
 
 
     #region DownloadActions
-    private void WaitingContinueDownloadCommand(BindingList<DownloadViewModel> items)
+    private void WaitingContinueDownloadCommand(long? id)
     {
-        foreach (var item in items)
+        if (id == null)
         {
-            _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.WaitingToStart, null);
-            item.CancellationTokenSource = new CancellationTokenSource();
+            _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
+            {
+                item.DownloadStatus = Domain.Enums.DownloadStatus.WaitingToStart;
+                item.Status = _languageService.GetString(DownloadStatus.WaitingToStart.ToString());
+                item.CancellationTokenSource = new CancellationTokenSource();
+            }, null));
         }
-
-    }
-    private void ContinueDownloadCommand(BindingList<DownloadViewModel> items)
-    {
-        foreach (var item in items)
+        else
         {
-            _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.Started, null);
-            _uiContext.Post(_ => item.Status = _languageService.GetString(DownloadStatus.Started.ToString()), null);
+            var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
+            if (item != null)
+            {
+                _uiContext.Post(_ =>
+                {
+                    item.DownloadStatus = Domain.Enums.DownloadStatus.WaitingToStart;
+                    item.Status = _languageService.GetString(DownloadStatus.WaitingToStart.ToString());
+                    item.CancellationTokenSource = new CancellationTokenSource();
+                }, null);
+            }
         }
-
+    }
+    private void ContinueDownloadCommand(long? id)
+    {
+        if (id == null)
+        {
+            _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
+            {
+                item.DownloadStatus = Domain.Enums.DownloadStatus.Started;
+                item.Status = _languageService.GetString(DownloadStatus.Started.ToString());
+            }, null));
+        }
+        else
+        {
+            var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
+            if (item != null)
+            {
+                _uiContext.Post(_ =>
+                {
+                    item.DownloadStatus = Domain.Enums.DownloadStatus.Started;
+                    item.Status = _languageService.GetString(DownloadStatus.Started.ToString());
+                }, null);
+            }
+        }
     }
 
-    private void PauseDownloadCommand(BindingList<DownloadViewModel> items)
+    private void PauseDownloadCommand(long? id)
     {
-        foreach (var item in items)
+        if (id == null)
         {
-            item.CancellationTokenSource.Cancel();
-            _uiContext.Post(_ => item.DownloadStatus = Domain.Enums.DownloadStatus.Paused, null);
-            _uiContext.Post(_ => item.Status = _languageService.GetString(DownloadStatus.Paused.ToString()), null);
+            _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
+            {
+                item.DownloadStatus = Domain.Enums.DownloadStatus.Paused;
+                item.Status = _languageService.GetString(DownloadStatus.Paused.ToString());
+                item.CancellationTokenSource.Cancel();
+            }, null));
+        }
+        else
+        {
+            var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
+            if (item != null)
+            {
+                _uiContext.Post(_ =>
+                {
+                    item.DownloadStatus = Domain.Enums.DownloadStatus.Paused;
+                    item.Status = _languageService.GetString(DownloadStatus.Paused.ToString());
+                    item.CancellationTokenSource.Cancel();
+                }, null);
+            }
+        }
+    }
+
+    private void FinishedDownloadCommand(long? id)
+    {
+        if (id == null)
+        {
+            _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
+            {
+                item.DownloadStatus = Domain.Enums.DownloadStatus.Finished;
+                item.Status = _languageService.GetString(DownloadStatus.Finished.ToString());
+            }, null));
+        }
+        else
+        {
+            var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
+            if (item != null)
+            {
+                _uiContext.Post(_ =>
+                {
+                    item.DownloadStatus = Domain.Enums.DownloadStatus.Finished;
+                    item.Status = _languageService.GetString(DownloadStatus.Finished.ToString());
+                }, null);
+            }
         }
     }
     #endregion
 
     private void StopAllDownloadButton_ItemClick(object sender, ItemClickEventArgs e)
     {
-        PauseDownloadCommand(_mainDownloadList);
+        PauseDownloadCommand(null);
     }
 
     private void ContinueAllDownloadUrlButton_ItemClick(object sender, ItemClickEventArgs e)
     {
-        WaitingContinueDownloadCommand(_mainDownloadList);
+        WaitingContinueDownloadCommand(null);
     }
 
     private void StopDownloadButton_ItemClick(object sender, ItemClickEventArgs e)
     {
         var items = GetSelectedItems();
-        PauseDownloadCommand(items);
+        items.ForEach(d => PauseDownloadCommand(d.Id));
+
     }
 }

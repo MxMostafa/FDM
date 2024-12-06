@@ -132,4 +132,25 @@
   <data name="NotStarted" xml:space="preserve">
     <value>NotStarted</value>
   </data>
+  <data name="WaitingToStart" xml:space="preserve">
+    <value>WaitingToStart</value>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Cancelling" xml:space="preserve">
+    <value>Cancelling</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Retrying" xml:space="preserve">
+    <value>Retrying</value>
+  </data>
 </root>
