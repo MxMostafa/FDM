@@ -232,45 +232,76 @@
             // 
             // colId
             // 
+            colId.AppearanceHeader.Options.UseTextOptions = true;
+            colId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colId.FieldName = "Id";
+            colId.MinWidth = 12;
             colId.Name = "colId";
+            colId.OptionsColumn.ReadOnly = true;
+            colId.OptionsFilter.AllowAutoFilter = false;
             colId.Visible = true;
             colId.VisibleIndex = 0;
+            colId.Width = 55;
             // 
             // colFileName
             // 
+            colFileName.AppearanceHeader.Options.UseTextOptions = true;
+            colFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colFileName.FieldName = "FileName";
+            colFileName.MinWidth = 300;
             colFileName.Name = "colFileName";
+            colFileName.OptionsColumn.ReadOnly = true;
             colFileName.Visible = true;
             colFileName.VisibleIndex = 1;
+            colFileName.Width = 300;
             // 
             // colFileIcon
             // 
+            colFileIcon.AppearanceHeader.Options.UseTextOptions = true;
+            colFileIcon.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colFileIcon.FieldName = "FileIcon";
             colFileIcon.Name = "colFileIcon";
+            colFileIcon.OptionsColumn.ReadOnly = true;
+            colFileIcon.OptionsFilter.AllowAutoFilter = false;
             colFileIcon.Visible = true;
             colFileIcon.VisibleIndex = 2;
+            colFileIcon.Width = 44;
             // 
             // colDownloadQueue
             // 
+            colDownloadQueue.AppearanceHeader.Options.UseTextOptions = true;
+            colDownloadQueue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colDownloadQueue.FieldName = "DownloadQueue";
             colDownloadQueue.Name = "colDownloadQueue";
+            colDownloadQueue.OptionsColumn.ReadOnly = true;
+            colDownloadQueue.OptionsFilter.AllowAutoFilter = false;
             colDownloadQueue.Visible = true;
             colDownloadQueue.VisibleIndex = 3;
+            colDownloadQueue.Width = 44;
             // 
             // colSize
             // 
+            colSize.AppearanceHeader.Options.UseTextOptions = true;
+            colSize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colSize.FieldName = "Size";
             colSize.Name = "colSize";
+            colSize.OptionsColumn.ReadOnly = true;
+            colSize.OptionsFilter.AllowAutoFilter = false;
             colSize.Visible = true;
             colSize.VisibleIndex = 4;
+            colSize.Width = 44;
             // 
             // colStatus
             // 
+            colStatus.AppearanceHeader.Options.UseTextOptions = true;
+            colStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colStatus.FieldName = "Status";
             colStatus.Name = "colStatus";
+            colStatus.OptionsColumn.ReadOnly = true;
+            colStatus.OptionsFilter.AllowAutoFilter = false;
             colStatus.Visible = true;
             colStatus.VisibleIndex = 5;
+            colStatus.Width = 44;
             // 
             // colPercent
             // 
@@ -279,14 +310,18 @@
             colPercent.AppearanceCell.Options.UseTextOptions = true;
             colPercent.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colPercent.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            colPercent.AppearanceHeader.Options.UseTextOptions = true;
+            colPercent.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colPercent.ColumnEdit = DownloadPercentProgressBar;
             colPercent.DisplayFormat.FormatString = "% {0}";
             colPercent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             colPercent.FieldName = "Percent";
             colPercent.Name = "colPercent";
+            colPercent.OptionsColumn.ReadOnly = true;
+            colPercent.OptionsFilter.AllowAutoFilter = false;
             colPercent.Visible = true;
             colPercent.VisibleIndex = 6;
-            colPercent.Width = 104;
+            colPercent.Width = 61;
             // 
             // DownloadPercentProgressBar
             // 
@@ -298,31 +333,49 @@
             // 
             // colSpeed
             // 
+            colSpeed.AppearanceHeader.Options.UseTextOptions = true;
+            colSpeed.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colSpeed.FieldName = "Speed";
             colSpeed.Name = "colSpeed";
+            colSpeed.OptionsColumn.ReadOnly = true;
+            colSpeed.OptionsFilter.AllowAutoFilter = false;
             colSpeed.Visible = true;
             colSpeed.VisibleIndex = 7;
+            colSpeed.Width = 44;
             // 
             // colRemain
             // 
+            colRemain.AppearanceHeader.Options.UseTextOptions = true;
+            colRemain.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colRemain.FieldName = "Remain";
             colRemain.Name = "colRemain";
+            colRemain.OptionsColumn.ReadOnly = true;
+            colRemain.OptionsFilter.AllowAutoFilter = false;
             colRemain.Visible = true;
             colRemain.VisibleIndex = 8;
+            colRemain.Width = 44;
             // 
             // colLatestDownloadDateTime
             // 
+            colLatestDownloadDateTime.AppearanceHeader.Options.UseTextOptions = true;
+            colLatestDownloadDateTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colLatestDownloadDateTime.FieldName = "LatestDownloadDateTime";
             colLatestDownloadDateTime.Name = "colLatestDownloadDateTime";
+            colLatestDownloadDateTime.OptionsColumn.ReadOnly = true;
             colLatestDownloadDateTime.Visible = true;
             colLatestDownloadDateTime.VisibleIndex = 9;
+            colLatestDownloadDateTime.Width = 44;
             // 
             // colDescription
             // 
+            colDescription.AppearanceHeader.Options.UseTextOptions = true;
+            colDescription.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colDescription.FieldName = "Description";
             colDescription.Name = "colDescription";
+            colDescription.OptionsColumn.ReadOnly = true;
             colDescription.Visible = true;
             colDescription.VisibleIndex = 10;
+            colDescription.Width = 47;
             // 
             // fluentFormDefaultManager1
             // 
@@ -731,7 +784,7 @@
             // 
             StopDownloadButton.Caption = "توقف";
             StopDownloadButton.Id = 17;
-            StopDownloadButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem24.ImageOptions.SvgImage");
+            StopDownloadButton.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("StopDownloadButton.ImageOptions.SvgImage");
             StopDownloadButton.ImageOptions.SvgImageSize = new Size(25, 25);
             StopDownloadButton.Name = "StopDownloadButton";
             StopDownloadButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
