@@ -11,7 +11,7 @@ public class DownloadViewModel : INotifyPropertyChanged
     [DisplayName("نام  فایل")]
     public string FileName { get; set; }
     [DisplayName("آیکن")]
-    public string FileIcon { get; set; }
+    public Icon? FileIcon { get; set; } = null;
     [DisplayName("صف")]
     public string DownloadQueue { get; set; }
 

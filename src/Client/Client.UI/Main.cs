@@ -1,4 +1,6 @@
 ﻿using Client.Domain.Enums;
+using Client.Infrastructure.Helpers;
+using System.IO;
 using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace Client.UI;
@@ -195,6 +197,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             Remain = 5,
             Size = d.Size,
             Speed = 100,
+            FileIcon = FileIconHelper.GetIconByExtension(d.FileName),
             Status = _languageService.GetString(d.DownloadStatus.ToString()),
             DownloadStatus = d.DownloadStatus,
             DownloadedBytes = d.DownloadedBytes

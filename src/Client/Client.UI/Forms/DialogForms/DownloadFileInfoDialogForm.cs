@@ -159,7 +159,7 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
         try
         {
             int downloadQueueId = 0;
-            if (int.TryParse(FileTypeGroupComboBox.EditValue.ToString(), out var id))
+            if (int.TryParse(FileTypeGroupComboBox.EditValue?.ToString(), out var id))
             {
                 downloadQueueId = id;
             }
@@ -172,10 +172,10 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
                                                      _downloadFileInfo.SizeInBytes,
                                                      _downloadFileInfo.FileExtension);
 
-            for (int i = 0; i < 100; i++)
-            {
-                await _downloadFileService.AddFileToQueueAsync(fileModel);
-            }
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    await _downloadFileService.AddFileToQueueAsync(fileModel);
+            //}
             var request = await _downloadFileService.AddFileToQueueAsync(fileModel);
 
             if (request.IsSucceed)

@@ -10,6 +10,7 @@ public static class MimeTypeHelper
 
     public static Icon? GetIconForExtension(string extension)
     {
+        extension = extension.Split('?')[0];
         string tempFilePath = Path.Combine(Path.GetTempPath(), $"tempfile{extension}");
         File.WriteAllText(tempFilePath, "");
 

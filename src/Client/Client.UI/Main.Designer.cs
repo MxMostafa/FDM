@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             components = new Container();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            FormatConditionRuleDataUpdate formatConditionRuleDataUpdate1 = new FormatConditionRuleDataUpdate();
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton3 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
-            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.XtraBars.Navigation.AccordionContextButton accordionContextButton1 = new DevExpress.XtraBars.Navigation.AccordionContextButton();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -42,8 +44,9 @@
             downloadViewModelBindingSource = new BindingSource(components);
             gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             colId = new DevExpress.XtraGrid.Columns.GridColumn();
-            colFileName = new DevExpress.XtraGrid.Columns.GridColumn();
             colFileIcon = new DevExpress.XtraGrid.Columns.GridColumn();
+            DownloadFileItemImage = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+            colFileName = new DevExpress.XtraGrid.Columns.GridColumn();
             colDownloadQueue = new DevExpress.XtraGrid.Columns.GridColumn();
             colSize = new DevExpress.XtraGrid.Columns.GridColumn();
             colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -158,6 +161,7 @@
             ((ISupportInitialize)gridControl1).BeginInit();
             ((ISupportInitialize)downloadViewModelBindingSource).BeginInit();
             ((ISupportInitialize)gridView1).BeginInit();
+            ((ISupportInitialize)DownloadFileItemImage).BeginInit();
             ((ISupportInitialize)DownloadPercentProgressBar).BeginInit();
             ((ISupportInitialize)fluentFormDefaultManager1).BeginInit();
             ((ISupportInitialize)barManager1).BeginInit();
@@ -213,7 +217,7 @@
             gridControl1.MainView = gridView1;
             gridControl1.MenuManager = fluentFormDefaultManager1;
             gridControl1.Name = "gridControl1";
-            gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { DownloadPercentProgressBar });
+            gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { DownloadPercentProgressBar, DownloadFileItemImage });
             gridControl1.Size = new Size(803, 547);
             gridControl1.TabIndex = 4;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
@@ -224,7 +228,12 @@
             // 
             // gridView1
             // 
-            gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colFileName, colFileIcon, colDownloadQueue, colSize, colStatus, colPercent, colSpeed, colRemain, colLatestDownloadDateTime, colDescription });
+            gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colFileIcon, colFileName, colDownloadQueue, colSize, colStatus, colPercent, colSpeed, colRemain, colLatestDownloadDateTime, colDescription });
+            gridFormatRule1.Description = null;
+            gridFormatRule1.Name = "Format0";
+            formatConditionRuleDataUpdate1.HighlightTime = 500;
+            gridFormatRule1.Rule = formatConditionRuleDataUpdate1;
+            gridView1.FormatRules.Add(gridFormatRule1);
             gridView1.GridControl = gridControl1;
             gridView1.Name = "gridView1";
             gridView1.OptionsBehavior.ReadOnly = true;
@@ -232,6 +241,8 @@
             // 
             // colId
             // 
+            colId.AppearanceCell.Options.UseTextOptions = true;
+            colId.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colId.AppearanceHeader.Options.UseTextOptions = true;
             colId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colId.FieldName = "Id";
@@ -241,7 +252,26 @@
             colId.OptionsFilter.AllowAutoFilter = false;
             colId.Visible = true;
             colId.VisibleIndex = 0;
-            colId.Width = 55;
+            colId.Width = 51;
+            // 
+            // colFileIcon
+            // 
+            colFileIcon.AppearanceHeader.Options.UseTextOptions = true;
+            colFileIcon.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            colFileIcon.ColumnEdit = DownloadFileItemImage;
+            colFileIcon.FieldName = "FileIcon";
+            colFileIcon.Name = "colFileIcon";
+            colFileIcon.OptionsColumn.ReadOnly = true;
+            colFileIcon.OptionsColumn.ShowCaption = false;
+            colFileIcon.OptionsFilter.AllowAutoFilter = false;
+            colFileIcon.Visible = true;
+            colFileIcon.VisibleIndex = 1;
+            colFileIcon.Width = 30;
+            // 
+            // DownloadFileItemImage
+            // 
+            DownloadFileItemImage.Name = "DownloadFileItemImage";
+            DownloadFileItemImage.SvgImageSize = new Size(12, 12);
             // 
             // colFileName
             // 
@@ -252,20 +282,8 @@
             colFileName.Name = "colFileName";
             colFileName.OptionsColumn.ReadOnly = true;
             colFileName.Visible = true;
-            colFileName.VisibleIndex = 1;
-            colFileName.Width = 300;
-            // 
-            // colFileIcon
-            // 
-            colFileIcon.AppearanceHeader.Options.UseTextOptions = true;
-            colFileIcon.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            colFileIcon.FieldName = "FileIcon";
-            colFileIcon.Name = "colFileIcon";
-            colFileIcon.OptionsColumn.ReadOnly = true;
-            colFileIcon.OptionsFilter.AllowAutoFilter = false;
-            colFileIcon.Visible = true;
-            colFileIcon.VisibleIndex = 2;
-            colFileIcon.Width = 44;
+            colFileName.VisibleIndex = 2;
+            colFileName.Width = 306;
             // 
             // colDownloadQueue
             // 
@@ -375,7 +393,7 @@
             colDescription.OptionsColumn.ReadOnly = true;
             colDescription.Visible = true;
             colDescription.VisibleIndex = 10;
-            colDescription.Width = 47;
+            colDescription.Width = 59;
             // 
             // fluentFormDefaultManager1
             // 
@@ -519,9 +537,9 @@
             AccountMenuButton.LinksPersistInfo.AddRange(new LinkPersistInfo[] { new LinkPersistInfo(LoginMenuButton), new LinkPersistInfo(barButtonItem18) });
             AccountMenuButton.Name = "AccountMenuButton";
             AccountMenuButton.PaintStyle = BarItemPaintStyle.CaptionGlyph;
-            toolTipTitleItem5.Text = "تنظیمات حساب کاربری";
-            superToolTip5.Items.Add(toolTipTitleItem5);
-            AccountMenuButton.SuperTip = superToolTip5;
+            toolTipTitleItem1.Text = "تنظیمات حساب کاربری";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            AccountMenuButton.SuperTip = superToolTip1;
             // 
             // LoginMenuButton
             // 
@@ -1043,14 +1061,14 @@
             // 
             // DownloadQueueElement
             // 
-            accordionContextButton3.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            accordionContextButton3.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            accordionContextButton3.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
-            accordionContextButton3.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
-            accordionContextButton3.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
-            accordionContextButton3.Name = "AddNewDownloadQueueContextButton";
-            accordionContextButton3.ToolTip = "افزودن صف جدید";
-            DownloadQueueElement.ContextButtons.Add(accordionContextButton3);
+            accordionContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            accordionContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            accordionContextButton1.Id = new Guid("f691a519-3057-4a2c-aa78-c8258006374d");
+            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("resource.SvgImage");
+            accordionContextButton1.ImageOptionsCollection.ItemNormal.SvgImageSize = new Size(15, 15);
+            accordionContextButton1.Name = "AddNewDownloadQueueContextButton";
+            accordionContextButton1.ToolTip = "افزودن صف جدید";
+            DownloadQueueElement.ContextButtons.Add(accordionContextButton1);
             DownloadQueueElement.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DownloadQueueElement.ImageOptions.SvgImage");
             DownloadQueueElement.Name = "DownloadQueueElement";
             DownloadQueueElement.Text = "صف های دانلود";
@@ -1065,9 +1083,9 @@
             SettingMenuButton.ImageOptions.SvgImageSize = new Size(35, 32);
             SettingMenuButton.Name = "SettingMenuButton";
             SettingMenuButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipTitleItem6.Text = "تنیمات اصلی";
-            superToolTip6.Items.Add(toolTipTitleItem6);
-            SettingMenuButton.SuperTip = superToolTip6;
+            toolTipTitleItem2.Text = "تنیمات اصلی";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            SettingMenuButton.SuperTip = superToolTip2;
             SettingMenuButton.Text = "تنظیمات";
             SettingMenuButton.Click += SettingMenuButton_Click;
             // 
@@ -1208,6 +1226,7 @@
             ((ISupportInitialize)gridControl1).EndInit();
             ((ISupportInitialize)downloadViewModelBindingSource).EndInit();
             ((ISupportInitialize)gridView1).EndInit();
+            ((ISupportInitialize)DownloadFileItemImage).EndInit();
             ((ISupportInitialize)DownloadPercentProgressBar).EndInit();
             ((ISupportInitialize)fluentFormDefaultManager1).EndInit();
             ((ISupportInitialize)barManager1).EndInit();
@@ -1336,5 +1355,6 @@
         private PopupMenu popupMenu1;
         private BarButtonItem ContinueAllDownloadUrlButton;
         private BarButtonItem barButtonItem16;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit DownloadFileItemImage;
     }
 }
