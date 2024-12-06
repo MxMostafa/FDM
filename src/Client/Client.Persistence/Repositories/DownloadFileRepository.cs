@@ -2,6 +2,8 @@
 
 
 
+using Client.Domain.Entites;
+
 namespace Client.Persistence.Repositories;
 
 public class DownloadFileRepository : BaseRepository, IDownloadFileRepository
@@ -52,6 +54,19 @@ public class DownloadFileRepository : BaseRepository, IDownloadFileRepository
             d.FileName == fileName && d.DownloadPath == downloadUrl
             );
     }
+    public async Task<DownloadFile?> GetByIdAsync(long id)
+    {
+        return await _context.DownloadFiles.
+            FirstOrDefaultAsync(d => d.IsDeleted == false &&
+            d.Id == id);
+    }
+
+    public async Task<List<DownloadFile>> GetByIdsAsync(List<long> ids)
+    {
+        return await _context.DownloadFiles.
+            Where(d => d.IsDeleted == false &&
+           ids.Contains(d.Id)).ToListAsync();
+    }
 
     public Task<DownloadFile> SoftDeleteAsync(DownloadFile downloadFile)
     {
@@ -63,13 +78,17 @@ public class DownloadFileRepository : BaseRepository, IDownloadFileRepository
         throw new NotImplementedException();
     }
 
-    public Task<DownloadFile> UpdateAsync(DownloadFile downloadFile)
+    public async Task<DownloadFile> UpdateAsync(DownloadFile downloadFile)
     {
-        throw new NotImplementedException();
+        _context.DownloadFiles.Update(downloadFile);
+        await _context.SaveChangesAsync();
+        return downloadFile;
     }
 
-    public Task<List<DownloadFile>> UpdateAsync(List<DownloadFile> downloadFiles)
+    public async Task<List<DownloadFile>> UpdateAsync(List<DownloadFile> downloadFiles)
     {
-        throw new NotImplementedException();
+        _context.DownloadFiles.UpdateRange(downloadFiles);
+        await _context.SaveChangesAsync();
+        return downloadFiles;
     }
 }

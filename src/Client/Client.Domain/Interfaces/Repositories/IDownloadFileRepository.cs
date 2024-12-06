@@ -13,4 +13,6 @@ public interface IDownloadFileRepository
     Task<DownloadFile> SoftDeleteAsync(DownloadFile downloadFile);
     Task<List<DownloadFile>> SoftDeleteAsync(List<DownloadFile> downloadFiles);
     Task<List<DownloadFile>> GetsStartedAsync();
+    Task<DownloadFile?> GetByIdAsync(long id);
+    Task<List<DownloadFile>> GetByIdsAsync(List<long> ids);
 }

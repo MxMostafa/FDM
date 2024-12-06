@@ -36,10 +36,9 @@ public class DownloadFileService : IDownloadFileService
             DownloadStatus = d.DownloadStatus,
             Id = d.Id,
             Size = d.Size,
-            DownloadedBytes=d.DownloadedBytes,
+            DownloadedBytes = d.DownloadedBytes,
         }).ToList();
     }
-
 
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetAllStartedDownloadFilesAsync()
     {
@@ -56,6 +55,21 @@ public class DownloadFileService : IDownloadFileService
         }).ToList();
     }
 
+    public async Task UpdateDownloadFileStatusAsync(long downloadFileId, DownloadStatus downloadStatus)
+    {
+        var downloadFile = await _downloadFileRepo.GetByIdAsync(downloadFileId);
+        if (downloadFile == null) return;
+        if (downloadFile.DownloadStatus == DownloadStatus.Finished) return;
+        downloadFile.DownloadStatus = downloadStatus;
+        await _downloadFileRepo.UpdateAsync(downloadFile);
+    }
+
+    public async Task UpdateDownloadFileStatusAsync(List<long> downloadFileIds, DownloadStatus downloadStatus)
+    {
+        var downloadFiles = await _downloadFileRepo.GetByIdsAsync(downloadFileIds);
+        downloadFiles.ForEach(d => d.DownloadStatus = downloadStatus);
+        await _downloadFileRepo.UpdateAsync(downloadFiles);
+    }
 
     public async Task<ResultPattern<bool>> AddFileToQueueAsync(AddFileToQueueReqDto model)
     {
@@ -94,6 +108,7 @@ public class DownloadFileService : IDownloadFileService
     }
 
 
+
     private async Task<DownloadQueue> GetMainDowanloadQueueAsync()
     {
         var queue = await _downloadQueueRepo.GetMainQueueAsync();
@@ -103,4 +118,6 @@ public class DownloadFileService : IDownloadFileService
         queue = await _downloadQueueRepo.CreateMainQueueAsync();
         return queue;
     }
+
+
 }

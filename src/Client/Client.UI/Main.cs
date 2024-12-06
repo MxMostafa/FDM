@@ -16,37 +16,54 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private readonly LanguageService _languageService;
     public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService, LanguageService languageService)
     {
-        InitializeComponent();
-        _downloadQueueService = downloadQueueService;
-        DownloadQueueElement.ContextButtons.First().Click += Main_Click;
-        _serviceProvider = serviceProvider;
-        _logger = logger;
 
-        System.Windows.Forms.Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
-        AppDomain.CurrentDomain.UnhandledException += (sender, e) => (e.ExceptionObject as Exception).Handle(_logger);
-        _downloadFileService = downloadFileService;
-        _mainDownloadList = new BindingList<DownloadViewModel>();
-        _uiContext = SynchronizationContext.Current;
-        _languageService = languageService;
+        try
+        {
+            InitializeComponent();
+            _downloadQueueService = downloadQueueService;
+            DownloadQueueElement.ContextButtons.First().Click += Main_Click;
+            _serviceProvider = serviceProvider;
+            _logger = logger;
 
-        _languageService.SetLanguage("fa");
-        gridView1.OptionsBehavior.Editable = false;
-        gridView1.OptionsSelection.MultiSelect = true;
+            System.Windows.Forms.Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) => (e.ExceptionObject as Exception).Handle(_logger);
+            _downloadFileService = downloadFileService;
+            _mainDownloadList = new BindingList<DownloadViewModel>();
+            _uiContext = SynchronizationContext.Current;
+            _languageService = languageService;
+
+            _languageService.SetLanguage("fa");
+            gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsSelection.MultiSelect = true;
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 
     #region Events
     private async void Main_Click(object sender, DevExpress.Utils.ContextItemClickEventArgs e)
     {
-        var frm = GetForm<AddNewDownloadQueueDialogForm>();
-        if (frm.ShowDialog() != DialogResult.OK) return;
-        var result = await _downloadQueueService.CreateNewDownloadQueueAsync(frm.DowanloadQueueTitle);
-        if (result.IsSucceed)
+        try
         {
-            await LoadAllQueuesIntoSideMenuAsync();
+            var frm = GetForm<AddNewDownloadQueueDialogForm>();
+            if (frm.ShowDialog() != DialogResult.OK) return;
+            var result = await _downloadQueueService.CreateNewDownloadQueueAsync(frm.DowanloadQueueTitle);
+            if (result.IsSucceed)
+            {
+                await LoadAllQueuesIntoSideMenuAsync();
+            }
+            else
+            {
+                MessageBox.Show(result.ErrorMessage);
+            }
         }
-        else
+        catch (Exception ex)
         {
-            MessageBox.Show(result.ErrorMessage);
+
+            ex.Handle(_logger);
         }
     }
 
@@ -71,8 +88,17 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void SettingMenuButton_Click(object sender, EventArgs e)
     {
-        var appSettingDialogForm = _serviceProvider.GetRequiredService<AppSettingDialogForm>();
-        appSettingDialogForm.ShowDialog();
+        try
+        {
+            var appSettingDialogForm = _serviceProvider.GetRequiredService<AppSettingDialogForm>();
+            appSettingDialogForm.ShowDialog();
+            InitializeComponent();
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 
     private void settingBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -83,34 +109,80 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void dbarButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        AddNewDownload();
+        try
+        {
+            AddNewDownload();
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 
     private void downloadGroupBarButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        GetForm<AddDownloadGroupDialogForm>().ShowDialog();
+        try
+        {
+            GetForm<AddDownloadGroupDialogForm>().ShowDialog();
+        }
+        catch (Exception ex)
+        {
 
+            ex.Handle(_logger);
+        }
     }
 
     private void aboutProgramButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        GetForm<AboutProgramDialogForm>().ShowDialog();
+        try
+        {
+            GetForm<AboutProgramDialogForm>().ShowDialog();
+        }
+        catch (Exception ex)
+        {
 
+            ex.Handle(_logger);
+        }
     }
 
     private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        GetForm<TestComponentForm>()?.ShowDialog();
+        try
+        {
+            GetForm<TestComponentForm>()?.ShowDialog();
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 
     private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        AddNewDownload();
+        try
+        {
+            AddNewDownload();
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 
     private void LoginMenuButton_ItemClick(object sender, ItemClickEventArgs e)
     {
-        GetForm<LoginFormDialogForm>()?.ShowDialog();
+        try
+        {
+            GetForm<LoginFormDialogForm>()?.ShowDialog();
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
     #endregion
 
@@ -269,7 +341,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
                                 _semaphore.Release();
                                 if (download.DownloadedBytes >= download.Size)
                                 {
-                                    FinishedDownloadCommand(download.Id);
+                                    await FinishedDownloadCommand(download.Id);
                                 }
                             }
 
@@ -293,9 +365,18 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void ContinueDownloadUrlButton_ItemClick(object sender, ItemClickEventArgs e)
     {
-        var items = GetSelectedItems();
-        items.ForEach(d => WaitingContinueDownloadCommand(d.Id));
+        try
+        {
+            var items = GetSelectedItems();
+            items.ForEach(d => WaitingContinueDownloadCommand(d.Id));
+            StopDownloadButton.Enabled = true;
+            ContinueDownloadUrlButton.Enabled = false;
+        }
+        catch (Exception ex)
+        {
 
+            ex.Handle(_logger);
+        }
     }
 
 
@@ -303,118 +384,146 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     #region DownloadActions
     private void WaitingContinueDownloadCommand(long? id)
     {
-        if (id == null)
-        {
-            _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
-            {
-                item.DownloadStatus = Domain.Enums.DownloadStatus.WaitingToStart;
-                item.Status = _languageService.GetString(DownloadStatus.WaitingToStart.ToString());
-                item.CancellationTokenSource = new CancellationTokenSource();
-            }, null));
-        }
-        else
-        {
-            var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
-            if (item != null)
-            {
-                _uiContext.Post(_ =>
-                {
-                    item.DownloadStatus = Domain.Enums.DownloadStatus.WaitingToStart;
-                    item.Status = _languageService.GetString(DownloadStatus.WaitingToStart.ToString());
-                    item.CancellationTokenSource = new CancellationTokenSource();
-                }, null);
-            }
-        }
+        ChangeStatus(id, DownloadStatus.WaitingToStart);
     }
     private void ContinueDownloadCommand(long? id)
     {
+        ChangeStatus(id, DownloadStatus.Started);
+    }
+    private async Task PauseDownloadCommand(long? id)
+    {
+        ChangeStatus(id, DownloadStatus.Paused);
         if (id == null)
-        {
-            _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
-            {
-                item.DownloadStatus = Domain.Enums.DownloadStatus.Started;
-                item.Status = _languageService.GetString(DownloadStatus.Started.ToString());
-            }, null));
-        }
+            await _downloadFileService.UpdateDownloadFileStatusAsync(_mainDownloadList.Select(d => d.Id).ToList(), DownloadStatus.Paused);
         else
+            await _downloadFileService.UpdateDownloadFileStatusAsync(id.Value, DownloadStatus.Paused);
+    }
+    private async Task FinishedDownloadCommand(long? id)
+    {
+        ChangeStatus(id, DownloadStatus.Finished);
+        if (id == null)
+            await _downloadFileService.UpdateDownloadFileStatusAsync(_mainDownloadList.Select(d => d.Id).ToList(), DownloadStatus.Finished);
+        else
+            await _downloadFileService.UpdateDownloadFileStatusAsync(id.Value, DownloadStatus.Finished);
+    }
+    private void UpdateTopButButtonsStatus(DownloadViewModel selectedItem)
+    {
+        try
         {
-            var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
-            if (item != null)
-            {
-                _uiContext.Post(_ =>
-                {
-                    item.DownloadStatus = Domain.Enums.DownloadStatus.Started;
-                    item.Status = _languageService.GetString(DownloadStatus.Started.ToString());
-                }, null);
-            }
+            ContinueDownloadUrlButton.Enabled = selectedItem.DownloadStatus != DownloadStatus.Started;
+            StopDownloadButton.Enabled = selectedItem.DownloadStatus == DownloadStatus.Started || selectedItem.DownloadStatus == DownloadStatus.Paused || selectedItem.DownloadStatus == DownloadStatus.WaitingToStart;
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
         }
     }
 
-    private void PauseDownloadCommand(long? id)
+    private void ChangeStatus(long? id, DownloadStatus downloadStatus)
     {
-        if (id == null)
+        try
         {
-            _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
+            if (id == null) //change all
             {
-                item.DownloadStatus = Domain.Enums.DownloadStatus.Paused;
-                item.Status = _languageService.GetString(DownloadStatus.Paused.ToString());
-                item.CancellationTokenSource.Cancel();
-            }, null));
-        }
-        else
-        {
-            var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
-            if (item != null)
-            {
-                _uiContext.Post(_ =>
+                _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
                 {
-                    item.DownloadStatus = Domain.Enums.DownloadStatus.Paused;
-                    item.Status = _languageService.GetString(DownloadStatus.Paused.ToString());
-                    item.CancellationTokenSource.Cancel();
-                }, null);
+                    item.DownloadStatus = downloadStatus;
+                    item.Status = _languageService.GetString(downloadStatus.ToString());
+                    if (downloadStatus == DownloadStatus.Paused)
+                        item.CancellationTokenSource.Cancel();
+                    else
+                        item.CancellationTokenSource = new CancellationTokenSource();
+                }, null));
+            }
+            else
+            {
+                var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
+                if (item != null)
+                {
+                    _uiContext.Post(_ =>
+                    {
+                        item.DownloadStatus = downloadStatus;
+                        item.Status = _languageService.GetString(downloadStatus.ToString());
+                        if (downloadStatus == DownloadStatus.Paused)
+                            item.CancellationTokenSource.Cancel();
+                        else
+                            item.CancellationTokenSource = new CancellationTokenSource();
+                    }, null);
+                }
             }
         }
-    }
+        catch (Exception ex)
+        {
 
-    private void FinishedDownloadCommand(long? id)
-    {
-        if (id == null)
-        {
-            _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
-            {
-                item.DownloadStatus = Domain.Enums.DownloadStatus.Finished;
-                item.Status = _languageService.GetString(DownloadStatus.Finished.ToString());
-            }, null));
-        }
-        else
-        {
-            var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
-            if (item != null)
-            {
-                _uiContext.Post(_ =>
-                {
-                    item.DownloadStatus = Domain.Enums.DownloadStatus.Finished;
-                    item.Status = _languageService.GetString(DownloadStatus.Finished.ToString());
-                }, null);
-            }
+            ex.Handle(_logger);
         }
     }
     #endregion
 
-    private void StopAllDownloadButton_ItemClick(object sender, ItemClickEventArgs e)
+    private async void StopAllDownloadButton_ItemClick(object sender, ItemClickEventArgs e)
     {
-        PauseDownloadCommand(null);
+        try
+        {
+            await PauseDownloadCommand(null);
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 
     private void ContinueAllDownloadUrlButton_ItemClick(object sender, ItemClickEventArgs e)
     {
-        WaitingContinueDownloadCommand(null);
+        try
+        {
+            WaitingContinueDownloadCommand(null);
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 
     private void StopDownloadButton_ItemClick(object sender, ItemClickEventArgs e)
     {
-        var items = GetSelectedItems();
-        items.ForEach(d => PauseDownloadCommand(d.Id));
+        try
+        {
+            var items = GetSelectedItems();
+            items.ForEach(async d => await PauseDownloadCommand(d.Id));
+            StopDownloadButton.Enabled = false;
+            ContinueDownloadUrlButton.Enabled = true;
+        }
+        catch (Exception ex)
+        {
 
+            ex.Handle(_logger);
+        }
+
+
+    }
+
+    private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+    {
+        try
+        {
+            var items = GetSelectedItems();
+            if (items.Count == 1)
+            {
+                UpdateTopButButtonsStatus(items[0]);
+            }
+            else
+            {
+                StopDownloadButton.Enabled = true;
+                ContinueDownloadUrlButton.Enabled = true;
+            }
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
     }
 }

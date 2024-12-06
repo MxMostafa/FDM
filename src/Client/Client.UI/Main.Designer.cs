@@ -238,6 +238,7 @@
             gridView1.Name = "gridView1";
             gridView1.OptionsBehavior.ReadOnly = true;
             gridView1.OptionsView.ShowGroupPanel = false;
+            gridView1.SelectionChanged += gridView1_SelectionChanged;
             // 
             // colId
             // 
