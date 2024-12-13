@@ -8,7 +8,8 @@ namespace Client.Domain.Dtos.Request.DownloadFile
              string DownloadURL,
              string SavePath,
              long SizeInBytes,
-             string? FileExtension
+             string? FileExtension,
+        DownloadStatus DownloadStatus
         );
 
 }

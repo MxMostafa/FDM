@@ -10,4 +10,5 @@ public interface IAppSettingRepository
     Task<AppSetting?> GetAppSettingByTypeAndKeyAsync(AppSettingType appSettingType,string key);
     Task<List<AppSetting>> UpdateAppSettingAsync(List<AppSetting> appSettings);
     Task<AppSetting> UpdateAppSettingAsync(AppSetting appSetting);
+    Task<AppSetting?> GetAppSettingByKeyAsync(string key);
 }

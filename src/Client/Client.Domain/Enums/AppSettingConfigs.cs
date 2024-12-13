@@ -1,6 +1,6 @@
 ﻿
 
-namespace Client.UI.Constants.Configs;
+namespace Client.Domain.Enums;
 
 public static class AppSettingConfigs
 {
@@ -26,6 +26,6 @@ public static class AppSettingConfigs
     public static string EdgLegacyConfig = "EdgLegacyCheckBox";
     public static string FireFoxConfig = "FireFoxCheckBox";
     public static string OperaConfig = "OperaCheckBox";
-
+    public static string ParallelDownloadLimit = "ParallelDownloadLimiTrackBarControl";
 
 }

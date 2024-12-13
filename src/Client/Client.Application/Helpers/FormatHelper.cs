@@ -1,6 +1,6 @@
 ﻿
 
-namespace Client.UI.Helpers;
+namespace Client.Application.Helpers;
 
 public static class FormatHelper
 {

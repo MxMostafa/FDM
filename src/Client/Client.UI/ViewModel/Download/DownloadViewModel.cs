@@ -6,7 +6,9 @@ namespace Client.UI.ViewModel.Download;
 
 public class DownloadViewModel : INotifyPropertyChanged
 {
-    [DisplayName("شناسه")]
+    [DisplayName("ردیف")]
+    public int Row { get; set; }
+
     public long Id { get; set; }
     [DisplayName("نام  فایل")]
     public string FileName { get; set; }
@@ -17,7 +19,13 @@ public class DownloadViewModel : INotifyPropertyChanged
 
 
     [DisplayName("اندازه")]
+    public string DisplaySize => FormatHelper.ConvertBytes(Size);
     public long Size { get; set; }
+
+    [DisplayName("دانلود شده")]
+    public string DisplayDownloadedBytes => FormatHelper.ConvertBytes(DownloadedBytes);
+    public long DownloadedBytes { get; set; }
+
 
     private string _status;
     [DisplayName("وضعیت")]
@@ -83,7 +91,7 @@ public class DownloadViewModel : INotifyPropertyChanged
             }
         }
     }
-    public long DownloadedBytes { get; set; }
+
 
     public CancellationTokenSource CancellationTokenSource { get; set; } = new CancellationTokenSource();
 }

@@ -48,7 +48,8 @@
             DownloadFileItemImage = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             colFileName = new DevExpress.XtraGrid.Columns.GridColumn();
             colDownloadQueue = new DevExpress.XtraGrid.Columns.GridColumn();
-            colSize = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             colPercent = new DevExpress.XtraGrid.Columns.GridColumn();
             DownloadPercentProgressBar = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
@@ -83,6 +84,7 @@
             dbarButtonItem10 = new BarButtonItem();
             downloadGroupBarButton = new BarButtonItem();
             barButtonItem15 = new BarButtonItem();
+            barButtonItem21 = new BarButtonItem();
             barSubItem4 = new BarSubItem();
             barButtonItem13 = new BarButtonItem();
             barButtonItem14 = new BarButtonItem();
@@ -228,7 +230,7 @@
             // 
             // gridView1
             // 
-            gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colFileIcon, colFileName, colDownloadQueue, colSize, colStatus, colPercent, colSpeed, colRemain, colLatestDownloadDateTime, colDescription });
+            gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colId, colFileIcon, colFileName, colDownloadQueue, gridColumn1, gridColumn2, colStatus, colPercent, colSpeed, colRemain, colLatestDownloadDateTime, colDescription });
             gridFormatRule1.Description = null;
             gridFormatRule1.Name = "Format0";
             formatConditionRuleDataUpdate1.HighlightTime = 500;
@@ -246,14 +248,14 @@
             colId.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             colId.AppearanceHeader.Options.UseTextOptions = true;
             colId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            colId.FieldName = "Id";
+            colId.FieldName = "Row";
             colId.MinWidth = 12;
             colId.Name = "colId";
             colId.OptionsColumn.ReadOnly = true;
             colId.OptionsFilter.AllowAutoFilter = false;
             colId.Visible = true;
             colId.VisibleIndex = 0;
-            colId.Width = 51;
+            colId.Width = 44;
             // 
             // colFileIcon
             // 
@@ -267,7 +269,7 @@
             colFileIcon.OptionsFilter.AllowAutoFilter = false;
             colFileIcon.Visible = true;
             colFileIcon.VisibleIndex = 1;
-            colFileIcon.Width = 30;
+            colFileIcon.Width = 26;
             // 
             // DownloadFileItemImage
             // 
@@ -284,7 +286,7 @@
             colFileName.OptionsColumn.ReadOnly = true;
             colFileName.Visible = true;
             colFileName.VisibleIndex = 2;
-            colFileName.Width = 306;
+            colFileName.Width = 300;
             // 
             // colDownloadQueue
             // 
@@ -296,19 +298,33 @@
             colDownloadQueue.OptionsFilter.AllowAutoFilter = false;
             colDownloadQueue.Visible = true;
             colDownloadQueue.VisibleIndex = 3;
-            colDownloadQueue.Width = 44;
+            colDownloadQueue.Width = 38;
             // 
-            // colSize
+            // gridColumn1
             // 
-            colSize.AppearanceHeader.Options.UseTextOptions = true;
-            colSize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            colSize.FieldName = "Size";
-            colSize.Name = "colSize";
-            colSize.OptionsColumn.ReadOnly = true;
-            colSize.OptionsFilter.AllowAutoFilter = false;
-            colSize.Visible = true;
-            colSize.VisibleIndex = 4;
-            colSize.Width = 44;
+            gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn1.Caption = "اندازه فایل";
+            gridColumn1.FieldName = "DisplaySize";
+            gridColumn1.Name = "gridColumn1";
+            gridColumn1.Visible = true;
+            gridColumn1.VisibleIndex = 6;
+            gridColumn1.Width = 65;
+            // 
+            // gridColumn2
+            // 
+            gridColumn2.AppearanceCell.Options.UseTextOptions = true;
+            gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridColumn2.Caption = "دانلود شده";
+            gridColumn2.FieldName = "DisplayDownloadedBytes";
+            gridColumn2.Name = "gridColumn2";
+            gridColumn2.Visible = true;
+            gridColumn2.VisibleIndex = 7;
+            gridColumn2.Width = 42;
             // 
             // colStatus
             // 
@@ -319,8 +335,8 @@
             colStatus.OptionsColumn.ReadOnly = true;
             colStatus.OptionsFilter.AllowAutoFilter = false;
             colStatus.Visible = true;
-            colStatus.VisibleIndex = 5;
-            colStatus.Width = 44;
+            colStatus.VisibleIndex = 4;
+            colStatus.Width = 38;
             // 
             // colPercent
             // 
@@ -339,8 +355,8 @@
             colPercent.OptionsColumn.ReadOnly = true;
             colPercent.OptionsFilter.AllowAutoFilter = false;
             colPercent.Visible = true;
-            colPercent.VisibleIndex = 6;
-            colPercent.Width = 61;
+            colPercent.VisibleIndex = 5;
+            colPercent.Width = 53;
             // 
             // DownloadPercentProgressBar
             // 
@@ -359,8 +375,8 @@
             colSpeed.OptionsColumn.ReadOnly = true;
             colSpeed.OptionsFilter.AllowAutoFilter = false;
             colSpeed.Visible = true;
-            colSpeed.VisibleIndex = 7;
-            colSpeed.Width = 44;
+            colSpeed.VisibleIndex = 8;
+            colSpeed.Width = 38;
             // 
             // colRemain
             // 
@@ -371,8 +387,8 @@
             colRemain.OptionsColumn.ReadOnly = true;
             colRemain.OptionsFilter.AllowAutoFilter = false;
             colRemain.Visible = true;
-            colRemain.VisibleIndex = 8;
-            colRemain.Width = 44;
+            colRemain.VisibleIndex = 9;
+            colRemain.Width = 38;
             // 
             // colLatestDownloadDateTime
             // 
@@ -382,8 +398,8 @@
             colLatestDownloadDateTime.Name = "colLatestDownloadDateTime";
             colLatestDownloadDateTime.OptionsColumn.ReadOnly = true;
             colLatestDownloadDateTime.Visible = true;
-            colLatestDownloadDateTime.VisibleIndex = 9;
-            colLatestDownloadDateTime.Width = 44;
+            colLatestDownloadDateTime.VisibleIndex = 10;
+            colLatestDownloadDateTime.Width = 38;
             // 
             // colDescription
             // 
@@ -393,8 +409,8 @@
             colDescription.Name = "colDescription";
             colDescription.OptionsColumn.ReadOnly = true;
             colDescription.Visible = true;
-            colDescription.VisibleIndex = 10;
-            colDescription.Width = 59;
+            colDescription.VisibleIndex = 11;
+            colDescription.Width = 51;
             // 
             // fluentFormDefaultManager1
             // 
@@ -577,8 +593,8 @@
             barManager1.DockControls.Add(barDockControlLeft);
             barManager1.DockControls.Add(barDockControlRight);
             barManager1.Form = this;
-            barManager1.Items.AddRange(new BarItem[] { barButtonItem9, barSubItem3, dbarButtonItem10, downloadGroupBarButton, barButtonItem12, barSubItem4, barButtonItem13, barButtonItem14, barButtonItem15, settingBarButtonItem, barButtonItem17, barSubItem5, aboutProgramButton, barButtonItem19, barButtonItem20, barButtonItem10 });
-            barManager1.MaxItemId = 16;
+            barManager1.Items.AddRange(new BarItem[] { barButtonItem9, barSubItem3, dbarButtonItem10, downloadGroupBarButton, barButtonItem12, barSubItem4, barButtonItem13, barButtonItem14, barButtonItem15, settingBarButtonItem, barButtonItem17, barSubItem5, aboutProgramButton, barButtonItem19, barButtonItem20, barButtonItem10, barButtonItem21 });
+            barManager1.MaxItemId = 17;
             barManager1.PopupMenuAlignment = PopupMenuAlignment.Right;
             // 
             // bar4
@@ -594,7 +610,7 @@
             // 
             barSubItem3.Caption = "آدرس";
             barSubItem3.Id = 1;
-            barSubItem3.LinksPersistInfo.AddRange(new LinkPersistInfo[] { new LinkPersistInfo(dbarButtonItem10), new LinkPersistInfo(downloadGroupBarButton), new LinkPersistInfo(barButtonItem15) });
+            barSubItem3.LinksPersistInfo.AddRange(new LinkPersistInfo[] { new LinkPersistInfo(dbarButtonItem10), new LinkPersistInfo(downloadGroupBarButton), new LinkPersistInfo(barButtonItem15), new LinkPersistInfo(barButtonItem21) });
             barSubItem3.Name = "barSubItem3";
             // 
             // dbarButtonItem10
@@ -616,6 +632,13 @@
             barButtonItem15.Caption = "افزودن از حافظه";
             barButtonItem15.Id = 8;
             barButtonItem15.Name = "barButtonItem15";
+            // 
+            // barButtonItem21
+            // 
+            barButtonItem21.Caption = "Reset Data";
+            barButtonItem21.Id = 16;
+            barButtonItem21.Name = "barButtonItem21";
+            barButtonItem21.ItemClick += barButtonItem21_ItemClick_1;
             // 
             // barSubItem4
             // 
@@ -1333,7 +1356,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colFileName;
         private DevExpress.XtraGrid.Columns.GridColumn colFileIcon;
         private DevExpress.XtraGrid.Columns.GridColumn colDownloadQueue;
-        private DevExpress.XtraGrid.Columns.GridColumn colSize;
         private DevExpress.XtraGrid.Columns.GridColumn colStatus;
         private DevExpress.XtraGrid.Columns.GridColumn colPercent;
         private DevExpress.XtraGrid.Columns.GridColumn colSpeed;
@@ -1357,5 +1379,8 @@
         private BarButtonItem ContinueAllDownloadUrlButton;
         private BarButtonItem barButtonItem16;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit DownloadFileItemImage;
+        private BarButtonItem barButtonItem21;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

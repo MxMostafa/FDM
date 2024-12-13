@@ -4,6 +4,8 @@
 
 
 using Client.Domain.Entites;
+using Client.Domain.Enums;
+using Client.UI.Constants;
 using Client.UI.ViewModel.FileTypeGroup;
 
 namespace Client.UI.Forms.DialogForms;
@@ -104,29 +106,32 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
         {
             if (!CommonHelper.GetConfirm(AppMessages.WarningConfirmMessage)) return;
 
-            var data = new Dictionary<string, string>();
-            data.Add(RunAppWhenWindowsStartCheckBox.Name, RunAppWhenWindowsStartCheckBox.Checked.ToString());
-            data.Add(AutoDownloadClipboardLinksCheckbox.Name, AutoDownloadClipboardLinksCheckbox.Checked.ToString());
-            data.Add(AdvancedSyncUsageCheckbox.Name, AdvancedSyncUsageCheckbox.Checked.ToString());
-            data.Add(LastPublicSaveDirectoryCheckBox.Name, LastPublicSaveDirectoryCheckBox.Checked.ToString());
-            data.Add(DownloadedFileServerDateCheckBox.Name, DownloadedFileServerDateCheckBox.Checked.ToString());
-            data.Add(DownloadStartWindowCheckBox.Name, DownloadStartWindowCheckBox.Checked.ToString());
-            data.Add(AddToQueueOnlyCheckBox.Name, AddToQueueOnlyCheckBox.Checked.ToString());
-            data.Add(DownloadEndDialogCheckBox.Name, DownloadEndDialogCheckBox.Checked.ToString());
-            data.Add(AutoStartAfterPromptCheckBox.Name, AutoStartAfterPromptCheckBox.Checked.ToString());
-            data.Add(ShowAddToDownloadQueuePanelCheckBox.Name, ShowAddToDownloadQueuePanelCheckBox.Checked.ToString());
-            data.Add(EnableQueuePanelOnGroupAddCheckBox.Name, EnableQueuePanelOnGroupAddCheckBox.Checked.ToString());
-            data.Add(SkipDateUpdateOnDownloadResumeCheckBox.Name, SkipDateUpdateOnDownloadResumeCheckBox.Checked.ToString());
-            data.Add(DisableProxySettingRadioButton.Name, DisableProxySettingRadioButton.Checked.ToString());
-            data.Add(WindowsProxySettingRadioButton.Name, WindowsProxySettingRadioButton.Checked.ToString());
-            data.Add(ManulaProxySettingRadioButton.Name, ManulaProxySettingRadioButton.Checked.ToString());
-            data.Add(SafariCheckBox.Name, SafariCheckBox.Checked.ToString());
-            data.Add(ChromeCheckBox.Name, ChromeCheckBox.Checked.ToString());
-            data.Add(IECheckBox.Name, IECheckBox.Checked.ToString());
-            data.Add(EdgCheckBox.Name, EdgCheckBox.Checked.ToString());
-            data.Add(EdgLegacyCheckBox.Name, EdgLegacyCheckBox.Checked.ToString());
-            data.Add(FireFoxCheckBox.Name, FireFoxCheckBox.Checked.ToString());
-            data.Add(OperaCheckBox.Name, OperaCheckBox.Checked.ToString());
+            var data = new Dictionary<string, string>
+            {
+                { RunAppWhenWindowsStartCheckBox.Name, RunAppWhenWindowsStartCheckBox.Checked.ToString() },
+                { AutoDownloadClipboardLinksCheckbox.Name, AutoDownloadClipboardLinksCheckbox.Checked.ToString() },
+                { AdvancedSyncUsageCheckbox.Name, AdvancedSyncUsageCheckbox.Checked.ToString() },
+                { LastPublicSaveDirectoryCheckBox.Name, LastPublicSaveDirectoryCheckBox.Checked.ToString() },
+                { DownloadedFileServerDateCheckBox.Name, DownloadedFileServerDateCheckBox.Checked.ToString() },
+                { DownloadStartWindowCheckBox.Name, DownloadStartWindowCheckBox.Checked.ToString() },
+                { AddToQueueOnlyCheckBox.Name, AddToQueueOnlyCheckBox.Checked.ToString() },
+                { DownloadEndDialogCheckBox.Name, DownloadEndDialogCheckBox.Checked.ToString() },
+                { AutoStartAfterPromptCheckBox.Name, AutoStartAfterPromptCheckBox.Checked.ToString() },
+                { ShowAddToDownloadQueuePanelCheckBox.Name, ShowAddToDownloadQueuePanelCheckBox.Checked.ToString() },
+                { EnableQueuePanelOnGroupAddCheckBox.Name, EnableQueuePanelOnGroupAddCheckBox.Checked.ToString() },
+                { SkipDateUpdateOnDownloadResumeCheckBox.Name, SkipDateUpdateOnDownloadResumeCheckBox.Checked.ToString() },
+                { DisableProxySettingRadioButton.Name, DisableProxySettingRadioButton.Checked.ToString() },
+                { WindowsProxySettingRadioButton.Name, WindowsProxySettingRadioButton.Checked.ToString() },
+                { ManulaProxySettingRadioButton.Name, ManulaProxySettingRadioButton.Checked.ToString() },
+                { SafariCheckBox.Name, SafariCheckBox.Checked.ToString() },
+                { ChromeCheckBox.Name, ChromeCheckBox.Checked.ToString() },
+                { IECheckBox.Name, IECheckBox.Checked.ToString() },
+                { EdgCheckBox.Name, EdgCheckBox.Checked.ToString() },
+                { EdgLegacyCheckBox.Name, EdgLegacyCheckBox.Checked.ToString() },
+                { FireFoxCheckBox.Name, FireFoxCheckBox.Checked.ToString() },
+                { OperaCheckBox.Name, OperaCheckBox.Checked.ToString() },
+                {ParallelDownloadLimiTrackBarControl.Name, ParallelDownloadLimiTrackBarControl.Value.ToString() }
+            };
             await _appSettingService.AddGeneralAppSettingsAsync(data);
 
             Close();
@@ -212,6 +217,10 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                     case var key when key == AppSettingConfigs.OperaConfig:
                         OperaCheckBox.Checked = bool.Parse(setting.Value);
                         break;
+                    case var key when key == AppSettingConfigs.ParallelDownloadLimit:
+                        ParallelDownloadLimiTrackBarControl.Value = int.Parse(setting.Value);
+                        break;
+
                     default:
                         break;
                 }

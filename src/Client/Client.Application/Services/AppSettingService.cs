@@ -104,9 +104,24 @@ public class AppSettingService : IAppSettingService
         return result;
     }
 
-    public Task<ResultPattern<AppSettingResDto?>> GetAppSettingByKeyAsync(string key)
+    public async Task<ResultPattern<T?>> GetAppSettingByKeyAsync<T>(string key, T? defaultValue = default)
     {
-        throw new NotImplementedException();
+        var appSetting = await _appSettingRepository.GetAppSettingByKeyAsync(key);
+        if (appSetting == null)
+            return defaultValue;
+
+        try
+        {
+            // تلاش برای تبدیل مقدار به نوع T
+            var value = Convert.ChangeType(appSetting.Value, typeof(T));
+            if (value == null) return defaultValue;
+            return new ResultPattern<T?>((T)value, null);
+
+        }
+        catch
+        {
+            return defaultValue; // در صورت خطا، مقدار پیش‌فرض بازگردانده شود
+        }
     }
 
     public async Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByIdAsync(int id)

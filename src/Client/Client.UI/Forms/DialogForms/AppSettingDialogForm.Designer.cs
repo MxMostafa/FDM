@@ -126,6 +126,8 @@
             colUser = new DevExpress.XtraGrid.Columns.GridColumn();
             colpass = new DevExpress.XtraGrid.Columns.GridColumn();
             mxActionGroup1 = new UserControls.Common.MxActionGroup();
+            ParallelDownloadLimiTrackBarControl = new TrackBarControl();
+            mxLabel5 = new UserControls.Common.MxLabel();
             ((ISupportInitialize)xtraTabControl1).BeginInit();
             xtraTabControl1.SuspendLayout();
             prokciTb.SuspendLayout();
@@ -200,6 +202,8 @@
             ((ISupportInitialize)gridControl1).BeginInit();
             ((ISupportInitialize)siteInfoViewModelBindingSource).BeginInit();
             ((ISupportInitialize)gridView1).BeginInit();
+            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl).BeginInit();
+            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl.Properties).BeginInit();
             SuspendLayout();
             // 
             // xtraTabControl1
@@ -794,6 +798,8 @@
             // 
             // downloadsTb
             // 
+            downloadsTb.Controls.Add(mxLabel5);
+            downloadsTb.Controls.Add(ParallelDownloadLimiTrackBarControl);
             downloadsTb.Controls.Add(comboBoxEdit2);
             downloadsTb.Controls.Add(mxLabel24);
             downloadsTb.Controls.Add(separatorControl7);
@@ -816,7 +822,7 @@
             // comboBoxEdit2
             // 
             comboBoxEdit2.EditValue = "با نمایش پنجره ای ، گزینه را سوال کن";
-            comboBoxEdit2.Location = new Point(24, 383);
+            comboBoxEdit2.Location = new Point(24, 465);
             comboBoxEdit2.Name = "comboBoxEdit2";
             comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             comboBoxEdit2.Properties.Items.AddRange(new object[] { "با نمایش پنجره ای ، گزینه را سوال کن", "فایلهای تکراری را دانلود و به ترتیب شماره گذاری کن", "فایل تکراری را اضافه و قبلی را حذف کن", "اگر دانلود فایل کنونی تمام شده پنچره اتمام را نشان بده وگرنه دانلود را ادامه بده " });
@@ -827,7 +833,7 @@
             // 
             mxLabel24.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel24.Appearance.Options.UseFont = true;
-            mxLabel24.Location = new Point(370, 361);
+            mxLabel24.Location = new Point(370, 443);
             mxLabel24.Name = "mxLabel24";
             mxLabel24.Size = new Size(135, 17);
             mxLabel24.TabIndex = 36;
@@ -836,7 +842,7 @@
             // separatorControl7
             // 
             separatorControl7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            separatorControl7.Location = new Point(11, 344);
+            separatorControl7.Location = new Point(11, 426);
             separatorControl7.Name = "separatorControl7";
             separatorControl7.Size = new Size(517, 20);
             separatorControl7.TabIndex = 35;
@@ -844,7 +850,7 @@
             // SkipDateUpdateOnDownloadResumeCheckBox
             // 
             SkipDateUpdateOnDownloadResumeCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            SkipDateUpdateOnDownloadResumeCheckBox.Location = new Point(152, 321);
+            SkipDateUpdateOnDownloadResumeCheckBox.Location = new Point(152, 403);
             SkipDateUpdateOnDownloadResumeCheckBox.Name = "SkipDateUpdateOnDownloadResumeCheckBox";
             SkipDateUpdateOnDownloadResumeCheckBox.Properties.Caption = "در هنگام ادامه دانلود، از تغییر تاریخ چشم پوشی کن";
             SkipDateUpdateOnDownloadResumeCheckBox.Size = new Size(376, 22);
@@ -854,7 +860,7 @@
             // 
             EnableQueuePanelOnGroupAddCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             EnableQueuePanelOnGroupAddCheckBox.EditValue = true;
-            EnableQueuePanelOnGroupAddCheckBox.Location = new Point(152, 293);
+            EnableQueuePanelOnGroupAddCheckBox.Location = new Point(152, 375);
             EnableQueuePanelOnGroupAddCheckBox.Name = "EnableQueuePanelOnGroupAddCheckBox";
             EnableQueuePanelOnGroupAddCheckBox.Properties.Caption = "نمایش پنل افزودن به صفهای دانلود در هنگام افزودن دانلود گروهی";
             EnableQueuePanelOnGroupAddCheckBox.Size = new Size(376, 22);
@@ -864,7 +870,7 @@
             // 
             ShowAddToDownloadQueuePanelCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ShowAddToDownloadQueuePanelCheckBox.EditValue = true;
-            ShowAddToDownloadQueuePanelCheckBox.Location = new Point(73, 265);
+            ShowAddToDownloadQueuePanelCheckBox.Location = new Point(73, 347);
             ShowAddToDownloadQueuePanelCheckBox.Name = "ShowAddToDownloadQueuePanelCheckBox";
             ShowAddToDownloadQueuePanelCheckBox.Properties.Caption = "نمایش پنل افزودن به صف دانلود پس از انتخاب گزینه بعدا دانلود شود در آغاز دانلود";
             ShowAddToDownloadQueuePanelCheckBox.Size = new Size(455, 22);
@@ -874,7 +880,7 @@
             // 
             AutoStartAfterPromptCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             AutoStartAfterPromptCheckBox.EditValue = true;
-            AutoStartAfterPromptCheckBox.Location = new Point(152, 237);
+            AutoStartAfterPromptCheckBox.Location = new Point(152, 319);
             AutoStartAfterPromptCheckBox.Name = "AutoStartAfterPromptCheckBox";
             AutoStartAfterPromptCheckBox.Properties.Caption = "بلافاصله بعد از نمایش پنجره \"شروع دانلود\" دانلود شروع شود";
             AutoStartAfterPromptCheckBox.Size = new Size(376, 22);
@@ -883,7 +889,7 @@
             // separatorControl6
             // 
             separatorControl6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            separatorControl6.Location = new Point(11, 215);
+            separatorControl6.Location = new Point(11, 297);
             separatorControl6.Name = "separatorControl6";
             separatorControl6.Size = new Size(517, 20);
             separatorControl6.TabIndex = 30;
@@ -892,7 +898,7 @@
             // 
             mxLabel23.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel23.Appearance.Options.UseFont = true;
-            mxLabel23.Location = new Point(282, 194);
+            mxLabel23.Location = new Point(282, 276);
             mxLabel23.Name = "mxLabel23";
             mxLabel23.Size = new Size(223, 17);
             mxLabel23.TabIndex = 29;
@@ -902,7 +908,7 @@
             // 
             DownloadEndDialogCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             DownloadEndDialogCheckBox.EditValue = true;
-            DownloadEndDialogCheckBox.Location = new Point(152, 161);
+            DownloadEndDialogCheckBox.Location = new Point(152, 243);
             DownloadEndDialogCheckBox.Name = "DownloadEndDialogCheckBox";
             DownloadEndDialogCheckBox.Properties.Caption = "نشان دادن پنجره اتمام دانلود";
             DownloadEndDialogCheckBox.Size = new Size(376, 22);
@@ -911,7 +917,7 @@
             // AddToQueueOnlyCheckBox
             // 
             AddToQueueOnlyCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            AddToQueueOnlyCheckBox.Location = new Point(140, 133);
+            AddToQueueOnlyCheckBox.Location = new Point(140, 215);
             AddToQueueOnlyCheckBox.Name = "AddToQueueOnlyCheckBox";
             AddToQueueOnlyCheckBox.Properties.Caption = "دانلود را شروع نکن، فقط فایل ها را به صف اضافه کن";
             AddToQueueOnlyCheckBox.Size = new Size(376, 22);
@@ -921,7 +927,7 @@
             // 
             DownloadStartWindowCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             DownloadStartWindowCheckBox.EditValue = true;
-            DownloadStartWindowCheckBox.Location = new Point(152, 105);
+            DownloadStartWindowCheckBox.Location = new Point(152, 187);
             DownloadStartWindowCheckBox.Name = "DownloadStartWindowCheckBox";
             DownloadStartWindowCheckBox.Properties.Caption = "نشان دادن پنجره شروع دانلود";
             DownloadStartWindowCheckBox.Size = new Size(376, 22);
@@ -941,7 +947,7 @@
             // 
             mxLabel22.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
             mxLabel22.Appearance.Options.UseFont = true;
-            mxLabel22.Location = new Point(418, 78);
+            mxLabel22.Location = new Point(421, 164);
             mxLabel22.Name = "mxLabel22";
             mxLabel22.Size = new Size(110, 17);
             mxLabel22.TabIndex = 24;
@@ -1163,6 +1169,32 @@
             mxActionGroup1.TabIndex = 12;
             mxActionGroup1.SaveButtonClick += mxActionGroup1_SaveButtonClick;
             // 
+            // ParallelDownloadLimiTrackBarControl
+            // 
+            ParallelDownloadLimiTrackBarControl.EditValue = 1;
+            ParallelDownloadLimiTrackBarControl.Location = new Point(107, 102);
+            ParallelDownloadLimiTrackBarControl.Name = "ParallelDownloadLimiTrackBarControl";
+            ParallelDownloadLimiTrackBarControl.Properties.DistanceFromTickToLabel = 1;
+            ParallelDownloadLimiTrackBarControl.Properties.LabelAppearance.Options.UseTextOptions = true;
+            ParallelDownloadLimiTrackBarControl.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            ParallelDownloadLimiTrackBarControl.Properties.Maximum = 100;
+            ParallelDownloadLimiTrackBarControl.Properties.Minimum = 1;
+            ParallelDownloadLimiTrackBarControl.Properties.ShowLabels = true;
+            ParallelDownloadLimiTrackBarControl.Properties.ShowValueToolTip = true;
+            ParallelDownloadLimiTrackBarControl.Size = new Size(418, 45);
+            ParallelDownloadLimiTrackBarControl.TabIndex = 38;
+            ParallelDownloadLimiTrackBarControl.Value = 1;
+            // 
+            // mxLabel5
+            // 
+            mxLabel5.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel5.Appearance.Options.UseFont = true;
+            mxLabel5.Location = new Point(448, 79);
+            mxLabel5.Name = "mxLabel5";
+            mxLabel5.Size = new Size(83, 17);
+            mxLabel5.TabIndex = 39;
+            mxLabel5.Text = "تعداد دانلود همزمان";
+            // 
             // AppSettingDialogForm
             // 
             Appearance.Options.UseFont = true;
@@ -1259,6 +1291,8 @@
             ((ISupportInitialize)gridControl1).EndInit();
             ((ISupportInitialize)siteInfoViewModelBindingSource).EndInit();
             ((ISupportInitialize)gridView1).EndInit();
+            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl.Properties).EndInit();
+            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl).EndInit();
             ResumeLayout(false);
         }
 
@@ -1360,5 +1394,7 @@
         private UserControls.Common.MxRadioButton DisableProxySettingRadioButton;
         private UserControls.Common.MxComboBox FileTypeGroupComboBox;
         private BindingSource fileTypeGroupViewModelBindingSource;
+        private TrackBarControl ParallelDownloadLimiTrackBarControl;
+        private UserControls.Common.MxLabel mxLabel5;
     }
 }

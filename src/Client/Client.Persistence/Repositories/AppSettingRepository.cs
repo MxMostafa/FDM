@@ -82,4 +82,9 @@ public class AppSettingRepository : BaseRepository, IAppSettingRepository
     {
         return await _context.AppSettings.FirstOrDefaultAsync(ap => ap.AppSettingType == appSettingType && ap.Key == key);
     }
+
+    public async Task<AppSetting?> GetAppSettingByKeyAsync(string key)
+    {
+        return await _context.AppSettings.FirstOrDefaultAsync(ap =>ap.Key == key);
+    }
 }

@@ -2,6 +2,7 @@
 
 
 
+using Client.Application.Helpers;
 using Client.Domain.Dtos.Request.DownloadFile;
 using Client.Domain.Entites;
 using Client.UI.ViewModel.FileTypeGroup;
@@ -172,7 +173,7 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
                                                      _downloadFileInfo.DownloadURL,
                                                      FileTypeGroupSavePathTextBox.Text,
                                                      _downloadFileInfo.SizeInBytes,
-                                                     _downloadFileInfo.FileExtension);
+                                                     _downloadFileInfo.FileExtension,Domain.Enums.DownloadStatus.Started);
 
             //for (int i = 0; i < 100; i++)
             //{

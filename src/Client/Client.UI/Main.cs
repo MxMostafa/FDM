@@ -1,4 +1,6 @@
-﻿using Client.Domain.Enums;
+﻿using Client.Application.Helpers;
+using Client.Domain.Enums;
+using Client.Domain.EventModels;
 using Client.Infrastructure.Helpers;
 using System.IO;
 using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
@@ -14,15 +16,23 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private readonly BindingList<DownloadViewModel> _mainDownloadList;
     private readonly SynchronizationContext _uiContext;
     private readonly LanguageService _languageService;
-    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService, LanguageService languageService)
+    private readonly IAppSettingService _appSettingService;
+    private readonly IEventAggregator _eventAggregator;
+    private readonly IEventManager _eventManager;
+    private readonly IDownloadManagerService _downloadManagerService;
+
+    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService, LanguageService languageService, IAppSettingService appSettingService, IEventAggregator eventAggregator, IEventManager eventManager, IDownloadManagerService downloadManagerService)
     {
 
         try
         {
             InitializeComponent();
             _downloadQueueService = downloadQueueService;
+            _appSettingService = appSettingService;
             DownloadQueueElement.ContextButtons.First().Click += Main_Click;
             _serviceProvider = serviceProvider;
+            _eventAggregator = eventAggregator;
+            _eventManager = eventManager;
             _logger = logger;
 
             System.Windows.Forms.Application.ThreadException += (sender, e) => e.Exception.Handle(_logger);
@@ -35,12 +45,22 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             _languageService.SetLanguage("fa");
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsSelection.MultiSelect = true;
+
+            _eventManager.StartProcessing();
+
+            #region Subscribe Events
+            _eventAggregator.Subscribe<DownloadFileDownloadedBytesEvent>(UpdateDownloadFileDownloadedBytes);
+            _eventAggregator.Subscribe<DownloadFileStatusEvent>(UpdateDownloadFileStatus);
+            _eventAggregator.Subscribe<AddFileToQueueEvent>(AddFileToQueueAction);
+            #endregion
         }
         catch (Exception ex)
         {
 
             ex.Handle(_logger);
         }
+
+        _downloadManagerService = downloadManagerService;
     }
 
     #region Events
@@ -67,16 +87,14 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         }
     }
 
-
-
     private async void Main_Load(object sender, EventArgs e)
     {
         try
         {
+            await _downloadFileService.ResetStartedItemsToPausedItemsAsync();
             await LoadAllQueuesIntoSideMenuAsync();
             await LoadAllDownloadFilesAndUpdateMainGridAsync();
-            var task = RunDownladMainTask();
-
+            await _downloadManagerService.InitialAsync();
         }
         catch (Exception ex)
         {
@@ -202,12 +220,12 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     }
 
-    private async void AddNewDownload()
+    private void AddNewDownload()
     {
         var frm = GetForm<AddDownloadNewAddressDialogForm>();
         if (frm.ShowDialog() != DialogResult.OK) return;
 
-        await LoadAllDownloadFilesAndUpdateMainGridAsync();
+
     }
 
     private async Task LoadAllQueuesIntoSideMenuAsync()
@@ -259,11 +277,12 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     {
         downloadFileResDtos.ForEach(d => _mainDownloadList.Add(new DownloadViewModel()
         {
+            Row = d.Row,
             DownloadQueueId = d.DownloadQueue.Id,
             Description = d.Description,
             DownloadQueue = d.DownloadQueue.Title,
             FileName = d.FileName,
-            Percent = 0,
+            Percent = FormatHelper.GetPercent(d.DownloadedBytes, d.Size),
             Id = d.Id,
             LatestDownloadDateTime = DateTime.Now,
             Remain = 5,
@@ -272,7 +291,8 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             FileIcon = FileIconHelper.GetIconByExtension(d.FileName),
             Status = _languageService.GetString(d.DownloadStatus.ToString()),
             DownloadStatus = d.DownloadStatus,
-            DownloadedBytes = d.DownloadedBytes
+            DownloadedBytes = d.DownloadedBytes,
+
         }));
     }
     private void LoadFilteredMainDownloadList(int? downloadQueueId)
@@ -297,68 +317,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         return items;
     }
 
-    #region Always RUN
-    private SemaphoreSlim _semaphore = new SemaphoreSlim(100); // حداکثر 100 تسک همزمان
-    private Task RunDownladMainTask()
-    {
 
-        return Task.Run(async () =>
-        {
-            while (true)
-            {
-                try
-                {
-                    var downloadItems = _mainDownloadList.Where(d => d.DownloadStatus == Domain.Enums.DownloadStatus.WaitingToStart).ToList();
-                    if (downloadItems.Count == 0)
-                    {
-                        await Task.Delay(1000);
-                        continue;
-                    }
-                    foreach (var download in downloadItems)
-                    {
-                        await _semaphore.WaitAsync();
-
-                        _ = Task.Run(async () =>
-                        {
-                            try
-                            {
-                                var i = 0;
-                                while (download.DownloadedBytes < download.Size && !download.CancellationTokenSource.Token.IsCancellationRequested)
-                                {
-
-                                    i = i + new Random().Next(1, 100000);
-                                    download.DownloadedBytes += i;
-                                    var percent = FormatHelper.GetPercent(download.DownloadedBytes, download.Size);
-                                    _uiContext.Post(_ => download.Percent = percent, null);
-                                    await Task.Delay(new Random().Next(1, 500));
-
-
-                                }
-                            }
-                            finally
-                            {
-
-                                _semaphore.Release();
-                                if (download.DownloadedBytes >= download.Size)
-                                {
-                                    await FinishedDownloadCommand(download.Id);
-                                }
-                            }
-
-
-                        }, download.CancellationTokenSource.Token);
-                        ContinueDownloadCommand(download.Id);
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-            }
-        });
-    }
-    #endregion
 
 
     #endregion
@@ -379,8 +338,6 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         }
     }
 
-
-
     #region DownloadActions
     private void WaitingContinueDownloadCommand(long? id)
     {
@@ -393,10 +350,6 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private async Task PauseDownloadCommand(long? id)
     {
         ChangeStatus(id, DownloadStatus.Paused);
-        if (id == null)
-            await _downloadFileService.UpdateDownloadFileStatusAsync(_mainDownloadList.Select(d => d.Id).ToList(), DownloadStatus.Paused);
-        else
-            await _downloadFileService.UpdateDownloadFileStatusAsync(id.Value, DownloadStatus.Paused);
     }
     private async Task FinishedDownloadCommand(long? id)
     {
@@ -422,34 +375,22 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
     private void ChangeStatus(long? id, DownloadStatus downloadStatus)
     {
+
         try
         {
             if (id == null) //change all
             {
-                _mainDownloadList.ForEach(item => _uiContext.Post(_ =>
+                foreach (var item in _mainDownloadList)
                 {
-                    item.DownloadStatus = downloadStatus;
-                    item.Status = _languageService.GetString(downloadStatus.ToString());
-                    if (downloadStatus == DownloadStatus.Paused)
-                        item.CancellationTokenSource.Cancel();
-                    else
-                        item.CancellationTokenSource = new CancellationTokenSource();
-                }, null));
+                    _eventManager.Publish(() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
+                }
             }
             else
             {
                 var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
                 if (item != null)
                 {
-                    _uiContext.Post(_ =>
-                    {
-                        item.DownloadStatus = downloadStatus;
-                        item.Status = _languageService.GetString(downloadStatus.ToString());
-                        if (downloadStatus == DownloadStatus.Paused)
-                            item.CancellationTokenSource.Cancel();
-                        else
-                            item.CancellationTokenSource = new CancellationTokenSource();
-                    }, null);
+                    _eventManager.Publish(() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
                 }
             }
         }
@@ -525,5 +466,47 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
 
             ex.Handle(_logger);
         }
+    }
+
+
+
+    #region Events
+    public void UpdateDownloadFileDownloadedBytes(DownloadFileDownloadedBytesEvent download)
+    {
+        var item = _mainDownloadList.FirstOrDefault(d => d.Id == download.DownloadFileId);
+        if (item != null)
+        {
+            if (item.DownloadedBytes > download.DownloadBytes) return;
+            _uiContext.Post(_ =>
+            {
+                item.DownloadedBytes = download.DownloadBytes;
+                item.Percent = FormatHelper.GetPercent(item.DownloadedBytes, item.Size);
+            }, null);
+        }
+    }
+
+    public void UpdateDownloadFileStatus(DownloadFileStatusEvent download)
+    {
+        var item = _mainDownloadList.FirstOrDefault(d => d.Id == download.DownloadFileId);
+        if (item != null)
+        {
+            _uiContext.Post(_ =>
+            {
+                item.DownloadStatus = download.DownloadStatus;
+                item.Status = _languageService.GetString(download.DownloadStatus.ToString());
+            }, null);
+        }
+    }
+
+    public async void AddFileToQueueAction(AddFileToQueueEvent addFileToQueueEvent)
+    {
+        //await LoadAllDownloadFilesAndUpdateMainGridAsync();
+    }
+    #endregion
+
+    private async void barButtonItem21_ItemClick_1(object sender, ItemClickEventArgs e)
+    {
+        await _downloadFileService.ResetItemsAsync();
+        await LoadAllDownloadFilesAndUpdateMainGridAsync();
     }
 }

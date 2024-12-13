@@ -5,7 +5,9 @@
 
 
 using Client.Application.General.Errors;
+using Client.Application.Services;
 using Client.Domain.Interfaces.General.Errors;
+using Client.Domain.Interfaces.Services;
 
 namespace Client.Application.Extensions;
 
@@ -27,6 +29,8 @@ public static class HostingExtension
 
         services.AddScoped<IHttpErros, HttpErros>();
         services.AddScoped<IAppErrors, AppErrors>();
+        services.AddScoped<IEventManager, EventManager>();
+        services.AddScoped<IEventAggregator, EventAggregator>();
         return services;
 
     }

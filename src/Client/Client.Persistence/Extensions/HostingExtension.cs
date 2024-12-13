@@ -31,7 +31,7 @@ public static class HostingExtension
 
         var cstr = $"Data Source={dbPath}\\FDMdb.db";
         services.AddDbContext<FdmDbContext>(options =>
-            options.UseSqlite(cstr),ServiceLifetime.Singleton);
+            options.UseSqlite(cstr),ServiceLifetime.Transient);
 
         var serviceProvider = services.BuildServiceProvider();
 
