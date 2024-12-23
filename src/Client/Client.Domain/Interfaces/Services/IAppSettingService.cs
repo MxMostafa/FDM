@@ -23,5 +23,7 @@ public interface IAppSettingService
     Task<ResultPattern<FileTypeGroupResDto?>> AddFileTypeGroupAsync(AddFileTypeGroupReqDto model);
     Task<ResultPattern<FileTypeGroupResDto?>> UpdateFileTypeGroupAsync(UpdateFileTypeGroupReqDto model);
     Task<ResultPattern<bool>> DeleteFileTypeGroupAsync(int fileTypeGroupId);
+
+    Task<ResultPattern<string?>> GetTempDownloadPathAsync();
     #endregion
 }

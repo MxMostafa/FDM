@@ -130,7 +130,8 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                 { EdgLegacyCheckBox.Name, EdgLegacyCheckBox.Checked.ToString() },
                 { FireFoxCheckBox.Name, FireFoxCheckBox.Checked.ToString() },
                 { OperaCheckBox.Name, OperaCheckBox.Checked.ToString() },
-                {ParallelDownloadLimiTrackBarControl.Name, ParallelDownloadLimiTrackBarControl.Value.ToString() }
+                {ParallelDownloadLimiTrackBarControl.Name, ParallelDownloadLimiTrackBarControl.Value.ToString() },
+                {TempSavePathTextbox.Name, TempSavePathTextbox.Text }
             };
             await _appSettingService.AddGeneralAppSettingsAsync(data);
 
@@ -220,7 +221,9 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
                     case var key when key == AppSettingConfigs.ParallelDownloadLimit:
                         ParallelDownloadLimiTrackBarControl.Value = int.Parse(setting.Value);
                         break;
-
+                    case var key when key == AppSettingConfigs.TempSavePath:
+                        TempSavePathTextbox.Text = setting.Value;
+                        break;
                     default:
                         break;
                 }
@@ -280,6 +283,20 @@ public partial class AppSettingDialogForm : MasterFixedDialogForm
             {
                 FileTypeGroupSavePathTextbox.Text = fileTypeGroupRequest.Data.SavePath;
             }
+        }
+        catch (Exception ex)
+        {
+
+            ex.Handle(_logger);
+        }
+    }
+
+    private void ChangeSavePathButton_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (xtraFolderBrowserDialog1.ShowDialog() != DialogResult.OK) return;
+            TempSavePathTextbox.Text = xtraFolderBrowserDialog1.SelectedPath;
         }
         catch (Exception ex)
         {

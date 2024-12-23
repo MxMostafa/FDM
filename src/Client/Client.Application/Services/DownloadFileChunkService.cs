@@ -18,14 +18,15 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     private readonly IDownloadFileRepository _downloadFileRepository;
     private readonly IEventManager _eventManager;
     private readonly IEventAggregator _eventAggregator;
+    private readonly IAppSettingRepository _appSettingRepository;
     private readonly IAppErrors _appErrors;
     private readonly IMapper _mapper;
     private const int CHUNK_SIZE = 1024 * 1024;
     private const int MAX_THREAD_COUNT = 5;
     private readonly ILogger<DownloadFileChunkService> _logger;
     private readonly List<ActiveDownloadChunkItemModel> _activeChunks = new();
-    private SemaphoreSlim? _semaphore;
-    public DownloadFileChunkService(IDownloadFileChunkRepository downloadFileChunkRepository, IDownloadFileRepository downloadFileRepository, IAppErrors appErrors = null, IMapper mapper = null, IEventManager eventManager = null, IEventAggregator eventAggregator = null, ILogger<DownloadFileChunkService> logger = null)
+    private SemaphoreSlim? _semaphoreChunk;
+    public DownloadFileChunkService(IDownloadFileChunkRepository downloadFileChunkRepository, IDownloadFileRepository downloadFileRepository, IAppErrors appErrors = null, IMapper mapper = null, IEventManager eventManager = null, IEventAggregator eventAggregator = null, ILogger<DownloadFileChunkService> logger = null, IAppSettingRepository appSettingRepository = null)
     {
         _downloadFileChunkRepository = downloadFileChunkRepository;
         _downloadFileRepository = downloadFileRepository;
@@ -34,13 +35,14 @@ public class DownloadFileChunkService : IDownloadFileChunkService
         _eventManager = eventManager;
         _eventAggregator = eventAggregator;
         _logger = logger;
+        _appSettingRepository = appSettingRepository;
     }
 
     private void InitialAsync()
     {
-        if (_semaphore == null)
+        if (_semaphoreChunk == null)
         {
-            _semaphore = new SemaphoreSlim(MAX_THREAD_COUNT); // حداکثر 5 تسک همزمان
+            _semaphoreChunk = new SemaphoreSlim(MAX_THREAD_COUNT); // حداکثر 5 تسک همزمان
         }
     }
 
@@ -56,13 +58,13 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
         if (chunks.Count == 0)
         {
-            chunks = CreateChunks(downloadFile.Size, CHUNK_SIZE);
+            chunks = await CreateChunksAsync(downloadFile.Id, downloadFile.Size, CHUNK_SIZE);
             chunks.ForEach(c => c.DownloadFileId = downloadFileId);
             await _downloadFileChunkRepository.AddAsync(chunks);
         }
 
         var result = _mapper.Map<List<DownloadFileChunkResDto>>(chunks);
-
+        result.ForEach(r => r.DownloadUrl = downloadFile.DownloadPath);
         return result;
     }
 
@@ -92,7 +94,8 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
         foreach (var chunk in readyforDownloads)
         {
-            await _semaphore!.WaitAsync();
+            await _semaphoreChunk!.WaitAsync();
+
 
             _ = Task.Run(async () =>
             {
@@ -121,7 +124,7 @@ public class DownloadFileChunkService : IDownloadFileChunkService
                 }
                 finally
                 {
-                    _semaphore.Release();
+                    _semaphoreChunk.Release();
                 }
 
 
@@ -130,17 +133,17 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
     }
 
-    public async Task UpdateDownloadFileChunkStatusAsync(long downloadFileChunkId, DownloadFileChunkStatus downloadFileChunkStatus)
+    private async Task UpdateDownloadFileChunkStatusAsync(long downloadFileChunkId, DownloadFileChunkStatus downloadFileChunkStatus)
     {
         var downloadFileChunk = await _downloadFileChunkRepository.GetByIdAsync(downloadFileChunkId);
         if (downloadFileChunk == null) return;
         if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
         downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
         await _downloadFileChunkRepository.UpdateAsync(downloadFileChunk);
-        _eventAggregator.Publish(new DownloadFileChunkStatusEvent(downloadFileChunkId, downloadFileChunkStatus));
+        _eventAggregator.Publish(new DownloadFileChunkStatusEvent(downloadFileChunk.DownloadFileId, downloadFileChunkId, downloadFileChunkStatus));
     }
 
-
+    private static readonly object _fileLock = new object();
     private async Task<bool> DownloadChunkAsync(ActiveDownloadChunkItemModel chunk)
     {
         try
@@ -152,6 +155,14 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
                 using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
+
+                string filePath = chunk.TempFilePath; // Replace with your file path
+                string? folderPath = Path.GetDirectoryName(filePath!);
+
+                if (!string.IsNullOrEmpty(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath); // Ensures the directory exists
+                }
 
                 using var fileStream = new FileStream(chunk.TempFilePath, FileMode.Append, FileAccess.Write, FileShare.None);
                 await response.Content.CopyToAsync(fileStream);
@@ -172,8 +183,20 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
 
     }
-    private List<DownloadFileChunk> CreateChunks(long fileSize, int chunkSize)
+    private async Task<List<DownloadFileChunk>> CreateChunksAsync(long downloadFileId, long fileSize, int chunkSize)
     {
+        string tempFilePath = null!;
+        var tempSavePath = await _appSettingRepository.GetAppSettingByKeyAsync(AppSettingConfigs.TempSavePath);
+
+        if (tempSavePath != null && tempSavePath.Value != null)
+        {
+            tempFilePath = tempSavePath.Value!;
+        }
+        else
+        {
+            tempFilePath = Path.GetTempFileName();
+        }
+
         var chunks = new List<DownloadFileChunk>();
         long currentStart = 0;
         while (currentStart < fileSize)
@@ -181,10 +204,11 @@ public class DownloadFileChunkService : IDownloadFileChunkService
             long currentEnd = Math.Min(currentStart + chunkSize - 1, fileSize - 1);
             chunks.Add(new DownloadFileChunk()
             {
+                DownloadFileId = 0,
                 Index = chunks.Count,
                 Start = currentStart,
                 End = currentEnd,
-                TempFilePath = Path.GetTempFileName(),
+                TempFilePath = $"{tempFilePath}\\{downloadFileId}\\{Guid.NewGuid()}",
                 DownloadFileChunkStatus = DownloadFileChunkStatus.Pending,
                 Id = 0
             });

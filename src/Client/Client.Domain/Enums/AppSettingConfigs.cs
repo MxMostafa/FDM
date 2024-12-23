@@ -27,5 +27,5 @@ public static class AppSettingConfigs
     public static string FireFoxConfig = "FireFoxCheckBox";
     public static string OperaConfig = "OperaCheckBox";
     public static string ParallelDownloadLimit = "ParallelDownloadLimiTrackBarControl";
-
+    public static string TempSavePath = "TempSavePathTextbox";
 }

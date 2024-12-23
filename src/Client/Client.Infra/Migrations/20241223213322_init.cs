@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Client.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class chnks : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -139,13 +139,12 @@ namespace Client.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DownloadFileChunk",
+                name: "DownloadFileChunks",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    DownloadFileId = table.Column<int>(type: "INTEGER", nullable: false),
-                    DownloadFileId1 = table.Column<long>(type: "INTEGER", nullable: false),
+                    DownloadFileId = table.Column<long>(type: "INTEGER", nullable: false),
                     Index = table.Column<int>(type: "INTEGER", nullable: false),
                     Start = table.Column<long>(type: "INTEGER", nullable: false),
                     End = table.Column<long>(type: "INTEGER", nullable: false),
@@ -156,30 +155,35 @@ namespace Client.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DownloadFileChunk", x => x.Id);
+                    table.PrimaryKey("PK_DownloadFileChunks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DownloadFileChunk_DownloadFiles_DownloadFileId1",
-                        column: x => x.DownloadFileId1,
+                        name: "FK_DownloadFileChunks_DownloadFiles_DownloadFileId",
+                        column: x => x.DownloadFileId,
                         principalTable: "DownloadFiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
+                table: "AppSettings",
+                columns: new[] { "Id", "AppSettingType", "Created", "Key", "Updated", "Value" },
+                values: new object[] { 1, 0, new DateTime(2024, 12, 24, 1, 3, 22, 387, DateTimeKind.Local).AddTicks(9990), "TempSavePathTextbox", new DateTime(2024, 12, 24, 1, 3, 22, 387, DateTimeKind.Local).AddTicks(9993), "C:\\Users\\Sattec\\AppData\\Roaming\\FDM" });
+
+            migrationBuilder.InsertData(
                 table: "DownloadQueues",
                 columns: new[] { "Id", "Created", "IsDeleted", "Title", "Updated" },
-                values: new object[] { 1, new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(7854), false, "صف اصلی", new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(7857) });
+                values: new object[] { 1, new DateTime(2024, 12, 24, 1, 3, 22, 387, DateTimeKind.Local).AddTicks(1462), false, "صف اصلی", new DateTime(2024, 12, 24, 1, 3, 22, 387, DateTimeKind.Local).AddTicks(1464) });
 
             migrationBuilder.InsertData(
                 table: "FileTypeGroups",
                 columns: new[] { "Id", "Created", "FileExtensions", "FolderName", "IconName", "IsDeleted", "SavePath", "Title", "Updated" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 12, 5, 18, 41, 15, 351, DateTimeKind.Local).AddTicks(7344), "zip rar", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "فایل های فشرده", new DateTime(2024, 12, 5, 18, 41, 15, 353, DateTimeKind.Local).AddTicks(4755) },
-                    { 2, new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(428), "txt docx xls", "Documents", null, false, "C:\\Users\\Sattec\\Downloads\\Documents", "اسناد", new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(431) },
-                    { 3, new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(912), "mp3 wave", "Music", null, false, "C:\\Users\\Sattec\\Downloads\\Music", "موسیقی", new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(913) },
-                    { 4, new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(1323), "exe msi", "Video", null, false, "C:\\Users\\Sattec\\Downloads\\Video", "برنامه ها", new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(1324) },
-                    { 5, new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(1706), "mpeg 3gp avi flv", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "تصویری", new DateTime(2024, 12, 5, 18, 41, 15, 354, DateTimeKind.Local).AddTicks(1707) }
+                    { 1, new DateTime(2024, 12, 24, 1, 3, 22, 383, DateTimeKind.Local).AddTicks(7235), "zip rar", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "فایل های فشرده", new DateTime(2024, 12, 24, 1, 3, 22, 385, DateTimeKind.Local).AddTicks(7223) },
+                    { 2, new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(3686), "txt docx xls", "Documents", null, false, "C:\\Users\\Sattec\\Downloads\\Documents", "اسناد", new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(3689) },
+                    { 3, new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(4204), "mp3 wave", "Music", null, false, "C:\\Users\\Sattec\\Downloads\\Music", "موسیقی", new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(4205) },
+                    { 4, new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(4619), "exe msi", "Video", null, false, "C:\\Users\\Sattec\\Downloads\\Video", "برنامه ها", new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(4620) },
+                    { 5, new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(5015), "mpeg 3gp avi flv", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "تصویری", new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(5016) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -188,9 +192,9 @@ namespace Client.Infrastructure.Migrations
                 column: "CategoryGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DownloadFileChunk_DownloadFileId1",
-                table: "DownloadFileChunk",
-                column: "DownloadFileId1");
+                name: "IX_DownloadFileChunks_DownloadFileId",
+                table: "DownloadFileChunks",
+                column: "DownloadFileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DownloadFiles_DownloadQueueId",
@@ -213,7 +217,7 @@ namespace Client.Infrastructure.Migrations
                 name: "CategoryItems");
 
             migrationBuilder.DropTable(
-                name: "DownloadFileChunk");
+                name: "DownloadFileChunks");
 
             migrationBuilder.DropTable(
                 name: "CategoryGroups");

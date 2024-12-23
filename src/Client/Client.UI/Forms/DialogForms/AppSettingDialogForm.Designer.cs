@@ -75,8 +75,9 @@
             pictureEdit2 = new PictureEdit();
             mxLabel2 = new UserControls.Common.MxLabel();
             groupControl3 = new GroupControl();
+            ChangeSavePathButton = new UserControls.Common.MxButton();
+            TempSavePathTextbox = new UserControls.Common.MxTextBox();
             mxLabel17 = new UserControls.Common.MxLabel();
-            mxSearch2 = new UserControls.Common.MxSearch();
             DownloadedFileServerDateCheckBox = new UserControls.Common.MxCheckBox();
             groupControl2 = new GroupControl();
             FileTypeGroupComboBox = new UserControls.Common.MxComboBox();
@@ -90,6 +91,8 @@
             AddFileTypeGroupButton = new UserControls.Common.MxButton();
             mxLabel14 = new UserControls.Common.MxLabel();
             downloadsTb = new DevExpress.XtraTab.XtraTabPage();
+            mxLabel5 = new UserControls.Common.MxLabel();
+            ParallelDownloadLimiTrackBarControl = new TrackBarControl();
             comboBoxEdit2 = new ComboBoxEdit();
             mxLabel24 = new UserControls.Common.MxLabel();
             separatorControl7 = new SeparatorControl();
@@ -126,8 +129,7 @@
             colUser = new DevExpress.XtraGrid.Columns.GridColumn();
             colpass = new DevExpress.XtraGrid.Columns.GridColumn();
             mxActionGroup1 = new UserControls.Common.MxActionGroup();
-            ParallelDownloadLimiTrackBarControl = new TrackBarControl();
-            mxLabel5 = new UserControls.Common.MxLabel();
+            xtraFolderBrowserDialog1 = new XtraFolderBrowserDialog(components);
             ((ISupportInitialize)xtraTabControl1).BeginInit();
             xtraTabControl1.SuspendLayout();
             prokciTb.SuspendLayout();
@@ -172,6 +174,7 @@
             ((ISupportInitialize)pictureEdit2.Properties).BeginInit();
             ((ISupportInitialize)groupControl3).BeginInit();
             groupControl3.SuspendLayout();
+            ((ISupportInitialize)TempSavePathTextbox.Properties).BeginInit();
             ((ISupportInitialize)DownloadedFileServerDateCheckBox.Properties).BeginInit();
             ((ISupportInitialize)groupControl2).BeginInit();
             groupControl2.SuspendLayout();
@@ -180,6 +183,8 @@
             ((ISupportInitialize)LastPublicSaveDirectoryCheckBox.Properties).BeginInit();
             ((ISupportInitialize)FileTypeGroupSavePathTextbox.Properties).BeginInit();
             downloadsTb.SuspendLayout();
+            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl).BeginInit();
+            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl.Properties).BeginInit();
             ((ISupportInitialize)comboBoxEdit2.Properties).BeginInit();
             ((ISupportInitialize)separatorControl7).BeginInit();
             ((ISupportInitialize)SkipDateUpdateOnDownloadResumeCheckBox.Properties).BeginInit();
@@ -202,8 +207,6 @@
             ((ISupportInitialize)gridControl1).BeginInit();
             ((ISupportInitialize)siteInfoViewModelBindingSource).BeginInit();
             ((ISupportInitialize)gridView1).BeginInit();
-            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl).BeginInit();
-            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl.Properties).BeginInit();
             SuspendLayout();
             // 
             // xtraTabControl1
@@ -648,14 +651,35 @@
             // 
             // groupControl3
             // 
+            groupControl3.Controls.Add(ChangeSavePathButton);
+            groupControl3.Controls.Add(TempSavePathTextbox);
             groupControl3.Controls.Add(mxLabel17);
-            groupControl3.Controls.Add(mxSearch2);
             groupControl3.GroupStyle = DevExpress.Utils.GroupStyle.Light;
             groupControl3.Location = new Point(11, 353);
             groupControl3.Name = "groupControl3";
             groupControl3.Size = new Size(520, 164);
             groupControl3.TabIndex = 27;
             groupControl3.Text = "مسیر ذخیره موقتی فایلها در هنگام دانلود";
+            // 
+            // ChangeSavePathButton
+            // 
+            ChangeSavePathButton.Appearance.BackColor = Color.Gainsboro;
+            ChangeSavePathButton.Appearance.Options.UseBackColor = true;
+            ChangeSavePathButton.Location = new Point(29, 31);
+            ChangeSavePathButton.Name = "ChangeSavePathButton";
+            ChangeSavePathButton.Size = new Size(42, 23);
+            ChangeSavePathButton.TabIndex = 28;
+            ChangeSavePathButton.Text = "...";
+            ChangeSavePathButton.Click += ChangeSavePathButton_Click;
+            // 
+            // TempSavePathTextbox
+            // 
+            TempSavePathTextbox.Location = new Point(77, 28);
+            TempSavePathTextbox.Name = "TempSavePathTextbox";
+            TempSavePathTextbox.Properties.ReadOnly = true;
+            TempSavePathTextbox.RightToLeft = RightToLeft.No;
+            TempSavePathTextbox.Size = new Size(420, 28);
+            TempSavePathTextbox.TabIndex = 27;
             // 
             // mxLabel17
             // 
@@ -668,13 +692,6 @@
             mxLabel17.Size = new Size(481, 68);
             mxLabel17.TabIndex = 26;
             mxLabel17.Text = resources.GetString("mxLabel17.Text");
-            // 
-            // mxSearch2
-            // 
-            mxSearch2.Location = new Point(9, 25);
-            mxSearch2.Name = "mxSearch2";
-            mxSearch2.Size = new Size(488, 42);
-            mxSearch2.TabIndex = 25;
             // 
             // DownloadedFileServerDateCheckBox
             // 
@@ -818,6 +835,32 @@
             downloadsTb.Name = "downloadsTb";
             downloadsTb.Size = new Size(542, 548);
             downloadsTb.Text = "دانلودها";
+            // 
+            // mxLabel5
+            // 
+            mxLabel5.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
+            mxLabel5.Appearance.Options.UseFont = true;
+            mxLabel5.Location = new Point(448, 79);
+            mxLabel5.Name = "mxLabel5";
+            mxLabel5.Size = new Size(83, 17);
+            mxLabel5.TabIndex = 39;
+            mxLabel5.Text = "تعداد دانلود همزمان";
+            // 
+            // ParallelDownloadLimiTrackBarControl
+            // 
+            ParallelDownloadLimiTrackBarControl.EditValue = 1;
+            ParallelDownloadLimiTrackBarControl.Location = new Point(107, 102);
+            ParallelDownloadLimiTrackBarControl.Name = "ParallelDownloadLimiTrackBarControl";
+            ParallelDownloadLimiTrackBarControl.Properties.DistanceFromTickToLabel = 1;
+            ParallelDownloadLimiTrackBarControl.Properties.LabelAppearance.Options.UseTextOptions = true;
+            ParallelDownloadLimiTrackBarControl.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            ParallelDownloadLimiTrackBarControl.Properties.Maximum = 100;
+            ParallelDownloadLimiTrackBarControl.Properties.Minimum = 1;
+            ParallelDownloadLimiTrackBarControl.Properties.ShowLabels = true;
+            ParallelDownloadLimiTrackBarControl.Properties.ShowValueToolTip = true;
+            ParallelDownloadLimiTrackBarControl.Size = new Size(418, 45);
+            ParallelDownloadLimiTrackBarControl.TabIndex = 38;
+            ParallelDownloadLimiTrackBarControl.Value = 1;
             // 
             // comboBoxEdit2
             // 
@@ -1169,31 +1212,9 @@
             mxActionGroup1.TabIndex = 12;
             mxActionGroup1.SaveButtonClick += mxActionGroup1_SaveButtonClick;
             // 
-            // ParallelDownloadLimiTrackBarControl
+            // xtraFolderBrowserDialog1
             // 
-            ParallelDownloadLimiTrackBarControl.EditValue = 1;
-            ParallelDownloadLimiTrackBarControl.Location = new Point(107, 102);
-            ParallelDownloadLimiTrackBarControl.Name = "ParallelDownloadLimiTrackBarControl";
-            ParallelDownloadLimiTrackBarControl.Properties.DistanceFromTickToLabel = 1;
-            ParallelDownloadLimiTrackBarControl.Properties.LabelAppearance.Options.UseTextOptions = true;
-            ParallelDownloadLimiTrackBarControl.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            ParallelDownloadLimiTrackBarControl.Properties.Maximum = 100;
-            ParallelDownloadLimiTrackBarControl.Properties.Minimum = 1;
-            ParallelDownloadLimiTrackBarControl.Properties.ShowLabels = true;
-            ParallelDownloadLimiTrackBarControl.Properties.ShowValueToolTip = true;
-            ParallelDownloadLimiTrackBarControl.Size = new Size(418, 45);
-            ParallelDownloadLimiTrackBarControl.TabIndex = 38;
-            ParallelDownloadLimiTrackBarControl.Value = 1;
-            // 
-            // mxLabel5
-            // 
-            mxLabel5.Appearance.Font = new Font("B Yekan", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            mxLabel5.Appearance.Options.UseFont = true;
-            mxLabel5.Location = new Point(448, 79);
-            mxLabel5.Name = "mxLabel5";
-            mxLabel5.Size = new Size(83, 17);
-            mxLabel5.TabIndex = 39;
-            mxLabel5.Text = "تعداد دانلود همزمان";
+            xtraFolderBrowserDialog1.SelectedPath = "xtraFolderBrowserDialog1";
             // 
             // AppSettingDialogForm
             // 
@@ -1257,6 +1278,7 @@
             ((ISupportInitialize)pictureEdit2.Properties).EndInit();
             ((ISupportInitialize)groupControl3).EndInit();
             groupControl3.ResumeLayout(false);
+            ((ISupportInitialize)TempSavePathTextbox.Properties).EndInit();
             ((ISupportInitialize)DownloadedFileServerDateCheckBox.Properties).EndInit();
             ((ISupportInitialize)groupControl2).EndInit();
             groupControl2.ResumeLayout(false);
@@ -1267,6 +1289,8 @@
             ((ISupportInitialize)FileTypeGroupSavePathTextbox.Properties).EndInit();
             downloadsTb.ResumeLayout(false);
             downloadsTb.PerformLayout();
+            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl.Properties).EndInit();
+            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl).EndInit();
             ((ISupportInitialize)comboBoxEdit2.Properties).EndInit();
             ((ISupportInitialize)separatorControl7).EndInit();
             ((ISupportInitialize)SkipDateUpdateOnDownloadResumeCheckBox.Properties).EndInit();
@@ -1291,8 +1315,6 @@
             ((ISupportInitialize)gridControl1).EndInit();
             ((ISupportInitialize)siteInfoViewModelBindingSource).EndInit();
             ((ISupportInitialize)gridView1).EndInit();
-            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl.Properties).EndInit();
-            ((ISupportInitialize)ParallelDownloadLimiTrackBarControl).EndInit();
             ResumeLayout(false);
         }
 
@@ -1330,7 +1352,6 @@
         private UserControls.Common.MxCheckBox LastPublicSaveDirectoryCheckBox;
         private GroupControl groupControl3;
         private UserControls.Common.MxLabel mxLabel17;
-        private UserControls.Common.MxSearch mxSearch2;
         private UserControls.Common.MxCheckBox DownloadedFileServerDateCheckBox;
         private PanelControl panelControl5;
         private UserControls.Common.MxLabel mxLabel18;
@@ -1396,5 +1417,8 @@
         private BindingSource fileTypeGroupViewModelBindingSource;
         private TrackBarControl ParallelDownloadLimiTrackBarControl;
         private UserControls.Common.MxLabel mxLabel5;
+        private UserControls.Common.MxButton ChangeSavePathButton;
+        private UserControls.Common.MxTextBox TempSavePathTextbox;
+        private XtraFolderBrowserDialog xtraFolderBrowserDialog1;
     }
 }

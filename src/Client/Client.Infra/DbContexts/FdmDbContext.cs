@@ -50,7 +50,7 @@ public class FdmDbContext : DbContext
         // Apply seed data from external classes
         modelBuilder.Entity<FileTypeGroup>().HasData(FileTypeGroupSeed.GetSeedData());
         modelBuilder.Entity<DownloadQueue>().HasData(DownloadQueueSeed.GetSeedData());
+        modelBuilder.Entity<AppSetting>().HasData(AppSettingSeed.GetSeedData());
         
-
 }
 }

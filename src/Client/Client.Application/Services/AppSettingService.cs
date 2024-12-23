@@ -124,6 +124,17 @@ public class AppSettingService : IAppSettingService
         }
     }
 
+    public async Task<ResultPattern<string?>> GetTempDownloadPathAsync()
+    {
+        var appSetting = await _appSettingRepository.GetAppSettingByKeyAsync(AppSettingConfigs.TempSavePath);
+        if (appSetting == null)
+            return new ResultPattern<string?>(_appErrors.NotFound);
+
+        return appSetting.Value;
+
+    }
+
+
     public async Task<ResultPattern<FileTypeGroupResDto?>> GetFileTypeGroupByIdAsync(int id)
     {
         var fileTypeGroup = await _fileTypeGroupRepository.GetByIdAsync(id);

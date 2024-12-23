@@ -91,10 +91,12 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     {
         try
         {
+
             await _downloadFileService.ResetStartedItemsToPausedItemsAsync();
             await LoadAllQueuesIntoSideMenuAsync();
             await LoadAllDownloadFilesAndUpdateMainGridAsync();
             await _downloadManagerService.InitialAsync();
+            await LoadDefualtConfigAsync();
         }
         catch (Exception ex)
         {
@@ -110,7 +112,6 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         {
             var appSettingDialogForm = _serviceProvider.GetRequiredService<AppSettingDialogForm>();
             appSettingDialogForm.ShowDialog();
-            InitializeComponent();
         }
         catch (Exception ex)
         {
@@ -177,11 +178,12 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         }
     }
 
-    private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    private async void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
         try
         {
             AddNewDownload();
+            await LoadAllDownloadFilesAndUpdateMainGridAsync();
         }
         catch (Exception ex)
         {
@@ -508,5 +510,17 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     {
         await _downloadFileService.ResetItemsAsync();
         await LoadAllDownloadFilesAndUpdateMainGridAsync();
+    }
+
+    private async Task LoadDefualtConfigAsync()
+    {
+        var tempSavePathRequest = await _appSettingService.GetTempDownloadPathAsync();
+        if (tempSavePathRequest.IsSucceed)
+        {
+            if (!Path.Exists(tempSavePathRequest.Data))
+            {
+                Directory.CreateDirectory(tempSavePathRequest.Data);
+            }
+        }
     }
 }

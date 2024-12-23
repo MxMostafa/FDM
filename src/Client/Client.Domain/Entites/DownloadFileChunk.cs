@@ -4,7 +4,7 @@ namespace Client.Domain.Entites;
 
 public class DownloadFileChunk : BaseEntity<long>
 {
-    public long DownloadFileId { get; set; }
+    public required long DownloadFileId { get; set; } = 0;
     public DownloadFile DownloadFile { get; set; } = null!;
 
     public int Index { get; set; }

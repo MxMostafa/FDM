@@ -20,9 +20,10 @@ public class DownloadManagerService : IDownloadManagerService
     private readonly IDownloadFileChunkService _downloadFileChunkService;
     private readonly IEventManager _eventManager;
     private readonly IEventAggregator _eventAggregator;
+    private readonly IServiceProvider _serviceProvider;
 
     public DownloadManagerService(IAppSettingService appSettingService,
-        ILogger<DownloadManagerService> logger, IDownloadFileService downloadFileService, IEventManager eventManager, IEventAggregator eventAggregator, IDownloadFileChunkService downloadFileChunkService = null)
+        ILogger<DownloadManagerService> logger, IDownloadFileService downloadFileService, IEventManager eventManager, IEventAggregator eventAggregator, IDownloadFileChunkService downloadFileChunkService = null, IServiceProvider serviceProvider = null)
     {
         _appSettingService = appSettingService;
         _logger = logger;
@@ -31,7 +32,9 @@ public class DownloadManagerService : IDownloadManagerService
         _eventAggregator = eventAggregator;
         _eventAggregator.Subscribe<AddFileToQueueEvent>(AddFileToQueueAction);
         _eventAggregator.Subscribe<DownloadFileStatusEvent>(UpdateDownloadFileStatus);
+        _eventAggregator.Subscribe<DownloadFileChunkStatusEvent>(UpdateDownloadFileChunkStatus);
         _downloadFileChunkService = downloadFileChunkService;
+        _serviceProvider = serviceProvider;
     }
     #endregion
 
@@ -100,12 +103,20 @@ public class DownloadManagerService : IDownloadManagerService
     {
         try
         {
-            var readyforDownloads = _activeDownloads.Where(a => a.TaskId == null || a.DownloadStatus == DownloadStatus.WaitingToStart).ToList();
+            var readyforDownloads = _activeDownloads.Where(a => a.TaskId == null && a.DownloadStatus == DownloadStatus.WaitingToStart).ToList();
 
             foreach (var download in readyforDownloads)
             {
 
-                await _downloadFileChunkService.CheckAndCreateChunkFilesAsync(download.Id);
+                var chunksRequest = await _downloadFileChunkService.CheckAndCreateChunkFilesAsync(download.Id);
+
+                if (!chunksRequest.IsSucceed)
+                {
+                    //TODO:
+                    continue;
+                }
+
+                var chunks = chunksRequest.Data;
 
                 await _semaphore!.WaitAsync();
 
@@ -118,28 +129,20 @@ public class DownloadManagerService : IDownloadManagerService
                             download.TaskId = Task.CurrentId;
                         }
 
-                        var i = 0;
                         _eventManager.Publish(async () =>
                         {
                             await _downloadFileService.UpdateDownloadFileStatusAsync(download.Id, DownloadStatus.Started);
                         });
 
-                        while (download.DownloadedBytes < download.Size && !download.CancellationTokenSource.Token.IsCancellationRequested)
+                        using (var scope = _serviceProvider.CreateScope())
                         {
-
-                            i = i + new Random().Next(1, 500000);
-                            download.DownloadedBytes += i;
-
-
-                            await Task.Delay(new Random().Next(1, 500));
-                            UpdateDownloadedBytes(download.Id, download.DownloadedBytes, download.Size);
+                            var downloadFileChunkService = scope.ServiceProvider.GetRequiredService<IDownloadFileChunkService>();
+                            await downloadFileChunkService.StartDownloadAsync(chunks!);
                         }
 
 
-                        if (download.DownloadedBytes >= download.Size)
-                        {
-                            FinishDownload(download.Id);
-                        }
+
+
                     }
                     finally
                     {
@@ -177,7 +180,7 @@ public class DownloadManagerService : IDownloadManagerService
         });
     }
 
-    public async void UpdateDownloadFileStatus(DownloadFileStatusEvent download)
+    public async void UpdateDownloadFileStatus(DownloadFileStatusEvent download )
     {
         var find = _activeDownloads.FirstOrDefault(d => d.Id == download.DownloadFileId);
         if (find == null)
@@ -217,6 +220,20 @@ public class DownloadManagerService : IDownloadManagerService
 
     }
 
+    public async void UpdateDownloadFileChunkStatus(DownloadFileChunkStatusEvent download)
+    {
+        var find = _activeDownloads.FirstOrDefault(d => d.Id == download.DownloadFileId);
+        if (find == null)
+        {
+            await AddOrUpdateAllWaitingToStartDownloadFilesAsync();
+            find = _activeDownloads.FirstOrDefault(d => d.Id == download.DownloadFileId);
+        }
+        if (find == null)
+            return;
+
+        FinishDownload(download.DownloadFileId);
+
+    }
     public void AddFileToQueueAction(AddFileToQueueEvent addFileToQueueEvent)
     {
         _eventManager.Publish(async () => await AddOrUpdateAllWaitingToStartDownloadFilesAsync());

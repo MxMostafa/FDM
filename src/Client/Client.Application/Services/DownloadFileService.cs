@@ -159,15 +159,14 @@ public class DownloadFileService : IDownloadFileService
             var fileTypeGroup = await _fileTypeGroupRepo.GetByFileExtensionAsync(model.FileExtension!);
             downloadFile = await _downloadFileRepo.AddAsync(new DownloadFile()
             {
-
+                DownloadQueueId= downloadQueue.Id,
                 DownloadPath = model.DownloadURL,
-                DownloadQueue = downloadQueue,
                 FileName = model.FileName,
                 Id = 0,
                 LocalSavePath = model.SavePath,
                 DownloadStatus = model.DownloadStatus,
                 Size = model.SizeInBytes,
-                FileTypeGroup = fileTypeGroup
+                FileTypeGroupId = fileTypeGroup?.Id
             });
 
             _eventAggregator.Publish(new AddFileToQueueEvent(downloadFile.Id));
