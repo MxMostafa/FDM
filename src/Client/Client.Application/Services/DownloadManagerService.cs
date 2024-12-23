@@ -17,10 +17,12 @@ public class DownloadManagerService : IDownloadManagerService
     private readonly IAppSettingService _appSettingService;
     private readonly ILogger<DownloadManagerService> _logger;
     private readonly IDownloadFileService _downloadFileService;
+    private readonly IDownloadFileChunkService _downloadFileChunkService;
     private readonly IEventManager _eventManager;
     private readonly IEventAggregator _eventAggregator;
+
     public DownloadManagerService(IAppSettingService appSettingService,
-        ILogger<DownloadManagerService> logger, IDownloadFileService downloadFileService, IEventManager eventManager, IEventAggregator eventAggregator)
+        ILogger<DownloadManagerService> logger, IDownloadFileService downloadFileService, IEventManager eventManager, IEventAggregator eventAggregator, IDownloadFileChunkService downloadFileChunkService = null)
     {
         _appSettingService = appSettingService;
         _logger = logger;
@@ -29,6 +31,7 @@ public class DownloadManagerService : IDownloadManagerService
         _eventAggregator = eventAggregator;
         _eventAggregator.Subscribe<AddFileToQueueEvent>(AddFileToQueueAction);
         _eventAggregator.Subscribe<DownloadFileStatusEvent>(UpdateDownloadFileStatus);
+        _downloadFileChunkService = downloadFileChunkService;
     }
     #endregion
 
@@ -102,6 +105,8 @@ public class DownloadManagerService : IDownloadManagerService
             foreach (var download in readyforDownloads)
             {
 
+                await _downloadFileChunkService.CheckAndCreateChunkFilesAsync(download.Id);
+
                 await _semaphore!.WaitAsync();
 
                 _ = Task.Run(async () =>
@@ -121,25 +126,19 @@ public class DownloadManagerService : IDownloadManagerService
 
                         while (download.DownloadedBytes < download.Size && !download.CancellationTokenSource.Token.IsCancellationRequested)
                         {
+
                             i = i + new Random().Next(1, 500000);
                             download.DownloadedBytes += i;
-                            await Task.Delay(new Random().Next(1, 500));
-                            _eventManager.Publish(async () =>
-                            {
-                                if (download.DownloadedBytes > download.Size)
-                                    download.DownloadedBytes = download.Size;
 
-                                await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(download.Id, download.DownloadedBytes));
-                            });
+
+                            await Task.Delay(new Random().Next(1, 500));
+                            UpdateDownloadedBytes(download.Id, download.DownloadedBytes, download.Size);
                         }
 
 
                         if (download.DownloadedBytes >= download.Size)
                         {
-                            _eventManager.Publish(async () =>
-                            {
-                                await _downloadFileService.UpdateDownloadFileStatusAsync(download.Id, DownloadStatus.Finished);
-                            });
+                            FinishDownload(download.Id);
                         }
                     }
                     finally
@@ -159,6 +158,24 @@ public class DownloadManagerService : IDownloadManagerService
 
 
     #region Events
+    private void FinishDownload(long downloadId)
+    {
+        _eventManager.Publish(async () =>
+        {
+            await _downloadFileService.UpdateDownloadFileStatusAsync(downloadId, DownloadStatus.Finished);
+        });
+    }
+
+    private void UpdateDownloadedBytes(long downloadId, long downloadedBytes, long downloadSize)
+    {
+        _eventManager.Publish(async () =>
+        {
+            if (downloadedBytes > downloadSize)
+                downloadedBytes = downloadSize;
+
+            await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(downloadId, downloadedBytes));
+        });
+    }
 
     public async void UpdateDownloadFileStatus(DownloadFileStatusEvent download)
     {

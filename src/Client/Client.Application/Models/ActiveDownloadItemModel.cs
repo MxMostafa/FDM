@@ -16,5 +16,6 @@ namespace Client.Application.Models
         public long DownloadedBytes { get; set; }
         public CancellationTokenSource CancellationTokenSource { get; set; } = new CancellationTokenSource();
         public int? TaskId { get; set; }
+
     }
 }

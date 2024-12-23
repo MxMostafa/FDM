@@ -12,7 +12,7 @@ public class FdmDbContext : DbContext
     public DbSet<AppSetting> AppSettings { get; set; }
     public DbSet<FileTypeGroup> FileTypeGroups { get; set; }
     public DbSet<DownloadFile> DownloadFiles { get; set; }
-
+    public DbSet<DownloadFileChunk> DownloadFileChunks { get; set; }
     public FdmDbContext(DbContextOptions<FdmDbContext> options) : base(options)
     {
 
