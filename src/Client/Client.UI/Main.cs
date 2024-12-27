@@ -353,14 +353,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     {
         ChangeStatus(id, DownloadStatus.Paused);
     }
-    private async Task FinishedDownloadCommand(long? id)
-    {
-        ChangeStatus(id, DownloadStatus.Finished);
-        if (id == null)
-            await _downloadFileService.UpdateDownloadFileStatusAsync(_mainDownloadList.Select(d => d.Id).ToList(), DownloadStatus.Finished);
-        else
-            await _downloadFileService.UpdateDownloadFileStatusAsync(id.Value, DownloadStatus.Finished);
-    }
+
     private void UpdateTopButButtonsStatus(DownloadViewModel selectedItem)
     {
         try

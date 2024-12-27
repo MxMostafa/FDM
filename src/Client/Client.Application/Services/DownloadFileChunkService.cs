@@ -24,9 +24,10 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     private readonly IAppErrors _appErrors;
     private readonly IMapper _mapper;
     private const int CHUNK_SIZE = 1024 * 100;
-    private const int MAX_THREAD_COUNT = 1;
+    private const int MAX_THREAD_COUNT = 10;
     private readonly ILogger<DownloadFileChunkService> _logger;
     private readonly List<ActiveDownloadChunkItemModel> _activeChunks = new();
+
     private SemaphoreSlim? _semaphoreChunk;
     public DownloadFileChunkService(IDownloadFileChunkRepository downloadFileChunkRepository, IDownloadFileRepository downloadFileRepository, IAppErrors appErrors = null, IMapper mapper = null, IEventManager eventManager = null, IEventAggregator eventAggregator = null, ILogger<DownloadFileChunkService> logger = null, IAppSettingRepository appSettingRepository = null)
     {
@@ -115,6 +116,14 @@ public class DownloadFileChunkService : IDownloadFileChunkService
             await _semaphoreChunk!.WaitAsync();
 
 
+            _eventManager.Publish(async () =>
+            {
+                //save into database
+                await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Downloading);
+            });
+
+
+
             _ = Task.Run(async () =>
             {
                 try
@@ -124,12 +133,7 @@ public class DownloadFileChunkService : IDownloadFileChunkService
                         chunk.TaskId = Task.CurrentId;
                     }
 
-                    _eventManager.Publish(async () =>
-                    {
-                        //save into database
-                        await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Downloading);
-                    });
-
+                 
                     //notify
                     _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, DownloadFileChunkStatus.Downloading, chunk.DownloadedBytes));
 
@@ -172,14 +176,35 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
     }
 
+
+    private Dictionary<long, DownloadFileChunkStatus> updateDownloadFileChunkQueue = new Dictionary<long, DownloadFileChunkStatus>();
     private async Task UpdateDownloadFileChunkStatusAsync(long downloadFileChunkId, DownloadFileChunkStatus downloadFileChunkStatus)
     {
+        if (updateDownloadFileChunkQueue.ContainsKey(downloadFileChunkId))
+        {
+            updateDownloadFileChunkQueue[downloadFileChunkId] = downloadFileChunkStatus;
+            return;
+        }
+        
+        updateDownloadFileChunkQueue.Add(downloadFileChunkId, downloadFileChunkStatus);
 
-        var downloadFileChunk = await _downloadFileChunkRepository.GetByIdAsync(downloadFileChunkId);
-        if (downloadFileChunk == null) return;
-        if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
-        downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
-        await _downloadFileChunkRepository.UpdateAsync(downloadFileChunk);
+        if (updateDownloadFileChunkQueue.Count >= 30)
+        {
+            var downloadFileChunks = await _downloadFileChunkRepository.GetByIdsAsync(updateDownloadFileChunkQueue.Select(d => d.Key).ToList());
+
+            foreach (var item in downloadFileChunks)
+            {
+                if (updateDownloadFileChunkQueue.TryGetValue(item.Id, out var status))
+                    item.DownloadFileChunkStatus = status;
+            }
+            await _downloadFileChunkRepository.UpdateAsync(downloadFileChunks);
+            updateDownloadFileChunkQueue.Clear();
+        }
+        //var downloadFileChunk = await _downloadFileChunkRepository.GetByIdAsync(downloadFileChunkId);
+        //if (downloadFileChunk == null) return;
+        //if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
+        //downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
+        //await _downloadFileChunkRepository.UpdateAsync(downloadFileChunk);
 
     }
 
@@ -194,6 +219,10 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
                 if (fileSize >= chunk.DownloadedBytes)
                     return true;
+                else
+                {
+
+                }
             }
 
             using (var client = new HttpClient())

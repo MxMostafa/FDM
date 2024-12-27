@@ -36,10 +36,22 @@ public class DownloadFileChunkRepository : BaseRepository, IDownloadFileChunkRep
         return await _context.DownloadFileChunks.FirstOrDefaultAsync(d => d.Id == downloadFileChunkId);
     }
 
+    public async Task<List<DownloadFileChunk>> GetByIdsAsync(List<long> downloadFileChunkIds)
+    {
+        return await _context.DownloadFileChunks.Where(d => downloadFileChunkIds.Any(i => i == d.Id)).ToListAsync();
+    }
+
     public async Task<DownloadFileChunk> UpdateAsync(DownloadFileChunk downloadFileChunk)
     {
         _context.Update(downloadFileChunk);
         await _context.SaveChangesAsync();
         return downloadFileChunk;
+    }
+
+    public async Task<List<DownloadFileChunk>> UpdateAsync(List<DownloadFileChunk> downloadFileChunks)
+    {
+        _context.UpdateRange(downloadFileChunks);
+        await _context.SaveChangesAsync();
+        return downloadFileChunks;
     }
 }
