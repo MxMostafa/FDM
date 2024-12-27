@@ -119,11 +119,8 @@ public class DownloadFileService : IDownloadFileService
     {
         var downloadFile = await _downloadFileRepo.GetByIdAsync(updateDownloadFileReqDto.Id);
         if (downloadFile == null) return;
-        if (downloadFile.DownloadedBytes == updateDownloadFileReqDto.DownloadedBytes) return;
         downloadFile.DownloadedBytes = updateDownloadFileReqDto.DownloadedBytes;
         await _downloadFileRepo.UpdateAsync(downloadFile);
-
-        _eventAggregator.Publish(new DownloadFileDownloadedBytesEvent(downloadFile.Id, downloadFile.DownloadedBytes));
     }
 
     public async Task UpdateDownloadFileStatusAsync(long downloadFileId, DownloadStatus downloadStatus)

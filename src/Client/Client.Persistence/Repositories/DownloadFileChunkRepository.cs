@@ -18,6 +18,12 @@ public class DownloadFileChunkRepository : BaseRepository, IDownloadFileChunkRep
         return _context.DownloadFileChunks.Where(d => d.DownloadFileId == downloadFileId).ToListAsync();
     }
 
+    public Task<List<DownloadFileChunk>> GetByDownloadFileIdAsync(long downloadFileId, DownloadFileChunkStatus downloadFileChunkStatus)
+    {
+        return _context.DownloadFileChunks
+            .Where(d => d.DownloadFileId == downloadFileId && d.DownloadFileChunkStatus == downloadFileChunkStatus).ToListAsync();
+    }
+
     public async Task<List<DownloadFileChunk>> AddAsync(List<DownloadFileChunk> downloadFileChunks)
     {
         await _context.AddRangeAsync(downloadFileChunks);

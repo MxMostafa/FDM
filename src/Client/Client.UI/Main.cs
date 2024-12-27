@@ -478,12 +478,15 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
         var item = _mainDownloadList.FirstOrDefault(d => d.Id == download.DownloadFileId);
         if (item != null)
         {
-            if (item.DownloadedBytes > download.DownloadBytes) return;
+
             _uiContext.Post(_ =>
             {
-                item.DownloadedBytes = download.DownloadBytes;
+                item.DownloadedBytes += download.DownloadBytes;
                 item.Percent = FormatHelper.GetPercent(item.DownloadedBytes, item.Size);
             }, null);
+
+
+
         }
     }
 

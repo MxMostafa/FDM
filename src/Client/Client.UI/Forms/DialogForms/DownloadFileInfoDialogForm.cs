@@ -173,9 +173,9 @@ public partial class DownloadFileInfoDialogForm : MasterFixedDialogForm
                                                      _downloadFileInfo.DownloadURL,
                                                      FileTypeGroupSavePathTextBox.Text,
                                                      _downloadFileInfo.SizeInBytes,
-                                                     _downloadFileInfo.FileExtension,Domain.Enums.DownloadStatus.Started);
+                                                     _downloadFileInfo.FileExtension,Domain.Enums.DownloadStatus.NotStarted);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 0; i++)
             {
                 await _downloadFileService.AddFileToQueueAsync(fileModel);
             }

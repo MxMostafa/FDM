@@ -19,15 +19,15 @@ public static class FormatHelper
 
         if (bytes >= TB)
         {
-            return string.Format("{0:0.##} ترابایت", (double)bytes / TB);
+            return string.Format("{0:0.###} ترابایت", (double)bytes / TB);
         }
         else if (bytes >= GB)
         {
-            return string.Format("{0:0.##} گیگابایت", (double)bytes / GB);
+            return string.Format("{0:0.###} گیگابایت", (double)bytes / GB);
         }
         else if (bytes >= MB)
         {
-            return string.Format("{0:0.##} مگابایت", (double)bytes / MB);
+            return string.Format("{0:0.###} مگابایت", (double)bytes / MB);
         }
         else if (bytes >= KB)
         {

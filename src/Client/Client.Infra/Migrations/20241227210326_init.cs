@@ -145,6 +145,7 @@ namespace Client.Infrastructure.Migrations
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     DownloadFileId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Size = table.Column<long>(type: "INTEGER", nullable: false),
                     Index = table.Column<int>(type: "INTEGER", nullable: false),
                     Start = table.Column<long>(type: "INTEGER", nullable: false),
                     End = table.Column<long>(type: "INTEGER", nullable: false),
@@ -167,23 +168,23 @@ namespace Client.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AppSettings",
                 columns: new[] { "Id", "AppSettingType", "Created", "Key", "Updated", "Value" },
-                values: new object[] { 1, 0, new DateTime(2024, 12, 24, 1, 3, 22, 387, DateTimeKind.Local).AddTicks(9990), "TempSavePathTextbox", new DateTime(2024, 12, 24, 1, 3, 22, 387, DateTimeKind.Local).AddTicks(9993), "C:\\Users\\Sattec\\AppData\\Roaming\\FDM" });
+                values: new object[] { 1, 0, new DateTime(2024, 12, 28, 0, 33, 25, 678, DateTimeKind.Local).AddTicks(1323), "TempSavePathTextbox", new DateTime(2024, 12, 28, 0, 33, 25, 678, DateTimeKind.Local).AddTicks(1327), "C:\\Users\\Sattec\\AppData\\Roaming\\FDM" });
 
             migrationBuilder.InsertData(
                 table: "DownloadQueues",
                 columns: new[] { "Id", "Created", "IsDeleted", "Title", "Updated" },
-                values: new object[] { 1, new DateTime(2024, 12, 24, 1, 3, 22, 387, DateTimeKind.Local).AddTicks(1462), false, "صف اصلی", new DateTime(2024, 12, 24, 1, 3, 22, 387, DateTimeKind.Local).AddTicks(1464) });
+                values: new object[] { 1, new DateTime(2024, 12, 28, 0, 33, 25, 677, DateTimeKind.Local).AddTicks(3700), false, "صف اصلی", new DateTime(2024, 12, 28, 0, 33, 25, 677, DateTimeKind.Local).AddTicks(3704) });
 
             migrationBuilder.InsertData(
                 table: "FileTypeGroups",
                 columns: new[] { "Id", "Created", "FileExtensions", "FolderName", "IconName", "IsDeleted", "SavePath", "Title", "Updated" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 12, 24, 1, 3, 22, 383, DateTimeKind.Local).AddTicks(7235), "zip rar", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "فایل های فشرده", new DateTime(2024, 12, 24, 1, 3, 22, 385, DateTimeKind.Local).AddTicks(7223) },
-                    { 2, new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(3686), "txt docx xls", "Documents", null, false, "C:\\Users\\Sattec\\Downloads\\Documents", "اسناد", new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(3689) },
-                    { 3, new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(4204), "mp3 wave", "Music", null, false, "C:\\Users\\Sattec\\Downloads\\Music", "موسیقی", new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(4205) },
-                    { 4, new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(4619), "exe msi", "Video", null, false, "C:\\Users\\Sattec\\Downloads\\Video", "برنامه ها", new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(4620) },
-                    { 5, new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(5015), "mpeg 3gp avi flv", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "تصویری", new DateTime(2024, 12, 24, 1, 3, 22, 386, DateTimeKind.Local).AddTicks(5016) }
+                    { 1, new DateTime(2024, 12, 28, 0, 33, 25, 674, DateTimeKind.Local).AddTicks(92), "zip rar", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "فایل های فشرده", new DateTime(2024, 12, 28, 0, 33, 25, 675, DateTimeKind.Local).AddTicks(9433) },
+                    { 2, new DateTime(2024, 12, 28, 0, 33, 25, 676, DateTimeKind.Local).AddTicks(5644), "txt docx xls", "Documents", null, false, "C:\\Users\\Sattec\\Downloads\\Documents", "اسناد", new DateTime(2024, 12, 28, 0, 33, 25, 676, DateTimeKind.Local).AddTicks(5647) },
+                    { 3, new DateTime(2024, 12, 28, 0, 33, 25, 676, DateTimeKind.Local).AddTicks(6149), "mp3 wave", "Music", null, false, "C:\\Users\\Sattec\\Downloads\\Music", "موسیقی", new DateTime(2024, 12, 28, 0, 33, 25, 676, DateTimeKind.Local).AddTicks(6150) },
+                    { 4, new DateTime(2024, 12, 28, 0, 33, 25, 676, DateTimeKind.Local).AddTicks(6575), "exe msi", "Video", null, false, "C:\\Users\\Sattec\\Downloads\\Video", "برنامه ها", new DateTime(2024, 12, 28, 0, 33, 25, 676, DateTimeKind.Local).AddTicks(6576) },
+                    { 5, new DateTime(2024, 12, 28, 0, 33, 25, 676, DateTimeKind.Local).AddTicks(6977), "mpeg 3gp avi flv", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "تصویری", new DateTime(2024, 12, 28, 0, 33, 25, 676, DateTimeKind.Local).AddTicks(6978) }
                 });
 
             migrationBuilder.CreateIndex(

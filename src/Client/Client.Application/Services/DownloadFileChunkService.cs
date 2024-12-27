@@ -2,6 +2,8 @@
 
 using Client.Application.Models;
 using Client.Domain.Dtos.Response.ChunkFile;
+using Client.Domain.Entites;
+using Client.Domain.Enums;
 using Client.Domain.EventModels;
 using Client.Domain.Interfaces.General.Errors;
 using Client.Domain.Interfaces.Services;
@@ -21,8 +23,8 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     private readonly IAppSettingRepository _appSettingRepository;
     private readonly IAppErrors _appErrors;
     private readonly IMapper _mapper;
-    private const int CHUNK_SIZE = 1024 * 1024;
-    private const int MAX_THREAD_COUNT = 5;
+    private const int CHUNK_SIZE = 1024 * 100;
+    private const int MAX_THREAD_COUNT = 1;
     private readonly ILogger<DownloadFileChunkService> _logger;
     private readonly List<ActiveDownloadChunkItemModel> _activeChunks = new();
     private SemaphoreSlim? _semaphoreChunk;
@@ -68,6 +70,22 @@ public class DownloadFileChunkService : IDownloadFileChunkService
         return result;
     }
 
+
+    public async Task<ResultPattern<List<DownloadFileChunkResDto>>> GetComplatedChunkFilesAsync(long downloadFileId)
+    {
+        var downloadFile = await _downloadFileRepository.GetByIdAsync(downloadFileId);
+        if (downloadFile == null)
+        {
+            //log TODO:
+            return new ResultPattern<List<DownloadFileChunkResDto>>(_appErrors.NotFound);
+        }
+        var chunks = await _downloadFileChunkRepository.GetByDownloadFileIdAsync(downloadFileId, DownloadFileChunkStatus.Complated);
+
+        var result = _mapper.Map<List<DownloadFileChunkResDto>>(chunks);
+        return result;
+    }
+
+
     public async Task StartDownloadAsync(List<DownloadFileChunkResDto> chunkFiles)
     {
         InitialAsync();
@@ -76,7 +94,7 @@ public class DownloadFileChunkService : IDownloadFileChunkService
         {
             _activeChunks.Add(new ActiveDownloadChunkItemModel()
             {
-                Id = 0,
+                Id = i.Id,
                 DownloadFileId = i.DownloadFileId,
                 DownloadUrl = i.DownloadUrl,
                 Index = i.Index,
@@ -86,11 +104,11 @@ public class DownloadFileChunkService : IDownloadFileChunkService
                 DownloadFileChunkStatus = i.DownloadFileChunkStatus,
                 CancellationTokenSource = new CancellationTokenSource(),
                 TaskId = null,
-                DownloadedBytes = 0
+                DownloadedBytes = i.Size,
             });
         }
 
-        var readyforDownloads = _activeChunks.Where(a => a.TaskId == null || a.DownloadFileChunkStatus != DownloadFileChunkStatus.Complated).ToList();
+        var readyforDownloads = _activeChunks.Where(a => a.TaskId == null && a.DownloadFileChunkStatus != DownloadFileChunkStatus.Complated).ToList();
 
         foreach (var chunk in readyforDownloads)
         {
@@ -108,8 +126,14 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
                     _eventManager.Publish(async () =>
                     {
+                        //save into database
                         await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Downloading);
                     });
+
+                    //notify
+                    _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, DownloadFileChunkStatus.Downloading, chunk.DownloadedBytes));
+
+
 
 
                     var success = await DownloadChunkAsync(chunk);
@@ -120,6 +144,21 @@ public class DownloadFileChunkService : IDownloadFileChunkService
                         {
                             await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Complated);
                         });
+
+                        //notify
+                        _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, DownloadFileChunkStatus.Complated, chunk.DownloadedBytes));
+
+                    }
+                    else
+                    {
+                        _eventManager.Publish(async () =>
+                        {
+                            await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Error);
+                        });
+
+                        //notify
+                        _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, DownloadFileChunkStatus.Error, chunk.DownloadedBytes));
+
                     }
                 }
                 finally
@@ -135,23 +174,32 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
     private async Task UpdateDownloadFileChunkStatusAsync(long downloadFileChunkId, DownloadFileChunkStatus downloadFileChunkStatus)
     {
+
         var downloadFileChunk = await _downloadFileChunkRepository.GetByIdAsync(downloadFileChunkId);
         if (downloadFileChunk == null) return;
         if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
         downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
         await _downloadFileChunkRepository.UpdateAsync(downloadFileChunk);
-        _eventAggregator.Publish(new DownloadFileChunkStatusEvent(downloadFileChunk.DownloadFileId, downloadFileChunkId, downloadFileChunkStatus));
+
     }
 
-    private static readonly object _fileLock = new object();
     private async Task<bool> DownloadChunkAsync(ActiveDownloadChunkItemModel chunk)
     {
         try
         {
+            if (File.Exists(chunk.TempFilePath))
+            {
+                FileInfo fileInfo = new FileInfo(chunk.TempFilePath);
+                long fileSize = fileInfo.Length; // Size in bytes
+
+                if (fileSize >= chunk.DownloadedBytes)
+                    return true;
+            }
+
             using (var client = new HttpClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Get, chunk.DownloadUrl);
-                request.Headers.Range = new RangeHeaderValue(chunk.Start + chunk.DownloadedBytes, chunk.End);
+                request.Headers.Range = new RangeHeaderValue(chunk.Start, chunk.End);
 
                 using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
@@ -167,7 +215,7 @@ public class DownloadFileChunkService : IDownloadFileChunkService
                 using var fileStream = new FileStream(chunk.TempFilePath, FileMode.Append, FileAccess.Write, FileShare.None);
                 await response.Content.CopyToAsync(fileStream);
 
-                chunk.DownloadedBytes += response.Content.Headers.ContentLength ?? 0;
+                chunk.DownloadedBytes = response.Content.Headers.ContentLength ?? 0;
                 chunk.DownloadFileChunkStatus = DownloadFileChunkStatus.Complated;
                 return true;
             }
@@ -204,6 +252,7 @@ public class DownloadFileChunkService : IDownloadFileChunkService
             long currentEnd = Math.Min(currentStart + chunkSize - 1, fileSize - 1);
             chunks.Add(new DownloadFileChunk()
             {
+                Size = chunkSize,
                 DownloadFileId = 0,
                 Index = chunks.Count,
                 Start = currentStart,
@@ -214,7 +263,6 @@ public class DownloadFileChunkService : IDownloadFileChunkService
             });
             currentStart = currentEnd + 1;
         }
-
         return chunks;
 
     }

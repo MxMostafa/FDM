@@ -6,5 +6,6 @@ public enum DownloadFileChunkStatus
 {
     Pending,
     Downloading,
-    Complated
+    Complated,
+    Error
 }
