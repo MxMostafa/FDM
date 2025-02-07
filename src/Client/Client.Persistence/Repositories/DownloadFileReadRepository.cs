@@ -4,25 +4,16 @@
 
 using Client.Domain.Entites;
 using Client.Domain.Enums;
+using Client.Infrastructure.DbContexts.App;
+using Client.Infrastructure.DbContexts.Chunk;
+using Client.Infrastructure.DbContexts.File;
 
 namespace Client.Persistence.Repositories;
 
-public class DownloadFileRepository : BaseRepository, IDownloadFileRepository
+public class DownloadFileReadRepository : BaseFileRepository, IDownloadFileReadRepository
 {
-    public DownloadFileRepository(FdmDbContext context) : base(context)
+    public DownloadFileReadRepository(FdmFileDbContext context) : base(context)
     {
-    }
-
-    public async Task<DownloadFile> AddAsync(DownloadFile downloadFile)
-    {
-        await _context.DownloadFiles.AddAsync(downloadFile);
-        await _context.SaveChangesAsync();
-        return downloadFile;
-    }
-
-    public Task<List<DownloadFile>> AddAsync(List<DownloadFile> downloadFiles)
-    {
-        throw new NotImplementedException();
     }
 
     public async Task<List<DownloadFile>> GetAsync(int? queueId)
@@ -78,28 +69,4 @@ public class DownloadFileRepository : BaseRepository, IDownloadFileRepository
            d.DownloadStatus== downloadStatus).ToListAsync();
     }
 
-
-    public Task<DownloadFile> SoftDeleteAsync(DownloadFile downloadFile)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<DownloadFile>> SoftDeleteAsync(List<DownloadFile> downloadFiles)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<DownloadFile> UpdateAsync(DownloadFile downloadFile)
-    {
-        _context.DownloadFiles.Update(downloadFile);
-        await _context.SaveChangesAsync();
-        return downloadFile;
-    }
-
-    public async Task<List<DownloadFile>> UpdateAsync(List<DownloadFile> downloadFiles)
-    {
-        _context.DownloadFiles.UpdateRange(downloadFiles);
-        await _context.SaveChangesAsync();
-        return downloadFiles;
-    }
 }

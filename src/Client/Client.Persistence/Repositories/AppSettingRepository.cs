@@ -1,12 +1,16 @@
 ﻿
 
+using Client.Infrastructure.DbContexts.App;
+using Client.Infrastructure.DbContexts.Chunk;
+using Client.Infrastructure.DbContexts.File;
+
 namespace Client.Persistence.Repositories;
-public class AppSettingRepository : BaseRepository, IAppSettingRepository
+public class AppSettingRepository : BaseAppRepository, IAppSettingRepository
 {
     private readonly IMemoryCache _memoryCache;
     private const string APP_SETTING_KEY = "AppSettings";
 
-    public AppSettingRepository(FdmDbContext context, IMemoryCache memoryCache) : base(context)
+    public AppSettingRepository(FdmAppDbContext context, IMemoryCache memoryCache) : base(context)
     {
         _memoryCache = memoryCache;
     }

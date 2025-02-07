@@ -3,17 +3,15 @@ using Client.Domain.SeedData;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Linq.Expressions;
 
-namespace Client.Infrastructure.DbContexts;
-public class FdmDbContext : DbContext
+namespace Client.Infrastructure.DbContexts.App;
+public class FdmAppDbContext : DbContext
 {
     public DbSet<CategoryGroup> CategoryGroups { get; set; }
     public DbSet<CategoryItem> CategoryItems { get; set; }
     public DbSet<DownloadQueue> DownloadQueues { get; set; }
     public DbSet<AppSetting> AppSettings { get; set; }
     public DbSet<FileTypeGroup> FileTypeGroups { get; set; }
-    public DbSet<DownloadFile> DownloadFiles { get; set; }
-    public DbSet<DownloadFileChunk> DownloadFileChunks { get; set; }
-    public FdmDbContext(DbContextOptions<FdmDbContext> options) : base(options)
+    public FdmAppDbContext(DbContextOptions<FdmAppDbContext> options) : base(options)
     {
 
     }
@@ -51,6 +49,6 @@ public class FdmDbContext : DbContext
         modelBuilder.Entity<FileTypeGroup>().HasData(FileTypeGroupSeed.GetSeedData());
         modelBuilder.Entity<DownloadQueue>().HasData(DownloadQueueSeed.GetSeedData());
         modelBuilder.Entity<AppSetting>().HasData(AppSettingSeed.GetSeedData());
-        
-}
+
+    }
 }

@@ -3,13 +3,16 @@
 
 
 using Client.Domain.Entites;
+using Client.Infrastructure.DbContexts.App;
+using Client.Infrastructure.DbContexts.Chunk;
+using Client.Infrastructure.DbContexts.File;
 using System.Security.AccessControl;
 
 namespace Client.Persistence.Repositories;
 
-public class DownloadFileChunkRepository : BaseRepository, IDownloadFileChunkRepository
+public class DownloadFileChunkReadRepository : BaseChunkRepository, IDownloadFileChunkReadRepository
 {
-    public DownloadFileChunkRepository(FdmDbContext context) : base(context)
+    public DownloadFileChunkReadRepository(FdmChunkDbContext context) : base(context)
     {
     }
 
@@ -24,12 +27,6 @@ public class DownloadFileChunkRepository : BaseRepository, IDownloadFileChunkRep
             .Where(d => d.DownloadFileId == downloadFileId && d.DownloadFileChunkStatus == downloadFileChunkStatus).ToListAsync();
     }
 
-    public async Task<List<DownloadFileChunk>> AddAsync(List<DownloadFileChunk> downloadFileChunks)
-    {
-        await _context.AddRangeAsync(downloadFileChunks);
-        await _context.SaveChangesAsync();
-        return downloadFileChunks;
-    }
 
     public async Task<DownloadFileChunk?> GetByIdAsync(long downloadFileChunkId)
     {
@@ -41,17 +38,4 @@ public class DownloadFileChunkRepository : BaseRepository, IDownloadFileChunkRep
         return await _context.DownloadFileChunks.Where(d => downloadFileChunkIds.Any(i => i == d.Id)).ToListAsync();
     }
 
-    public async Task<DownloadFileChunk> UpdateAsync(DownloadFileChunk downloadFileChunk)
-    {
-        _context.Update(downloadFileChunk);
-        await _context.SaveChangesAsync();
-        return downloadFileChunk;
-    }
-
-    public async Task<List<DownloadFileChunk>> UpdateAsync(List<DownloadFileChunk> downloadFileChunks)
-    {
-        _context.UpdateRange(downloadFileChunks);
-        await _context.SaveChangesAsync();
-        return downloadFileChunks;
-    }
 }

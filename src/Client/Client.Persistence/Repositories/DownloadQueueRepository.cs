@@ -2,11 +2,15 @@
 
 
 
+using Client.Infrastructure.DbContexts.App;
+using Client.Infrastructure.DbContexts.Chunk;
+using Client.Infrastructure.DbContexts.File;
+
 namespace Client.Persistence.Repositories;
 
-public class DownloadQueueRepository : BaseRepository, IDownloadQueueRepository
+public class DownloadQueueRepository : BaseAppRepository, IDownloadQueueRepository
 {
-    public DownloadQueueRepository(FdmDbContext context) : base(context)
+    public DownloadQueueRepository(FdmAppDbContext context) : base(context)
     {
     }
 

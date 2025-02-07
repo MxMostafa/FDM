@@ -13,4 +13,4 @@ global using Client.Persistence.Repositories.Base;
 global using Microsoft.EntityFrameworkCore.Design;
 global using Client.Domain.Enums;
 global using Microsoft.Extensions.Caching.Memory;
-
+global using Client.Infrastructure.DbContexts.Chunk;

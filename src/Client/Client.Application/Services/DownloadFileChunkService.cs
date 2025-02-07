@@ -2,13 +2,16 @@
 
 using Client.Domain.Entites;
 using Client.Domain.Enums;
+using Client.Domain.Interfaces.Repositories;
 
 namespace Client.Application.Services;
 
 public class DownloadFileChunkService : IDownloadFileChunkService
 {
-    private readonly IDownloadFileChunkRepository _downloadFileChunkRepository;
-    private readonly IDownloadFileRepository _downloadFileRepository;
+    private readonly IDownloadFileChunkWriteRepository _downloadFileChunkWriteRepository;
+    private readonly IDownloadFileChunkReadRepository _downloadFileChunkReadRepository;
+    private readonly IDownloadFileWriteRepository _downloadFileWriteRepository;
+    private readonly IDownloadFileReadRepository _downloadFileReadRepository;
     private readonly IEventManager _eventManager;
     private readonly IEventAggregator _eventAggregator;
     private readonly IAppSettingRepository _appSettingRepository;
@@ -20,10 +23,22 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     private readonly List<ActiveDownloadChunkItemModel> _activeChunks = new();
 
     private SemaphoreSlim? _semaphoreChunk;
-    public DownloadFileChunkService(IDownloadFileChunkRepository downloadFileChunkRepository, IDownloadFileRepository downloadFileRepository, IAppErrors appErrors = null, IMapper mapper = null, IEventManager eventManager = null, IEventAggregator eventAggregator = null, ILogger<DownloadFileChunkService> logger = null, IAppSettingRepository appSettingRepository = null)
+    public DownloadFileChunkService(
+        IDownloadFileChunkWriteRepository downloadFileChunkWriteRepository,
+        IDownloadFileChunkReadRepository downloadFileChunkReadRepository,
+        IDownloadFileWriteRepository downloadFileWriteRepository,
+        IDownloadFileReadRepository downloadFileReadRepository,
+        IAppErrors appErrors
+        , IMapper mapper,
+        IEventManager eventManager,
+        IEventAggregator eventAggregator,
+        ILogger<DownloadFileChunkService> logger,
+        IAppSettingRepository appSettingRepository)
     {
-        _downloadFileChunkRepository = downloadFileChunkRepository;
-        _downloadFileRepository = downloadFileRepository;
+        _downloadFileChunkWriteRepository = downloadFileChunkWriteRepository;
+        _downloadFileChunkReadRepository = downloadFileChunkReadRepository;
+        _downloadFileWriteRepository = downloadFileWriteRepository;
+        _downloadFileReadRepository = downloadFileReadRepository;
         _appErrors = appErrors;
         _mapper = mapper;
         _eventManager = eventManager;
@@ -42,19 +57,19 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
     public async Task<ResultPattern<List<DownloadFileChunkResDto>>> CheckAndCreateChunkFilesAsync(long downloadFileId)
     {
-        var downloadFile = await _downloadFileRepository.GetByIdAsync(downloadFileId);
+        var downloadFile = await _downloadFileReadRepository.GetByIdAsync(downloadFileId);
         if (downloadFile == null)
         {
             //log TODO:
             return new ResultPattern<List<DownloadFileChunkResDto>>(_appErrors.NotFound);
         }
-        var chunks = await _downloadFileChunkRepository.GetByDownloadFileIdAsync(downloadFileId);
+        var chunks = await _downloadFileChunkReadRepository.GetByDownloadFileIdAsync(downloadFileId);
 
         if (chunks.Count == 0)
         {
             chunks = await CreateChunksAsync(downloadFile.Id, downloadFile.Size, CHUNK_SIZE);
             chunks.ForEach(c => c.DownloadFileId = downloadFileId);
-            await _downloadFileChunkRepository.AddAsync(chunks);
+            await _downloadFileChunkWriteRepository.AddAsync(chunks);
         }
 
         var result = _mapper.Map<List<DownloadFileChunkResDto>>(chunks);
@@ -69,13 +84,13 @@ public class DownloadFileChunkService : IDownloadFileChunkService
         await _semaphoreGetComplatedChunkFiles.WaitAsync();
         try
         {
-            var downloadFile = await _downloadFileRepository.GetByIdAsync(downloadFileId);
+            var downloadFile = await _downloadFileReadRepository.GetByIdAsync(downloadFileId);
             if (downloadFile == null)
             {
                 //log TODO:
                 return new ResultPattern<List<DownloadFileChunkResDto>>(_appErrors.NotFound);
             }
-            var chunks = await _downloadFileChunkRepository.GetByDownloadFileIdAsync(downloadFileId, DownloadFileChunkStatus.Complated);
+            var chunks = await _downloadFileChunkReadRepository.GetByDownloadFileIdAsync(downloadFileId, DownloadFileChunkStatus.Complated);
 
             var result = _mapper.Map<List<DownloadFileChunkResDto>>(chunks);
             return result;
@@ -177,11 +192,11 @@ public class DownloadFileChunkService : IDownloadFileChunkService
         await _semaphoreUpdateDownloadFileChunkStatus.WaitAsync();
         try
         {
-            var downloadFileChunk = await _downloadFileChunkRepository.GetByIdAsync(downloadFileChunkId);
+            var downloadFileChunk = await _downloadFileChunkReadRepository.GetByIdAsync(downloadFileChunkId);
             if (downloadFileChunk == null) return;
             if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
             downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
-            await _downloadFileChunkRepository.UpdateAsync(downloadFileChunk);
+            await _downloadFileChunkWriteRepository.UpdateAsync(downloadFileChunk);
         }
         finally
         {

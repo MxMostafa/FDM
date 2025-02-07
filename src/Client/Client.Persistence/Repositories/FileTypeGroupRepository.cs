@@ -1,11 +1,15 @@
 ﻿
 
 
+using Client.Infrastructure.DbContexts.App;
+using Client.Infrastructure.DbContexts.Chunk;
+using Client.Infrastructure.DbContexts.File;
+
 namespace Client.Persistence.Repositories;
 
-public class FileTypeGroupRepository : BaseRepository, IFileTypeGroupRepository
+public class FileTypeGroupRepository : BaseAppRepository, IFileTypeGroupRepository
 {
-    public FileTypeGroupRepository(FdmDbContext context) : base(context)
+    public FileTypeGroupRepository(FdmAppDbContext context) : base(context)
     {
     }
 

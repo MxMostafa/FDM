@@ -1,6 +1,10 @@
 ﻿
 
 
+using Client.Infrastructure.DbContexts.App;
+using Client.Infrastructure.DbContexts.Chunk;
+using Client.Infrastructure.DbContexts.File;
+
 namespace Client.Persistence.Extensions;
 
 public static class HostingExtension
@@ -30,7 +34,7 @@ public static class HostingExtension
         AppDomain.CurrentDomain.SetData("DataDirectory", dbPath);
 
         var cstr = $"Data Source={dbPath}\\FDMdb.db";
-        services.AddDbContext<FdmDbContext>(options =>
+        services.AddDbContext<FdmAppDbContext>(options =>
             options.UseSqlite(cstr),ServiceLifetime.Singleton);
 
         var serviceProvider = services.BuildServiceProvider();
@@ -39,7 +43,7 @@ public static class HostingExtension
         using (var scope = serviceProvider.CreateScope())
         {
 
-            var context = scope.ServiceProvider.GetRequiredService<FdmDbContext>();
+            var context = scope.ServiceProvider.GetRequiredService<FdmAppDbContext>();
             context.Database.Migrate(); // Applies any pending migrations
         }
 

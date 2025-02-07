@@ -12,16 +12,24 @@ namespace Client.Application.Services;
 public class DownloadFileService : IDownloadFileService
 {
     private readonly IHttpRepository _httpRepository;
-    private readonly IDownloadFileRepository _downloadFileRepo;
+    private readonly IDownloadFileWriteRepository _downloadFileWriteRepo;
+    private readonly IDownloadFileReadRepository _downloadFileReadRepo;
     private readonly IDownloadQueueRepository _downloadQueueRepo;
     private readonly IFileTypeGroupRepository _fileTypeGroupRepo;
     private readonly IEventAggregator _eventAggregator;
     private readonly IAppErrors _appErrors;
 
-    public DownloadFileService(IHttpRepository httpRepository, IDownloadFileRepository downloadFileRepository, IDownloadQueueRepository downloadQueueRepo, IFileTypeGroupRepository fileTypeGroupRepo, IAppErrors appErrors, IEventAggregator eventAggregator)
+    public DownloadFileService(IHttpRepository httpRepository, 
+        IDownloadFileWriteRepository downloadFileWriteRepo,
+        IDownloadFileReadRepository downloadFileReadRepo,
+        IDownloadQueueRepository downloadQueueRepo,
+        IFileTypeGroupRepository fileTypeGroupRepo,
+        IAppErrors appErrors,
+        IEventAggregator eventAggregator)
     {
         _httpRepository = httpRepository;
-        _downloadFileRepo = downloadFileRepository;
+        _downloadFileWriteRepo = downloadFileWriteRepo;
+        _downloadFileReadRepo= downloadFileReadRepo;
         _downloadQueueRepo = downloadQueueRepo;
         _fileTypeGroupRepo = fileTypeGroupRepo;
         _appErrors = appErrors;
@@ -30,7 +38,7 @@ public class DownloadFileService : IDownloadFileService
 
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetDownloadFilesAsync(int? downloadQueueId)
     {
-        var downloads = await _downloadFileRepo.GetAsync(downloadQueueId);
+        var downloads = await _downloadFileReadRepo.GetAsync(downloadQueueId);
 
         var items = downloads.Select(d => new DownloadFileResDto()
         {
@@ -53,7 +61,7 @@ public class DownloadFileService : IDownloadFileService
 
     public async Task<ResultPattern<DownloadFileResDto?>> GetDownloadFileByIdAsync(long downloadFileId)
     {
-        var download = await _downloadFileRepo.GetByIdAsync(downloadFileId);
+        var download = await _downloadFileReadRepo.GetByIdAsync(downloadFileId);
 
         if (download == null) return new ResultPattern<DownloadFileResDto?>(_appErrors.NotFound);
 
@@ -71,7 +79,7 @@ public class DownloadFileService : IDownloadFileService
 
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetAllWaitingToStartDownloadFilesAsync()
     {
-        var downloads = await _downloadFileRepo.GetsStartedAsync(DownloadStatus.WaitingToStart);
+        var downloads = await _downloadFileReadRepo.GetsStartedAsync(DownloadStatus.WaitingToStart);
 
         return downloads.Select(d => new DownloadFileResDto()
         {
@@ -87,7 +95,7 @@ public class DownloadFileService : IDownloadFileService
 
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetAllStartedDownloadFilesAsync()
     {
-        var downloads = await _downloadFileRepo.GetsStartedAsync(DownloadStatus.Started);
+        var downloads = await _downloadFileReadRepo.GetsStartedAsync(DownloadStatus.Started);
 
         return downloads.Select(d => new DownloadFileResDto()
         {
@@ -102,7 +110,7 @@ public class DownloadFileService : IDownloadFileService
 
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetDownloadFileByStatusAsync(DownloadStatus downloadStatus)
     {
-        var downloads = await _downloadFileRepo.GetByStatusAsync(downloadStatus);
+        var downloads = await _downloadFileReadRepo.GetByStatusAsync(downloadStatus);
 
         return downloads.Select(d => new DownloadFileResDto()
         {
@@ -117,32 +125,32 @@ public class DownloadFileService : IDownloadFileService
 
     public async Task UpdateDownloadFileAsync(UpdateDownloadFileReqDto updateDownloadFileReqDto)
     {
-        var downloadFile = await _downloadFileRepo.GetByIdAsync(updateDownloadFileReqDto.Id);
+        var downloadFile = await _downloadFileReadRepo.GetByIdAsync(updateDownloadFileReqDto.Id);
         if (downloadFile == null) return;
         downloadFile.DownloadedBytes = updateDownloadFileReqDto.DownloadedBytes;
-        await _downloadFileRepo.UpdateAsync(downloadFile);
+        await _downloadFileWriteRepo.UpdateAsync(downloadFile);
     }
 
     public async Task UpdateDownloadFileStatusAsync(long downloadFileId, DownloadStatus downloadStatus)
     {
-        var downloadFile = await _downloadFileRepo.GetByIdAsync(downloadFileId);
+        var downloadFile = await _downloadFileReadRepo.GetByIdAsync(downloadFileId);
         if (downloadFile == null) return;
         if (downloadFile.DownloadStatus == DownloadStatus.Finished) return;
         downloadFile.DownloadStatus = downloadStatus;
-        await _downloadFileRepo.UpdateAsync(downloadFile);
+        await _downloadFileWriteRepo.UpdateAsync(downloadFile);
         _eventAggregator.Publish(new DownloadFileStatusEvent(downloadFileId, downloadStatus));
     }
 
     public async Task UpdateDownloadFileStatusAsync(List<long> downloadFileIds, DownloadStatus downloadStatus)
     {
-        var downloadFiles = await _downloadFileRepo.GetByIdsAsync(downloadFileIds);
+        var downloadFiles = await _downloadFileReadRepo.GetByIdsAsync(downloadFileIds);
         downloadFiles.ForEach(d => d.DownloadStatus = downloadStatus);
-        await _downloadFileRepo.UpdateAsync(downloadFiles);
+        await _downloadFileWriteRepo.UpdateAsync(downloadFiles);
     }
 
     public async Task<ResultPattern<bool>> AddFileToQueueAsync(AddFileToQueueReqDto model)
     {
-        var downloadFile = await _downloadFileRepo.GetAsync(model.FileName, model.DownloadURL);
+        var downloadFile = await _downloadFileReadRepo.GetAsync(model.FileName, model.DownloadURL);
         downloadFile = null;
         if (downloadFile == null)
         {
@@ -154,7 +162,7 @@ public class DownloadFileService : IDownloadFileService
             }
 
             var fileTypeGroup = await _fileTypeGroupRepo.GetByFileExtensionAsync(model.FileExtension!);
-            downloadFile = await _downloadFileRepo.AddAsync(new DownloadFile()
+            downloadFile = await _downloadFileWriteRepo.AddAsync(new DownloadFile()
             {
                 DownloadQueueId= downloadQueue.Id,
                 DownloadPath = model.DownloadURL,
@@ -205,13 +213,13 @@ public class DownloadFileService : IDownloadFileService
 
     public async Task ResetItemsAsync()
     {
-        var downloads = await _downloadFileRepo.GetAsync(null);
+        var downloads = await _downloadFileReadRepo.GetAsync(null);
         foreach (var item in downloads)
         {
             item.DownloadStatus = DownloadStatus.NotStarted;
             item.DownloadedBytes = 0;
         }
-        await _downloadFileRepo.UpdateAsync(downloads);
+        await _downloadFileWriteRepo.UpdateAsync(downloads);
     }
 
 }
