@@ -3,21 +3,21 @@
 
 namespace Client.Application.Services;
 
-public class DownloadManagerService : IDownloadManagerService
+public class DownloadManagement : IDownloadManagment
 {
 
     #region Ctor
     private SemaphoreSlim? _semaphore;
     private readonly IAppSettingService _appSettingService;
-    private readonly ILogger<DownloadManagerService> _logger;
+    private readonly ILogger<DownloadManagement> _logger;
     private readonly IDownloadFileService _downloadFileService;
     private readonly IDownloadFileChunkService _downloadFileChunkService;
     private readonly IEventManager _eventManager;
     private readonly IEventAggregator _eventAggregator;
     private readonly IServiceProvider _serviceProvider;
     private readonly IServiceScopeFactory _serviceScopeFactory;
-    public DownloadManagerService(IAppSettingService appSettingService,
-        ILogger<DownloadManagerService> logger, IDownloadFileService downloadFileService, IEventManager eventManager, IEventAggregator eventAggregator, IDownloadFileChunkService downloadFileChunkService = null, IServiceScopeFactory serviceScopeFactory = null, IServiceProvider serviceProvider = null)
+    public DownloadManagement(IAppSettingService appSettingService,
+        ILogger<DownloadManagement> logger, IDownloadFileService downloadFileService, IEventManager eventManager, IEventAggregator eventAggregator, IDownloadFileChunkService downloadFileChunkService = null, IServiceScopeFactory serviceScopeFactory = null, IServiceProvider serviceProvider = null)
     {
         _appSettingService = appSettingService;
         _logger = logger;
@@ -101,6 +101,7 @@ public class DownloadManagerService : IDownloadManagerService
         {
             var readyforDownloads = _activeDownloads.Where(a => a.TaskId == null && a.DownloadStatus == DownloadStatus.WaitingToStart).ToList();
 
+            if (readyforDownloads.Count == 0) return;
             foreach (var download in readyforDownloads)
             {
 
@@ -124,20 +125,20 @@ public class DownloadManagerService : IDownloadManagerService
                 {
                     try
                     {
+
                         if (download.TaskId == null)
                         {
                             download.TaskId = Task.CurrentId;
                         }
 
-                        //using (var scope = _serviceScopeFactory.CreateScope())
-                        //{
-                        //    var downloadFileChunkService = scope.ServiceProvider.GetRequiredService<IDownloadFileChunkService>();
-                        //    await downloadFileChunkService.StartDownloadAsync(chunks!);
-                        //}
+                        using (var scope = _serviceScopeFactory.CreateScope())
+                        {
+                            var downloadFileChunkService = scope.ServiceProvider.GetRequiredService<IDownloadFileChunkService>();
+                            await downloadFileChunkService.StartDownloadAsync(chunks!);
+                        }
 
 
-                        var downloadFileChunkService = _serviceProvider.GetRequiredService<IDownloadFileChunkService>();
-                        await downloadFileChunkService.StartDownloadAsync(chunks!);
+                        //  await _downloadFileChunkService.StartDownloadAsync(chunks!);
 
 
                     }
@@ -160,24 +161,18 @@ public class DownloadManagerService : IDownloadManagerService
     #region Events
 
 
-    private static readonly SemaphoreSlim _semaphoreUpdateDownloadedBytes = new(1, 1);
+
     private async void UpdateDownloadedBytes(DownloadFileChunkStatusEvent download)
     {
-        await _semaphoreUpdateDownloadedBytes.WaitAsync();
-        try
+
+        var complatedFilesRequest = await _downloadFileChunkService.GetComplatedChunkFilesAsync(download.DownloadFileId);
+        if (complatedFilesRequest.IsSucceed)
         {
-            var complatedFilesRequest = await _downloadFileChunkService.GetComplatedChunkFilesAsync(download.DownloadFileId);
-            if (complatedFilesRequest.IsSucceed)
-            {
-                var downloadedBytes = complatedFilesRequest.Data!.Sum(d => d.Size);
-                await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(download.DownloadFileId, downloadedBytes));
-                _eventAggregator.Publish(new DownloadFileDownloadedBytesEvent(download.DownloadFileId, download.ChunkSize));
-            }
+            var downloadedBytes = complatedFilesRequest.Data!.Sum(d => d.Size);
+            await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(download.DownloadFileId, downloadedBytes));
+            _eventAggregator.Publish(new DownloadFileDownloadedBytesEvent(download.DownloadFileId, download.ChunkSize));
         }
-        finally
-        {
-            _semaphoreUpdateDownloadedBytes.Release();
-        }
+
     }
 
     public async void UpdateDownloadFileStatus(DownloadFileStatusEvent download)
@@ -197,7 +192,7 @@ public class DownloadManagerService : IDownloadManagerService
             case DownloadStatus.WaitingToStart:
                 if (find.CancellationTokenSource.IsCancellationRequested)
                     find.CancellationTokenSource = new CancellationTokenSource();
-                _eventManager.Publish(async () => await ProcessDownloadAsync());
+                _eventManager.Publish(() => _ = ProcessDownloadAsync());
                 break;
             case DownloadStatus.Started:
                 break;
@@ -225,7 +220,7 @@ public class DownloadManagerService : IDownloadManagerService
         if (download.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated)
         {
             _eventManager.Publish(() => UpdateDownloadedBytes(download));
-            
+
         }
         //var find = _activeDownloads.FirstOrDefault(d => d.Id == download.DownloadFileId);
         //if (find == null)

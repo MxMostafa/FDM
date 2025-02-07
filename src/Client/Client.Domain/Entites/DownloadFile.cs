@@ -3,15 +3,12 @@ public class DownloadFile : BaseEntity<long>, ISoftDeletableEntity
 {
     public DownloadFile()
     {
-        DownloadFileChunks = new List<DownloadFileChunk>();
     }
 
     public required int DownloadQueueId { get; set; }
-    public  DownloadQueue DownloadQueue { get; set; }
     public required string FileName { get; set; }
 
     public int? FileTypeGroupId { get; set; }
-    public FileTypeGroup? FileTypeGroup { get; set; }
     public DownloadStatus DownloadStatus { get; set; }
     public long Size { get; set; }
     public long DownloadedBytes { get; set; }
@@ -20,5 +17,4 @@ public class DownloadFile : BaseEntity<long>, ISoftDeletableEntity
     public string? Description { get; set; }
     public bool IsDeleted { get; set; }
 
-    public ICollection<DownloadFileChunk> DownloadFileChunks { get; set; }
 }

@@ -2,7 +2,7 @@
 
 namespace Client.Domain.Interfaces.Services;
 
-public interface IDownloadManagerService
+public interface IDownloadManagment
 {
     Task InitialAsync();
 }

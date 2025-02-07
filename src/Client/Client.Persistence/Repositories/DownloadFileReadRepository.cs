@@ -18,20 +18,18 @@ public class DownloadFileReadRepository : BaseFileRepository, IDownloadFileReadR
 
     public async Task<List<DownloadFile>> GetAsync(int? queueId)
     {
-        var query = _context.DownloadFiles.
-            Include(d => d.DownloadQueue)
+        var query = _context.DownloadFiles
              .Where(d => d.IsDeleted == false);
 
         if (queueId != null)
-            query = query.Where(d => d.DownloadQueue.Id == queueId);
+            query = query.Where(d => d.DownloadQueueId == queueId);
 
         return await query.ToListAsync();
     }
 
     public async Task<List<DownloadFile>> GetsStartedAsync(DownloadStatus downloadStatus)
     {
-        var query = _context.DownloadFiles.
-            Include(d => d.DownloadQueue)
+        var query = _context.DownloadFiles
              .Where(d => d.IsDeleted == false &&
              (d.DownloadStatus == downloadStatus));
 
@@ -50,7 +48,6 @@ public class DownloadFileReadRepository : BaseFileRepository, IDownloadFileReadR
     public async Task<DownloadFile?> GetByIdAsync(long id)
     {
         return await _context.DownloadFiles
-            .Include(d => d.DownloadFileChunks)
             .FirstOrDefaultAsync(d => d.IsDeleted == false &&
             d.Id == id);
     }

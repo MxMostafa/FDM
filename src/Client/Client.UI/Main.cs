@@ -19,9 +19,9 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
     private readonly IAppSettingService _appSettingService;
     private readonly IEventAggregator _eventAggregator;
     private readonly IEventManager _eventManager;
-    private readonly IDownloadManagerService _downloadManagerService;
+    private readonly IDownloadManagment _downloadManagerService;
 
-    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService, LanguageService languageService, IAppSettingService appSettingService, IEventAggregator eventAggregator, IEventManager eventManager, IDownloadManagerService downloadManagerService)
+    public Main(IDownloadQueueService downloadQueueService, IServiceProvider serviceProvider, ILogger<Main> logger, IDownloadFileService downloadFileService, LanguageService languageService, IAppSettingService appSettingService, IEventAggregator eventAggregator, IEventManager eventManager, IDownloadManagment downloadManagerService)
     {
 
         try

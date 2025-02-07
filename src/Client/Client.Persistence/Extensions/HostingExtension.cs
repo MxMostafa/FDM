@@ -4,6 +4,8 @@
 using Client.Infrastructure.DbContexts.App;
 using Client.Infrastructure.DbContexts.Chunk;
 using Client.Infrastructure.DbContexts.File;
+using Client.Infrastructure.Repositories;
+using Client.Persistence.Repositories;
 
 namespace Client.Persistence.Extensions;
 
@@ -12,19 +14,16 @@ public static class HostingExtension
     public static IServiceCollection AddPersistenceToDC(this IServiceCollection services)
     {
 
-       
+        services.AddScoped<IAppSettingRepository, AppSettingRepository>();
+        services.AddScoped<ICategoryGroupRepository, CategoryGroupRepository>();
+        services.AddTransient<IDownloadFileChunkReadRepository, DownloadFileChunkReadRepository>();
+        services.AddTransient<IDownloadFileChunkWriteRepository, DownloadFileChunkWriteRepository>();
+        services.AddTransient<IDownloadFileReadRepository, DownloadFileReadRepository>();
+        services.AddTransient<IDownloadFileWriteRepository, DownloadFileWriteRepository>();
+        services.AddScoped<IDownloadQueueRepository, DownloadQueueRepository>();
+        services.AddScoped<IFileTypeGroupRepository, FileTypeGroupRepository>();
+        services.AddScoped<IHttpRepository, HttpRepository>();
 
-        var types = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.Namespace == "Client.Persistence.Repositories" && t.Name.EndsWith("Repository"))
-            .ToList();
-
-
-        foreach (var type in types)
-        {
-            if (type.IsAbstract) continue;
-            var interfaceType = type.GetInterfaces().First();
-            services.AddScoped(interfaceType, type);
-        }
 
         var dbPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\FDM";
 
@@ -33,9 +32,16 @@ public static class HostingExtension
 
         AppDomain.CurrentDomain.SetData("DataDirectory", dbPath);
 
-        var cstr = $"Data Source={dbPath}\\FDMdb.db";
         services.AddDbContext<FdmAppDbContext>(options =>
-            options.UseSqlite(cstr),ServiceLifetime.Singleton);
+            options.UseSqlite($"Data Source={dbPath}\\FDMdb.db"),ServiceLifetime.Singleton);
+
+        services.AddDbContext<FdmChunkDbContext>(options =>
+         options.UseSqlite($"Data Source={dbPath}\\FDMChunkdb.db"), ServiceLifetime.Transient);
+
+        services.AddDbContext<FdmFileDbContext>(options =>
+         options.UseSqlite($"Data Source={dbPath}\\FDMFiledb.db"), ServiceLifetime.Transient);
+
+
 
         var serviceProvider = services.BuildServiceProvider();
 
@@ -43,8 +49,9 @@ public static class HostingExtension
         using (var scope = serviceProvider.CreateScope())
         {
 
-            var context = scope.ServiceProvider.GetRequiredService<FdmAppDbContext>();
-            context.Database.Migrate(); // Applies any pending migrations
+            scope.ServiceProvider.GetRequiredService<FdmAppDbContext>().Database.Migrate();
+            scope.ServiceProvider.GetRequiredService<FdmFileDbContext>().Database.Migrate();
+            scope.ServiceProvider.GetRequiredService<FdmChunkDbContext>().Database.Migrate();
         }
 
         return services;

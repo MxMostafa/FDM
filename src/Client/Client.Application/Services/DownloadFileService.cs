@@ -39,10 +39,10 @@ public class DownloadFileService : IDownloadFileService
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetDownloadFilesAsync(int? downloadQueueId)
     {
         var downloads = await _downloadFileReadRepo.GetAsync(downloadQueueId);
-
+        var queues =await _downloadQueueRepo.GetAllAsync();
         var items = downloads.Select(d => new DownloadFileResDto()
         {
-            DownloadQueue = d.DownloadQueue,
+            DownloadQueue = queues.FirstOrDefault(q=>q.Id==d.DownloadQueueId),
             FileName = d.FileName,
             Description = d.Description,
             DownloadStatus = d.DownloadStatus,
@@ -64,10 +64,10 @@ public class DownloadFileService : IDownloadFileService
         var download = await _downloadFileReadRepo.GetByIdAsync(downloadFileId);
 
         if (download == null) return new ResultPattern<DownloadFileResDto?>(_appErrors.NotFound);
-
+        var queues = await _downloadQueueRepo.GetAllAsync();
         return new DownloadFileResDto()
         {
-            DownloadQueue = download.DownloadQueue,
+            DownloadQueue = queues.FirstOrDefault(q => q.Id == download.DownloadQueueId),
             FileName = download.FileName,
             Description = download.Description,
             DownloadStatus = download.DownloadStatus,
@@ -80,10 +80,10 @@ public class DownloadFileService : IDownloadFileService
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetAllWaitingToStartDownloadFilesAsync()
     {
         var downloads = await _downloadFileReadRepo.GetsStartedAsync(DownloadStatus.WaitingToStart);
-
+        var queues = await _downloadQueueRepo.GetAllAsync();
         return downloads.Select(d => new DownloadFileResDto()
         {
-            DownloadQueue = d.DownloadQueue,
+            DownloadQueue = queues.FirstOrDefault(q => q.Id == d.DownloadQueueId),
             FileName = d.FileName,
             Description = d.Description,
             DownloadStatus = d.DownloadStatus,
@@ -96,10 +96,10 @@ public class DownloadFileService : IDownloadFileService
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetAllStartedDownloadFilesAsync()
     {
         var downloads = await _downloadFileReadRepo.GetsStartedAsync(DownloadStatus.Started);
-
+        var queues = await _downloadQueueRepo.GetAllAsync();
         return downloads.Select(d => new DownloadFileResDto()
         {
-            DownloadQueue = d.DownloadQueue,
+            DownloadQueue = queues.FirstOrDefault(q => q.Id == d.DownloadQueueId),
             FileName = d.FileName,
             Description = d.Description,
             DownloadStatus = d.DownloadStatus,
@@ -111,10 +111,10 @@ public class DownloadFileService : IDownloadFileService
     public async Task<ResultPattern<List<DownloadFileResDto>>> GetDownloadFileByStatusAsync(DownloadStatus downloadStatus)
     {
         var downloads = await _downloadFileReadRepo.GetByStatusAsync(downloadStatus);
-
+        var queues = await _downloadQueueRepo.GetAllAsync();
         return downloads.Select(d => new DownloadFileResDto()
         {
-            DownloadQueue = d.DownloadQueue,
+            DownloadQueue = queues.FirstOrDefault(q => q.Id == d.DownloadQueueId),
             FileName = d.FileName,
             Description = d.Description,
             DownloadStatus = d.DownloadStatus,
