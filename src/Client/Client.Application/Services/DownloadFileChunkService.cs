@@ -1,16 +1,7 @@
 ﻿
 
-using Client.Application.Models;
-using Client.Domain.Dtos.Response.ChunkFile;
 using Client.Domain.Entites;
 using Client.Domain.Enums;
-using Client.Domain.EventModels;
-using Client.Domain.Interfaces.General.Errors;
-using Client.Domain.Interfaces.Services;
-using MapsterMapper;
-using Microsoft.Extensions.Logging;
-using System.Net.Http.Headers;
-using System.Threading;
 
 namespace Client.Application.Services;
 
@@ -24,7 +15,7 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     private readonly IAppErrors _appErrors;
     private readonly IMapper _mapper;
     private const int CHUNK_SIZE = 1024 * 100;
-    private const int MAX_THREAD_COUNT = 10;
+    private const int MAX_THREAD_COUNT = 1;
     private readonly ILogger<DownloadFileChunkService> _logger;
     private readonly List<ActiveDownloadChunkItemModel> _activeChunks = new();
 
@@ -72,18 +63,29 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     }
 
 
+    private static readonly SemaphoreSlim _semaphoreGetComplatedChunkFiles = new(1, 1);
     public async Task<ResultPattern<List<DownloadFileChunkResDto>>> GetComplatedChunkFilesAsync(long downloadFileId)
     {
-        var downloadFile = await _downloadFileRepository.GetByIdAsync(downloadFileId);
-        if (downloadFile == null)
+        await _semaphoreGetComplatedChunkFiles.WaitAsync();
+        try
         {
-            //log TODO:
-            return new ResultPattern<List<DownloadFileChunkResDto>>(_appErrors.NotFound);
-        }
-        var chunks = await _downloadFileChunkRepository.GetByDownloadFileIdAsync(downloadFileId, DownloadFileChunkStatus.Complated);
+            var downloadFile = await _downloadFileRepository.GetByIdAsync(downloadFileId);
+            if (downloadFile == null)
+            {
+                //log TODO:
+                return new ResultPattern<List<DownloadFileChunkResDto>>(_appErrors.NotFound);
+            }
+            var chunks = await _downloadFileChunkRepository.GetByDownloadFileIdAsync(downloadFileId, DownloadFileChunkStatus.Complated);
 
-        var result = _mapper.Map<List<DownloadFileChunkResDto>>(chunks);
-        return result;
+            var result = _mapper.Map<List<DownloadFileChunkResDto>>(chunks);
+            return result;
+        }
+        finally
+        {
+            _semaphoreGetComplatedChunkFiles.Release();
+        }
+
+
     }
 
 
@@ -133,37 +135,24 @@ public class DownloadFileChunkService : IDownloadFileChunkService
                         chunk.TaskId = Task.CurrentId;
                     }
 
-                 
-                    //notify
-                    _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, DownloadFileChunkStatus.Downloading, chunk.DownloadedBytes));
-
-
-
-
+                    DownloadFileChunkStatus? status = null;
                     var success = await DownloadChunkAsync(chunk);
 
                     if (success)
                     {
-                        _eventManager.Publish(async () =>
-                        {
-                            await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Complated);
-                        });
-
-                        //notify
-                        _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, DownloadFileChunkStatus.Complated, chunk.DownloadedBytes));
-
+                        await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Complated);
+                        status = DownloadFileChunkStatus.Complated;
                     }
                     else
                     {
-                        _eventManager.Publish(async () =>
-                        {
-                            await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Error);
-                        });
-
-                        //notify
-                        _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, DownloadFileChunkStatus.Error, chunk.DownloadedBytes));
-
+                        await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Error);
+                        status = DownloadFileChunkStatus.Error;
                     }
+
+
+                    //notify
+                    _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, status.Value, chunk.DownloadedBytes));
+
                 }
                 finally
                 {
@@ -177,36 +166,29 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     }
 
 
-    private Dictionary<long, DownloadFileChunkStatus> updateDownloadFileChunkQueue = new Dictionary<long, DownloadFileChunkStatus>();
+    // private Dictionary<long, DownloadFileChunkStatus> updateDownloadFileChunkQueue = new Dictionary<long, DownloadFileChunkStatus>();
+
+
+
+
+    private static readonly SemaphoreSlim _semaphoreUpdateDownloadFileChunkStatus = new(1, 1);
     private async Task UpdateDownloadFileChunkStatusAsync(long downloadFileChunkId, DownloadFileChunkStatus downloadFileChunkStatus)
     {
-        if (updateDownloadFileChunkQueue.ContainsKey(downloadFileChunkId))
+        await _semaphoreUpdateDownloadFileChunkStatus.WaitAsync();
+        try
         {
-            updateDownloadFileChunkQueue[downloadFileChunkId] = downloadFileChunkStatus;
-            return;
+            var downloadFileChunk = await _downloadFileChunkRepository.GetByIdAsync(downloadFileChunkId);
+            if (downloadFileChunk == null) return;
+            if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
+            downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
+            await _downloadFileChunkRepository.UpdateAsync(downloadFileChunk);
         }
-        
-        updateDownloadFileChunkQueue.Add(downloadFileChunkId, downloadFileChunkStatus);
-
-        if (updateDownloadFileChunkQueue.Count >= 30)
+        finally
         {
-            var downloadFileChunks = await _downloadFileChunkRepository.GetByIdsAsync(updateDownloadFileChunkQueue.Select(d => d.Key).ToList());
-
-            foreach (var item in downloadFileChunks)
-            {
-                if (updateDownloadFileChunkQueue.TryGetValue(item.Id, out var status))
-                    item.DownloadFileChunkStatus = status;
-            }
-            await _downloadFileChunkRepository.UpdateAsync(downloadFileChunks);
-            updateDownloadFileChunkQueue.Clear();
+            _semaphoreUpdateDownloadFileChunkStatus.Release();
         }
-        //var downloadFileChunk = await _downloadFileChunkRepository.GetByIdAsync(downloadFileChunkId);
-        //if (downloadFileChunk == null) return;
-        //if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
-        //downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
-        //await _downloadFileChunkRepository.UpdateAsync(downloadFileChunk);
-
     }
+
 
     private async Task<bool> DownloadChunkAsync(ActiveDownloadChunkItemModel chunk)
     {

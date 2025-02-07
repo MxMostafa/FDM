@@ -1,13 +1,6 @@
 ﻿
-using Client.Application.Helpers;
-using Client.Application.Models;
-using Client.Domain.Dtos.Request.DownloadFile;
-using Client.Domain.Dtos.Response.DownloadFile;
-using Client.Domain.Entites;
-using Client.Domain.EventModels;
-using Client.Domain.Interfaces.Services;
-using Mapster;
-using Microsoft.Extensions.Logging;
+
+
 namespace Client.Application.Services;
 
 public class DownloadManagerService : IDownloadManagerService
@@ -21,10 +14,10 @@ public class DownloadManagerService : IDownloadManagerService
     private readonly IDownloadFileChunkService _downloadFileChunkService;
     private readonly IEventManager _eventManager;
     private readonly IEventAggregator _eventAggregator;
-    //private readonly IServiceProvider _serviceProvider;
+    private readonly IServiceProvider _serviceProvider;
     private readonly IServiceScopeFactory _serviceScopeFactory;
     public DownloadManagerService(IAppSettingService appSettingService,
-        ILogger<DownloadManagerService> logger, IDownloadFileService downloadFileService, IEventManager eventManager, IEventAggregator eventAggregator, IDownloadFileChunkService downloadFileChunkService = null, IServiceScopeFactory serviceScopeFactory = null)
+        ILogger<DownloadManagerService> logger, IDownloadFileService downloadFileService, IEventManager eventManager, IEventAggregator eventAggregator, IDownloadFileChunkService downloadFileChunkService = null, IServiceScopeFactory serviceScopeFactory = null, IServiceProvider serviceProvider = null)
     {
         _appSettingService = appSettingService;
         _logger = logger;
@@ -36,7 +29,8 @@ public class DownloadManagerService : IDownloadManagerService
         _eventAggregator.Subscribe<DownloadFileChunkStatusEvent>(UpdateDownloadFileChunkStatus);
         _downloadFileChunkService = downloadFileChunkService;
         _serviceScopeFactory = serviceScopeFactory;
-        //_serviceProvider = serviceProvider;
+        _serviceProvider = serviceProvider;
+
     }
     #endregion
 
@@ -124,10 +118,7 @@ public class DownloadManagerService : IDownloadManagerService
 
 
                 await _downloadFileService.UpdateDownloadFileStatusAsync(download.Id, DownloadStatus.Started);
-                //_eventManager.Publish(async () =>
-                //{
-                //    await _downloadFileService.UpdateDownloadFileStatusAsync(download.Id, DownloadStatus.Started);
-                //});
+
 
                 _ = Task.Run(async () =>
                 {
@@ -138,13 +129,15 @@ public class DownloadManagerService : IDownloadManagerService
                             download.TaskId = Task.CurrentId;
                         }
 
-                        using (var scope = _serviceScopeFactory.CreateScope())
-                        {
-                            var downloadFileChunkService = scope.ServiceProvider.GetRequiredService<IDownloadFileChunkService>();
-                            await downloadFileChunkService.StartDownloadAsync(chunks!);
-                        }
+                        //using (var scope = _serviceScopeFactory.CreateScope())
+                        //{
+                        //    var downloadFileChunkService = scope.ServiceProvider.GetRequiredService<IDownloadFileChunkService>();
+                        //    await downloadFileChunkService.StartDownloadAsync(chunks!);
+                        //}
 
 
+                        var downloadFileChunkService = _serviceProvider.GetRequiredService<IDownloadFileChunkService>();
+                        await downloadFileChunkService.StartDownloadAsync(chunks!);
 
 
                     }
@@ -167,48 +160,24 @@ public class DownloadManagerService : IDownloadManagerService
     #region Events
 
 
-    private List<DownloadFileChunkStatusEvent> UpdateDownloadedBytesQueue = new List<DownloadFileChunkStatusEvent>();
-
+    private static readonly SemaphoreSlim _semaphoreUpdateDownloadedBytes = new(1, 1);
     private async void UpdateDownloadedBytes(DownloadFileChunkStatusEvent download)
     {
-        _eventAggregator.Publish(new DownloadFileDownloadedBytesEvent(download.DownloadFileId, download.ChunkSize));
-
-        UpdateDownloadedBytesQueue.Add(download);
-
-        if (UpdateDownloadedBytesQueue.Count >= 30)
+        await _semaphoreUpdateDownloadedBytes.WaitAsync();
+        try
         {
-            var grouped = UpdateDownloadedBytesQueue.GroupBy(p => p.DownloadFileId).ToList();
-
-            foreach (var d in grouped)
+            var complatedFilesRequest = await _downloadFileChunkService.GetComplatedChunkFilesAsync(download.DownloadFileId);
+            if (complatedFilesRequest.IsSucceed)
             {
-                var complatedFilesRequest = await _downloadFileChunkService.GetComplatedChunkFilesAsync(d.Key);
-                if (complatedFilesRequest.IsSucceed)
-                {
-                    var downloadedBytes = complatedFilesRequest.Data!.Sum(d => d.Size);
-                    await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(download.DownloadFileId, downloadedBytes));
-                }
-
-                //var downloadFile = await _downloadFileService.GetDownloadFileByIdAsync(d.Key);
-                //if (downloadFile.IsSucceed && downloadFile.Data != null)
-                //{
-                //    var downloadedBytes = downloadFile.Data.DownloadedBytes + d.Sum(x => x.ChunkSize);
-                //    await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(d.Key, downloadedBytes));
-                //}
+                var downloadedBytes = complatedFilesRequest.Data!.Sum(d => d.Size);
+                await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(download.DownloadFileId, downloadedBytes));
+                _eventAggregator.Publish(new DownloadFileDownloadedBytesEvent(download.DownloadFileId, download.ChunkSize));
             }
-
-            UpdateDownloadedBytesQueue.Clear();
         }
-
-        //_eventManager.Publish(async () =>
-        //{
-        //    var complatedFilesRequest = await _downloadFileChunkService.GetComplatedChunkFilesAsync(download.DownloadFileId);
-        //    if (complatedFilesRequest.IsSucceed)
-        //    {
-        //        var downloadedBytes = complatedFilesRequest.Data!.Sum(d => d.Size);
-        //        await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(download.DownloadFileId, downloadedBytes));
-        //    }
-
-        //});
+        finally
+        {
+            _semaphoreUpdateDownloadedBytes.Release();
+        }
     }
 
     public async void UpdateDownloadFileStatus(DownloadFileStatusEvent download)
@@ -255,7 +224,8 @@ public class DownloadManagerService : IDownloadManagerService
     {
         if (download.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated)
         {
-            UpdateDownloadedBytes(download);
+            _eventManager.Publish(() => UpdateDownloadedBytes(download));
+            
         }
         //var find = _activeDownloads.FirstOrDefault(d => d.Id == download.DownloadFileId);
         //if (find == null)

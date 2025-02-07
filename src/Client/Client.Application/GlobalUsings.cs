@@ -19,3 +19,12 @@ global using System.ComponentModel.DataAnnotations.Schema;
 global using Client.Domain.Dtos.Response.DownloadQueueItem;
 global using Newtonsoft.Json;
 global using System.Drawing;
+
+global using Client.Application.Models;
+global using Client.Domain.Dtos.Request.DownloadFile;
+global using Client.Domain.EventModels;
+global using Microsoft.Extensions.Logging;
+global using Client.Domain.Dtos.Response.ChunkFile;
+global using Client.Domain.Interfaces.General.Errors;
+global using MapsterMapper;
+global using System.Net.Http.Headers;

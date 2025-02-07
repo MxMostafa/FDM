@@ -29,7 +29,7 @@ public static class HostingExtension
 
         services.AddScoped<IHttpErros, HttpErros>();
         services.AddScoped<IAppErrors, AppErrors>();
-        services.AddSingleton<IEventManager, EventManager>();
+        services.AddScoped<IEventManager, EventManager>();
         services.AddSingleton<IEventAggregator, EventAggregator>();
         return services;
 
