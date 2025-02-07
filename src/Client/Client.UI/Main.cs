@@ -1,6 +1,7 @@
 ﻿using Client.Application.Helpers;
 using Client.Domain.Enums;
 using Client.Domain.EventModels;
+using Client.Domain.Helpers;
 using Client.Infrastructure.Helpers;
 using System.IO;
 using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
@@ -377,7 +378,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             {
                 foreach (var item in _mainDownloadList)
                 {
-                    _eventManager.Publish(() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
+                    _eventManager.Publish(EventCommandConstants.UpdateFileStatus+ item.Id ,() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
                 }
             }
             else
@@ -385,7 +386,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
                 var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
                 if (item != null)
                 {
-                    _eventManager.Publish(() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
+                    _eventManager.Publish(EventCommandConstants.UpdateFileStatus + item.Id ,() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
                 }
             }
         }

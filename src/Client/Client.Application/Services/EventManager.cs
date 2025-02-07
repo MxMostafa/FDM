@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace Client.Application.Services;
 
+
 public class EventManager : IEventManager
 {
-    private readonly ConcurrentQueue<Action> _eventQueue = new();
+    private readonly ConcurrentDictionary<string, Action> _eventQueue = new(); // برای حذف پردازش‌های قدیمی
     private readonly CancellationTokenSource _cancellationTokenSource = new();
     private Task? _processingTask;
+    private readonly SemaphoreSlim _semaphore = new(1, 1); // جلوگیری از همزمانی در پردازش
 
-    public void Publish(Action eventAction)
+    public void Publish(string commandKey, Action eventAction)
     {
-        _eventQueue.Enqueue(eventAction);
+        _eventQueue[commandKey] = eventAction; // جایگزینی مقدار قبلی با مقدار جدید (حذف موارد قدیمی)
     }
 
     public void StartProcessing()
@@ -26,15 +28,29 @@ public class EventManager : IEventManager
         {
             while (!_cancellationTokenSource.Token.IsCancellationRequested)
             {
-                if (_eventQueue.TryDequeue(out var eventAction))
+                if (_eventQueue.Count > 0)
                 {
+                    await _semaphore.WaitAsync(); // جلوگیری از پردازش همزمان چند ترد
                     try
                     {
-                        eventAction();
+                        foreach (var key in _eventQueue.Keys.ToList()) // کپی کلیدها برای حذف در طول پردازش
+                        {
+                            if (_eventQueue.TryRemove(key, out var eventAction))
+                            {
+                                try
+                                {
+                                    eventAction(); // اجرای آخرین عملیات ذخیره‌شده
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"Error processing event: {ex.Message}");
+                                }
+                            }
+                        }
                     }
-                    catch (Exception ex)
+                    finally
                     {
-                        Console.WriteLine($"Error processing event: {ex.Message}");
+                        _semaphore.Release();
                     }
                 }
                 else
@@ -50,4 +66,6 @@ public class EventManager : IEventManager
         _cancellationTokenSource.Cancel();
         _processingTask?.Wait();
     }
+
 }
+

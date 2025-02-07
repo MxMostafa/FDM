@@ -1,6 +1,8 @@
 ﻿
 
 
+using Client.Domain.Helpers;
+
 namespace Client.Application.Services;
 
 public class DownloadManagement : IDownloadManagment
@@ -192,7 +194,7 @@ public class DownloadManagement : IDownloadManagment
             case DownloadStatus.WaitingToStart:
                 if (find.CancellationTokenSource.IsCancellationRequested)
                     find.CancellationTokenSource = new CancellationTokenSource();
-                _eventManager.Publish(() => _ = ProcessDownloadAsync());
+                _eventManager.Publish(EventCommandConstants.UpdateFileStatus + download.DownloadFileId ,() => _ = ProcessDownloadAsync());
                 break;
             case DownloadStatus.Started:
                 break;
@@ -219,9 +221,9 @@ public class DownloadManagement : IDownloadManagment
     {
         if (download.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated)
         {
-            _eventManager.Publish(() => UpdateDownloadedBytes(download));
+            _eventManager.Publish(EventCommandConstants.UpdateFileStatus + download.DownloadFileId ,() => UpdateDownloadedBytes(download));
 
-        }
+        }   
         //var find = _activeDownloads.FirstOrDefault(d => d.Id == download.DownloadFileId);
         //if (find == null)
         //    return;
@@ -231,7 +233,7 @@ public class DownloadManagement : IDownloadManagment
     }
     public void AddFileToQueueAction(AddFileToQueueEvent addFileToQueueEvent)
     {
-        _eventManager.Publish(async () => await AddOrUpdateAllWaitingToStartDownloadFilesAsync());
+        _eventManager.Publish(EventCommandConstants.AddNewFile + addFileToQueueEvent.DownloadfileId, async () => await AddOrUpdateAllWaitingToStartDownloadFilesAsync());
     }
     #endregion
 }

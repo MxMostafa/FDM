@@ -1,5 +1,7 @@
 ﻿
 
+using Client.Domain.Helpers;
+
 namespace Client.Application.Services;
 
 public class DownloadFileChunkService : IDownloadFileChunkService
@@ -127,17 +129,17 @@ public class DownloadFileChunkService : IDownloadFileChunkService
                     }
 
                     DownloadFileChunkStatus? status = null;
-                    var success = await DownloadChunkAsync(chunk);
+                    var success = true;// await DownloadChunkAsync(chunk);
 
                     if (success)
                     {
-                        _eventManager.Publish(async () => await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Complated));
+                        _eventManager.Publish(EventCommandConstants.UpdateChunkStatus+ chunk.Id, async () => await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Complated));
                        
                         status = DownloadFileChunkStatus.Complated;
                     }
                     else
                     {
-                        _eventManager.Publish(async () => await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Error));
+                        _eventManager.Publish(EventCommandConstants.UpdateChunkStatus + chunk.Id, async () => await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Error));
                         status = DownloadFileChunkStatus.Error;
                     }
 
