@@ -166,14 +166,23 @@ public class DownloadManagement : IDownloadManagment
 
     private async void UpdateDownloadedBytes(DownloadFileChunkStatusEvent download)
     {
-
-        var complatedFilesRequest = await _downloadFileChunkService.GetComplatedChunkFilesAsync(download.DownloadFileId);
-        if (complatedFilesRequest.IsSucceed)
+        try
         {
-            var downloadedBytes = complatedFilesRequest.Data!.Sum(d => d.Size);
-            await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(download.DownloadFileId, downloadedBytes));
             _eventAggregator.Publish(new DownloadFileDownloadedBytesEvent(download.DownloadFileId, download.ChunkSize));
+            return;
+            var complatedFilesRequest = await _downloadFileChunkService.GetComplatedChunkFilesAsync(download.DownloadFileId);
+            if (complatedFilesRequest.IsSucceed)
+            {
+                var downloadedBytes = complatedFilesRequest.Data!.Sum(d => d.Size);
+                await _downloadFileService.UpdateDownloadFileAsync(new UpdateDownloadFileReqDto(download.DownloadFileId, downloadedBytes));
+                _eventAggregator.Publish(new DownloadFileDownloadedBytesEvent(download.DownloadFileId, download.ChunkSize));
+            }
         }
+        catch (Exception ex)
+        {
+
+        }
+       
 
     }
 
@@ -186,7 +195,7 @@ public class DownloadManagement : IDownloadManagment
             find = _activeDownloads.FirstOrDefault(d => d.Id == download.DownloadFileId);
         }
         if (find == null) return;
-
+        find.DownloadStatus = download.DownloadStatus;
         switch (download.DownloadStatus)
         {
             case DownloadStatus.NotStarted:
@@ -194,7 +203,7 @@ public class DownloadManagement : IDownloadManagment
             case DownloadStatus.WaitingToStart:
                 if (find.CancellationTokenSource.IsCancellationRequested)
                     find.CancellationTokenSource = new CancellationTokenSource();
-                _eventManager.Publish(EventCommandConstants.UpdateFileStatus + download.DownloadFileId ,() => _ = ProcessDownloadAsync());
+                _eventManager.Publish(() => _ = ProcessDownloadAsync());
                 break;
             case DownloadStatus.Started:
                 break;
@@ -221,9 +230,13 @@ public class DownloadManagement : IDownloadManagment
     {
         if (download.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated)
         {
-            _eventManager.Publish(EventCommandConstants.UpdateFileStatus + download.DownloadFileId ,() => UpdateDownloadedBytes(download));
+            _eventManager.Publish(() => UpdateDownloadedBytes(download));
 
-        }   
+        }
+        else
+        {
+
+        }
         //var find = _activeDownloads.FirstOrDefault(d => d.Id == download.DownloadFileId);
         //if (find == null)
         //    return;
@@ -233,7 +246,7 @@ public class DownloadManagement : IDownloadManagment
     }
     public void AddFileToQueueAction(AddFileToQueueEvent addFileToQueueEvent)
     {
-        _eventManager.Publish(EventCommandConstants.AddNewFile + addFileToQueueEvent.DownloadfileId, async () => await AddOrUpdateAllWaitingToStartDownloadFilesAsync());
+        _eventManager.Publish( async () => await AddOrUpdateAllWaitingToStartDownloadFilesAsync());
     }
     #endregion
 }

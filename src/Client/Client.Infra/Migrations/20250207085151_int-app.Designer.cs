@@ -54,7 +54,7 @@ namespace Client.Infrastructure.Migrations
                             Created = new DateTime(2025, 2, 7, 12, 21, 51, 351, DateTimeKind.Local).AddTicks(3141),
                             Key = "TempSavePathTextbox",
                             Updated = new DateTime(2025, 2, 7, 12, 21, 51, 351, DateTimeKind.Local).AddTicks(3144),
-                            Value = "C:\\Users\\Sattec\\AppData\\Roaming\\FDM"
+                            Value = "C:\\Users\\Mx\\AppData\\Roaming\\FDM"
                         });
                 });
 
@@ -183,7 +183,7 @@ namespace Client.Infrastructure.Migrations
                             FileExtensions = "zip rar",
                             FolderName = "Compressed",
                             IsDeleted = false,
-                            SavePath = "C:\\Users\\Sattec\\Downloads\\Compressed",
+                            SavePath = "C:\\Users\\Mx\\Downloads\\Compressed",
                             Title = "فایل های فشرده",
                             Updated = new DateTime(2025, 2, 7, 12, 21, 51, 348, DateTimeKind.Local).AddTicks(7183)
                         },
@@ -194,7 +194,7 @@ namespace Client.Infrastructure.Migrations
                             FileExtensions = "txt docx xls",
                             FolderName = "Documents",
                             IsDeleted = false,
-                            SavePath = "C:\\Users\\Sattec\\Downloads\\Documents",
+                            SavePath = "C:\\Users\\Mx\\Downloads\\Documents",
                             Title = "اسناد",
                             Updated = new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4222)
                         },
@@ -205,7 +205,7 @@ namespace Client.Infrastructure.Migrations
                             FileExtensions = "mp3 wave",
                             FolderName = "Music",
                             IsDeleted = false,
-                            SavePath = "C:\\Users\\Sattec\\Downloads\\Music",
+                            SavePath = "C:\\Users\\Mx\\Downloads\\Music",
                             Title = "موسیقی",
                             Updated = new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4760)
                         },
@@ -216,7 +216,7 @@ namespace Client.Infrastructure.Migrations
                             FileExtensions = "exe msi",
                             FolderName = "Video",
                             IsDeleted = false,
-                            SavePath = "C:\\Users\\Sattec\\Downloads\\Video",
+                            SavePath = "C:\\Users\\Mx\\Downloads\\Video",
                             Title = "برنامه ها",
                             Updated = new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5278)
                         },
@@ -227,7 +227,7 @@ namespace Client.Infrastructure.Migrations
                             FileExtensions = "mpeg 3gp avi flv",
                             FolderName = "Compressed",
                             IsDeleted = false,
-                            SavePath = "C:\\Users\\Sattec\\Downloads\\Compressed",
+                            SavePath = "C:\\Users\\Mx\\Downloads\\Compressed",
                             Title = "تصویری",
                             Updated = new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5683)
                         });

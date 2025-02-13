@@ -1,6 +1,7 @@
 ﻿
 
 using Client.Domain.Helpers;
+using System.Diagnostics;
 
 namespace Client.Application.Services;
 
@@ -14,7 +15,7 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     private readonly IAppSettingRepository _appSettingRepository;
     private readonly IAppErrors _appErrors;
     private readonly IMapper _mapper;
-    private const int CHUNK_SIZE = 1024 * 100;
+    private const int CHUNK_SIZE = 1024 * 1000;
     private const int MAX_THREAD_COUNT = 10;
     private readonly ILogger<DownloadFileChunkService> _logger;
     private readonly List<ActiveDownloadChunkItemModel> _activeChunks = new();
@@ -113,8 +114,10 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
         var readyforDownloads = _activeChunks.Where(a => a.TaskId == null && a.DownloadFileChunkStatus != DownloadFileChunkStatus.Complated).ToList();
 
+        long size = 0;
         foreach (var chunk in readyforDownloads)
         {
+
             await _semaphoreChunk!.WaitAsync();
 
             await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Downloading);
@@ -123,30 +126,32 @@ public class DownloadFileChunkService : IDownloadFileChunkService
             {
                 try
                 {
+                    //Debug.WriteLine(Task.CurrentId.ToString() + "::" + chunk.Id);
                     if (chunk.TaskId == null)
                     {
                         chunk.TaskId = Task.CurrentId;
                     }
 
                     DownloadFileChunkStatus? status = null;
-                    var success = true;// await DownloadChunkAsync(chunk);
+                    var success = await DownloadChunkAsync(chunk);
 
                     if (success)
                     {
-                        _eventManager.Publish(EventCommandConstants.UpdateChunkStatus+ chunk.Id, async () => await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Complated));
-                       
+                        _eventManager.Publish(async () => await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Complated));
+
                         status = DownloadFileChunkStatus.Complated;
                     }
                     else
                     {
-                        _eventManager.Publish(EventCommandConstants.UpdateChunkStatus + chunk.Id, async () => await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Error));
+                        _eventManager.Publish(async () => await UpdateDownloadFileChunkStatusAsync(chunk.Id, DownloadFileChunkStatus.Error));
                         status = DownloadFileChunkStatus.Error;
                     }
 
 
                     //notify
-                    _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, status.Value, chunk.DownloadedBytes));
-
+                    _eventAggregator.Publish(new DownloadFileChunkStatusEvent(chunk.DownloadFileId, chunk.Id, status.Value, chunk.ChunkSize));
+                    //  size += chunk.ChunkSize;
+                    // Debug.WriteLine("Size : " + size.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -165,12 +170,21 @@ public class DownloadFileChunkService : IDownloadFileChunkService
 
     private async Task UpdateDownloadFileChunkStatusAsync(long downloadFileChunkId, DownloadFileChunkStatus downloadFileChunkStatus)
     {
+        try
+        {
 
-        var downloadFileChunk = await _downloadFileChunkReadRepository.GetByIdAsync(downloadFileChunkId);
-        if (downloadFileChunk == null) return;
-        if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
-        downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
-        await _downloadFileChunkWriteRepository.UpdateAsync(downloadFileChunk);
+            var downloadFileChunk = await _downloadFileChunkReadRepository.GetByIdAsync(downloadFileChunkId);
+            if (downloadFileChunk == null) return;
+            if (downloadFileChunk.DownloadFileChunkStatus == DownloadFileChunkStatus.Complated) return;
+            downloadFileChunk.DownloadFileChunkStatus = downloadFileChunkStatus;
+            await _downloadFileChunkWriteRepository.UpdateAsync(downloadFileChunk);
+        }
+        catch (Exception ex)
+        {
+
+
+        }
+
 
     }
 
@@ -179,6 +193,8 @@ public class DownloadFileChunkService : IDownloadFileChunkService
     {
         try
         {
+            await Task.Delay(new Random().Next(100, 500));
+            return true;
             if (File.Exists(chunk.TempFilePath) && IsFileAccessible(chunk.TempFilePath))
             {
                 FileInfo fileInfo = new FileInfo(chunk.TempFilePath);

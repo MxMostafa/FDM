@@ -10,6 +10,7 @@ public class ActiveDownloadChunkItemModel
     public int Index { get; set; }
     public long Start { get; set; }
     public long End { get; set; }
+    public long ChunkSize => End - Start;
     public required string TempFilePath { get; set; }
     public DownloadFileChunkStatus DownloadFileChunkStatus { get; set; }
     public CancellationTokenSource CancellationTokenSource { get; set; } = new CancellationTokenSource();

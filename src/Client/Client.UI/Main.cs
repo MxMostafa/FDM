@@ -378,7 +378,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             {
                 foreach (var item in _mainDownloadList)
                 {
-                    _eventManager.Publish(EventCommandConstants.UpdateFileStatus+ item.Id ,() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
+                    _eventManager.Publish(() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
                 }
             }
             else
@@ -386,7 +386,7 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
                 var item = _mainDownloadList.FirstOrDefault(d => d.Id == id);
                 if (item != null)
                 {
-                    _eventManager.Publish(EventCommandConstants.UpdateFileStatus + item.Id ,() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
+                    _eventManager.Publish(() => _downloadFileService.UpdateDownloadFileStatusAsync(item.Id, downloadStatus));
                 }
             }
         }
@@ -480,6 +480,10 @@ public partial class Main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignF
             }, null);
 
 
+
+        }
+        else
+        {
 
         }
     }

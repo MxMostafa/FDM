@@ -106,7 +106,7 @@ namespace Client.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AppSettings",
                 columns: new[] { "Id", "AppSettingType", "Created", "Key", "Updated", "Value" },
-                values: new object[] { 1, 0, new DateTime(2025, 2, 7, 12, 21, 51, 351, DateTimeKind.Local).AddTicks(3141), "TempSavePathTextbox", new DateTime(2025, 2, 7, 12, 21, 51, 351, DateTimeKind.Local).AddTicks(3144), "C:\\Users\\Sattec\\AppData\\Roaming\\FDM" });
+                values: new object[] { 1, 0, new DateTime(2025, 2, 7, 12, 21, 51, 351, DateTimeKind.Local).AddTicks(3141), "TempSavePathTextbox", new DateTime(2025, 2, 7, 12, 21, 51, 351, DateTimeKind.Local).AddTicks(3144), "C:\\Users\\Mx\\AppData\\Roaming\\FDM" });
 
             migrationBuilder.InsertData(
                 table: "DownloadQueues",
@@ -118,11 +118,11 @@ namespace Client.Infrastructure.Migrations
                 columns: new[] { "Id", "Created", "FileExtensions", "FolderName", "IconName", "IsDeleted", "SavePath", "Title", "Updated" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 2, 7, 12, 21, 51, 346, DateTimeKind.Local).AddTicks(2499), "zip rar", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "فایل های فشرده", new DateTime(2025, 2, 7, 12, 21, 51, 348, DateTimeKind.Local).AddTicks(7183) },
-                    { 2, new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4219), "txt docx xls", "Documents", null, false, "C:\\Users\\Sattec\\Downloads\\Documents", "اسناد", new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4222) },
-                    { 3, new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4758), "mp3 wave", "Music", null, false, "C:\\Users\\Sattec\\Downloads\\Music", "موسیقی", new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4760) },
-                    { 4, new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5276), "exe msi", "Video", null, false, "C:\\Users\\Sattec\\Downloads\\Video", "برنامه ها", new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5278) },
-                    { 5, new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5682), "mpeg 3gp avi flv", "Compressed", null, false, "C:\\Users\\Sattec\\Downloads\\Compressed", "تصویری", new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5683) }
+                    { 1, new DateTime(2025, 2, 7, 12, 21, 51, 346, DateTimeKind.Local).AddTicks(2499), "zip rar", "Compressed", null, false, "C:\\Users\\Mx\\Downloads\\Compressed", "فایل های فشرده", new DateTime(2025, 2, 7, 12, 21, 51, 348, DateTimeKind.Local).AddTicks(7183) },
+                    { 2, new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4219), "txt docx xls", "Documents", null, false, "C:\\Users\\Mx\\Downloads\\Documents", "اسناد", new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4222) },
+                    { 3, new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4758), "mp3 wave", "Music", null, false, "C:\\Users\\Mx\\Downloads\\Music", "موسیقی", new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(4760) },
+                    { 4, new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5276), "exe msi", "Video", null, false, "C:\\Users\\Mx\\Downloads\\Video", "برنامه ها", new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5278) },
+                    { 5, new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5682), "mpeg 3gp avi flv", "Compressed", null, false, "C:\\Users\\Mx\\Downloads\\Compressed", "تصویری", new DateTime(2025, 2, 7, 12, 21, 51, 349, DateTimeKind.Local).AddTicks(5683) }
                 });
 
             migrationBuilder.CreateIndex(

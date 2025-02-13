@@ -7,13 +7,20 @@ using Client.Domain.Enums;
 using Client.Infrastructure.DbContexts.App;
 using Client.Infrastructure.DbContexts.Chunk;
 using Client.Infrastructure.DbContexts.File;
+using System.Threading;
 
 namespace Client.Persistence.Repositories;
 
 public class DownloadFileWriteRepository : BaseFileRepository, IDownloadFileWriteRepository
 {
+    private int saveCounter = 0;
+    private static readonly SemaphoreSlim _semaphoreSaveChangesAsync = new(1, 1);
+    private bool _hasPendingChanges = false;
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
+
     public DownloadFileWriteRepository(FdmFileDbContext context) : base(context)
     {
+        StartAutoSaveWorker();
     }
 
     public async Task<DownloadFile> AddAsync(DownloadFile downloadFile)
@@ -49,23 +56,77 @@ public class DownloadFileWriteRepository : BaseFileRepository, IDownloadFileWrit
     public async Task<List<DownloadFile>> UpdateAsync(List<DownloadFile> downloadFiles)
     {
         _context.DownloadFiles.UpdateRange(downloadFiles);
-       await SaveChangesAsync();
+        await SaveChangesAsync();
         return downloadFiles;
     }
 
 
-    private static readonly SemaphoreSlim _semaphoreSaveChangesAsync = new(1, 1);
+
     private async Task SaveChangesAsync()
     {
         await _semaphoreSaveChangesAsync.WaitAsync();
         try
         {
-            await _context.SaveChangesAsync();
+            saveCounter++;
+            _hasPendingChanges = true;
+
+            if (saveCounter >= 100)
+            {
+                saveCounter = 0;
+                await CommitChangesAsync();
+            }
         }
         finally
         {
             _semaphoreSaveChangesAsync.Release();
         }
-
     }
+
+    private async Task CommitChangesAsync()
+    {
+        try
+        {
+            await _context.SaveChangesAsync();
+            saveCounter = 0;
+            _hasPendingChanges = false;
+        }
+        catch (Exception ex)
+        {
+
+            
+        }
+     
+    }
+
+
+    private void StartAutoSaveWorker()
+    {
+        Task.Run(async () =>
+        {
+            while (!_cancellationTokenSource.Token.IsCancellationRequested)
+            {
+                await Task.Delay(10_000); // هر 10 ثانیه بررسی کن
+
+                await _semaphoreSaveChangesAsync.WaitAsync();
+                try
+                {
+                    if (_hasPendingChanges)
+                    {
+                        await CommitChangesAsync();
+                    }
+                }
+                finally
+                {
+                    _semaphoreSaveChangesAsync.Release();
+                }
+            }
+        }, _cancellationTokenSource.Token);
+    }
+
+    public void Dispose()
+    {
+        _cancellationTokenSource.Cancel();
+        _cancellationTokenSource.Dispose();
+    }
+
 }

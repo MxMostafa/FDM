@@ -17,9 +17,9 @@ public static class HostingExtension
         services.AddScoped<IAppSettingRepository, AppSettingRepository>();
         services.AddScoped<ICategoryGroupRepository, CategoryGroupRepository>();
         services.AddTransient<IDownloadFileChunkReadRepository, DownloadFileChunkReadRepository>();
-        services.AddTransient<IDownloadFileChunkWriteRepository, DownloadFileChunkWriteRepository>();
-        services.AddTransient<IDownloadFileReadRepository, DownloadFileReadRepository>();
-        services.AddTransient<IDownloadFileWriteRepository, DownloadFileWriteRepository>();
+        services.AddSingleton<IDownloadFileChunkWriteRepository, DownloadFileChunkWriteRepository>();
+        services.AddScoped<IDownloadFileReadRepository, DownloadFileReadRepository>();
+        services.AddSingleton<IDownloadFileWriteRepository, DownloadFileWriteRepository>();
         services.AddScoped<IDownloadQueueRepository, DownloadQueueRepository>();
         services.AddScoped<IFileTypeGroupRepository, FileTypeGroupRepository>();
         services.AddScoped<IHttpRepository, HttpRepository>();
