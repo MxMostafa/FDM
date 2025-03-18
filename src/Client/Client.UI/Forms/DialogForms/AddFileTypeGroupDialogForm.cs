@@ -1,7 +1,4 @@
-﻿using Client.Domain.Entites;
-using Client.UI.Constants;
-using DevExpress.XtraEditors;
-using System;
+﻿using Client.UI.Constants;
 
 
 namespace Client.UI.Forms.DialogForms;

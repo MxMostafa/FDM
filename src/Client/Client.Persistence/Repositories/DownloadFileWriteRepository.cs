@@ -1,13 +1,4 @@
-﻿
-
-
-
-using Client.Domain.Entites;
-using Client.Domain.Enums;
-using Client.Infrastructure.DbContexts.App;
-using Client.Infrastructure.DbContexts.Chunk;
-using Client.Infrastructure.DbContexts.File;
-using System.Threading;
+﻿using Client.Infrastructure.DbContexts.File;
 
 namespace Client.Persistence.Repositories;
 

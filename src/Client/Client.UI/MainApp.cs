@@ -1,20 +1,4 @@
-﻿using Client.UI.Extensions;
-using Client.UI.Forms.DialogForms;
-using DevExpress.XtraBars;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Client.UI
+﻿namespace Client.UI
 {
     public partial class MainApp : DevExpress.XtraBars.Ribbon.RibbonForm
     {

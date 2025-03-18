@@ -1,11 +1,7 @@
 ﻿
 
 using Client.Application.General.Errors;
-using Client.Domain.Dtos.Request.DownloadFile;
 using Client.Domain.Dtos.Response.DownloadFile;
-using Client.Domain.Entites;
-using Client.Domain.EventModels;
-using Client.Domain.Interfaces.General.Errors;
 
 namespace Client.Application.Services;
 

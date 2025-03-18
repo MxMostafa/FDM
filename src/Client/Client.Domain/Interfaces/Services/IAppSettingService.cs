@@ -1,9 +1,4 @@
-﻿
-
-
-
-using Client.Domain.Dtos;
-using Client.Domain.Dtos.Request.FileTypeGroup;
+﻿using Client.Domain.Dtos.Request.FileTypeGroup;
 using Client.Domain.Dtos.Response.AppSetting;
 using Client.Domain.Dtos.Response.FileTypeGroup;
 

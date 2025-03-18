@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel;
-
-namespace Client.Domain.Dtos.Response.DownloadFile;
+﻿namespace Client.Domain.Dtos.Response.DownloadFile;
 
 public class DownloadFileResDto
 {

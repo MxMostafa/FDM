@@ -1,12 +1,5 @@
-﻿
-
-
-
-using Client.Application.Helpers;
-using Client.Domain.Dtos.Request.DownloadFile;
-using Client.Domain.Entites;
+﻿using Client.Domain.Dtos.Request.DownloadFile;
 using Client.UI.ViewModel.FileTypeGroup;
-using System.ComponentModel;
 using System.IO;
 
 namespace Client.UI.Forms.DialogForms;

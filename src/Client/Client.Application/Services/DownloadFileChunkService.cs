@@ -1,9 +1,4 @@
-﻿
-
-using Client.Domain.Helpers;
-using System.Diagnostics;
-
-namespace Client.Application.Services;
+﻿namespace Client.Application.Services;
 
 public class DownloadFileChunkService : IDownloadFileChunkService
 {

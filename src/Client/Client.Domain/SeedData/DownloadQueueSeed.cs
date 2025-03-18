@@ -1,8 +1,4 @@
-﻿
-
-using Client.Domain.Helpers;
-
-namespace Client.Domain.SeedData;
+﻿namespace Client.Domain.SeedData;
 
 public static class DownloadQueueSeed
 {

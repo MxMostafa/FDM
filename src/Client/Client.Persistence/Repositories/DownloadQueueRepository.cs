@@ -3,8 +3,6 @@
 
 
 using Client.Infrastructure.DbContexts.App;
-using Client.Infrastructure.DbContexts.Chunk;
-using Client.Infrastructure.DbContexts.File;
 
 namespace Client.Persistence.Repositories;
 

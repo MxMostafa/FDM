@@ -1,14 +1,4 @@
-﻿
-
-
-
-using Client.Domain.Entites;
-using Client.Infrastructure.DbContexts.App;
-using Client.Infrastructure.DbContexts.Chunk;
-using Client.Infrastructure.DbContexts.File;
-using System.Security.AccessControl;
-
-namespace Client.Persistence.Repositories;
+﻿namespace Client.Persistence.Repositories;
 
 public class DownloadFileChunkReadRepository : BaseChunkRepository, IDownloadFileChunkReadRepository
 {

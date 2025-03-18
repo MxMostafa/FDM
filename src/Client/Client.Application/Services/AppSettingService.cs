@@ -1,10 +1,6 @@
 ﻿
 using Client.Domain.Dtos.Request.FileTypeGroup;
 using Client.Domain.Dtos.Response.FileTypeGroup;
-using Client.Domain.Entites;
-using Client.Domain.Interfaces.General.Errors;
-using MapsterMapper;
-using System.Collections.Generic;
 
 namespace Client.Application.Services;
 public class AppSettingService : IAppSettingService

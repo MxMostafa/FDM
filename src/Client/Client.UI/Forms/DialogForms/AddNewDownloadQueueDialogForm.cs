@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-
-namespace Client.UI.Forms.DialogForms;
+﻿namespace Client.UI.Forms.DialogForms;
 
 public partial class AddNewDownloadQueueDialogForm : MasterFixedDialogForm
 {

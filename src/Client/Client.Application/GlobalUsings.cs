@@ -1,24 +1,17 @@
 ﻿global using System;
 global using System.Collections.Generic;
 global using System.Linq;
-global using System.Text;
 global using System.Threading.Tasks;
-global using Client.Domain.Entites.Base;
 global using Client.Domain.Enums;
 global using Client.Domain.Dtos;
 global using Client.Domain.Dtos.Response;
 global using Client.Domain.Entites;
 global using Microsoft.Extensions.DependencyInjection;
-global using System.Reflection;
-global using Client.Domain.Interfaces.Dto;
 global using Client.Domain.Interfaces.Services;
 global using Client.Domain.Interfaces.Repositories;
 
 global using Client.Domain.Dtos.Response.AppSetting;
-global using System.ComponentModel.DataAnnotations.Schema;
 global using Client.Domain.Dtos.Response.DownloadQueueItem;
-global using Newtonsoft.Json;
-global using System.Drawing;
 
 global using Client.Application.Models;
 global using Client.Domain.Dtos.Request.DownloadFile;

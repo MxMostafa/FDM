@@ -2,7 +2,6 @@
 
 
 using Client.Infrastructure.DbContexts.App;
-using Client.Infrastructure.DbContexts.Chunk;
 using Client.Infrastructure.DbContexts.File;
 using Client.Infrastructure.Repositories;
 using Client.Persistence.Repositories;

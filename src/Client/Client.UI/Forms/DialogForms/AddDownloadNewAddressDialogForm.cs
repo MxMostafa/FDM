@@ -1,7 +1,4 @@
-﻿
-using Client.Domain.Interfaces.Dto;
-using Client.UI.Constants;
-using Client.UI.UserControls.Common;
+﻿using Client.UI.Constants;
 
 namespace Client.UI.Forms.DialogForms;
 

@@ -1,5 +1,4 @@
 ﻿using Client.Domain.Entites.Base;
-using Client.Domain.SeedData;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Linq.Expressions;
 

@@ -1,9 +1,4 @@
-﻿
-
-
-
-using Client.Domain.Dtos;
-using Client.Domain.Dtos.Request.Account;
+﻿using Client.Domain.Dtos.Request.Account;
 using Client.Domain.Dtos.Response.Account;
 
 namespace Client.Domain.Interfaces.Services;

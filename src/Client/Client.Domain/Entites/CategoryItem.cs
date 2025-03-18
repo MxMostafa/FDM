@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Client.Domain.Entites;
+﻿namespace Client.Domain.Entites;
 
 public class CategoryItem : BaseEntity<int>
 {

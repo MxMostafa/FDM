@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-using Client.Domain.Entites;
-using Client.Domain.Enums;
+﻿using Client.Domain.Enums;
 using Client.UI.Constants;
 using Client.UI.ViewModel.FileTypeGroup;
 

@@ -1,10 +1,6 @@
-﻿using Client.Application.Helpers;
-using Client.Domain.Enums;
+﻿using Client.Domain.Enums;
 using Client.Domain.EventModels;
-using Client.Domain.Helpers;
-using Client.Infrastructure.Helpers;
 using System.IO;
-using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace Client.UI;
 

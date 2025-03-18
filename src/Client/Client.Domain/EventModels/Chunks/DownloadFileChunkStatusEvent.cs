@@ -1,8 +1,4 @@
-﻿
-
-using Client.Domain.Entites;
-
-namespace Client.Domain.EventModels;
+﻿namespace Client.Domain.EventModels;
 
 public class DownloadFileChunkStatusEvent
 {

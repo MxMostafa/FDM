@@ -6,8 +6,6 @@
 
 using Client.Application.General.Errors;
 using Client.Application.Services;
-using Client.Domain.Interfaces.General.Errors;
-using Client.Domain.Interfaces.Services;
 
 namespace Client.Application.Extensions;
 

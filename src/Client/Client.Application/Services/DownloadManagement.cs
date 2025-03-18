@@ -1,9 +1,4 @@
-﻿
-
-
-using Client.Domain.Helpers;
-
-namespace Client.Application.Services;
+﻿namespace Client.Application.Services;
 
 public class DownloadManagement : IDownloadManagment
 {

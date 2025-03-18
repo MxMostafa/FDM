@@ -1,10 +1,4 @@
-﻿
-
-
-
-using Client.Domain.Interfaces.General.Errors;
-
-namespace Client.Application.Services;
+﻿namespace Client.Application.Services;
 
 public class DownloadQueueService : IDownloadQueueService
 {

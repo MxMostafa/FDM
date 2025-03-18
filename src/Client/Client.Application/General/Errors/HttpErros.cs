@@ -1,8 +1,4 @@
-﻿
-
-using Client.Domain.Interfaces.General.Errors;
-
-namespace Client.Application.General.Errors;
+﻿namespace Client.Application.General.Errors;
 
 public class HttpErros : IHttpErros
 {
